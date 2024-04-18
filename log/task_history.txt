@@ -1,0 +1,43 @@
+태스크 로그 모음
+타입/날짜/주문번호/계정/성공여부/사유
+SAVE/2024-04-18 20:11:03/1/omwojw/NO/사유 알수 없음
+SAVE/2024-04-18 20:13:53/1/omwojw/NO/이미 저장 되어 있음
+SAVE/2024-04-18 20:45:48/8867/omwojw/NO/이미 저장 되어 있음
+SAVE/2024-04-18 20:45:52/8867/njpb05_24/OK/없음
+SAVE/2024-04-18 20:46:34/8867/omwojw/NO/이미 저장 되어 있음
+SAVE/2024-04-18 20:46:35/8867/njpb05_24/NO/이미 저장 되어 있음
+SAVE/2024-04-18 20:48:20/8867/omwojw/NO/이미 저장 되어 있음
+SAVE/2024-04-18 20:48:20/8867/njpb05_24/NO/이미 저장 되어 있음
+SAVE/2024-04-18 20:49:06/8867/omwojw/NO/이미 저장 되어 있음
+SAVE/2024-04-18 20:49:07/8867/njpb05_24/NO/이미 저장 되어 있음
+SAVE/2024-04-18 20:56:10/8867/omwojw/NO/이미 저장 되어 있음
+SAVE/2024-04-18 21:04:09/8867/njpb05_24/NO/이미 저장 되어 있음
+SAVE/2024-04-18 21:04:38/8867/njpb05_24/NO/이미 저장 되어 있음
+SAVE/2024-04-18 21:06:46/8867/omwojw/NO/이미 저장 되어 있음
+SAVE/2024-04-18 21:07:05/8867/njpb05_24/NO/이미 저장 되어 있음
+SAVE/2024-04-18 21:07:49/8867/omwojw/NO/이미 저장 되어 있음
+SAVE/2024-04-18 21:09:03/8867/njpb05_24/NO/이미 저장 되어 있음
+SAVE/2024-04-18 21:10:25/8867/omwojw/NO/Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=123.0.6312.124)
+Stacktrace:
+0   chromedriver                        0x000000010099c3e8 chromedriver + 4326376
+1   chromedriver                        0x00000001009948b0 chromedriver + 4294832
+2   chromedriver                        0x00000001005c0088 chromedriver + 278664
+3   chromedriver                        0x000000010059b270 chromedriver + 127600
+4   chromedriver                        0x00000001006279ac chromedriver + 702892
+5   chromedriver                        0x000000010063ac0c chromedriver + 781324
+6   chromedriver                        0x00000001005f74e4 chromedriver + 505060
+7   chromedriver                        0x00000001005f7f5c chromedriver + 507740
+8   chromedriver                        0x000000010095f984 chromedriver + 4077956
+9   chromedriver                        0x000000010096473c chromedriver + 4097852
+10  chromedriver                        0x0000000100946528 chromedriver + 3974440
+11  chromedriver                        0x0000000100965054 chromedriver + 4100180
+12  chromedriver                        0x0000000100937b18 chromedriver + 3914520
+13  chromedriver                        0x000000010098565c chromedriver + 4232796
+14  chromedriver                        0x00000001009857d8 chromedriver + 4233176
+15  chromedriver                        0x0000000100994524 chromedriver + 4293924
+16  libsystem_pthread.dylib             0x000000018a602f94 _pthread_start + 136
+17  libsystem_pthread.dylib             0x000000018a5fdd34 thread_start + 8
+
+SAVE/2024-04-18 21:11:04/8867/njpb05_24/NO/이미 저장 되어 있음

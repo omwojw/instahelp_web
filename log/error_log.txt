@@ -1,0 +1,442 @@
+1/2024-04-18 20:21:36/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/save/../save/save_main.py", line 149, in login
+    id_input = common.find_element('NAME', "username", driver, wait)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/save/../common/fun.py", line 114, in find_element
+    if not is_display(selector_type, selector_name, driver):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/save/../common/fun.py", line 194, in is_display
+    count = len(driver.find_elements(By.NAME, selector_name))
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 771, in find_elements
+    return self.execute(Command.FIND_ELEMENTS, {"using": by, "value": value})["value"] or []
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 347, in execute
+    self.error_handler.check_response(response)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchWindowException: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=123.0.6312.124)
+Stacktrace:
+0   chromedriver                        0x00000001046e43e8 chromedriver + 4326376
+1   chromedriver                        0x00000001046dc8b0 chromedriver + 4294832
+2   chromedriver                        0x0000000104308088 chromedriver + 278664
+3   chromedriver                        0x00000001042e3270 chromedriver + 127600
+4   chromedriver                        0x000000010436f9ac chromedriver + 702892
+5   chromedriver                        0x0000000104382c0c chromedriver + 781324
+6   chromedriver                        0x000000010433f4e4 chromedriver + 505060
+7   chromedriver                        0x000000010433ff5c chromedriver + 507740
+8   chromedriver                        0x00000001046a7984 chromedriver + 4077956
+9   chromedriver                        0x00000001046ac73c chromedriver + 4097852
+10  chromedriver                        0x000000010468e528 chromedriver + 3974440
+11  chromedriver                        0x00000001046ad054 chromedriver + 4100180
+12  chromedriver                        0x000000010467fb18 chromedriver + 3914520
+13  chromedriver                        0x00000001046cd65c chromedriver + 4232796
+14  chromedriver                        0x00000001046cd7d8 chromedriver + 4233176
+15  chromedriver                        0x00000001046dc524 chromedriver + 4293924
+16  libsystem_pthread.dylib             0x000000018a602f94 _pthread_start + 136
+17  libsystem_pthread.dylib             0x000000018a5fdd34 thread_start + 8
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/save/../save/save_main.py", line 180, in mainFun
+    return setup()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/save/../save/save_main.py", line 67, in setup
+    return dashboard()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/save/../save/save_main.py", line 87, in dashboard
+    login(user_id, user_pw)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/save/../save/save_main.py", line 165, in login
+    raise Exception('로그인 에러')
+Exception: 로그인 에러
+
+1/2024-04-18 20:27:12/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/save/../save/save_main.py", line 186, in mainFun
+    return setup()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/save/../save/save_main.py", line 68, in setup
+    return dashboard()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/save/../save/save_main.py", line 78, in dashboard
+    driver.get("https://www.instagram.com/")
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 356, in get
+    self.execute(Command.GET, {"url": url})
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 347, in execute
+    self.error_handler.check_response(response)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_PROXY_CONNECTION_FAILED
+  (Session info: chrome=123.0.6312.124)
+Stacktrace:
+0   chromedriver                        0x0000000104b903e8 chromedriver + 4326376
+1   chromedriver                        0x0000000104b888b0 chromedriver + 4294832
+2   chromedriver                        0x00000001047b4088 chromedriver + 278664
+3   chromedriver                        0x00000001047ace94 chromedriver + 249492
+4   chromedriver                        0x000000010479e658 chromedriver + 190040
+5   chromedriver                        0x000000010479f91c chromedriver + 194844
+6   chromedriver                        0x000000010479e930 chromedriver + 190768
+7   chromedriver                        0x000000010479e378 chromedriver + 189304
+8   chromedriver                        0x000000010479e018 chromedriver + 188440
+9   chromedriver                        0x000000010479be60 chromedriver + 179808
+10  chromedriver                        0x000000010479c7fc chromedriver + 182268
+11  chromedriver                        0x00000001047b6620 chromedriver + 288288
+12  chromedriver                        0x000000010482fb14 chromedriver + 785172
+13  chromedriver                        0x000000010482f4f8 chromedriver + 783608
+14  chromedriver                        0x00000001047eb4e4 chromedriver + 505060
+15  chromedriver                        0x00000001047ebf5c chromedriver + 507740
+16  chromedriver                        0x0000000104b53984 chromedriver + 4077956
+17  chromedriver                        0x0000000104b5873c chromedriver + 4097852
+18  chromedriver                        0x0000000104b3a528 chromedriver + 3974440
+19  chromedriver                        0x0000000104b59054 chromedriver + 4100180
+20  chromedriver                        0x0000000104b2bb18 chromedriver + 3914520
+21  chromedriver                        0x0000000104b7965c chromedriver + 4232796
+22  chromedriver                        0x0000000104b797d8 chromedriver + 4233176
+23  chromedriver                        0x0000000104b88524 chromedriver + 4293924
+24  libsystem_pthread.dylib             0x000000018a602f94 _pthread_start + 136
+25  libsystem_pthread.dylib             0x000000018a5fdd34 thread_start + 8
+
+
+1/2024-04-18 20:28:07/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/save/../save/save_main.py", line 188, in mainFun
+    return setup()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/save/../save/save_main.py", line 70, in setup
+    return dashboard()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/save/../save/save_main.py", line 80, in dashboard
+    driver.get("https://www.instagram.com/")
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 356, in get
+    self.execute(Command.GET, {"url": url})
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 347, in execute
+    self.error_handler.check_response(response)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_PROXY_CONNECTION_FAILED
+  (Session info: chrome=123.0.6312.124)
+Stacktrace:
+0   chromedriver                        0x00000001051c03e8 chromedriver + 4326376
+1   chromedriver                        0x00000001051b88b0 chromedriver + 4294832
+2   chromedriver                        0x0000000104de4088 chromedriver + 278664
+3   chromedriver                        0x0000000104ddce94 chromedriver + 249492
+4   chromedriver                        0x0000000104dce658 chromedriver + 190040
+5   chromedriver                        0x0000000104dcf91c chromedriver + 194844
+6   chromedriver                        0x0000000104dce930 chromedriver + 190768
+7   chromedriver                        0x0000000104dce378 chromedriver + 189304
+8   chromedriver                        0x0000000104dce018 chromedriver + 188440
+9   chromedriver                        0x0000000104dcbe60 chromedriver + 179808
+10  chromedriver                        0x0000000104dcc7fc chromedriver + 182268
+11  chromedriver                        0x0000000104de6620 chromedriver + 288288
+12  chromedriver                        0x0000000104e5fb14 chromedriver + 785172
+13  chromedriver                        0x0000000104e5f4f8 chromedriver + 783608
+14  chromedriver                        0x0000000104e1b4e4 chromedriver + 505060
+15  chromedriver                        0x0000000104e1bf5c chromedriver + 507740
+16  chromedriver                        0x0000000105183984 chromedriver + 4077956
+17  chromedriver                        0x000000010518873c chromedriver + 4097852
+18  chromedriver                        0x000000010516a528 chromedriver + 3974440
+19  chromedriver                        0x0000000105189054 chromedriver + 4100180
+20  chromedriver                        0x000000010515bb18 chromedriver + 3914520
+21  chromedriver                        0x00000001051a965c chromedriver + 4232796
+22  chromedriver                        0x00000001051a97d8 chromedriver + 4233176
+23  chromedriver                        0x00000001051b8524 chromedriver + 4293924
+24  libsystem_pthread.dylib             0x000000018a602f94 _pthread_start + 136
+25  libsystem_pthread.dylib             0x000000018a5fdd34 thread_start + 8
+
+
+1/2024-04-18 20:28:33/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/save/../save/save_main.py", line 188, in mainFun
+    return setup()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/save/../save/save_main.py", line 70, in setup
+    return dashboard()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/save/../save/save_main.py", line 80, in dashboard
+    driver.get("https://www.instagram.com/")
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 356, in get
+    self.execute(Command.GET, {"url": url})
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 347, in execute
+    self.error_handler.check_response(response)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_TUNNEL_CONNECTION_FAILED
+  (Session info: chrome=123.0.6312.124)
+Stacktrace:
+0   chromedriver                        0x00000001027b43e8 chromedriver + 4326376
+1   chromedriver                        0x00000001027ac8b0 chromedriver + 4294832
+2   chromedriver                        0x00000001023d8088 chromedriver + 278664
+3   chromedriver                        0x00000001023d0e94 chromedriver + 249492
+4   chromedriver                        0x00000001023c2658 chromedriver + 190040
+5   chromedriver                        0x00000001023c391c chromedriver + 194844
+6   chromedriver                        0x00000001023c2930 chromedriver + 190768
+7   chromedriver                        0x00000001023c2378 chromedriver + 189304
+8   chromedriver                        0x00000001023c2018 chromedriver + 188440
+9   chromedriver                        0x00000001023bfe60 chromedriver + 179808
+10  chromedriver                        0x00000001023c07fc chromedriver + 182268
+11  chromedriver                        0x00000001023da620 chromedriver + 288288
+12  chromedriver                        0x0000000102453b14 chromedriver + 785172
+13  chromedriver                        0x00000001024534f8 chromedriver + 783608
+14  chromedriver                        0x000000010240f4e4 chromedriver + 505060
+15  chromedriver                        0x000000010240ff5c chromedriver + 507740
+16  chromedriver                        0x0000000102777984 chromedriver + 4077956
+17  chromedriver                        0x000000010277c73c chromedriver + 4097852
+18  chromedriver                        0x000000010275e528 chromedriver + 3974440
+19  chromedriver                        0x000000010277d054 chromedriver + 4100180
+20  chromedriver                        0x000000010274fb18 chromedriver + 3914520
+21  chromedriver                        0x000000010279d65c chromedriver + 4232796
+22  chromedriver                        0x000000010279d7d8 chromedriver + 4233176
+23  chromedriver                        0x00000001027ac524 chromedriver + 4293924
+24  libsystem_pthread.dylib             0x000000018a602f94 _pthread_start + 136
+25  libsystem_pthread.dylib             0x000000018a5fdd34 thread_start + 8
+
+
+1/2024-04-18 20:30:34/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/save/../save/save_main.py", line 187, in mainFun
+    return setup()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/save/../save/save_main.py", line 69, in setup
+    return dashboard()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/save/../save/save_main.py", line 79, in dashboard
+    driver.get("https://www.instagram.com/")
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 356, in get
+    self.execute(Command.GET, {"url": url})
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 347, in execute
+    self.error_handler.check_response(response)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_TUNNEL_CONNECTION_FAILED
+  (Session info: chrome=123.0.6312.124)
+Stacktrace:
+0   chromedriver                        0x00000001024943e8 chromedriver + 4326376
+1   chromedriver                        0x000000010248c8b0 chromedriver + 4294832
+2   chromedriver                        0x00000001020b8088 chromedriver + 278664
+3   chromedriver                        0x00000001020b0e94 chromedriver + 249492
+4   chromedriver                        0x00000001020a2658 chromedriver + 190040
+5   chromedriver                        0x00000001020a391c chromedriver + 194844
+6   chromedriver                        0x00000001020a2930 chromedriver + 190768
+7   chromedriver                        0x00000001020a2378 chromedriver + 189304
+8   chromedriver                        0x00000001020a2018 chromedriver + 188440
+9   chromedriver                        0x000000010209fe60 chromedriver + 179808
+10  chromedriver                        0x00000001020a07fc chromedriver + 182268
+11  chromedriver                        0x00000001020ba620 chromedriver + 288288
+12  chromedriver                        0x0000000102133b14 chromedriver + 785172
+13  chromedriver                        0x00000001021334f8 chromedriver + 783608
+14  chromedriver                        0x00000001020ef4e4 chromedriver + 505060
+15  chromedriver                        0x00000001020eff5c chromedriver + 507740
+16  chromedriver                        0x0000000102457984 chromedriver + 4077956
+17  chromedriver                        0x000000010245c73c chromedriver + 4097852
+18  chromedriver                        0x000000010243e528 chromedriver + 3974440
+19  chromedriver                        0x000000010245d054 chromedriver + 4100180
+20  chromedriver                        0x000000010242fb18 chromedriver + 3914520
+21  chromedriver                        0x000000010247d65c chromedriver + 4232796
+22  chromedriver                        0x000000010247d7d8 chromedriver + 4233176
+23  chromedriver                        0x000000010248c524 chromedriver + 4293924
+24  libsystem_pthread.dylib             0x000000018a602f94 _pthread_start + 136
+25  libsystem_pthread.dylib             0x000000018a5fdd34 thread_start + 8
+
+
+1/2024-04-18 20:31:33/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/save/../save/save_main.py", line 156, in login
+    id_input = common.find_element('NAME', "username", driver, wait)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/save/../common/fun.py", line 114, in find_element
+    if not is_display(selector_type, selector_name, driver):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/save/../common/fun.py", line 194, in is_display
+    count = len(driver.find_elements(By.NAME, selector_name))
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 771, in find_elements
+    return self.execute(Command.FIND_ELEMENTS, {"using": by, "value": value})["value"] or []
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 347, in execute
+    self.error_handler.check_response(response)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchWindowException: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=123.0.6312.124)
+Stacktrace:
+0   chromedriver                        0x00000001026003e8 chromedriver + 4326376
+1   chromedriver                        0x00000001025f88b0 chromedriver + 4294832
+2   chromedriver                        0x0000000102224088 chromedriver + 278664
+3   chromedriver                        0x00000001021ff270 chromedriver + 127600
+4   chromedriver                        0x000000010228b9ac chromedriver + 702892
+5   chromedriver                        0x000000010229ec0c chromedriver + 781324
+6   chromedriver                        0x000000010225b4e4 chromedriver + 505060
+7   chromedriver                        0x000000010225bf5c chromedriver + 507740
+8   chromedriver                        0x00000001025c3984 chromedriver + 4077956
+9   chromedriver                        0x00000001025c873c chromedriver + 4097852
+10  chromedriver                        0x00000001025aa528 chromedriver + 3974440
+11  chromedriver                        0x00000001025c9054 chromedriver + 4100180
+12  chromedriver                        0x000000010259bb18 chromedriver + 3914520
+13  chromedriver                        0x00000001025e965c chromedriver + 4232796
+14  chromedriver                        0x00000001025e97d8 chromedriver + 4233176
+15  chromedriver                        0x00000001025f8524 chromedriver + 4293924
+16  libsystem_pthread.dylib             0x000000018a602f94 _pthread_start + 136
+17  libsystem_pthread.dylib             0x000000018a5fdd34 thread_start + 8
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/save/../save/save_main.py", line 187, in mainFun
+    return setup()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/save/../save/save_main.py", line 69, in setup
+    return dashboard()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/save/../save/save_main.py", line 94, in dashboard
+    login(user_id, user_pw)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/save/../save/save_main.py", line 172, in login
+    raise Exception('로그인 에러')
+Exception: 로그인 에러
+
+8867/2024-04-18 20:44:09/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/save/../save/save_main.py", line 168, in login
+    login_btn.click()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webelement.py", line 94, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webelement.py", line 395, in _execute
+    return self._parent.execute(command, params)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 347, in execute
+    self.error_handler.check_response(response)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element <button class=" _acan _acap _acas _aj1- _ap30" disabled="" type="submit">...</button> is not clickable at point (242, 301). Other element would receive the click: <div class="x9f619 xjbqb8w x78zum5 x168nmei x13lgxp2 x5pf9jr xo71vjh x1xmf6yo x1e56ztr x540dpk x1m39q7l x1n2onr6 x1plvlek xryxfnj x1c4vz4f x2lah0s xdt5ytf xqjyukv x1qjc9v5 x1oa3qoh x1nhvcw1">...</div>
+  (Session info: chrome=123.0.6312.124)
+Stacktrace:
+0   chromedriver                        0x00000001047743e8 chromedriver + 4326376
+1   chromedriver                        0x000000010476c8b0 chromedriver + 4294832
+2   chromedriver                        0x0000000104398088 chromedriver + 278664
+3   chromedriver                        0x00000001043e0554 chromedriver + 574804
+4   chromedriver                        0x00000001043dead8 chromedriver + 568024
+5   chromedriver                        0x00000001043dcc58 chromedriver + 560216
+6   chromedriver                        0x00000001043dc188 chromedriver + 557448
+7   chromedriver                        0x00000001043d13ac chromedriver + 512940
+8   chromedriver                        0x00000001043d0dd0 chromedriver + 511440
+9   chromedriver                        0x00000001044134f8 chromedriver + 783608
+10  chromedriver                        0x00000001043cf4e4 chromedriver + 505060
+11  chromedriver                        0x00000001043cff5c chromedriver + 507740
+12  chromedriver                        0x0000000104737984 chromedriver + 4077956
+13  chromedriver                        0x000000010473c73c chromedriver + 4097852
+14  chromedriver                        0x000000010471e528 chromedriver + 3974440
+15  chromedriver                        0x000000010473d054 chromedriver + 4100180
+16  chromedriver                        0x000000010470fb18 chromedriver + 3914520
+17  chromedriver                        0x000000010475d65c chromedriver + 4232796
+18  chromedriver                        0x000000010475d7d8 chromedriver + 4233176
+19  chromedriver                        0x000000010476c524 chromedriver + 4293924
+20  libsystem_pthread.dylib             0x000000018a602f94 _pthread_start + 136
+21  libsystem_pthread.dylib             0x000000018a5fdd34 thread_start + 8
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/save/../save/save_main.py", line 187, in mainFun
+    return setup()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/save/../save/save_main.py", line 69, in setup
+    return dashboard()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/save/../save/save_main.py", line 94, in dashboard
+    login(user_id, user_pw)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/save/../save/save_main.py", line 172, in login
+    raise Exception('로그인 에러')
+Exception: 로그인 에러
+
+8867/2024-04-18 20:44:09/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/save/../save/save_main.py", line 168, in login
+    login_btn.click()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webelement.py", line 94, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webelement.py", line 395, in _execute
+    return self._parent.execute(command, params)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 347, in execute
+    self.error_handler.check_response(response)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element <button class=" _acan _acap _acas _aj1- _ap30" disabled="" type="submit">...</button> is not clickable at point (242, 301). Other element would receive the click: <div class="x9f619 xjbqb8w x78zum5 x168nmei x13lgxp2 x5pf9jr xo71vjh x1xmf6yo x1e56ztr x540dpk x1m39q7l x1n2onr6 x1plvlek xryxfnj x1c4vz4f x2lah0s xdt5ytf xqjyukv x1qjc9v5 x1oa3qoh x1nhvcw1">...</div>
+  (Session info: chrome=123.0.6312.124)
+Stacktrace:
+0   chromedriver                        0x00000001033383e8 chromedriver + 4326376
+1   chromedriver                        0x00000001033308b0 chromedriver + 4294832
+2   chromedriver                        0x0000000102f5c088 chromedriver + 278664
+3   chromedriver                        0x0000000102fa4554 chromedriver + 574804
+4   chromedriver                        0x0000000102fa2ad8 chromedriver + 568024
+5   chromedriver                        0x0000000102fa0c58 chromedriver + 560216
+6   chromedriver                        0x0000000102fa0188 chromedriver + 557448
+7   chromedriver                        0x0000000102f953ac chromedriver + 512940
+8   chromedriver                        0x0000000102f94dd0 chromedriver + 511440
+9   chromedriver                        0x0000000102fd74f8 chromedriver + 783608
+10  chromedriver                        0x0000000102f934e4 chromedriver + 505060
+11  chromedriver                        0x0000000102f93f5c chromedriver + 507740
+12  chromedriver                        0x00000001032fb984 chromedriver + 4077956
+13  chromedriver                        0x000000010330073c chromedriver + 4097852
+14  chromedriver                        0x00000001032e2528 chromedriver + 3974440
+15  chromedriver                        0x0000000103301054 chromedriver + 4100180
+16  chromedriver                        0x00000001032d3b18 chromedriver + 3914520
+17  chromedriver                        0x000000010332165c chromedriver + 4232796
+18  chromedriver                        0x00000001033217d8 chromedriver + 4233176
+19  chromedriver                        0x0000000103330524 chromedriver + 4293924
+20  libsystem_pthread.dylib             0x000000018a602f94 _pthread_start + 136
+21  libsystem_pthread.dylib             0x000000018a5fdd34 thread_start + 8
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/save/../save/save_main.py", line 187, in mainFun
+    return setup()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/save/../save/save_main.py", line 69, in setup
+    return dashboard()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/save/../save/save_main.py", line 94, in dashboard
+    login(user_id, user_pw)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/save/../save/save_main.py", line 172, in login
+    raise Exception('로그인 에러')
+Exception: 로그인 에러
+
+8867/2024-04-18 21:10:26/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/save/../save/save_main.py", line 126, in fetch_order
+    driver.get(order_url)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 356, in get
+    self.execute(Command.GET, {"url": url})
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 347, in execute
+    self.error_handler.check_response(response)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchWindowException: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=123.0.6312.124)
+Stacktrace:
+0   chromedriver                        0x000000010099c3e8 chromedriver + 4326376
+1   chromedriver                        0x00000001009948b0 chromedriver + 4294832
+2   chromedriver                        0x00000001005c0088 chromedriver + 278664
+3   chromedriver                        0x000000010059b270 chromedriver + 127600
+4   chromedriver                        0x00000001006279ac chromedriver + 702892
+5   chromedriver                        0x000000010063ac0c chromedriver + 781324
+6   chromedriver                        0x00000001005f74e4 chromedriver + 505060
+7   chromedriver                        0x00000001005f7f5c chromedriver + 507740
+8   chromedriver                        0x000000010095f984 chromedriver + 4077956
+9   chromedriver                        0x000000010096473c chromedriver + 4097852
+10  chromedriver                        0x0000000100946528 chromedriver + 3974440
+11  chromedriver                        0x0000000100965054 chromedriver + 4100180
+12  chromedriver                        0x0000000100937b18 chromedriver + 3914520
+13  chromedriver                        0x000000010098565c chromedriver + 4232796
+14  chromedriver                        0x00000001009857d8 chromedriver + 4233176
+15  chromedriver                        0x0000000100994524 chromedriver + 4293924
+16  libsystem_pthread.dylib             0x000000018a602f94 _pthread_start + 136
+17  libsystem_pthread.dylib             0x000000018a5fdd34 thread_start + 8
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/save/../save/save_main.py", line 106, in dashboard
+    result, message = fetch_order()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/save/../save/save_main.py", line 130, in fetch_order
+    raise Exception(ex)
+Exception: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=123.0.6312.124)
+Stacktrace:
+0   chromedriver                        0x000000010099c3e8 chromedriver + 4326376
+1   chromedriver                        0x00000001009948b0 chromedriver + 4294832
+2   chromedriver                        0x00000001005c0088 chromedriver + 278664
+3   chromedriver                        0x000000010059b270 chromedriver + 127600
+4   chromedriver                        0x00000001006279ac chromedriver + 702892
+5   chromedriver                        0x000000010063ac0c chromedriver + 781324
+6   chromedriver                        0x00000001005f74e4 chromedriver + 505060
+7   chromedriver                        0x00000001005f7f5c chromedriver + 507740
+8   chromedriver                        0x000000010095f984 chromedriver + 4077956
+9   chromedriver                        0x000000010096473c chromedriver + 4097852
+10  chromedriver                        0x0000000100946528 chromedriver + 3974440
+11  chromedriver                        0x0000000100965054 chromedriver + 4100180
+12  chromedriver                        0x0000000100937b18 chromedriver + 3914520
+13  chromedriver                        0x000000010098565c chromedriver + 4232796
+14  chromedriver                        0x00000001009857d8 chromedriver + 4233176
+15  chromedriver                        0x0000000100994524 chromedriver + 4293924
+16  libsystem_pthread.dylib             0x000000018a602f94 _pthread_start + 136
+17  libsystem_pthread.dylib             0x000000018a5fdd34 thread_start + 8
+
+
