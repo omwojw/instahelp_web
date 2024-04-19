@@ -58,7 +58,7 @@ def get_accounts(path: str) -> list:
             continue
         account_list.append(account.strip())
 
-    random.shuffle(account_list)
+    # random.shuffle(account_list)
     return account_list
 
 

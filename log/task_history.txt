@@ -41,3 +41,26 @@ Stacktrace:
 17  libsystem_pthread.dylib             0x000000018a5fdd34 thread_start + 8
 
 SAVE/2024-04-18 21:11:04/8867/njpb05_24/NO/이미 저장 되어 있음
+SAVE/2024-04-19 09:46:03/8867/pgexvjwsxvnjfd/NO/Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=123.0.6312.124)
+Stacktrace:
+0   chromedriver                        0x00000001046983e8 chromedriver + 4326376
+1   chromedriver                        0x00000001046908b0 chromedriver + 4294832
+2   chromedriver                        0x00000001042bc088 chromedriver + 278664
+3   chromedriver                        0x0000000104297270 chromedriver + 127600
+4   chromedriver                        0x00000001043239ac chromedriver + 702892
+5   chromedriver                        0x0000000104336c0c chromedriver + 781324
+6   chromedriver                        0x00000001042f34e4 chromedriver + 505060
+7   chromedriver                        0x00000001042f3f5c chromedriver + 507740
+8   chromedriver                        0x000000010465b984 chromedriver + 4077956
+9   chromedriver                        0x000000010466073c chromedriver + 4097852
+10  chromedriver                        0x0000000104642528 chromedriver + 3974440
+11  chromedriver                        0x0000000104661054 chromedriver + 4100180
+12  chromedriver                        0x0000000104633b18 chromedriver + 3914520
+13  chromedriver                        0x000000010468165c chromedriver + 4232796
+14  chromedriver                        0x00000001046817d8 chromedriver + 4233176
+15  chromedriver                        0x0000000104690524 chromedriver + 4293924
+16  libsystem_pthread.dylib             0x0000000184cd6f94 _pthread_start + 136
+17  libsystem_pthread.dylib             0x0000000184cd1d34 thread_start + 8
+

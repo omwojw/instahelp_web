@@ -60,9 +60,9 @@ def process_order(order_id: str, quantity: int, order_url: str, active_accounts:
         futures = [executor.submit(
             save_main.mainFun
             , index
-            , account.split(':')[0]
-            , account.split(':')[1]
-            , account.split(':')[4]
+            , account.split('|')[0]
+            , account.split('|')[1]
+            , account.split('|')[4]
             , order_id
             , quantity
             , order_url

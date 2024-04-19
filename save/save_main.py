@@ -15,6 +15,10 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.proxy import Proxy, ProxyType
+from proxy_checker import ProxyChecker
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 
 # Config 읽기
 config = configparser.ConfigParser()
@@ -52,12 +56,11 @@ def setup() -> str:
 
     # Chrome 웹 드라이버 설정
     options = webdriver.ChromeOptions()
-
-
     # options.add_argument('--headless')
     options.add_argument('--disable-gpu')
-    # options.add_argument('--proxy-server={}'.format(ip))
+    options.add_argument(f'--proxy-server={ip}')
     options.binary_location = chrome_path
+
     # 웹 드라 이버 시작
     service = ChromeService(executable_path=chromedriver_path)
     selenium_driver = webdriver.Chrome(service=service, options=options)
@@ -76,12 +79,9 @@ def dashboard() -> str:
     wait = WebDriverWait(driver, wait_time, poll_frequency=1)
 
     # 페이지 띄우기
-    driver.get("https://www.instagram.com/")
+    driver.get("https://dnsleaktest.com/")
 
-    # common.sleep(5)
-    # # 현재 IP 주소를 가져옵니다.
-    # current_ip = driver.find_element_by_css_selector('.ip').text
-    # print("Current IP address:", current_ip)
+    common.sleep(3000)
 
     success = 0
     fail = 0
