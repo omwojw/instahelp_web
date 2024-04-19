@@ -58,7 +58,11 @@ def setup() -> str:
     options = webdriver.ChromeOptions()
     # options.add_argument('--headless')
     options.add_argument('--disable-gpu')
-    options.add_argument(f'--proxy-server={ip}')
+
+    # 프록시 설정은 윈도우에서만 가능
+    if current_os == 'WINDOW':
+        options.add_argument(f'--proxy-server={ip}')
+
     options.binary_location = chrome_path
 
     # 웹 드라 이버 시작
@@ -79,9 +83,7 @@ def dashboard() -> str:
     wait = WebDriverWait(driver, wait_time, poll_frequency=1)
 
     # 페이지 띄우기
-    driver.get("https://dnsleaktest.com/")
-
-    common.sleep(3000)
+    driver.get("https://instagram.com/")
 
     success = 0
     fail = 0

@@ -64,3 +64,29 @@ Stacktrace:
 16  libsystem_pthread.dylib             0x0000000184cd6f94 _pthread_start + 136
 17  libsystem_pthread.dylib             0x0000000184cd1d34 thread_start + 8
 
+SAVE/2024-04-19 15:04:13/8867/pgexvjwsxvnjfd/NO/Message: element click intercepted: Element <div>...</div> is not clickable at point (457, 741). Other element would receive the click: <div class="xjp7ctv xir0mxb x19osjzx">...</div>
+  (Session info: chrome=124.0.6367.61)
+Stacktrace:
+0   chromedriver                        0x00000001011903e8 chromedriver + 4326376
+1   chromedriver                        0x00000001011888b0 chromedriver + 4294832
+2   chromedriver                        0x0000000100db4088 chromedriver + 278664
+3   chromedriver                        0x0000000100dfc554 chromedriver + 574804
+4   chromedriver                        0x0000000100dfaad8 chromedriver + 568024
+5   chromedriver                        0x0000000100df8c58 chromedriver + 560216
+6   chromedriver                        0x0000000100df8188 chromedriver + 557448
+7   chromedriver                        0x0000000100ded3ac chromedriver + 512940
+8   chromedriver                        0x0000000100decdd0 chromedriver + 511440
+9   chromedriver                        0x0000000100e2f4f8 chromedriver + 783608
+10  chromedriver                        0x0000000100deb4e4 chromedriver + 505060
+11  chromedriver                        0x0000000100debf5c chromedriver + 507740
+12  chromedriver                        0x0000000101153984 chromedriver + 4077956
+13  chromedriver                        0x000000010115873c chromedriver + 4097852
+14  chromedriver                        0x000000010113a528 chromedriver + 3974440
+15  chromedriver                        0x0000000101159054 chromedriver + 4100180
+16  chromedriver                        0x000000010112bb18 chromedriver + 3914520
+17  chromedriver                        0x000000010117965c chromedriver + 4232796
+18  chromedriver                        0x00000001011797d8 chromedriver + 4233176
+19  chromedriver                        0x0000000101188524 chromedriver + 4293924
+20  libsystem_pthread.dylib             0x0000000184cd6f94 _pthread_start + 136
+21  libsystem_pthread.dylib             0x0000000184cd1d34 thread_start + 8
+
