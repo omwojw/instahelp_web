@@ -3,26 +3,3 @@
 SAVE/2024-04-18 21:08:14/njpb05_24/로그인 실패
 SAVE/2024-04-18 21:09:40/njpb05_24/로그인 실패
 SAVE/2024-04-18 21:10:04/omwojw/로그인 실패
-SAVE/2024-04-18 21:10:25/omwojw/Message: no such window: target window already closed
-from unknown error: web view not found
-  (Session info: chrome=123.0.6312.124)
-Stacktrace:
-0   chromedriver                        0x000000010099c3e8 chromedriver + 4326376
-1   chromedriver                        0x00000001009948b0 chromedriver + 4294832
-2   chromedriver                        0x00000001005c0088 chromedriver + 278664
-3   chromedriver                        0x000000010059b270 chromedriver + 127600
-4   chromedriver                        0x00000001006279ac chromedriver + 702892
-5   chromedriver                        0x000000010063ac0c chromedriver + 781324
-6   chromedriver                        0x00000001005f74e4 chromedriver + 505060
-7   chromedriver                        0x00000001005f7f5c chromedriver + 507740
-8   chromedriver                        0x000000010095f984 chromedriver + 4077956
-9   chromedriver                        0x000000010096473c chromedriver + 4097852
-10  chromedriver                        0x0000000100946528 chromedriver + 3974440
-11  chromedriver                        0x0000000100965054 chromedriver + 4100180
-12  chromedriver                        0x0000000100937b18 chromedriver + 3914520
-13  chromedriver                        0x000000010098565c chromedriver + 4232796
-14  chromedriver                        0x00000001009857d8 chromedriver + 4233176
-15  chromedriver                        0x0000000100994524 chromedriver + 4293924
-16  libsystem_pthread.dylib             0x000000018a602f94 _pthread_start + 136
-17  libsystem_pthread.dylib             0x000000018a5fdd34 thread_start + 8
-

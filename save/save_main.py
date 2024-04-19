@@ -114,7 +114,7 @@ def dashboard() -> str:
     except Exception as ex:
         fail += 1
         common.write_task_log(task_log_path, task_service, order_id, user_id, 'NO', ex)
-        common.remove_from_accounts(task_service, user_id, ex)
+        common.remove_from_accounts(task_service, user_id, '태스크 실패')
         common.remove_from_error(traceback.format_exc(), order_id)
         print(traceback.format_exc())
     return f'{success},{fail}'
