@@ -134,8 +134,10 @@ def fetch_order() -> tuple:
         driver.get(order_url)
         common.sleep(1)
 
-        # if agree_check():
-        #     agree_active()
+        if agree_check():
+            common.sleep(1)
+            agree_active()
+            common.sleep(1)
 
         result, message = save()
         return result, message
