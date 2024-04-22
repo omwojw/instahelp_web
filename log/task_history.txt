@@ -1,92 +1,15 @@
 태스크 로그 모음
 타입/날짜/주문번호/계정/성공여부/사유
-SAVE/2024-04-18 20:11:03/1/omwojw/NO/사유 알수 없음
-SAVE/2024-04-18 20:13:53/1/omwojw/NO/이미 저장 되어 있음
-SAVE/2024-04-18 20:45:48/8867/omwojw/NO/이미 저장 되어 있음
-SAVE/2024-04-18 20:45:52/8867/njpb05_24/OK/없음
-SAVE/2024-04-18 20:46:34/8867/omwojw/NO/이미 저장 되어 있음
-SAVE/2024-04-18 20:46:35/8867/njpb05_24/NO/이미 저장 되어 있음
-SAVE/2024-04-18 20:48:20/8867/omwojw/NO/이미 저장 되어 있음
-SAVE/2024-04-18 20:48:20/8867/njpb05_24/NO/이미 저장 되어 있음
-SAVE/2024-04-18 20:49:06/8867/omwojw/NO/이미 저장 되어 있음
-SAVE/2024-04-18 20:49:07/8867/njpb05_24/NO/이미 저장 되어 있음
-SAVE/2024-04-18 20:56:10/8867/omwojw/NO/이미 저장 되어 있음
-SAVE/2024-04-18 21:04:09/8867/njpb05_24/NO/이미 저장 되어 있음
-SAVE/2024-04-18 21:04:38/8867/njpb05_24/NO/이미 저장 되어 있음
-SAVE/2024-04-18 21:06:46/8867/omwojw/NO/이미 저장 되어 있음
-SAVE/2024-04-18 21:07:05/8867/njpb05_24/NO/이미 저장 되어 있음
-SAVE/2024-04-18 21:07:49/8867/omwojw/NO/이미 저장 되어 있음
-SAVE/2024-04-18 21:09:03/8867/njpb05_24/NO/이미 저장 되어 있음
-SAVE/2024-04-18 21:10:25/8867/omwojw/NO/Message: no such window: target window already closed
-from unknown error: web view not found
-  (Session info: chrome=123.0.6312.124)
-Stacktrace:
-0   chromedriver                        0x000000010099c3e8 chromedriver + 4326376
-1   chromedriver                        0x00000001009948b0 chromedriver + 4294832
-2   chromedriver                        0x00000001005c0088 chromedriver + 278664
-3   chromedriver                        0x000000010059b270 chromedriver + 127600
-4   chromedriver                        0x00000001006279ac chromedriver + 702892
-5   chromedriver                        0x000000010063ac0c chromedriver + 781324
-6   chromedriver                        0x00000001005f74e4 chromedriver + 505060
-7   chromedriver                        0x00000001005f7f5c chromedriver + 507740
-8   chromedriver                        0x000000010095f984 chromedriver + 4077956
-9   chromedriver                        0x000000010096473c chromedriver + 4097852
-10  chromedriver                        0x0000000100946528 chromedriver + 3974440
-11  chromedriver                        0x0000000100965054 chromedriver + 4100180
-12  chromedriver                        0x0000000100937b18 chromedriver + 3914520
-13  chromedriver                        0x000000010098565c chromedriver + 4232796
-14  chromedriver                        0x00000001009857d8 chromedriver + 4233176
-15  chromedriver                        0x0000000100994524 chromedriver + 4293924
-16  libsystem_pthread.dylib             0x000000018a602f94 _pthread_start + 136
-17  libsystem_pthread.dylib             0x000000018a5fdd34 thread_start + 8
-
-SAVE/2024-04-18 21:11:04/8867/njpb05_24/NO/이미 저장 되어 있음
-SAVE/2024-04-19 09:46:03/8867/pgexvjwsxvnjfd/NO/Message: no such window: target window already closed
-from unknown error: web view not found
-  (Session info: chrome=123.0.6312.124)
-Stacktrace:
-0   chromedriver                        0x00000001046983e8 chromedriver + 4326376
-1   chromedriver                        0x00000001046908b0 chromedriver + 4294832
-2   chromedriver                        0x00000001042bc088 chromedriver + 278664
-3   chromedriver                        0x0000000104297270 chromedriver + 127600
-4   chromedriver                        0x00000001043239ac chromedriver + 702892
-5   chromedriver                        0x0000000104336c0c chromedriver + 781324
-6   chromedriver                        0x00000001042f34e4 chromedriver + 505060
-7   chromedriver                        0x00000001042f3f5c chromedriver + 507740
-8   chromedriver                        0x000000010465b984 chromedriver + 4077956
-9   chromedriver                        0x000000010466073c chromedriver + 4097852
-10  chromedriver                        0x0000000104642528 chromedriver + 3974440
-11  chromedriver                        0x0000000104661054 chromedriver + 4100180
-12  chromedriver                        0x0000000104633b18 chromedriver + 3914520
-13  chromedriver                        0x000000010468165c chromedriver + 4232796
-14  chromedriver                        0x00000001046817d8 chromedriver + 4233176
-15  chromedriver                        0x0000000104690524 chromedriver + 4293924
-16  libsystem_pthread.dylib             0x0000000184cd6f94 _pthread_start + 136
-17  libsystem_pthread.dylib             0x0000000184cd1d34 thread_start + 8
-
-SAVE/2024-04-19 15:04:13/8867/pgexvjwsxvnjfd/NO/Message: element click intercepted: Element <div>...</div> is not clickable at point (457, 741). Other element would receive the click: <div class="xjp7ctv xir0mxb x19osjzx">...</div>
-  (Session info: chrome=124.0.6367.61)
-Stacktrace:
-0   chromedriver                        0x00000001011903e8 chromedriver + 4326376
-1   chromedriver                        0x00000001011888b0 chromedriver + 4294832
-2   chromedriver                        0x0000000100db4088 chromedriver + 278664
-3   chromedriver                        0x0000000100dfc554 chromedriver + 574804
-4   chromedriver                        0x0000000100dfaad8 chromedriver + 568024
-5   chromedriver                        0x0000000100df8c58 chromedriver + 560216
-6   chromedriver                        0x0000000100df8188 chromedriver + 557448
-7   chromedriver                        0x0000000100ded3ac chromedriver + 512940
-8   chromedriver                        0x0000000100decdd0 chromedriver + 511440
-9   chromedriver                        0x0000000100e2f4f8 chromedriver + 783608
-10  chromedriver                        0x0000000100deb4e4 chromedriver + 505060
-11  chromedriver                        0x0000000100debf5c chromedriver + 507740
-12  chromedriver                        0x0000000101153984 chromedriver + 4077956
-13  chromedriver                        0x000000010115873c chromedriver + 4097852
-14  chromedriver                        0x000000010113a528 chromedriver + 3974440
-15  chromedriver                        0x0000000101159054 chromedriver + 4100180
-16  chromedriver                        0x000000010112bb18 chromedriver + 3914520
-17  chromedriver                        0x000000010117965c chromedriver + 4232796
-18  chromedriver                        0x00000001011797d8 chromedriver + 4233176
-19  chromedriver                        0x0000000101188524 chromedriver + 4293924
-20  libsystem_pthread.dylib             0x0000000184cd6f94 _pthread_start + 136
-21  libsystem_pthread.dylib             0x0000000184cd1d34 thread_start + 8
-
+SAVE/2024-04-22 09:33:07/6148/oiuytesassdgjjhfdfh/OK/없음
+SAVE/2024-04-22 09:33:08/6148/latoyacobb696401/OK/없음
+SAVE/2024-04-22 09:33:10/6148/jamesandrade605728/OK/없음
+SAVE/2024-04-22 09:36:50/6149/jamesandrade605728/NO/로그인 실패
+SAVE/2024-04-22 09:36:51/6149/hfdhekdknddb/NO/로그인 실패
+SAVE/2024-04-22 09:36:52/6149/brendarojas224012/NO/로그인 실패
+SAVE/2024-04-22 09:36:52/6149/oiuytesassdgjjhfdfh/NO/로그인 실패
+SAVE/2024-04-22 09:36:52/6149/qqwweguohdschhdf/NO/로그인 실패
+SAVE/2024-04-22 09:36:52/6149/latoyacobb696401/NO/로그인 실패
+SAVE/2024-04-22 09:36:52/6149/dgyrieodkfnfhfjdk/NO/로그인 실패
+SAVE/2024-04-22 09:36:52/6149/pgexvjwsxvnjfd/NO/로그인 실패
+SAVE/2024-04-22 09:36:58/6149/brianeverett451462/NO/로그인 실패
+SAVE/2024-04-22 09:36:58/6149/nataliechang297712/NO/로그인 실패

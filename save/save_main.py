@@ -10,15 +10,11 @@ elif sys.platform == 'darwin':
 import configparser
 import common.fun as common
 import traceback
-
 from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.common.proxy import Proxy, ProxyType
-from proxy_checker import ProxyChecker
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
+
 
 # Config 읽기
 config = configparser.ConfigParser()
@@ -56,7 +52,7 @@ def setup() -> str:
 
     # Chrome 웹 드라이버 설정
     options = webdriver.ChromeOptions()
-    # options.add_argument('--headless')
+    options.add_argument('--headless')
     options.add_argument('--disable-gpu')
 
     # 프록시 설정은 윈도우에서만 가능
@@ -94,8 +90,9 @@ def dashboard() -> str:
     # 로그인 안된 경우
     if not is_login:
         if not login(user_id, user_pw):
+            common.write_task_log(task_log_path, task_service, order_id, user_id, 'NO', '로그인 실패')
             common.remove_from_accounts(task_service, user_id, '로그인 실패')
-            return f'0,0'
+            return f'0,1'
 
     try:
         remains = common.getRemains(order_id)
@@ -103,7 +100,9 @@ def dashboard() -> str:
 
         # 남은 개수가 0개면 완료처리
         if remains == 0:
-            return f'0,0'
+            common.write_task_log(task_log_path, task_service, order_id, user_id, 'NO', '남은 개수 없음')
+            common.remove_from_accounts(task_service, user_id, '남은 개수 없음')
+            return f'0,1'
 
         result, message = fetch_order()
         if result:
@@ -115,7 +114,7 @@ def dashboard() -> str:
             common.write_task_log(task_log_path, task_service, order_id, user_id, 'NO', message)
     except Exception as ex:
         fail += 1
-        common.write_task_log(task_log_path, task_service, order_id, user_id, 'NO', ex)
+        common.write_task_log(task_log_path, task_service, order_id, user_id, 'NO', '에러발생')
         common.remove_from_accounts(task_service, user_id, '태스크 실패')
         common.remove_from_error(traceback.format_exc(), order_id)
         print(traceback.format_exc())

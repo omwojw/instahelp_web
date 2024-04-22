@@ -34,8 +34,9 @@ def fetch_order() -> bool:
                         data={
                             'key': config['api']['key'],
                             'action': 'getOrder',
-                            'type': config['api']['service']
+                            'type': config['api']['save_service']
                         }, timeout=10).json()
+    print(res)
 
     # 결과가 성공이 아니면
     if res['status'] != 'success':
@@ -49,6 +50,8 @@ def fetch_order() -> bool:
 
     if len(accounts) > quantity:
         active_accounts = accounts[:quantity]
+    else:
+        active_accounts = accounts
 
     process_order(order_id, quantity, order_url, active_accounts)
 

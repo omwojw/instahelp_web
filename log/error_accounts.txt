@@ -1,8 +1,19 @@
 에러 계정 로그
 타입/날짜/계정/사유
-SAVE/2024-04-18 21:08:14/njpb05_24/로그인 실패
-SAVE/2024-04-18 21:09:40/njpb05_24/로그인 실패
-SAVE/2024-04-18 21:10:04/omwojw/로그인 실패SAVE/2024-04-19 09:46:03/pgexvjwsxvnjfd/태스크 실패
-SAVE/2024-04-19 09:53:15/pgexvjwsxvnjfd/로그인 실패
-SAVE/2024-04-19 11:00:51/pgexvjwsxvnjfd/로그인 실패
-SAVE/2024-04-19 15:04:13/pgexvjwsxvnjfd/태스크 실패
+SAVE/2024-04-22 09:33:23/brendarojas224012/로그인 실패
+SAVE/2024-04-22 09:33:23/pgexvjwsxvnjfd/로그인 실패
+SAVE/2024-04-22 09:33:23/dgyrieodkfnfhfjdk/로그인 실패
+SAVE/2024-04-22 09:33:23/qqwweguohdschhdf/로그인 실패
+SAVE/2024-04-22 09:33:25/hfdhekdknddb/로그인 실패
+SAVE/2024-04-22 09:33:39/brianeverett451462/로그인 실패
+SAVE/2024-04-22 09:33:39/nataliechang297712/로그인 실패
+SAVE/2024-04-22 09:36:50/jamesandrade605728/로그인 실패
+SAVE/2024-04-22 09:36:51/hfdhekdknddb/로그인 실패
+SAVE/2024-04-22 09:36:52/brendarojas224012/로그인 실패
+SAVE/2024-04-22 09:36:52/oiuytesassdgjjhfdfh/로그인 실패
+SAVE/2024-04-22 09:36:52/qqwweguohdschhdf/로그인 실패
+SAVE/2024-04-22 09:36:52/latoyacobb696401/로그인 실패
+SAVE/2024-04-22 09:36:52/dgyrieodkfnfhfjdk/로그인 실패
+SAVE/2024-04-22 09:36:52/pgexvjwsxvnjfd/로그인 실패
+SAVE/2024-04-22 09:36:58/brianeverett451462/로그인 실패
+SAVE/2024-04-22 09:36:58/nataliechang297712/로그인 실패
