@@ -26,9 +26,12 @@ accounts = common.get_accounts('save_account.txt')
 order_service = "SAVE"
 order_log_path = "../log/order_history.txt"
 
+mode = None
+
 
 # 주문 체크
 def fetch_order() -> bool:
+    global mode
     # 신규 주문건 체크
     res = requests.get(config['api']['url'],
                         data={
@@ -36,23 +39,23 @@ def fetch_order() -> bool:
                             'action': 'getOrder',
                             'type': config['api']['save_service']
                         }, timeout=10).json()
-    print(res)
-
     # 결과가 성공이 아니면
     if res['status'] != 'success':
         order_id = config['item']['test_save_order_id']
         quantity = int(config['item']['test_save_quantity'])
         order_url = str(config['item']['test_save_order_url'])
+        mode = "TEST"
     else:
         order_id = res['id']
         quantity = int(res['quantity'])
         order_url = res['link']
+        mode = "LIVE"
 
     if len(accounts) > quantity:
         active_accounts = accounts[:quantity]
     else:
         active_accounts = accounts
-
+    common.log(f'모드 : {mode}')
     process_order(order_id, quantity, order_url, active_accounts)
 
 
@@ -69,6 +72,7 @@ def process_order(order_id: str, quantity: int, order_url: str, active_accounts:
             , order_id
             , quantity
             , order_url
+            , mode
         ) for index, account in enumerate(active_accounts)]
         results = [future.result() for future in futures]
 

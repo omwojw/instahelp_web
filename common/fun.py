@@ -213,6 +213,20 @@ def is_display(selector_type: str, selector_name: str, driver) -> bool:
 
 
 # 배열에서 특정 엘리먼트 찾기
+def search_elements(selector_type: str, search_list: list, search_text: str, attr_name="") -> list:
+    result = []
+    for search_item in search_list:
+        if selector_type == 'TEXT':
+            if search_item.text == search_text:
+                result.append(search_item)
+        elif selector_type == 'ATTR':
+            if search_item.get_attribute(attr_name) == search_text:
+                result.append(search_item)
+
+    return result
+
+
+# 배열에서 특정 엘리먼트 찾기
 def search_element(selector_type: str, search_list: list, search_text: str, attr_name="") -> object:
     for search_item in search_list:
         if selector_type == 'TEXT':
@@ -239,8 +253,6 @@ def log(text: str, tab_index='ALL') -> None:
 
 # 주문의 남은 수량 변경
 def setRemains(order_id: str, remains: int) -> None:
-    if config['task']['mode'] == 'TEST':
-        return
     try:
         prev_remains = getRemains(order_id)
     except Exception as ex:
@@ -258,14 +270,80 @@ def setRemains(order_id: str, remains: int) -> None:
 
 # 주문의 남은 수량 가져오기
 def getRemains(order_id: str) -> int:
-    if config['task']['mode'] == 'TEST':
-        return 1
     try:
-        res = requests.post(f"{config['api_v2']['url']}/{order_id}",
-                            data={
-                                'apikey': config['api_v2']['key'],
-                            }, timeout=10).json()
-        return int(res['remains'])
+        res = requests.get(f"{config['api_v2']['url']}/{order_id}?apikey={config['api_v2']['key']}", timeout=10).json()
+        return int(res['data']['remains'])
     except Exception as ex:
         raise Exception('퍼팩트 패널  남은개수 가져오기 에러')
 
+
+# 엘리머튼 정보 콘솔출력
+def element_log(element) -> None:
+    # 태그 이름
+    print(f"Tag Name: {element.tag_name}")
+
+    # 텍스트 내용
+    print(f"Text: {element.text}")
+
+    # outerHTML 속성 값
+    outerHTML_attr = element.get_attribute('outerHTML')
+    if element.get_attribute('outerHTML'):
+        print(f"outerHTML: {outerHTML_attr}")
+    else:
+        print("outerHTML: None")
+
+    # innerHTML 속성 값
+    innerHTML_attr = element.get_attribute('innerHTML')
+    if element.get_attribute('innerHTML'):
+        print(f"innerHTML: {innerHTML_attr}")
+    else:
+        print("innerHTML: None")
+
+    # title 속성 값
+    title_attr = element.get_attribute('title')
+    if element.get_attribute('title'):
+        print(f"title: {title_attr}")
+    else:
+        print("title: None")
+
+    # style 속성 값
+    style_attr = element.get_attribute('style')
+    if element.get_attribute('style'):
+        print(f"style: {style_attr}")
+    else:
+        print("style: None")
+
+    # value 속성 값
+    value_attr = element.get_attribute('value')
+    if element.get_attribute('value'):
+        print(f"value: {value_attr}")
+    else:
+        print("value: None")
+
+    # src 속성 값
+    src_attr = element.get_attribute('src')
+    if element.get_attribute('src'):
+        print(f"src: {src_attr}")
+    else:
+        print("src: None")
+
+    # id 속성 값
+    id_attr = element.get_attribute('id')
+    if id_attr:
+        print(f"id: {id_attr}")
+    else:
+        print("id: None")
+
+    # class 속성 값
+    class_attr = element.get_attribute('class')
+    if class_attr:
+        print(f"class: {class_attr}")
+    else:
+        print("class: None")
+
+    # 부모 요소
+    parent = element.find_element(By.XPATH, "..")
+    print(f"parent Tag: {parent.tag_name}")
+
+    # 행 구분
+    print("-" * 20)

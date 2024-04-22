@@ -37,6 +37,7 @@ act_chis = None
 wait = None
 task_service = "SAVE"
 task_log_path = "../log/task_history.txt"
+mode = None
 
 
 # 셀레 니움 실행
@@ -54,6 +55,8 @@ def setup() -> str:
     options = webdriver.ChromeOptions()
     options.add_argument('--headless')
     options.add_argument('--disable-gpu')
+    options.add_argument('--window-size=450x975')
+    # options.add_argument("--lang=ko_KR")
 
     # 프록시 설정은 윈도우에서만 가능
     if current_os == 'WINDOW':
@@ -85,17 +88,20 @@ def dashboard() -> str:
     fail = 0
 
     # 로그인 여부 체크
-    is_login = common.is_display("TAG_NAME", "loginForm", driver)
+    is_login = common.is_display("ID", "loginForm", driver)
 
     # 로그인 안된 경우
-    if not is_login:
+    if is_login:
         if not login(user_id, user_pw):
             common.write_task_log(task_log_path, task_service, order_id, user_id, 'NO', '로그인 실패')
             common.remove_from_accounts(task_service, user_id, '로그인 실패')
             return f'0,1'
 
     try:
-        remains = common.getRemains(order_id)
+        if mode == 'LIVE':
+            remains = common.getRemains(order_id)
+        else:
+            remains = 1
         common.log(f'남은 수량 : {remains}', tab_index)
 
         # 남은 개수가 0개면 완료처리
@@ -106,7 +112,8 @@ def dashboard() -> str:
 
         result, message = fetch_order()
         if result:
-            common.setRemains(order_id, 1)
+            if mode == 'LIVE':
+                common.setRemains(order_id, 1)
             success += 1
             common.write_task_log(task_log_path, task_service, order_id, user_id, 'OK', '없음')
         else:
@@ -125,8 +132,49 @@ def dashboard() -> str:
 def fetch_order() -> tuple:
     try:
         driver.get(order_url)
+        common.sleep(1)
+
+        # if agree_check():
+        #     agree_active()
+
         result, message = save()
         return result, message
+    except Exception as ex:
+        raise Exception(ex)
+        return False, ''
+
+
+# 동의 체크
+def agree_check() -> bool:
+    common.log('동의여부 체크 시작', tab_index)
+    is_agree = common.is_display("CSS_SELECTOR", ".wbloks_1>.wbloks_1>.wbloks_1>.wbloks_1>.wbloks_1.wbloks_1>span",
+                                 driver)
+    common.log(f'동의여부 체크 종료 : {"동의 되어있지 않음" if is_agree else "동의 되어있음"}', tab_index)
+    return is_agree
+
+
+# 동의 하기
+def agree_active() -> tuple:
+    try:
+        common.log('동의하기 클릭 시작', tab_index)
+        agree_elements = common.find_elements("TAG_NAME", "input", driver, wait)
+        filter_agree_elements = common.search_elements("ATTR", agree_elements, "checkbox", "type")
+        for agree in filter_agree_elements:
+            agree.click()
+
+        agrees = common.find_elements("CLASS_NAME", "wbloks_1", driver, wait)
+        for agree in agrees:
+            if agree.get_attribute("aria-label") == '동의함':
+                agree.click()
+
+                agrees_close = common.find_elements("CLASS_NAME", "wbloks_1", driver, wait)
+                for agree_close in agrees_close:
+                    if agree_close.get_attribute("aria-label") == '닫기':
+                        agree_close.click()
+                        common.log('동의하기 클릭 종료', tab_index)
+                        return True, ''
+        common.log('동의하기 클릭 종료', tab_index)
+        return False, ''
     except Exception as ex:
         raise Exception(ex)
         return False, ''
@@ -135,14 +183,16 @@ def fetch_order() -> tuple:
 # 주문 수행
 def save() -> tuple:
     try:
+        common.log('저장하기 시작', tab_index)
         save_element = common.find_element("CSS_SELECTOR", ".x1gslohp>.x6s0dn4>.x11i5rnm>div", driver, wait)
         save_svg = common.find_children_element("TAG_NAME", "svg", driver, save_element)
-        if save_svg.get_attribute('aria-label') == '저장':
+
+        common.log('저장하기 종료', tab_index)
+        if save_svg.get_attribute('aria-label') == 'Save' or save_svg.get_attribute('aria-label') == '저장':
             save_element.click()
             return True, ''
         else:
             return False, '이미 저장 되어 있음'
-
     except Exception as ex:
         raise Exception(ex)
         return False, ''
@@ -166,14 +216,18 @@ def login(account_id: str, account_pw: str) -> None:
 
         # 로그인 버튼을 클릭(탭)합니다.
         login_btns = common.find_elements('TAG_NAME', "button", driver, wait)
-        login_btn = common.search_element('TEXT', login_btns, '로그인')
+        # for s in login_btns:
+        #     print(s.text)
+
+        login_btn = common.search_element('ATTR', login_btns, 'submit', "type")
         login_btn.click()
         common.log('로그인 종료', tab_index)
-        common.sleep(5)
+        common.sleep(3)
 
-        btns = common.find_elements("TAG_NAME", "button", driver, wait)
-        find_btn = common.search_element("TEXT", btns, '정보 저장')
-        if not find_btn:
+        common.log('로그인 정보 저장 시작', tab_index)
+        btn = common.find_element("TAG_NAME", "button", driver, wait)
+        common.log('로그인 정보 저장 종료', tab_index)
+        if not btn:
             return False
         else:
             return True
@@ -182,8 +236,8 @@ def login(account_id: str, account_pw: str) -> None:
         return False
 
 
-def mainFun(_tab_index, _user_id, _user_pw, _ip, _order_id, _quantity, _order_url) -> str:
-    global tab_index, user_id, user_pw, ip, order_id, quantity, order_url
+def mainFun(_tab_index, _user_id, _user_pw, _ip, _order_id, _quantity, _order_url, _mode) -> str:
+    global tab_index, user_id, user_pw, ip, order_id, quantity, order_url, mode
     tab_index = _tab_index + 1
     user_id = _user_id
     user_pw = _user_pw
@@ -191,6 +245,7 @@ def mainFun(_tab_index, _user_id, _user_pw, _ip, _order_id, _quantity, _order_ur
     order_id = _order_id
     quantity = _quantity
     order_url = _order_url
+    mode = _mode
 
     # 시작 함수
     try:
