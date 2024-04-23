@@ -10,17 +10,19 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 import requests
 import random
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service as ChromeService
 
 # Config 읽기
 config = configparser.ConfigParser()
 current_os = None
 if sys.platform.startswith('win'):
-    config.read(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'setting', 'config.ini'), encoding='utf-8')
+    config.read(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'setting', 'config.ini'),
+                encoding='utf-8')
     current_os = 'WINDOW'
 elif sys.platform == 'darwin':
     config.read('../setting/config.ini', encoding='utf-8')
     current_os = 'MAC'
-
 
 telegram_token_key = config['telegram']['token_key']
 
@@ -29,7 +31,7 @@ telegram_token_key = config['telegram']['token_key']
 def get_config(new_confit) -> None:
     if sys.platform.startswith('win'):
         new_confit.read(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'setting', 'config.ini'),
-                    encoding='utf-8')
+                        encoding='utf-8')
     elif sys.platform == 'darwin':
         new_confit.read('../setting/config.ini', encoding='utf-8')
 
@@ -72,7 +74,7 @@ def write_order_log(path: str, service: str, order_id: str, quantity: int, succe
 
 
 # 태스크 로그 추가
-def write_task_log(path: str, service: str, order_id: str, user_id: str, result: str, err_msg: str ) -> None:
+def write_task_log(path: str, service: str, order_id: str, user_id: str, result: str, err_msg: str) -> None:
     with open(path, "a") as f:
         current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         message = f'{service}/{current_time}/{order_id}/{user_id}/{result}/{err_msg}'
@@ -285,6 +287,13 @@ def element_log(element) -> None:
     # 텍스트 내용
     print(f"Text: {element.text}")
 
+    # aria-label 속성 값
+    aria_label_attr = element.get_attribute('aria-label')
+    if element.get_attribute('aria-label'):
+        print(f"aria-label: {aria_label_attr}")
+    else:
+        print("aria-label: None")
+
     # outerHTML 속성 값
     outerHTML_attr = element.get_attribute('outerHTML')
     if element.get_attribute('outerHTML'):
@@ -347,3 +356,110 @@ def element_log(element) -> None:
 
     # 행 구분
     print("-" * 20)
+
+
+# 셀레니움 연결
+def openSelenium(curt_os: str, wait_time: int, ip: str) -> object:
+    if curt_os == 'MAC':
+        driver_path = config['selenium']['driver_path_mac']
+        chrome_path = config['selenium']['chrome_path_mac']
+    else:
+        driver_path = config['selenium']['driver_path_window']
+        chrome_path = config['selenium']['chrome_path_window']
+    # Chrome 웹 드라이버 경로 설정
+    chromedriver_path = driver_path
+
+    # Chrome 웹 드라이버 설정
+    options = webdriver.ChromeOptions()
+    options.add_argument('--headless')
+    options.add_argument('--disable-gpu')
+    options.add_argument('--window-size=450x975')
+    # options.add_argument("--lang=ko_KR")
+
+    # 프록시 설정은 윈도우에서만 가능
+    if current_os == 'WINDOW':
+        options.add_argument(f'--proxy-server={ip}')
+
+    options.binary_location = chrome_path
+
+    # 웹 드라 이버 시작
+    service = ChromeService(executable_path=chromedriver_path)
+    selenium_driver = webdriver.Chrome(service=service, options=options)
+    selenium_driver.implicitly_wait(wait_time)
+    selenium_driver.set_window_size(450, 975)
+
+    return selenium_driver
+
+
+# 화면에 동의요청 화면이 나왔는지 체크
+def agree_check(tab_index, driver) -> bool:
+    log('동의여부 체크 시작', tab_index)
+    is_agree = is_display("CSS_SELECTOR", ".wbloks_1>.wbloks_1>.wbloks_1>.wbloks_1>.wbloks_1.wbloks_1>span",
+                          driver)
+    log(f'동의여부 체크 종료 : {"동의 되어있지 않음" if is_agree else "동의 되어있음"}', tab_index)
+    return is_agree
+
+
+# 동의 하기
+def agree_active(tab_index, driver, wait) -> tuple:
+    try:
+        log('동의하기 클릭 시작', tab_index)
+        agree_elements = find_elements("TAG_NAME", "input", driver, wait)
+        filter_agree_elements = search_elements("ATTR", agree_elements, "checkbox", "type")
+        for agree in filter_agree_elements:
+            agree.click()
+
+        agrees = find_elements("CLASS_NAME", "wbloks_1", driver, wait)
+        for agree in agrees:
+            if agree.get_attribute("aria-label") == '동의함':
+                agree.click()
+
+                agrees_close = find_elements("CLASS_NAME", "wbloks_1", driver, wait)
+                for agree_close in agrees_close:
+                    if agree_close.get_attribute("aria-label") == '닫기':
+                        agree_close.click()
+                        log('동의하기 클릭 종료', tab_index)
+                        return True, ''
+        log('동의하기 클릭 종료', tab_index)
+        return False, ''
+    except Exception as ex:
+        raise Exception(ex)
+        return False, ''
+
+
+# 로그인
+def login(account_id: str, account_pw: str, tab_index, driver, wait) -> bool:
+    try:
+        # 로그인
+        log('로그인 시작', tab_index)
+
+        # 계정을 입력합니다.
+        id_input = find_element('NAME', "username", driver, wait)
+        id_input.click()
+        id_input.send_keys(account_id)
+
+        # 비밀번호를 입력합니다.
+        pw_input = find_element('NAME', "password", driver, wait)
+        pw_input.click()
+        pw_input.send_keys(account_pw)
+
+        # 로그인 버튼을 클릭(탭)합니다.
+        login_btns = find_elements('TAG_NAME', "button", driver, wait)
+        # for s in login_btns:
+        #     print(s.text)
+
+        login_btn = search_element('ATTR', login_btns, 'submit', "type")
+        login_btn.click()
+        log('로그인 종료', tab_index)
+        sleep(3)
+
+        log('로그인 정보 저장 시작', tab_index)
+        btn = find_element("TAG_NAME", "button", driver, wait)
+        log('로그인 정보 저장 종료', tab_index)
+        if not btn:
+            return False
+        else:
+            return True
+
+    except Exception as ex:
+        return False

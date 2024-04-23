@@ -3124,3 +3124,252 @@ Stacktrace:
 16  libsystem_pthread.dylib             0x000000018e075d34 thread_start + 8
 
 
+8867/2024-04-23 09:31:03/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/like/../like/like_main.py", line 126, in like
+    like_svg = common.find_children_element("TAG_NAME", "svg", driver, save_element)
+NameError: name 'save_element' is not defined. Did you mean: 'like_element'?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/like/../like/like_main.py", line 114, in fetch_order
+    result, message = like()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/like/../like/like_main.py", line 135, in like
+    raise Exception(ex)
+Exception: name 'save_element' is not defined
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/like/../like/like_main.py", line 85, in dashboard
+    result, message = fetch_order()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/like/../like/like_main.py", line 117, in fetch_order
+    raise Exception(ex)
+Exception: name 'save_element' is not defined
+
+6176/2024-04-23 09:34:09/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/like/../common/fun.py", line 407, in agree_active
+    agree_elements = find_elements("TAG_NAME", "input", driver, wait)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/like/../common/fun.py", line 153, in find_elements
+    return wait.until(EC.presence_of_all_elements_located((By.TAG_NAME, selector_name)))
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 105, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/like/../like/like_main.py", line 109, in fetch_order
+    common.agree_active(tab_index, driver, wait)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/like/../common/fun.py", line 426, in agree_active
+    raise Exception(ex)
+Exception: Message: 
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/like/../like/like_main.py", line 83, in dashboard
+    result, message = fetch_order()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/like/../like/like_main.py", line 115, in fetch_order
+    raise Exception(ex)
+Exception: Message: 
+
+
+6176/2024-04-23 09:34:09/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/like/../common/fun.py", line 407, in agree_active
+    agree_elements = find_elements("TAG_NAME", "input", driver, wait)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/like/../common/fun.py", line 153, in find_elements
+    return wait.until(EC.presence_of_all_elements_located((By.TAG_NAME, selector_name)))
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 105, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/like/../like/like_main.py", line 109, in fetch_order
+    common.agree_active(tab_index, driver, wait)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/like/../common/fun.py", line 426, in agree_active
+    raise Exception(ex)
+Exception: Message: 
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/like/../like/like_main.py", line 83, in dashboard
+    result, message = fetch_order()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/like/../like/like_main.py", line 115, in fetch_order
+    raise Exception(ex)
+Exception: Message: 
+
+
+6176/2024-04-23 09:34:09/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/like/../common/fun.py", line 407, in agree_active
+    agree_elements = find_elements("TAG_NAME", "input", driver, wait)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/like/../common/fun.py", line 153, in find_elements
+    return wait.until(EC.presence_of_all_elements_located((By.TAG_NAME, selector_name)))
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 105, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/like/../like/like_main.py", line 109, in fetch_order
+    common.agree_active(tab_index, driver, wait)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/like/../common/fun.py", line 426, in agree_active
+    raise Exception(ex)
+Exception: Message: 
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/like/../like/like_main.py", line 83, in dashboard
+    result, message = fetch_order()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/like/../like/like_main.py", line 115, in fetch_order
+    raise Exception(ex)
+Exception: Message: 
+
+
+6176/2024-04-23 09:34:10/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/like/../common/fun.py", line 407, in agree_active
+    agree_elements = find_elements("TAG_NAME", "input", driver, wait)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/like/../common/fun.py", line 153, in find_elements
+    return wait.until(EC.presence_of_all_elements_located((By.TAG_NAME, selector_name)))
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 105, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/like/../like/like_main.py", line 109, in fetch_order
+    common.agree_active(tab_index, driver, wait)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/like/../common/fun.py", line 426, in agree_active
+    raise Exception(ex)
+Exception: Message: 
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/like/../like/like_main.py", line 83, in dashboard
+    result, message = fetch_order()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/like/../like/like_main.py", line 115, in fetch_order
+    raise Exception(ex)
+Exception: Message: 
+
+
+6176/2024-04-23 09:34:16/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/like/../like/like_main.py", line 127, in like
+    like_element.click()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webelement.py", line 94, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webelement.py", line 395, in _execute
+    return self._parent.execute(command, params)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 347, in execute
+    self.error_handler.check_response(response)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element <span class="xp7jhwk">...</span> is not clickable at point (28, 570). Other element would receive the click: <div style="font-size: 14px; padding-top: 0px; padding-bottom: 0px; transform: translateY(calc(0.1859em));">...</div>
+  (Session info: chrome-headless-shell=124.0.6367.62)
+Stacktrace:
+0   chromedriver                        0x00000001045dc3e8 chromedriver + 4326376
+1   chromedriver                        0x00000001045d48b0 chromedriver + 4294832
+2   chromedriver                        0x0000000104200088 chromedriver + 278664
+3   chromedriver                        0x0000000104248554 chromedriver + 574804
+4   chromedriver                        0x0000000104246ad8 chromedriver + 568024
+5   chromedriver                        0x0000000104244c58 chromedriver + 560216
+6   chromedriver                        0x0000000104244188 chromedriver + 557448
+7   chromedriver                        0x00000001042393ac chromedriver + 512940
+8   chromedriver                        0x0000000104238dd0 chromedriver + 511440
+9   chromedriver                        0x000000010427b4f8 chromedriver + 783608
+10  chromedriver                        0x00000001042374e4 chromedriver + 505060
+11  chromedriver                        0x0000000104237f5c chromedriver + 507740
+12  chromedriver                        0x000000010459f984 chromedriver + 4077956
+13  chromedriver                        0x00000001045a473c chromedriver + 4097852
+14  chromedriver                        0x0000000104586528 chromedriver + 3974440
+15  chromedriver                        0x00000001045a5054 chromedriver + 4100180
+16  chromedriver                        0x0000000104577b18 chromedriver + 3914520
+17  chromedriver                        0x00000001045c565c chromedriver + 4232796
+18  chromedriver                        0x00000001045c57d8 chromedriver + 4233176
+19  chromedriver                        0x00000001045d4524 chromedriver + 4293924
+20  libsystem_pthread.dylib             0x000000019766af94 _pthread_start + 136
+21  libsystem_pthread.dylib             0x0000000197665d34 thread_start + 8
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/like/../like/like_main.py", line 112, in fetch_order
+    result, message = like()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/like/../like/like_main.py", line 132, in like
+    raise Exception(ex)
+Exception: Message: element click intercepted: Element <span class="xp7jhwk">...</span> is not clickable at point (28, 570). Other element would receive the click: <div style="font-size: 14px; padding-top: 0px; padding-bottom: 0px; transform: translateY(calc(0.1859em));">...</div>
+  (Session info: chrome-headless-shell=124.0.6367.62)
+Stacktrace:
+0   chromedriver                        0x00000001045dc3e8 chromedriver + 4326376
+1   chromedriver                        0x00000001045d48b0 chromedriver + 4294832
+2   chromedriver                        0x0000000104200088 chromedriver + 278664
+3   chromedriver                        0x0000000104248554 chromedriver + 574804
+4   chromedriver                        0x0000000104246ad8 chromedriver + 568024
+5   chromedriver                        0x0000000104244c58 chromedriver + 560216
+6   chromedriver                        0x0000000104244188 chromedriver + 557448
+7   chromedriver                        0x00000001042393ac chromedriver + 512940
+8   chromedriver                        0x0000000104238dd0 chromedriver + 511440
+9   chromedriver                        0x000000010427b4f8 chromedriver + 783608
+10  chromedriver                        0x00000001042374e4 chromedriver + 505060
+11  chromedriver                        0x0000000104237f5c chromedriver + 507740
+12  chromedriver                        0x000000010459f984 chromedriver + 4077956
+13  chromedriver                        0x00000001045a473c chromedriver + 4097852
+14  chromedriver                        0x0000000104586528 chromedriver + 3974440
+15  chromedriver                        0x00000001045a5054 chromedriver + 4100180
+16  chromedriver                        0x0000000104577b18 chromedriver + 3914520
+17  chromedriver                        0x00000001045c565c chromedriver + 4232796
+18  chromedriver                        0x00000001045c57d8 chromedriver + 4233176
+19  chromedriver                        0x00000001045d4524 chromedriver + 4293924
+20  libsystem_pthread.dylib             0x000000019766af94 _pthread_start + 136
+21  libsystem_pthread.dylib             0x0000000197665d34 thread_start + 8
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/like/../like/like_main.py", line 83, in dashboard
+    result, message = fetch_order()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/like/../like/like_main.py", line 115, in fetch_order
+    raise Exception(ex)
+Exception: Message: element click intercepted: Element <span class="xp7jhwk">...</span> is not clickable at point (28, 570). Other element would receive the click: <div style="font-size: 14px; padding-top: 0px; padding-bottom: 0px; transform: translateY(calc(0.1859em));">...</div>
+  (Session info: chrome-headless-shell=124.0.6367.62)
+Stacktrace:
+0   chromedriver                        0x00000001045dc3e8 chromedriver + 4326376
+1   chromedriver                        0x00000001045d48b0 chromedriver + 4294832
+2   chromedriver                        0x0000000104200088 chromedriver + 278664
+3   chromedriver                        0x0000000104248554 chromedriver + 574804
+4   chromedriver                        0x0000000104246ad8 chromedriver + 568024
+5   chromedriver                        0x0000000104244c58 chromedriver + 560216
+6   chromedriver                        0x0000000104244188 chromedriver + 557448
+7   chromedriver                        0x00000001042393ac chromedriver + 512940
+8   chromedriver                        0x0000000104238dd0 chromedriver + 511440
+9   chromedriver                        0x000000010427b4f8 chromedriver + 783608
+10  chromedriver                        0x00000001042374e4 chromedriver + 505060
+11  chromedriver                        0x0000000104237f5c chromedriver + 507740
+12  chromedriver                        0x000000010459f984 chromedriver + 4077956
+13  chromedriver                        0x00000001045a473c chromedriver + 4097852
+14  chromedriver                        0x0000000104586528 chromedriver + 3974440
+15  chromedriver                        0x00000001045a5054 chromedriver + 4100180
+16  chromedriver                        0x0000000104577b18 chromedriver + 3914520
+17  chromedriver                        0x00000001045c565c chromedriver + 4232796
+18  chromedriver                        0x00000001045c57d8 chromedriver + 4233176
+19  chromedriver                        0x00000001045d4524 chromedriver + 4293924
+20  libsystem_pthread.dylib             0x000000019766af94 _pthread_start + 136
+21  libsystem_pthread.dylib             0x0000000197665d34 thread_start + 8
+
+

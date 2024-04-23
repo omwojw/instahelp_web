@@ -33,7 +33,7 @@ wait_time = int(config['selenium']['wait_time'])
 driver = None
 act_chis = None
 wait = None
-task_service = "SAVE"
+task_service = "LIKE"
 task_log_path = "../log/task_history.txt"
 mode = None
 
@@ -109,7 +109,7 @@ def fetch_order() -> tuple:
         #     common.agree_active(tab_index, driver, wait)
         #     common.sleep(1)
 
-        result, message = save()
+        result, message = like()
         return result, message
     except Exception as ex:
         raise Exception(ex)
@@ -117,18 +117,17 @@ def fetch_order() -> tuple:
 
 
 # 주문 수행
-def save() -> tuple:
+def like() -> tuple:
     try:
-        common.log('저장하기 시작', tab_index)
-        save_element = common.find_element("CSS_SELECTOR", ".x1gslohp>.x6s0dn4>.x11i5rnm>div", driver, wait)
-        save_svg = common.find_children_element("TAG_NAME", "svg", driver, save_element)
-
-        common.log('저장하기 종료', tab_index)
-        if save_svg.get_attribute('aria-label') == 'Save' or save_svg.get_attribute('aria-label') == '저장':
-            save_element.click()
+        common.log('좋아요 시작', tab_index)
+        like_element = common.find_element("CSS_SELECTOR", "span.xp7jhwk", driver, wait)
+        like_svg = common.find_children_element("TAG_NAME", "svg", driver, like_element)
+        common.log('좋아요 종료', tab_index)
+        if like_svg.get_attribute('aria-label') == 'Like' or like_svg.get_attribute('aria-label') == '좋아요':
+            like_element.click()
             return True, ''
         else:
-            return False, '이미 저장 되어 있음'
+            return False, '이미 좋아요 되어 있음'
     except Exception as ex:
         raise Exception(ex)
         return False, ''
