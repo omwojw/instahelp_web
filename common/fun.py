@@ -14,6 +14,8 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 
 # Config 읽기
+import common.fun
+
 config = configparser.ConfigParser()
 current_os = None
 if sys.platform.startswith('win'):
@@ -62,6 +64,26 @@ def get_accounts(path: str) -> list:
 
     # random.shuffle(account_list)
     return account_list
+
+
+# user agent 목록
+def get_user_agent() -> list:
+    if current_os == 'MAC':
+        file_path = f'../setting/user_agent.txt'
+    else:
+        file_path = os.path.abspath(
+            os.path.join(os.path.dirname(os.path.abspath(__file__)), f"../setting/user_agent.txt"))
+
+    with open(file_path, 'r', encoding='UTF8') as f:
+        user_agents = f.readlines()
+    user_agent_list = []
+    for user_agent in user_agents:
+        if len(user_agent.strip()) == 0:
+            continue
+        user_agent_list.append(user_agent.strip())
+
+    random.shuffle(user_agent_list)
+    return user_agent_list[0]
 
 
 # 주문 결과 로그 추가
@@ -374,6 +396,10 @@ def openSelenium(curt_os: str, wait_time: int, ip: str) -> object:
     options.add_argument('--headless')
     options.add_argument('--disable-gpu')
     options.add_argument('--window-size=450x975')
+
+    user_agent = get_user_agent()
+    options.add_argument(f'--user-agent={user_agent}')
+
     # options.add_argument("--lang=ko_KR")
 
     # 프록시 설정은 윈도우에서만 가능
@@ -433,6 +459,18 @@ def login(account_id: str, account_pw: str, tab_index, driver, wait) -> bool:
         # 로그인
         log('로그인 시작', tab_index)
 
+        # 로그인 버튼 클릭
+        find_btns = common.fun.find_elements("CSS_SELECTOR", "button.x5yr21d", driver, wait)
+        login_btn = None
+        for find_btn in find_btns:
+            if find_btn.text == 'Log in' or find_btn.text == '로그인':
+                login_btn = find_btn
+
+        if login_btn:
+            login_btn.click()
+        else:
+            return False
+
         # 계정을 입력합니다.
         id_input = find_element('NAME', "username", driver, wait)
         id_input.click()
@@ -451,7 +489,7 @@ def login(account_id: str, account_pw: str, tab_index, driver, wait) -> bool:
         login_btn = search_element('ATTR', login_btns, 'submit', "type")
         login_btn.click()
         log('로그인 종료', tab_index)
-        sleep(3)
+        sleep(5)
 
         log('로그인 정보 저장 시작', tab_index)
         btn = find_element("TAG_NAME", "button", driver, wait)

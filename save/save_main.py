@@ -58,7 +58,8 @@ def dashboard() -> str:
     fail = 0
 
     # 로그인 여부 체크
-    is_login = common.is_display("ID", "loginForm", driver)
+    # is_login = common.is_display("ID", "loginForm", driver)
+    is_login = common.is_display("ID", "splash-screen", driver)
 
     # 로그인 안된 경우
     if is_login:

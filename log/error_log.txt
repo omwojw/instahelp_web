@@ -3387,3 +3387,2064 @@ Traceback (most recent call last):
     raise Exception(ex)
 Exception: cannot unpack non-iterable NoneType object
 
+8867/2024-04-29 15:05:07/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 113, in fetch_order
+    result, message = comment_fix()
+TypeError: cannot unpack non-iterable NoneType object
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 84, in dashboard
+    result, message = fetch_order()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 116, in fetch_order
+    raise Exception(ex)
+Exception: cannot unpack non-iterable NoneType object
+
+8867/2024-04-29 15:12:09/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 125, in comment_fix
+    next_element = like_element.find_element_by_xpath("following-sibling::*")
+AttributeError: 'WebElement' object has no attribute 'find_element_by_xpath'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 113, in fetch_order
+    result, message = comment_fix()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 137, in comment_fix
+    raise Exception(ex)
+Exception: 'WebElement' object has no attribute 'find_element_by_xpath'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 84, in dashboard
+    result, message = fetch_order()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 116, in fetch_order
+    raise Exception(ex)
+Exception: 'WebElement' object has no attribute 'find_element_by_xpath'
+
+8867/2024-04-29 15:14:49/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 125, in comment_fix
+    next_element = common.find_children_element("XPATH", 'following-sibling::*', driver, like_element)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../common/fun.py", line 162, in find_children_element
+    if not is_display(selector_type, selector_name, driver):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../common/fun.py", line 213, in is_display
+    if count > 0:
+UnboundLocalError: local variable 'count' referenced before assignment
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 113, in fetch_order
+    result, message = comment_fix()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 140, in comment_fix
+    raise Exception(ex)
+Exception: local variable 'count' referenced before assignment
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 84, in dashboard
+    result, message = fetch_order()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 116, in fetch_order
+    raise Exception(ex)
+Exception: local variable 'count' referenced before assignment
+
+8867/2024-04-29 15:15:54/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 113, in fetch_order
+    result, message = comment_fix()
+TypeError: cannot unpack non-iterable NoneType object
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 84, in dashboard
+    result, message = fetch_order()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 116, in fetch_order
+    raise Exception(ex)
+Exception: cannot unpack non-iterable NoneType object
+
+8867/2024-04-29 15:18:31/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 127, in comment_fix
+    comment_svg.click()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webelement.py", line 94, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webelement.py", line 395, in _execute
+    return self._parent.execute(command, params)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 347, in execute
+    self.error_handler.check_response(response)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element <svg aria-label="댓글 달기" class="x1lliihq x1n2onr6 x5n08af" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24">...</svg> is not clickable at point (68, 620). Other element would receive the click: <span data-bloks-name="bk.components.TextSpan" style="color: rgb(38, 38, 38); display: inline; font-size: 14px; white-space: pre-wrap; overflow-wrap: break-word;">...</span>
+  (Session info: chrome=124.0.6367.93)
+Stacktrace:
+0   chromedriver                        0x000000010295c3e8 chromedriver + 4326376
+1   chromedriver                        0x00000001029548b0 chromedriver + 4294832
+2   chromedriver                        0x0000000102580088 chromedriver + 278664
+3   chromedriver                        0x00000001025c8554 chromedriver + 574804
+4   chromedriver                        0x00000001025c6ad8 chromedriver + 568024
+5   chromedriver                        0x00000001025c4c58 chromedriver + 560216
+6   chromedriver                        0x00000001025c4188 chromedriver + 557448
+7   chromedriver                        0x00000001025b93ac chromedriver + 512940
+8   chromedriver                        0x00000001025b8dd0 chromedriver + 511440
+9   chromedriver                        0x00000001025fb4f8 chromedriver + 783608
+10  chromedriver                        0x00000001025b74e4 chromedriver + 505060
+11  chromedriver                        0x00000001025b7f5c chromedriver + 507740
+12  chromedriver                        0x000000010291f984 chromedriver + 4077956
+13  chromedriver                        0x000000010292473c chromedriver + 4097852
+14  chromedriver                        0x0000000102906528 chromedriver + 3974440
+15  chromedriver                        0x0000000102925054 chromedriver + 4100180
+16  chromedriver                        0x00000001028f7b18 chromedriver + 3914520
+17  chromedriver                        0x000000010294565c chromedriver + 4232796
+18  chromedriver                        0x00000001029457d8 chromedriver + 4233176
+19  chromedriver                        0x0000000102954524 chromedriver + 4293924
+20  libsystem_pthread.dylib             0x0000000181adef94 _pthread_start + 136
+21  libsystem_pthread.dylib             0x0000000181ad9d34 thread_start + 8
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 113, in fetch_order
+    result, message = comment_fix()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 135, in comment_fix
+    raise Exception(ex)
+Exception: Message: element click intercepted: Element <svg aria-label="댓글 달기" class="x1lliihq x1n2onr6 x5n08af" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24">...</svg> is not clickable at point (68, 620). Other element would receive the click: <span data-bloks-name="bk.components.TextSpan" style="color: rgb(38, 38, 38); display: inline; font-size: 14px; white-space: pre-wrap; overflow-wrap: break-word;">...</span>
+  (Session info: chrome=124.0.6367.93)
+Stacktrace:
+0   chromedriver                        0x000000010295c3e8 chromedriver + 4326376
+1   chromedriver                        0x00000001029548b0 chromedriver + 4294832
+2   chromedriver                        0x0000000102580088 chromedriver + 278664
+3   chromedriver                        0x00000001025c8554 chromedriver + 574804
+4   chromedriver                        0x00000001025c6ad8 chromedriver + 568024
+5   chromedriver                        0x00000001025c4c58 chromedriver + 560216
+6   chromedriver                        0x00000001025c4188 chromedriver + 557448
+7   chromedriver                        0x00000001025b93ac chromedriver + 512940
+8   chromedriver                        0x00000001025b8dd0 chromedriver + 511440
+9   chromedriver                        0x00000001025fb4f8 chromedriver + 783608
+10  chromedriver                        0x00000001025b74e4 chromedriver + 505060
+11  chromedriver                        0x00000001025b7f5c chromedriver + 507740
+12  chromedriver                        0x000000010291f984 chromedriver + 4077956
+13  chromedriver                        0x000000010292473c chromedriver + 4097852
+14  chromedriver                        0x0000000102906528 chromedriver + 3974440
+15  chromedriver                        0x0000000102925054 chromedriver + 4100180
+16  chromedriver                        0x00000001028f7b18 chromedriver + 3914520
+17  chromedriver                        0x000000010294565c chromedriver + 4232796
+18  chromedriver                        0x00000001029457d8 chromedriver + 4233176
+19  chromedriver                        0x0000000102954524 chromedriver + 4293924
+20  libsystem_pthread.dylib             0x0000000181adef94 _pthread_start + 136
+21  libsystem_pthread.dylib             0x0000000181ad9d34 thread_start + 8
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 84, in dashboard
+    result, message = fetch_order()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 116, in fetch_order
+    raise Exception(ex)
+Exception: Message: element click intercepted: Element <svg aria-label="댓글 달기" class="x1lliihq x1n2onr6 x5n08af" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24">...</svg> is not clickable at point (68, 620). Other element would receive the click: <span data-bloks-name="bk.components.TextSpan" style="color: rgb(38, 38, 38); display: inline; font-size: 14px; white-space: pre-wrap; overflow-wrap: break-word;">...</span>
+  (Session info: chrome=124.0.6367.93)
+Stacktrace:
+0   chromedriver                        0x000000010295c3e8 chromedriver + 4326376
+1   chromedriver                        0x00000001029548b0 chromedriver + 4294832
+2   chromedriver                        0x0000000102580088 chromedriver + 278664
+3   chromedriver                        0x00000001025c8554 chromedriver + 574804
+4   chromedriver                        0x00000001025c6ad8 chromedriver + 568024
+5   chromedriver                        0x00000001025c4c58 chromedriver + 560216
+6   chromedriver                        0x00000001025c4188 chromedriver + 557448
+7   chromedriver                        0x00000001025b93ac chromedriver + 512940
+8   chromedriver                        0x00000001025b8dd0 chromedriver + 511440
+9   chromedriver                        0x00000001025fb4f8 chromedriver + 783608
+10  chromedriver                        0x00000001025b74e4 chromedriver + 505060
+11  chromedriver                        0x00000001025b7f5c chromedriver + 507740
+12  chromedriver                        0x000000010291f984 chromedriver + 4077956
+13  chromedriver                        0x000000010292473c chromedriver + 4097852
+14  chromedriver                        0x0000000102906528 chromedriver + 3974440
+15  chromedriver                        0x0000000102925054 chromedriver + 4100180
+16  chromedriver                        0x00000001028f7b18 chromedriver + 3914520
+17  chromedriver                        0x000000010294565c chromedriver + 4232796
+18  chromedriver                        0x00000001029457d8 chromedriver + 4233176
+19  chromedriver                        0x0000000102954524 chromedriver + 4293924
+20  libsystem_pthread.dylib             0x0000000181adef94 _pthread_start + 136
+21  libsystem_pthread.dylib             0x0000000181ad9d34 thread_start + 8
+
+
+8867/2024-04-29 15:20:30/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 129, in comment_fix
+    finds = common.find_elements("TAG_NAME", "textarea", driver, wait)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../common/fun.py", line 153, in find_elements
+    return wait.until(EC.presence_of_all_elements_located((By.TAG_NAME, selector_name)))
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 105, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 113, in fetch_order
+    result, message = comment_fix()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 135, in comment_fix
+    raise Exception(ex)
+Exception: Message: 
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 84, in dashboard
+    result, message = fetch_order()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 116, in fetch_order
+    raise Exception(ex)
+Exception: Message: 
+
+
+8867/2024-04-29 15:25:10/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 130, in comment_fix
+    finds = common.find_elements("TAG_NAME", "textarea", driver, wait)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../common/fun.py", line 153, in find_elements
+    return wait.until(EC.presence_of_all_elements_located((By.TAG_NAME, selector_name)))
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 105, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 113, in fetch_order
+    result, message = comment_fix()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 136, in comment_fix
+    raise Exception(ex)
+Exception: Message: 
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 84, in dashboard
+    result, message = fetch_order()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 116, in fetch_order
+    raise Exception(ex)
+Exception: Message: 
+
+
+8867/2024-04-29 15:29:19/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 130, in comment_fix
+    finds = common.find_elements("TAG_NAME", "textarea", driver, wait)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../common/fun.py", line 155, in find_elements
+    return wait.until(EC.presence_of_all_elements_located((By.TAG_NAME, selector_name)))
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 105, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 113, in fetch_order
+    result, message = comment_fix()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 136, in comment_fix
+    raise Exception(ex)
+Exception: Message: 
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 84, in dashboard
+    result, message = fetch_order()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 116, in fetch_order
+    raise Exception(ex)
+Exception: Message: 
+
+
+8867/2024-04-29 15:34:26/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 113, in fetch_order
+    result, message = comment_fix()
+TypeError: cannot unpack non-iterable NoneType object
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 84, in dashboard
+    result, message = fetch_order()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 116, in fetch_order
+    raise Exception(ex)
+Exception: cannot unpack non-iterable NoneType object
+
+8867/2024-04-29 15:37:00/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 113, in fetch_order
+    result, message = comment_fix()
+TypeError: cannot unpack non-iterable NoneType object
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 84, in dashboard
+    result, message = fetch_order()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 116, in fetch_order
+    raise Exception(ex)
+Exception: cannot unpack non-iterable NoneType object
+
+8867/2024-04-29 15:38:03/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 115, in fetch_order
+    result, message = comment_fix()
+TypeError: cannot unpack non-iterable NoneType object
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 86, in dashboard
+    result, message = fetch_order()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 118, in fetch_order
+    raise Exception(ex)
+Exception: cannot unpack non-iterable NoneType object
+
+8867/2024-04-29 15:38:59/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 115, in fetch_order
+    result, message = comment_fix()
+TypeError: cannot unpack non-iterable NoneType object
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 86, in dashboard
+    result, message = fetch_order()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 118, in fetch_order
+    raise Exception(ex)
+Exception: cannot unpack non-iterable NoneType object
+
+8867/2024-04-29 15:40:06/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 137, in comment_fix
+    find_comment.send_keys(comments[tab_index])
+IndexError: list index out of range
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 115, in fetch_order
+    result, message = comment_fix()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 141, in comment_fix
+    raise Exception(ex)
+Exception: list index out of range
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 86, in dashboard
+    result, message = fetch_order()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 118, in fetch_order
+    raise Exception(ex)
+Exception: list index out of range
+
+8867/2024-04-29 15:40:46/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 137, in comment_fix
+    find_comment.send_keys(comments[tab_index])
+IndexError: list index out of range
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 115, in fetch_order
+    result, message = comment_fix()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 141, in comment_fix
+    raise Exception(ex)
+Exception: list index out of range
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 86, in dashboard
+    result, message = fetch_order()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 118, in fetch_order
+    raise Exception(ex)
+Exception: list index out of range
+
+8867/2024-04-29 15:41:25/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 137, in comment_fix
+    find_comment.send_keys(comments[tab_index])
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webelement.py", line 231, in send_keys
+    self._execute(
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webelement.py", line 395, in _execute
+    return self._parent.execute(command, params)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 347, in execute
+    self.error_handler.check_response(response)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.StaleElementReferenceException: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome-headless-shell=124.0.6367.93); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+0   chromedriver                        0x00000001029bc3e8 chromedriver + 4326376
+1   chromedriver                        0x00000001029b48b0 chromedriver + 4294832
+2   chromedriver                        0x00000001025e0088 chromedriver + 278664
+3   chromedriver                        0x00000001025e4abc chromedriver + 297660
+4   chromedriver                        0x00000001025e6428 chromedriver + 304168
+5   chromedriver                        0x00000001025e64a0 chromedriver + 304288
+6   chromedriver                        0x00000001026236e4 chromedriver + 554724
+7   chromedriver                        0x0000000102623794 chromedriver + 554900
+8   chromedriver                        0x000000010261b714 chromedriver + 522004
+9   chromedriver                        0x0000000102618dd0 chromedriver + 511440
+10  chromedriver                        0x000000010265b4f8 chromedriver + 783608
+11  chromedriver                        0x00000001026174e4 chromedriver + 505060
+12  chromedriver                        0x0000000102617f5c chromedriver + 507740
+13  chromedriver                        0x000000010297f984 chromedriver + 4077956
+14  chromedriver                        0x000000010298473c chromedriver + 4097852
+15  chromedriver                        0x0000000102966528 chromedriver + 3974440
+16  chromedriver                        0x0000000102985054 chromedriver + 4100180
+17  chromedriver                        0x0000000102957b18 chromedriver + 3914520
+18  chromedriver                        0x00000001029a565c chromedriver + 4232796
+19  chromedriver                        0x00000001029a57d8 chromedriver + 4233176
+20  chromedriver                        0x00000001029b4524 chromedriver + 4293924
+21  libsystem_pthread.dylib             0x0000000181adef94 _pthread_start + 136
+22  libsystem_pthread.dylib             0x0000000181ad9d34 thread_start + 8
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 115, in fetch_order
+    result, message = comment_fix()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 141, in comment_fix
+    raise Exception(ex)
+Exception: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome-headless-shell=124.0.6367.93); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+0   chromedriver                        0x00000001029bc3e8 chromedriver + 4326376
+1   chromedriver                        0x00000001029b48b0 chromedriver + 4294832
+2   chromedriver                        0x00000001025e0088 chromedriver + 278664
+3   chromedriver                        0x00000001025e4abc chromedriver + 297660
+4   chromedriver                        0x00000001025e6428 chromedriver + 304168
+5   chromedriver                        0x00000001025e64a0 chromedriver + 304288
+6   chromedriver                        0x00000001026236e4 chromedriver + 554724
+7   chromedriver                        0x0000000102623794 chromedriver + 554900
+8   chromedriver                        0x000000010261b714 chromedriver + 522004
+9   chromedriver                        0x0000000102618dd0 chromedriver + 511440
+10  chromedriver                        0x000000010265b4f8 chromedriver + 783608
+11  chromedriver                        0x00000001026174e4 chromedriver + 505060
+12  chromedriver                        0x0000000102617f5c chromedriver + 507740
+13  chromedriver                        0x000000010297f984 chromedriver + 4077956
+14  chromedriver                        0x000000010298473c chromedriver + 4097852
+15  chromedriver                        0x0000000102966528 chromedriver + 3974440
+16  chromedriver                        0x0000000102985054 chromedriver + 4100180
+17  chromedriver                        0x0000000102957b18 chromedriver + 3914520
+18  chromedriver                        0x00000001029a565c chromedriver + 4232796
+19  chromedriver                        0x00000001029a57d8 chromedriver + 4233176
+20  chromedriver                        0x00000001029b4524 chromedriver + 4293924
+21  libsystem_pthread.dylib             0x0000000181adef94 _pthread_start + 136
+22  libsystem_pthread.dylib             0x0000000181ad9d34 thread_start + 8
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 86, in dashboard
+    result, message = fetch_order()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 118, in fetch_order
+    raise Exception(ex)
+Exception: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome-headless-shell=124.0.6367.93); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+0   chromedriver                        0x00000001029bc3e8 chromedriver + 4326376
+1   chromedriver                        0x00000001029b48b0 chromedriver + 4294832
+2   chromedriver                        0x00000001025e0088 chromedriver + 278664
+3   chromedriver                        0x00000001025e4abc chromedriver + 297660
+4   chromedriver                        0x00000001025e6428 chromedriver + 304168
+5   chromedriver                        0x00000001025e64a0 chromedriver + 304288
+6   chromedriver                        0x00000001026236e4 chromedriver + 554724
+7   chromedriver                        0x0000000102623794 chromedriver + 554900
+8   chromedriver                        0x000000010261b714 chromedriver + 522004
+9   chromedriver                        0x0000000102618dd0 chromedriver + 511440
+10  chromedriver                        0x000000010265b4f8 chromedriver + 783608
+11  chromedriver                        0x00000001026174e4 chromedriver + 505060
+12  chromedriver                        0x0000000102617f5c chromedriver + 507740
+13  chromedriver                        0x000000010297f984 chromedriver + 4077956
+14  chromedriver                        0x000000010298473c chromedriver + 4097852
+15  chromedriver                        0x0000000102966528 chromedriver + 3974440
+16  chromedriver                        0x0000000102985054 chromedriver + 4100180
+17  chromedriver                        0x0000000102957b18 chromedriver + 3914520
+18  chromedriver                        0x00000001029a565c chromedriver + 4232796
+19  chromedriver                        0x00000001029a57d8 chromedriver + 4233176
+20  chromedriver                        0x00000001029b4524 chromedriver + 4293924
+21  libsystem_pthread.dylib             0x0000000181adef94 _pthread_start + 136
+22  libsystem_pthread.dylib             0x0000000181ad9d34 thread_start + 8
+
+
+8867/2024-04-29 15:48:54/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 137, in comment_fix
+    find_comment.send_keys(comments[tab_index])
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webelement.py", line 231, in send_keys
+    self._execute(
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webelement.py", line 395, in _execute
+    return self._parent.execute(command, params)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 347, in execute
+    self.error_handler.check_response(response)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.StaleElementReferenceException: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome-headless-shell=124.0.6367.93); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+0   chromedriver                        0x00000001012983e8 chromedriver + 4326376
+1   chromedriver                        0x00000001012908b0 chromedriver + 4294832
+2   chromedriver                        0x0000000100ebc088 chromedriver + 278664
+3   chromedriver                        0x0000000100ec0abc chromedriver + 297660
+4   chromedriver                        0x0000000100ec2428 chromedriver + 304168
+5   chromedriver                        0x0000000100ec24a0 chromedriver + 304288
+6   chromedriver                        0x0000000100eff6e4 chromedriver + 554724
+7   chromedriver                        0x0000000100eff794 chromedriver + 554900
+8   chromedriver                        0x0000000100ef7714 chromedriver + 522004
+9   chromedriver                        0x0000000100ef4dd0 chromedriver + 511440
+10  chromedriver                        0x0000000100f374f8 chromedriver + 783608
+11  chromedriver                        0x0000000100ef34e4 chromedriver + 505060
+12  chromedriver                        0x0000000100ef3f5c chromedriver + 507740
+13  chromedriver                        0x000000010125b984 chromedriver + 4077956
+14  chromedriver                        0x000000010126073c chromedriver + 4097852
+15  chromedriver                        0x0000000101242528 chromedriver + 3974440
+16  chromedriver                        0x0000000101261054 chromedriver + 4100180
+17  chromedriver                        0x0000000101233b18 chromedriver + 3914520
+18  chromedriver                        0x000000010128165c chromedriver + 4232796
+19  chromedriver                        0x00000001012817d8 chromedriver + 4233176
+20  chromedriver                        0x0000000101290524 chromedriver + 4293924
+21  libsystem_pthread.dylib             0x0000000181adef94 _pthread_start + 136
+22  libsystem_pthread.dylib             0x0000000181ad9d34 thread_start + 8
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 115, in fetch_order
+    result, message = comment_fix()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 147, in comment_fix
+    raise Exception(ex)
+Exception: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome-headless-shell=124.0.6367.93); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+0   chromedriver                        0x00000001012983e8 chromedriver + 4326376
+1   chromedriver                        0x00000001012908b0 chromedriver + 4294832
+2   chromedriver                        0x0000000100ebc088 chromedriver + 278664
+3   chromedriver                        0x0000000100ec0abc chromedriver + 297660
+4   chromedriver                        0x0000000100ec2428 chromedriver + 304168
+5   chromedriver                        0x0000000100ec24a0 chromedriver + 304288
+6   chromedriver                        0x0000000100eff6e4 chromedriver + 554724
+7   chromedriver                        0x0000000100eff794 chromedriver + 554900
+8   chromedriver                        0x0000000100ef7714 chromedriver + 522004
+9   chromedriver                        0x0000000100ef4dd0 chromedriver + 511440
+10  chromedriver                        0x0000000100f374f8 chromedriver + 783608
+11  chromedriver                        0x0000000100ef34e4 chromedriver + 505060
+12  chromedriver                        0x0000000100ef3f5c chromedriver + 507740
+13  chromedriver                        0x000000010125b984 chromedriver + 4077956
+14  chromedriver                        0x000000010126073c chromedriver + 4097852
+15  chromedriver                        0x0000000101242528 chromedriver + 3974440
+16  chromedriver                        0x0000000101261054 chromedriver + 4100180
+17  chromedriver                        0x0000000101233b18 chromedriver + 3914520
+18  chromedriver                        0x000000010128165c chromedriver + 4232796
+19  chromedriver                        0x00000001012817d8 chromedriver + 4233176
+20  chromedriver                        0x0000000101290524 chromedriver + 4293924
+21  libsystem_pthread.dylib             0x0000000181adef94 _pthread_start + 136
+22  libsystem_pthread.dylib             0x0000000181ad9d34 thread_start + 8
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 86, in dashboard
+    result, message = fetch_order()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 118, in fetch_order
+    raise Exception(ex)
+Exception: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome-headless-shell=124.0.6367.93); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+0   chromedriver                        0x00000001012983e8 chromedriver + 4326376
+1   chromedriver                        0x00000001012908b0 chromedriver + 4294832
+2   chromedriver                        0x0000000100ebc088 chromedriver + 278664
+3   chromedriver                        0x0000000100ec0abc chromedriver + 297660
+4   chromedriver                        0x0000000100ec2428 chromedriver + 304168
+5   chromedriver                        0x0000000100ec24a0 chromedriver + 304288
+6   chromedriver                        0x0000000100eff6e4 chromedriver + 554724
+7   chromedriver                        0x0000000100eff794 chromedriver + 554900
+8   chromedriver                        0x0000000100ef7714 chromedriver + 522004
+9   chromedriver                        0x0000000100ef4dd0 chromedriver + 511440
+10  chromedriver                        0x0000000100f374f8 chromedriver + 783608
+11  chromedriver                        0x0000000100ef34e4 chromedriver + 505060
+12  chromedriver                        0x0000000100ef3f5c chromedriver + 507740
+13  chromedriver                        0x000000010125b984 chromedriver + 4077956
+14  chromedriver                        0x000000010126073c chromedriver + 4097852
+15  chromedriver                        0x0000000101242528 chromedriver + 3974440
+16  chromedriver                        0x0000000101261054 chromedriver + 4100180
+17  chromedriver                        0x0000000101233b18 chromedriver + 3914520
+18  chromedriver                        0x000000010128165c chromedriver + 4232796
+19  chromedriver                        0x00000001012817d8 chromedriver + 4233176
+20  chromedriver                        0x0000000101290524 chromedriver + 4293924
+21  libsystem_pthread.dylib             0x0000000181adef94 _pthread_start + 136
+22  libsystem_pthread.dylib             0x0000000181ad9d34 thread_start + 8
+
+
+8867/2024-04-29 15:49:00/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 132, in comment_fix
+    find_comments = common.find_elements("TAG_NAME", "textarea", driver, wait)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../common/fun.py", line 155, in find_elements
+    return wait.until(EC.presence_of_all_elements_located((By.TAG_NAME, selector_name)))
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 105, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 115, in fetch_order
+    result, message = comment_fix()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 147, in comment_fix
+    raise Exception(ex)
+Exception: Message: 
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 86, in dashboard
+    result, message = fetch_order()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 118, in fetch_order
+    raise Exception(ex)
+Exception: Message: 
+
+
+8867/2024-04-29 15:49:01/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 132, in comment_fix
+    find_comments = common.find_elements("TAG_NAME", "textarea", driver, wait)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../common/fun.py", line 155, in find_elements
+    return wait.until(EC.presence_of_all_elements_located((By.TAG_NAME, selector_name)))
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 105, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 115, in fetch_order
+    result, message = comment_fix()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 147, in comment_fix
+    raise Exception(ex)
+Exception: Message: 
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 86, in dashboard
+    result, message = fetch_order()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 118, in fetch_order
+    raise Exception(ex)
+Exception: Message: 
+
+
+8867/2024-04-29 15:49:21/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 137, in comment_fix
+    find_comment.send_keys(comments[tab_index])
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webelement.py", line 231, in send_keys
+    self._execute(
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webelement.py", line 395, in _execute
+    return self._parent.execute(command, params)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 347, in execute
+    self.error_handler.check_response(response)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.StaleElementReferenceException: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=124.0.6367.93); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+0   chromedriver                        0x000000010073c3e8 chromedriver + 4326376
+1   chromedriver                        0x00000001007348b0 chromedriver + 4294832
+2   chromedriver                        0x0000000100360088 chromedriver + 278664
+3   chromedriver                        0x0000000100364abc chromedriver + 297660
+4   chromedriver                        0x0000000100366428 chromedriver + 304168
+5   chromedriver                        0x00000001003664a0 chromedriver + 304288
+6   chromedriver                        0x00000001003a36e4 chromedriver + 554724
+7   chromedriver                        0x00000001003a3794 chromedriver + 554900
+8   chromedriver                        0x000000010039b714 chromedriver + 522004
+9   chromedriver                        0x0000000100398dd0 chromedriver + 511440
+10  chromedriver                        0x00000001003db4f8 chromedriver + 783608
+11  chromedriver                        0x00000001003974e4 chromedriver + 505060
+12  chromedriver                        0x0000000100397f5c chromedriver + 507740
+13  chromedriver                        0x00000001006ff984 chromedriver + 4077956
+14  chromedriver                        0x000000010070473c chromedriver + 4097852
+15  chromedriver                        0x00000001006e6528 chromedriver + 3974440
+16  chromedriver                        0x0000000100705054 chromedriver + 4100180
+17  chromedriver                        0x00000001006d7b18 chromedriver + 3914520
+18  chromedriver                        0x000000010072565c chromedriver + 4232796
+19  chromedriver                        0x00000001007257d8 chromedriver + 4233176
+20  chromedriver                        0x0000000100734524 chromedriver + 4293924
+21  libsystem_pthread.dylib             0x0000000181adef94 _pthread_start + 136
+22  libsystem_pthread.dylib             0x0000000181ad9d34 thread_start + 8
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 115, in fetch_order
+    result, message = comment_fix()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 147, in comment_fix
+    raise Exception(ex)
+Exception: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=124.0.6367.93); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+0   chromedriver                        0x000000010073c3e8 chromedriver + 4326376
+1   chromedriver                        0x00000001007348b0 chromedriver + 4294832
+2   chromedriver                        0x0000000100360088 chromedriver + 278664
+3   chromedriver                        0x0000000100364abc chromedriver + 297660
+4   chromedriver                        0x0000000100366428 chromedriver + 304168
+5   chromedriver                        0x00000001003664a0 chromedriver + 304288
+6   chromedriver                        0x00000001003a36e4 chromedriver + 554724
+7   chromedriver                        0x00000001003a3794 chromedriver + 554900
+8   chromedriver                        0x000000010039b714 chromedriver + 522004
+9   chromedriver                        0x0000000100398dd0 chromedriver + 511440
+10  chromedriver                        0x00000001003db4f8 chromedriver + 783608
+11  chromedriver                        0x00000001003974e4 chromedriver + 505060
+12  chromedriver                        0x0000000100397f5c chromedriver + 507740
+13  chromedriver                        0x00000001006ff984 chromedriver + 4077956
+14  chromedriver                        0x000000010070473c chromedriver + 4097852
+15  chromedriver                        0x00000001006e6528 chromedriver + 3974440
+16  chromedriver                        0x0000000100705054 chromedriver + 4100180
+17  chromedriver                        0x00000001006d7b18 chromedriver + 3914520
+18  chromedriver                        0x000000010072565c chromedriver + 4232796
+19  chromedriver                        0x00000001007257d8 chromedriver + 4233176
+20  chromedriver                        0x0000000100734524 chromedriver + 4293924
+21  libsystem_pthread.dylib             0x0000000181adef94 _pthread_start + 136
+22  libsystem_pthread.dylib             0x0000000181ad9d34 thread_start + 8
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 86, in dashboard
+    result, message = fetch_order()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 118, in fetch_order
+    raise Exception(ex)
+Exception: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=124.0.6367.93); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+0   chromedriver                        0x000000010073c3e8 chromedriver + 4326376
+1   chromedriver                        0x00000001007348b0 chromedriver + 4294832
+2   chromedriver                        0x0000000100360088 chromedriver + 278664
+3   chromedriver                        0x0000000100364abc chromedriver + 297660
+4   chromedriver                        0x0000000100366428 chromedriver + 304168
+5   chromedriver                        0x00000001003664a0 chromedriver + 304288
+6   chromedriver                        0x00000001003a36e4 chromedriver + 554724
+7   chromedriver                        0x00000001003a3794 chromedriver + 554900
+8   chromedriver                        0x000000010039b714 chromedriver + 522004
+9   chromedriver                        0x0000000100398dd0 chromedriver + 511440
+10  chromedriver                        0x00000001003db4f8 chromedriver + 783608
+11  chromedriver                        0x00000001003974e4 chromedriver + 505060
+12  chromedriver                        0x0000000100397f5c chromedriver + 507740
+13  chromedriver                        0x00000001006ff984 chromedriver + 4077956
+14  chromedriver                        0x000000010070473c chromedriver + 4097852
+15  chromedriver                        0x00000001006e6528 chromedriver + 3974440
+16  chromedriver                        0x0000000100705054 chromedriver + 4100180
+17  chromedriver                        0x00000001006d7b18 chromedriver + 3914520
+18  chromedriver                        0x000000010072565c chromedriver + 4232796
+19  chromedriver                        0x00000001007257d8 chromedriver + 4233176
+20  chromedriver                        0x0000000100734524 chromedriver + 4293924
+21  libsystem_pthread.dylib             0x0000000181adef94 _pthread_start + 136
+22  libsystem_pthread.dylib             0x0000000181ad9d34 thread_start + 8
+
+
+8867/2024-04-29 15:50:43/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 138, in comment_fix
+    common.element_log(find_comment)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../common/fun.py", line 287, in element_log
+    print(f"Tag Name: {element.tag_name}")
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webelement.py", line 85, in tag_name
+    return self._execute(Command.GET_ELEMENT_TAG_NAME)["value"]
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webelement.py", line 395, in _execute
+    return self._parent.execute(command, params)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 347, in execute
+    self.error_handler.check_response(response)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.StaleElementReferenceException: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=124.0.6367.93); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+0   chromedriver                        0x0000000102eec3e8 chromedriver + 4326376
+1   chromedriver                        0x0000000102ee48b0 chromedriver + 4294832
+2   chromedriver                        0x0000000102b10088 chromedriver + 278664
+3   chromedriver                        0x0000000102b14abc chromedriver + 297660
+4   chromedriver                        0x0000000102b16428 chromedriver + 304168
+5   chromedriver                        0x0000000102b164a0 chromedriver + 304288
+6   chromedriver                        0x0000000102b4dc74 chromedriver + 531572
+7   chromedriver                        0x0000000102b48dd0 chromedriver + 511440
+8   chromedriver                        0x0000000102b8b4f8 chromedriver + 783608
+9   chromedriver                        0x0000000102b474e4 chromedriver + 505060
+10  chromedriver                        0x0000000102b47f5c chromedriver + 507740
+11  chromedriver                        0x0000000102eaf984 chromedriver + 4077956
+12  chromedriver                        0x0000000102eb473c chromedriver + 4097852
+13  chromedriver                        0x0000000102e96528 chromedriver + 3974440
+14  chromedriver                        0x0000000102eb5054 chromedriver + 4100180
+15  chromedriver                        0x0000000102e87b18 chromedriver + 3914520
+16  chromedriver                        0x0000000102ed565c chromedriver + 4232796
+17  chromedriver                        0x0000000102ed57d8 chromedriver + 4233176
+18  chromedriver                        0x0000000102ee4524 chromedriver + 4293924
+19  libsystem_pthread.dylib             0x0000000181adef94 _pthread_start + 136
+20  libsystem_pthread.dylib             0x0000000181ad9d34 thread_start + 8
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 115, in fetch_order
+    result, message = comment_fix()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 150, in comment_fix
+    raise Exception(ex)
+Exception: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=124.0.6367.93); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+0   chromedriver                        0x0000000102eec3e8 chromedriver + 4326376
+1   chromedriver                        0x0000000102ee48b0 chromedriver + 4294832
+2   chromedriver                        0x0000000102b10088 chromedriver + 278664
+3   chromedriver                        0x0000000102b14abc chromedriver + 297660
+4   chromedriver                        0x0000000102b16428 chromedriver + 304168
+5   chromedriver                        0x0000000102b164a0 chromedriver + 304288
+6   chromedriver                        0x0000000102b4dc74 chromedriver + 531572
+7   chromedriver                        0x0000000102b48dd0 chromedriver + 511440
+8   chromedriver                        0x0000000102b8b4f8 chromedriver + 783608
+9   chromedriver                        0x0000000102b474e4 chromedriver + 505060
+10  chromedriver                        0x0000000102b47f5c chromedriver + 507740
+11  chromedriver                        0x0000000102eaf984 chromedriver + 4077956
+12  chromedriver                        0x0000000102eb473c chromedriver + 4097852
+13  chromedriver                        0x0000000102e96528 chromedriver + 3974440
+14  chromedriver                        0x0000000102eb5054 chromedriver + 4100180
+15  chromedriver                        0x0000000102e87b18 chromedriver + 3914520
+16  chromedriver                        0x0000000102ed565c chromedriver + 4232796
+17  chromedriver                        0x0000000102ed57d8 chromedriver + 4233176
+18  chromedriver                        0x0000000102ee4524 chromedriver + 4293924
+19  libsystem_pthread.dylib             0x0000000181adef94 _pthread_start + 136
+20  libsystem_pthread.dylib             0x0000000181ad9d34 thread_start + 8
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 86, in dashboard
+    result, message = fetch_order()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 118, in fetch_order
+    raise Exception(ex)
+Exception: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=124.0.6367.93); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+0   chromedriver                        0x0000000102eec3e8 chromedriver + 4326376
+1   chromedriver                        0x0000000102ee48b0 chromedriver + 4294832
+2   chromedriver                        0x0000000102b10088 chromedriver + 278664
+3   chromedriver                        0x0000000102b14abc chromedriver + 297660
+4   chromedriver                        0x0000000102b16428 chromedriver + 304168
+5   chromedriver                        0x0000000102b164a0 chromedriver + 304288
+6   chromedriver                        0x0000000102b4dc74 chromedriver + 531572
+7   chromedriver                        0x0000000102b48dd0 chromedriver + 511440
+8   chromedriver                        0x0000000102b8b4f8 chromedriver + 783608
+9   chromedriver                        0x0000000102b474e4 chromedriver + 505060
+10  chromedriver                        0x0000000102b47f5c chromedriver + 507740
+11  chromedriver                        0x0000000102eaf984 chromedriver + 4077956
+12  chromedriver                        0x0000000102eb473c chromedriver + 4097852
+13  chromedriver                        0x0000000102e96528 chromedriver + 3974440
+14  chromedriver                        0x0000000102eb5054 chromedriver + 4100180
+15  chromedriver                        0x0000000102e87b18 chromedriver + 3914520
+16  chromedriver                        0x0000000102ed565c chromedriver + 4232796
+17  chromedriver                        0x0000000102ed57d8 chromedriver + 4233176
+18  chromedriver                        0x0000000102ee4524 chromedriver + 4293924
+19  libsystem_pthread.dylib             0x0000000181adef94 _pthread_start + 136
+20  libsystem_pthread.dylib             0x0000000181ad9d34 thread_start + 8
+
+
+8867/2024-04-29 15:51:40/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 140, in comment_fix
+    find_comment.send_keys("쿠쿠쿠")
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webelement.py", line 231, in send_keys
+    self._execute(
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webelement.py", line 395, in _execute
+    return self._parent.execute(command, params)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 347, in execute
+    self.error_handler.check_response(response)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.StaleElementReferenceException: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=124.0.6367.93); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+0   chromedriver                        0x00000001045103e8 chromedriver + 4326376
+1   chromedriver                        0x00000001045088b0 chromedriver + 4294832
+2   chromedriver                        0x0000000104134088 chromedriver + 278664
+3   chromedriver                        0x0000000104138abc chromedriver + 297660
+4   chromedriver                        0x000000010413a428 chromedriver + 304168
+5   chromedriver                        0x000000010413a4a0 chromedriver + 304288
+6   chromedriver                        0x00000001041776e4 chromedriver + 554724
+7   chromedriver                        0x0000000104177794 chromedriver + 554900
+8   chromedriver                        0x000000010416f714 chromedriver + 522004
+9   chromedriver                        0x000000010416cdd0 chromedriver + 511440
+10  chromedriver                        0x00000001041af4f8 chromedriver + 783608
+11  chromedriver                        0x000000010416b4e4 chromedriver + 505060
+12  chromedriver                        0x000000010416bf5c chromedriver + 507740
+13  chromedriver                        0x00000001044d3984 chromedriver + 4077956
+14  chromedriver                        0x00000001044d873c chromedriver + 4097852
+15  chromedriver                        0x00000001044ba528 chromedriver + 3974440
+16  chromedriver                        0x00000001044d9054 chromedriver + 4100180
+17  chromedriver                        0x00000001044abb18 chromedriver + 3914520
+18  chromedriver                        0x00000001044f965c chromedriver + 4232796
+19  chromedriver                        0x00000001044f97d8 chromedriver + 4233176
+20  chromedriver                        0x0000000104508524 chromedriver + 4293924
+21  libsystem_pthread.dylib             0x0000000181adef94 _pthread_start + 136
+22  libsystem_pthread.dylib             0x0000000181ad9d34 thread_start + 8
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 115, in fetch_order
+    result, message = comment_fix()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 150, in comment_fix
+    raise Exception(ex)
+Exception: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=124.0.6367.93); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+0   chromedriver                        0x00000001045103e8 chromedriver + 4326376
+1   chromedriver                        0x00000001045088b0 chromedriver + 4294832
+2   chromedriver                        0x0000000104134088 chromedriver + 278664
+3   chromedriver                        0x0000000104138abc chromedriver + 297660
+4   chromedriver                        0x000000010413a428 chromedriver + 304168
+5   chromedriver                        0x000000010413a4a0 chromedriver + 304288
+6   chromedriver                        0x00000001041776e4 chromedriver + 554724
+7   chromedriver                        0x0000000104177794 chromedriver + 554900
+8   chromedriver                        0x000000010416f714 chromedriver + 522004
+9   chromedriver                        0x000000010416cdd0 chromedriver + 511440
+10  chromedriver                        0x00000001041af4f8 chromedriver + 783608
+11  chromedriver                        0x000000010416b4e4 chromedriver + 505060
+12  chromedriver                        0x000000010416bf5c chromedriver + 507740
+13  chromedriver                        0x00000001044d3984 chromedriver + 4077956
+14  chromedriver                        0x00000001044d873c chromedriver + 4097852
+15  chromedriver                        0x00000001044ba528 chromedriver + 3974440
+16  chromedriver                        0x00000001044d9054 chromedriver + 4100180
+17  chromedriver                        0x00000001044abb18 chromedriver + 3914520
+18  chromedriver                        0x00000001044f965c chromedriver + 4232796
+19  chromedriver                        0x00000001044f97d8 chromedriver + 4233176
+20  chromedriver                        0x0000000104508524 chromedriver + 4293924
+21  libsystem_pthread.dylib             0x0000000181adef94 _pthread_start + 136
+22  libsystem_pthread.dylib             0x0000000181ad9d34 thread_start + 8
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 86, in dashboard
+    result, message = fetch_order()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 118, in fetch_order
+    raise Exception(ex)
+Exception: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=124.0.6367.93); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+0   chromedriver                        0x00000001045103e8 chromedriver + 4326376
+1   chromedriver                        0x00000001045088b0 chromedriver + 4294832
+2   chromedriver                        0x0000000104134088 chromedriver + 278664
+3   chromedriver                        0x0000000104138abc chromedriver + 297660
+4   chromedriver                        0x000000010413a428 chromedriver + 304168
+5   chromedriver                        0x000000010413a4a0 chromedriver + 304288
+6   chromedriver                        0x00000001041776e4 chromedriver + 554724
+7   chromedriver                        0x0000000104177794 chromedriver + 554900
+8   chromedriver                        0x000000010416f714 chromedriver + 522004
+9   chromedriver                        0x000000010416cdd0 chromedriver + 511440
+10  chromedriver                        0x00000001041af4f8 chromedriver + 783608
+11  chromedriver                        0x000000010416b4e4 chromedriver + 505060
+12  chromedriver                        0x000000010416bf5c chromedriver + 507740
+13  chromedriver                        0x00000001044d3984 chromedriver + 4077956
+14  chromedriver                        0x00000001044d873c chromedriver + 4097852
+15  chromedriver                        0x00000001044ba528 chromedriver + 3974440
+16  chromedriver                        0x00000001044d9054 chromedriver + 4100180
+17  chromedriver                        0x00000001044abb18 chromedriver + 3914520
+18  chromedriver                        0x00000001044f965c chromedriver + 4232796
+19  chromedriver                        0x00000001044f97d8 chromedriver + 4233176
+20  chromedriver                        0x0000000104508524 chromedriver + 4293924
+21  libsystem_pthread.dylib             0x0000000181adef94 _pthread_start + 136
+22  libsystem_pthread.dylib             0x0000000181ad9d34 thread_start + 8
+
+
+8867/2024-04-29 15:52:20/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 140, in comment_fix
+    find_comment.send_keys("쿠쿠쿠")
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webelement.py", line 231, in send_keys
+    self._execute(
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webelement.py", line 395, in _execute
+    return self._parent.execute(command, params)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 347, in execute
+    self.error_handler.check_response(response)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.StaleElementReferenceException: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=124.0.6367.93); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+0   chromedriver                        0x00000001045f43e8 chromedriver + 4326376
+1   chromedriver                        0x00000001045ec8b0 chromedriver + 4294832
+2   chromedriver                        0x0000000104218088 chromedriver + 278664
+3   chromedriver                        0x000000010421cabc chromedriver + 297660
+4   chromedriver                        0x000000010421e428 chromedriver + 304168
+5   chromedriver                        0x000000010421e4a0 chromedriver + 304288
+6   chromedriver                        0x00000001042557cc chromedriver + 530380
+7   chromedriver                        0x0000000104254074 chromedriver + 524404
+8   chromedriver                        0x0000000104250dd0 chromedriver + 511440
+9   chromedriver                        0x00000001042934f8 chromedriver + 783608
+10  chromedriver                        0x000000010424f4e4 chromedriver + 505060
+11  chromedriver                        0x000000010424ff5c chromedriver + 507740
+12  chromedriver                        0x00000001045b7984 chromedriver + 4077956
+13  chromedriver                        0x00000001045bc73c chromedriver + 4097852
+14  chromedriver                        0x000000010459e528 chromedriver + 3974440
+15  chromedriver                        0x00000001045bd054 chromedriver + 4100180
+16  chromedriver                        0x000000010458fb18 chromedriver + 3914520
+17  chromedriver                        0x00000001045dd65c chromedriver + 4232796
+18  chromedriver                        0x00000001045dd7d8 chromedriver + 4233176
+19  chromedriver                        0x00000001045ec524 chromedriver + 4293924
+20  libsystem_pthread.dylib             0x0000000181adef94 _pthread_start + 136
+21  libsystem_pthread.dylib             0x0000000181ad9d34 thread_start + 8
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 115, in fetch_order
+    result, message = comment_fix()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 150, in comment_fix
+    raise Exception(ex)
+Exception: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=124.0.6367.93); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+0   chromedriver                        0x00000001045f43e8 chromedriver + 4326376
+1   chromedriver                        0x00000001045ec8b0 chromedriver + 4294832
+2   chromedriver                        0x0000000104218088 chromedriver + 278664
+3   chromedriver                        0x000000010421cabc chromedriver + 297660
+4   chromedriver                        0x000000010421e428 chromedriver + 304168
+5   chromedriver                        0x000000010421e4a0 chromedriver + 304288
+6   chromedriver                        0x00000001042557cc chromedriver + 530380
+7   chromedriver                        0x0000000104254074 chromedriver + 524404
+8   chromedriver                        0x0000000104250dd0 chromedriver + 511440
+9   chromedriver                        0x00000001042934f8 chromedriver + 783608
+10  chromedriver                        0x000000010424f4e4 chromedriver + 505060
+11  chromedriver                        0x000000010424ff5c chromedriver + 507740
+12  chromedriver                        0x00000001045b7984 chromedriver + 4077956
+13  chromedriver                        0x00000001045bc73c chromedriver + 4097852
+14  chromedriver                        0x000000010459e528 chromedriver + 3974440
+15  chromedriver                        0x00000001045bd054 chromedriver + 4100180
+16  chromedriver                        0x000000010458fb18 chromedriver + 3914520
+17  chromedriver                        0x00000001045dd65c chromedriver + 4232796
+18  chromedriver                        0x00000001045dd7d8 chromedriver + 4233176
+19  chromedriver                        0x00000001045ec524 chromedriver + 4293924
+20  libsystem_pthread.dylib             0x0000000181adef94 _pthread_start + 136
+21  libsystem_pthread.dylib             0x0000000181ad9d34 thread_start + 8
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 86, in dashboard
+    result, message = fetch_order()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 118, in fetch_order
+    raise Exception(ex)
+Exception: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=124.0.6367.93); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+0   chromedriver                        0x00000001045f43e8 chromedriver + 4326376
+1   chromedriver                        0x00000001045ec8b0 chromedriver + 4294832
+2   chromedriver                        0x0000000104218088 chromedriver + 278664
+3   chromedriver                        0x000000010421cabc chromedriver + 297660
+4   chromedriver                        0x000000010421e428 chromedriver + 304168
+5   chromedriver                        0x000000010421e4a0 chromedriver + 304288
+6   chromedriver                        0x00000001042557cc chromedriver + 530380
+7   chromedriver                        0x0000000104254074 chromedriver + 524404
+8   chromedriver                        0x0000000104250dd0 chromedriver + 511440
+9   chromedriver                        0x00000001042934f8 chromedriver + 783608
+10  chromedriver                        0x000000010424f4e4 chromedriver + 505060
+11  chromedriver                        0x000000010424ff5c chromedriver + 507740
+12  chromedriver                        0x00000001045b7984 chromedriver + 4077956
+13  chromedriver                        0x00000001045bc73c chromedriver + 4097852
+14  chromedriver                        0x000000010459e528 chromedriver + 3974440
+15  chromedriver                        0x00000001045bd054 chromedriver + 4100180
+16  chromedriver                        0x000000010458fb18 chromedriver + 3914520
+17  chromedriver                        0x00000001045dd65c chromedriver + 4232796
+18  chromedriver                        0x00000001045dd7d8 chromedriver + 4233176
+19  chromedriver                        0x00000001045ec524 chromedriver + 4293924
+20  libsystem_pthread.dylib             0x0000000181adef94 _pthread_start + 136
+21  libsystem_pthread.dylib             0x0000000181ad9d34 thread_start + 8
+
+
+8867/2024-04-29 15:53:53/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 141, in comment_fix
+    find_comment.send_keys("쿠쿠쿠")
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webelement.py", line 231, in send_keys
+    self._execute(
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webelement.py", line 395, in _execute
+    return self._parent.execute(command, params)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 347, in execute
+    self.error_handler.check_response(response)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.StaleElementReferenceException: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=124.0.6367.93); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+0   chromedriver                        0x000000010465c3e8 chromedriver + 4326376
+1   chromedriver                        0x00000001046548b0 chromedriver + 4294832
+2   chromedriver                        0x0000000104280088 chromedriver + 278664
+3   chromedriver                        0x0000000104284abc chromedriver + 297660
+4   chromedriver                        0x0000000104286428 chromedriver + 304168
+5   chromedriver                        0x00000001042864a0 chromedriver + 304288
+6   chromedriver                        0x00000001042bd7cc chromedriver + 530380
+7   chromedriver                        0x00000001042bc074 chromedriver + 524404
+8   chromedriver                        0x00000001042b8dd0 chromedriver + 511440
+9   chromedriver                        0x00000001042fb4f8 chromedriver + 783608
+10  chromedriver                        0x00000001042b74e4 chromedriver + 505060
+11  chromedriver                        0x00000001042b7f5c chromedriver + 507740
+12  chromedriver                        0x000000010461f984 chromedriver + 4077956
+13  chromedriver                        0x000000010462473c chromedriver + 4097852
+14  chromedriver                        0x0000000104606528 chromedriver + 3974440
+15  chromedriver                        0x0000000104625054 chromedriver + 4100180
+16  chromedriver                        0x00000001045f7b18 chromedriver + 3914520
+17  chromedriver                        0x000000010464565c chromedriver + 4232796
+18  chromedriver                        0x00000001046457d8 chromedriver + 4233176
+19  chromedriver                        0x0000000104654524 chromedriver + 4293924
+20  libsystem_pthread.dylib             0x0000000181adef94 _pthread_start + 136
+21  libsystem_pthread.dylib             0x0000000181ad9d34 thread_start + 8
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 115, in fetch_order
+    result, message = comment_fix()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 153, in comment_fix
+    raise Exception(ex)
+Exception: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=124.0.6367.93); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+0   chromedriver                        0x000000010465c3e8 chromedriver + 4326376
+1   chromedriver                        0x00000001046548b0 chromedriver + 4294832
+2   chromedriver                        0x0000000104280088 chromedriver + 278664
+3   chromedriver                        0x0000000104284abc chromedriver + 297660
+4   chromedriver                        0x0000000104286428 chromedriver + 304168
+5   chromedriver                        0x00000001042864a0 chromedriver + 304288
+6   chromedriver                        0x00000001042bd7cc chromedriver + 530380
+7   chromedriver                        0x00000001042bc074 chromedriver + 524404
+8   chromedriver                        0x00000001042b8dd0 chromedriver + 511440
+9   chromedriver                        0x00000001042fb4f8 chromedriver + 783608
+10  chromedriver                        0x00000001042b74e4 chromedriver + 505060
+11  chromedriver                        0x00000001042b7f5c chromedriver + 507740
+12  chromedriver                        0x000000010461f984 chromedriver + 4077956
+13  chromedriver                        0x000000010462473c chromedriver + 4097852
+14  chromedriver                        0x0000000104606528 chromedriver + 3974440
+15  chromedriver                        0x0000000104625054 chromedriver + 4100180
+16  chromedriver                        0x00000001045f7b18 chromedriver + 3914520
+17  chromedriver                        0x000000010464565c chromedriver + 4232796
+18  chromedriver                        0x00000001046457d8 chromedriver + 4233176
+19  chromedriver                        0x0000000104654524 chromedriver + 4293924
+20  libsystem_pthread.dylib             0x0000000181adef94 _pthread_start + 136
+21  libsystem_pthread.dylib             0x0000000181ad9d34 thread_start + 8
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 86, in dashboard
+    result, message = fetch_order()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 118, in fetch_order
+    raise Exception(ex)
+Exception: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=124.0.6367.93); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+0   chromedriver                        0x000000010465c3e8 chromedriver + 4326376
+1   chromedriver                        0x00000001046548b0 chromedriver + 4294832
+2   chromedriver                        0x0000000104280088 chromedriver + 278664
+3   chromedriver                        0x0000000104284abc chromedriver + 297660
+4   chromedriver                        0x0000000104286428 chromedriver + 304168
+5   chromedriver                        0x00000001042864a0 chromedriver + 304288
+6   chromedriver                        0x00000001042bd7cc chromedriver + 530380
+7   chromedriver                        0x00000001042bc074 chromedriver + 524404
+8   chromedriver                        0x00000001042b8dd0 chromedriver + 511440
+9   chromedriver                        0x00000001042fb4f8 chromedriver + 783608
+10  chromedriver                        0x00000001042b74e4 chromedriver + 505060
+11  chromedriver                        0x00000001042b7f5c chromedriver + 507740
+12  chromedriver                        0x000000010461f984 chromedriver + 4077956
+13  chromedriver                        0x000000010462473c chromedriver + 4097852
+14  chromedriver                        0x0000000104606528 chromedriver + 3974440
+15  chromedriver                        0x0000000104625054 chromedriver + 4100180
+16  chromedriver                        0x00000001045f7b18 chromedriver + 3914520
+17  chromedriver                        0x000000010464565c chromedriver + 4232796
+18  chromedriver                        0x00000001046457d8 chromedriver + 4233176
+19  chromedriver                        0x0000000104654524 chromedriver + 4293924
+20  libsystem_pthread.dylib             0x0000000181adef94 _pthread_start + 136
+21  libsystem_pthread.dylib             0x0000000181ad9d34 thread_start + 8
+
+
+8867/2024-04-29 15:55:20/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 142, in comment_fix
+    find_comment.send_keys("쿠쿠쿠")
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webelement.py", line 231, in send_keys
+    self._execute(
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webelement.py", line 395, in _execute
+    return self._parent.execute(command, params)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 347, in execute
+    self.error_handler.check_response(response)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.StaleElementReferenceException: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=124.0.6367.93); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+0   chromedriver                        0x0000000102eb83e8 chromedriver + 4326376
+1   chromedriver                        0x0000000102eb08b0 chromedriver + 4294832
+2   chromedriver                        0x0000000102adc088 chromedriver + 278664
+3   chromedriver                        0x0000000102ae0abc chromedriver + 297660
+4   chromedriver                        0x0000000102ae2428 chromedriver + 304168
+5   chromedriver                        0x0000000102ae24a0 chromedriver + 304288
+6   chromedriver                        0x0000000102b1f6e4 chromedriver + 554724
+7   chromedriver                        0x0000000102b1f794 chromedriver + 554900
+8   chromedriver                        0x0000000102b17714 chromedriver + 522004
+9   chromedriver                        0x0000000102b14dd0 chromedriver + 511440
+10  chromedriver                        0x0000000102b574f8 chromedriver + 783608
+11  chromedriver                        0x0000000102b134e4 chromedriver + 505060
+12  chromedriver                        0x0000000102b13f5c chromedriver + 507740
+13  chromedriver                        0x0000000102e7b984 chromedriver + 4077956
+14  chromedriver                        0x0000000102e8073c chromedriver + 4097852
+15  chromedriver                        0x0000000102e62528 chromedriver + 3974440
+16  chromedriver                        0x0000000102e81054 chromedriver + 4100180
+17  chromedriver                        0x0000000102e53b18 chromedriver + 3914520
+18  chromedriver                        0x0000000102ea165c chromedriver + 4232796
+19  chromedriver                        0x0000000102ea17d8 chromedriver + 4233176
+20  chromedriver                        0x0000000102eb0524 chromedriver + 4293924
+21  libsystem_pthread.dylib             0x0000000181adef94 _pthread_start + 136
+22  libsystem_pthread.dylib             0x0000000181ad9d34 thread_start + 8
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 115, in fetch_order
+    result, message = comment_fix()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 154, in comment_fix
+    raise Exception(ex)
+Exception: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=124.0.6367.93); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+0   chromedriver                        0x0000000102eb83e8 chromedriver + 4326376
+1   chromedriver                        0x0000000102eb08b0 chromedriver + 4294832
+2   chromedriver                        0x0000000102adc088 chromedriver + 278664
+3   chromedriver                        0x0000000102ae0abc chromedriver + 297660
+4   chromedriver                        0x0000000102ae2428 chromedriver + 304168
+5   chromedriver                        0x0000000102ae24a0 chromedriver + 304288
+6   chromedriver                        0x0000000102b1f6e4 chromedriver + 554724
+7   chromedriver                        0x0000000102b1f794 chromedriver + 554900
+8   chromedriver                        0x0000000102b17714 chromedriver + 522004
+9   chromedriver                        0x0000000102b14dd0 chromedriver + 511440
+10  chromedriver                        0x0000000102b574f8 chromedriver + 783608
+11  chromedriver                        0x0000000102b134e4 chromedriver + 505060
+12  chromedriver                        0x0000000102b13f5c chromedriver + 507740
+13  chromedriver                        0x0000000102e7b984 chromedriver + 4077956
+14  chromedriver                        0x0000000102e8073c chromedriver + 4097852
+15  chromedriver                        0x0000000102e62528 chromedriver + 3974440
+16  chromedriver                        0x0000000102e81054 chromedriver + 4100180
+17  chromedriver                        0x0000000102e53b18 chromedriver + 3914520
+18  chromedriver                        0x0000000102ea165c chromedriver + 4232796
+19  chromedriver                        0x0000000102ea17d8 chromedriver + 4233176
+20  chromedriver                        0x0000000102eb0524 chromedriver + 4293924
+21  libsystem_pthread.dylib             0x0000000181adef94 _pthread_start + 136
+22  libsystem_pthread.dylib             0x0000000181ad9d34 thread_start + 8
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 86, in dashboard
+    result, message = fetch_order()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 118, in fetch_order
+    raise Exception(ex)
+Exception: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=124.0.6367.93); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+0   chromedriver                        0x0000000102eb83e8 chromedriver + 4326376
+1   chromedriver                        0x0000000102eb08b0 chromedriver + 4294832
+2   chromedriver                        0x0000000102adc088 chromedriver + 278664
+3   chromedriver                        0x0000000102ae0abc chromedriver + 297660
+4   chromedriver                        0x0000000102ae2428 chromedriver + 304168
+5   chromedriver                        0x0000000102ae24a0 chromedriver + 304288
+6   chromedriver                        0x0000000102b1f6e4 chromedriver + 554724
+7   chromedriver                        0x0000000102b1f794 chromedriver + 554900
+8   chromedriver                        0x0000000102b17714 chromedriver + 522004
+9   chromedriver                        0x0000000102b14dd0 chromedriver + 511440
+10  chromedriver                        0x0000000102b574f8 chromedriver + 783608
+11  chromedriver                        0x0000000102b134e4 chromedriver + 505060
+12  chromedriver                        0x0000000102b13f5c chromedriver + 507740
+13  chromedriver                        0x0000000102e7b984 chromedriver + 4077956
+14  chromedriver                        0x0000000102e8073c chromedriver + 4097852
+15  chromedriver                        0x0000000102e62528 chromedriver + 3974440
+16  chromedriver                        0x0000000102e81054 chromedriver + 4100180
+17  chromedriver                        0x0000000102e53b18 chromedriver + 3914520
+18  chromedriver                        0x0000000102ea165c chromedriver + 4232796
+19  chromedriver                        0x0000000102ea17d8 chromedriver + 4233176
+20  chromedriver                        0x0000000102eb0524 chromedriver + 4293924
+21  libsystem_pthread.dylib             0x0000000181adef94 _pthread_start + 136
+22  libsystem_pthread.dylib             0x0000000181ad9d34 thread_start + 8
+
+
+8867/2024-04-29 15:56:38/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 142, in comment_fix
+    driver.execute_script("arguments[0].value = arguments[1];", find_comment, "여기에 입력할 값")
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 407, in execute_script
+    return self.execute(command, {"script": script, "args": converted_args})["value"]
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 347, in execute
+    self.error_handler.check_response(response)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.StaleElementReferenceException: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=124.0.6367.93); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+0   chromedriver                        0x0000000104ad43e8 chromedriver + 4326376
+1   chromedriver                        0x0000000104acc8b0 chromedriver + 4294832
+2   chromedriver                        0x00000001046f8088 chromedriver + 278664
+3   chromedriver                        0x00000001046fcabc chromedriver + 297660
+4   chromedriver                        0x00000001046fe684 chromedriver + 304772
+5   chromedriver                        0x0000000104773f30 chromedriver + 786224
+6   chromedriver                        0x00000001047734f8 chromedriver + 783608
+7   chromedriver                        0x000000010472f4e4 chromedriver + 505060
+8   chromedriver                        0x000000010472ff5c chromedriver + 507740
+9   chromedriver                        0x0000000104a97984 chromedriver + 4077956
+10  chromedriver                        0x0000000104a9c73c chromedriver + 4097852
+11  chromedriver                        0x0000000104a7e528 chromedriver + 3974440
+12  chromedriver                        0x0000000104a9d054 chromedriver + 4100180
+13  chromedriver                        0x0000000104a6fb18 chromedriver + 3914520
+14  chromedriver                        0x0000000104abd65c chromedriver + 4232796
+15  chromedriver                        0x0000000104abd7d8 chromedriver + 4233176
+16  chromedriver                        0x0000000104acc524 chromedriver + 4293924
+17  libsystem_pthread.dylib             0x0000000181adef94 _pthread_start + 136
+18  libsystem_pthread.dylib             0x0000000181ad9d34 thread_start + 8
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 115, in fetch_order
+    result, message = comment_fix()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 154, in comment_fix
+    raise Exception(ex)
+Exception: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=124.0.6367.93); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+0   chromedriver                        0x0000000104ad43e8 chromedriver + 4326376
+1   chromedriver                        0x0000000104acc8b0 chromedriver + 4294832
+2   chromedriver                        0x00000001046f8088 chromedriver + 278664
+3   chromedriver                        0x00000001046fcabc chromedriver + 297660
+4   chromedriver                        0x00000001046fe684 chromedriver + 304772
+5   chromedriver                        0x0000000104773f30 chromedriver + 786224
+6   chromedriver                        0x00000001047734f8 chromedriver + 783608
+7   chromedriver                        0x000000010472f4e4 chromedriver + 505060
+8   chromedriver                        0x000000010472ff5c chromedriver + 507740
+9   chromedriver                        0x0000000104a97984 chromedriver + 4077956
+10  chromedriver                        0x0000000104a9c73c chromedriver + 4097852
+11  chromedriver                        0x0000000104a7e528 chromedriver + 3974440
+12  chromedriver                        0x0000000104a9d054 chromedriver + 4100180
+13  chromedriver                        0x0000000104a6fb18 chromedriver + 3914520
+14  chromedriver                        0x0000000104abd65c chromedriver + 4232796
+15  chromedriver                        0x0000000104abd7d8 chromedriver + 4233176
+16  chromedriver                        0x0000000104acc524 chromedriver + 4293924
+17  libsystem_pthread.dylib             0x0000000181adef94 _pthread_start + 136
+18  libsystem_pthread.dylib             0x0000000181ad9d34 thread_start + 8
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 86, in dashboard
+    result, message = fetch_order()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 118, in fetch_order
+    raise Exception(ex)
+Exception: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=124.0.6367.93); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+0   chromedriver                        0x0000000104ad43e8 chromedriver + 4326376
+1   chromedriver                        0x0000000104acc8b0 chromedriver + 4294832
+2   chromedriver                        0x00000001046f8088 chromedriver + 278664
+3   chromedriver                        0x00000001046fcabc chromedriver + 297660
+4   chromedriver                        0x00000001046fe684 chromedriver + 304772
+5   chromedriver                        0x0000000104773f30 chromedriver + 786224
+6   chromedriver                        0x00000001047734f8 chromedriver + 783608
+7   chromedriver                        0x000000010472f4e4 chromedriver + 505060
+8   chromedriver                        0x000000010472ff5c chromedriver + 507740
+9   chromedriver                        0x0000000104a97984 chromedriver + 4077956
+10  chromedriver                        0x0000000104a9c73c chromedriver + 4097852
+11  chromedriver                        0x0000000104a7e528 chromedriver + 3974440
+12  chromedriver                        0x0000000104a9d054 chromedriver + 4100180
+13  chromedriver                        0x0000000104a6fb18 chromedriver + 3914520
+14  chromedriver                        0x0000000104abd65c chromedriver + 4232796
+15  chromedriver                        0x0000000104abd7d8 chromedriver + 4233176
+16  chromedriver                        0x0000000104acc524 chromedriver + 4293924
+17  libsystem_pthread.dylib             0x0000000181adef94 _pthread_start + 136
+18  libsystem_pthread.dylib             0x0000000181ad9d34 thread_start + 8
+
+
+8867/2024-04-29 15:57:34/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 132, in comment_fix
+    find_comments = common.find_elements("TAG_NAME", "textarea", driver, wait)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../common/fun.py", line 155, in find_elements
+    return wait.until(EC.presence_of_all_elements_located((By.TAG_NAME, selector_name)))
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 105, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 115, in fetch_order
+    result, message = comment_fix()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 154, in comment_fix
+    raise Exception(ex)
+Exception: Message: 
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 86, in dashboard
+    result, message = fetch_order()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 118, in fetch_order
+    raise Exception(ex)
+Exception: Message: 
+
+
+8867/2024-04-29 15:58:16/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 132, in comment_fix
+    find_comments = common.find_elements("TAG_NAME", "textarea", driver, wait)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../common/fun.py", line 155, in find_elements
+    return wait.until(EC.presence_of_all_elements_located((By.TAG_NAME, selector_name)))
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 105, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 115, in fetch_order
+    result, message = comment_fix()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 154, in comment_fix
+    raise Exception(ex)
+Exception: Message: 
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 86, in dashboard
+    result, message = fetch_order()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 118, in fetch_order
+    raise Exception(ex)
+Exception: Message: 
+
+
+8867/2024-04-29 15:59:38/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 132, in comment_fix
+    find_comments = common.find_elements("TAG_NAME", "textarea", driver, wait)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../common/fun.py", line 155, in find_elements
+    return wait.until(EC.presence_of_all_elements_located((By.TAG_NAME, selector_name)))
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 105, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 115, in fetch_order
+    result, message = comment_fix()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 154, in comment_fix
+    raise Exception(ex)
+Exception: Message: 
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 86, in dashboard
+    result, message = fetch_order()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 118, in fetch_order
+    raise Exception(ex)
+Exception: Message: 
+
+
+8867/2024-04-29 16:00:33/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 130, in comment_fix
+    comment_element.click()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webelement.py", line 94, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webelement.py", line 395, in _execute
+    return self._parent.execute(command, params)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 347, in execute
+    self.error_handler.check_response(response)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element <span>...</span> is not clickable at point (68, 601). Other element would receive the click: <span data-bloks-name="bk.components.TextSpan" style="color: rgb(38, 38, 38); display: inline; font-size: 14px; white-space: pre-wrap; overflow-wrap: break-word;">...</span>
+  (Session info: chrome=124.0.6367.93)
+Stacktrace:
+0   chromedriver                        0x0000000104d043e8 chromedriver + 4326376
+1   chromedriver                        0x0000000104cfc8b0 chromedriver + 4294832
+2   chromedriver                        0x0000000104928088 chromedriver + 278664
+3   chromedriver                        0x0000000104970554 chromedriver + 574804
+4   chromedriver                        0x000000010496ead8 chromedriver + 568024
+5   chromedriver                        0x000000010496cc58 chromedriver + 560216
+6   chromedriver                        0x000000010496c188 chromedriver + 557448
+7   chromedriver                        0x00000001049613ac chromedriver + 512940
+8   chromedriver                        0x0000000104960dd0 chromedriver + 511440
+9   chromedriver                        0x00000001049a34f8 chromedriver + 783608
+10  chromedriver                        0x000000010495f4e4 chromedriver + 505060
+11  chromedriver                        0x000000010495ff5c chromedriver + 507740
+12  chromedriver                        0x0000000104cc7984 chromedriver + 4077956
+13  chromedriver                        0x0000000104ccc73c chromedriver + 4097852
+14  chromedriver                        0x0000000104cae528 chromedriver + 3974440
+15  chromedriver                        0x0000000104ccd054 chromedriver + 4100180
+16  chromedriver                        0x0000000104c9fb18 chromedriver + 3914520
+17  chromedriver                        0x0000000104ced65c chromedriver + 4232796
+18  chromedriver                        0x0000000104ced7d8 chromedriver + 4233176
+19  chromedriver                        0x0000000104cfc524 chromedriver + 4293924
+20  libsystem_pthread.dylib             0x0000000181adef94 _pthread_start + 136
+21  libsystem_pthread.dylib             0x0000000181ad9d34 thread_start + 8
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 115, in fetch_order
+    result, message = comment_fix()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 154, in comment_fix
+    raise Exception(ex)
+Exception: Message: element click intercepted: Element <span>...</span> is not clickable at point (68, 601). Other element would receive the click: <span data-bloks-name="bk.components.TextSpan" style="color: rgb(38, 38, 38); display: inline; font-size: 14px; white-space: pre-wrap; overflow-wrap: break-word;">...</span>
+  (Session info: chrome=124.0.6367.93)
+Stacktrace:
+0   chromedriver                        0x0000000104d043e8 chromedriver + 4326376
+1   chromedriver                        0x0000000104cfc8b0 chromedriver + 4294832
+2   chromedriver                        0x0000000104928088 chromedriver + 278664
+3   chromedriver                        0x0000000104970554 chromedriver + 574804
+4   chromedriver                        0x000000010496ead8 chromedriver + 568024
+5   chromedriver                        0x000000010496cc58 chromedriver + 560216
+6   chromedriver                        0x000000010496c188 chromedriver + 557448
+7   chromedriver                        0x00000001049613ac chromedriver + 512940
+8   chromedriver                        0x0000000104960dd0 chromedriver + 511440
+9   chromedriver                        0x00000001049a34f8 chromedriver + 783608
+10  chromedriver                        0x000000010495f4e4 chromedriver + 505060
+11  chromedriver                        0x000000010495ff5c chromedriver + 507740
+12  chromedriver                        0x0000000104cc7984 chromedriver + 4077956
+13  chromedriver                        0x0000000104ccc73c chromedriver + 4097852
+14  chromedriver                        0x0000000104cae528 chromedriver + 3974440
+15  chromedriver                        0x0000000104ccd054 chromedriver + 4100180
+16  chromedriver                        0x0000000104c9fb18 chromedriver + 3914520
+17  chromedriver                        0x0000000104ced65c chromedriver + 4232796
+18  chromedriver                        0x0000000104ced7d8 chromedriver + 4233176
+19  chromedriver                        0x0000000104cfc524 chromedriver + 4293924
+20  libsystem_pthread.dylib             0x0000000181adef94 _pthread_start + 136
+21  libsystem_pthread.dylib             0x0000000181ad9d34 thread_start + 8
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 86, in dashboard
+    result, message = fetch_order()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 118, in fetch_order
+    raise Exception(ex)
+Exception: Message: element click intercepted: Element <span>...</span> is not clickable at point (68, 601). Other element would receive the click: <span data-bloks-name="bk.components.TextSpan" style="color: rgb(38, 38, 38); display: inline; font-size: 14px; white-space: pre-wrap; overflow-wrap: break-word;">...</span>
+  (Session info: chrome=124.0.6367.93)
+Stacktrace:
+0   chromedriver                        0x0000000104d043e8 chromedriver + 4326376
+1   chromedriver                        0x0000000104cfc8b0 chromedriver + 4294832
+2   chromedriver                        0x0000000104928088 chromedriver + 278664
+3   chromedriver                        0x0000000104970554 chromedriver + 574804
+4   chromedriver                        0x000000010496ead8 chromedriver + 568024
+5   chromedriver                        0x000000010496cc58 chromedriver + 560216
+6   chromedriver                        0x000000010496c188 chromedriver + 557448
+7   chromedriver                        0x00000001049613ac chromedriver + 512940
+8   chromedriver                        0x0000000104960dd0 chromedriver + 511440
+9   chromedriver                        0x00000001049a34f8 chromedriver + 783608
+10  chromedriver                        0x000000010495f4e4 chromedriver + 505060
+11  chromedriver                        0x000000010495ff5c chromedriver + 507740
+12  chromedriver                        0x0000000104cc7984 chromedriver + 4077956
+13  chromedriver                        0x0000000104ccc73c chromedriver + 4097852
+14  chromedriver                        0x0000000104cae528 chromedriver + 3974440
+15  chromedriver                        0x0000000104ccd054 chromedriver + 4100180
+16  chromedriver                        0x0000000104c9fb18 chromedriver + 3914520
+17  chromedriver                        0x0000000104ced65c chromedriver + 4232796
+18  chromedriver                        0x0000000104ced7d8 chromedriver + 4233176
+19  chromedriver                        0x0000000104cfc524 chromedriver + 4293924
+20  libsystem_pthread.dylib             0x0000000181adef94 _pthread_start + 136
+21  libsystem_pthread.dylib             0x0000000181ad9d34 thread_start + 8
+
+
+8867/2024-04-29 16:00:57/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 142, in comment_fix
+    find_comment.text = "쿠쿠쿠"
+AttributeError: can't set attribute 'text'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 115, in fetch_order
+    result, message = comment_fix()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 154, in comment_fix
+    raise Exception(ex)
+Exception: can't set attribute 'text'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 86, in dashboard
+    result, message = fetch_order()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 118, in fetch_order
+    raise Exception(ex)
+Exception: can't set attribute 'text'
+
+8867/2024-04-29 16:01:26/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 142, in comment_fix
+    find_comment.send_keys("쿠쿠쿠")
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webelement.py", line 231, in send_keys
+    self._execute(
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webelement.py", line 395, in _execute
+    return self._parent.execute(command, params)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 347, in execute
+    self.error_handler.check_response(response)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.StaleElementReferenceException: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=124.0.6367.93); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+0   chromedriver                        0x0000000102c483e8 chromedriver + 4326376
+1   chromedriver                        0x0000000102c408b0 chromedriver + 4294832
+2   chromedriver                        0x000000010286c088 chromedriver + 278664
+3   chromedriver                        0x0000000102870abc chromedriver + 297660
+4   chromedriver                        0x0000000102872428 chromedriver + 304168
+5   chromedriver                        0x00000001028724a0 chromedriver + 304288
+6   chromedriver                        0x00000001028af6e4 chromedriver + 554724
+7   chromedriver                        0x00000001028af794 chromedriver + 554900
+8   chromedriver                        0x00000001028a7714 chromedriver + 522004
+9   chromedriver                        0x00000001028a4dd0 chromedriver + 511440
+10  chromedriver                        0x00000001028e74f8 chromedriver + 783608
+11  chromedriver                        0x00000001028a34e4 chromedriver + 505060
+12  chromedriver                        0x00000001028a3f5c chromedriver + 507740
+13  chromedriver                        0x0000000102c0b984 chromedriver + 4077956
+14  chromedriver                        0x0000000102c1073c chromedriver + 4097852
+15  chromedriver                        0x0000000102bf2528 chromedriver + 3974440
+16  chromedriver                        0x0000000102c11054 chromedriver + 4100180
+17  chromedriver                        0x0000000102be3b18 chromedriver + 3914520
+18  chromedriver                        0x0000000102c3165c chromedriver + 4232796
+19  chromedriver                        0x0000000102c317d8 chromedriver + 4233176
+20  chromedriver                        0x0000000102c40524 chromedriver + 4293924
+21  libsystem_pthread.dylib             0x0000000181adef94 _pthread_start + 136
+22  libsystem_pthread.dylib             0x0000000181ad9d34 thread_start + 8
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 115, in fetch_order
+    result, message = comment_fix()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 154, in comment_fix
+    raise Exception(ex)
+Exception: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=124.0.6367.93); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+0   chromedriver                        0x0000000102c483e8 chromedriver + 4326376
+1   chromedriver                        0x0000000102c408b0 chromedriver + 4294832
+2   chromedriver                        0x000000010286c088 chromedriver + 278664
+3   chromedriver                        0x0000000102870abc chromedriver + 297660
+4   chromedriver                        0x0000000102872428 chromedriver + 304168
+5   chromedriver                        0x00000001028724a0 chromedriver + 304288
+6   chromedriver                        0x00000001028af6e4 chromedriver + 554724
+7   chromedriver                        0x00000001028af794 chromedriver + 554900
+8   chromedriver                        0x00000001028a7714 chromedriver + 522004
+9   chromedriver                        0x00000001028a4dd0 chromedriver + 511440
+10  chromedriver                        0x00000001028e74f8 chromedriver + 783608
+11  chromedriver                        0x00000001028a34e4 chromedriver + 505060
+12  chromedriver                        0x00000001028a3f5c chromedriver + 507740
+13  chromedriver                        0x0000000102c0b984 chromedriver + 4077956
+14  chromedriver                        0x0000000102c1073c chromedriver + 4097852
+15  chromedriver                        0x0000000102bf2528 chromedriver + 3974440
+16  chromedriver                        0x0000000102c11054 chromedriver + 4100180
+17  chromedriver                        0x0000000102be3b18 chromedriver + 3914520
+18  chromedriver                        0x0000000102c3165c chromedriver + 4232796
+19  chromedriver                        0x0000000102c317d8 chromedriver + 4233176
+20  chromedriver                        0x0000000102c40524 chromedriver + 4293924
+21  libsystem_pthread.dylib             0x0000000181adef94 _pthread_start + 136
+22  libsystem_pthread.dylib             0x0000000181ad9d34 thread_start + 8
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 86, in dashboard
+    result, message = fetch_order()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 118, in fetch_order
+    raise Exception(ex)
+Exception: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=124.0.6367.93); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+0   chromedriver                        0x0000000102c483e8 chromedriver + 4326376
+1   chromedriver                        0x0000000102c408b0 chromedriver + 4294832
+2   chromedriver                        0x000000010286c088 chromedriver + 278664
+3   chromedriver                        0x0000000102870abc chromedriver + 297660
+4   chromedriver                        0x0000000102872428 chromedriver + 304168
+5   chromedriver                        0x00000001028724a0 chromedriver + 304288
+6   chromedriver                        0x00000001028af6e4 chromedriver + 554724
+7   chromedriver                        0x00000001028af794 chromedriver + 554900
+8   chromedriver                        0x00000001028a7714 chromedriver + 522004
+9   chromedriver                        0x00000001028a4dd0 chromedriver + 511440
+10  chromedriver                        0x00000001028e74f8 chromedriver + 783608
+11  chromedriver                        0x00000001028a34e4 chromedriver + 505060
+12  chromedriver                        0x00000001028a3f5c chromedriver + 507740
+13  chromedriver                        0x0000000102c0b984 chromedriver + 4077956
+14  chromedriver                        0x0000000102c1073c chromedriver + 4097852
+15  chromedriver                        0x0000000102bf2528 chromedriver + 3974440
+16  chromedriver                        0x0000000102c11054 chromedriver + 4100180
+17  chromedriver                        0x0000000102be3b18 chromedriver + 3914520
+18  chromedriver                        0x0000000102c3165c chromedriver + 4232796
+19  chromedriver                        0x0000000102c317d8 chromedriver + 4233176
+20  chromedriver                        0x0000000102c40524 chromedriver + 4293924
+21  libsystem_pthread.dylib             0x0000000181adef94 _pthread_start + 136
+22  libsystem_pthread.dylib             0x0000000181ad9d34 thread_start + 8
+
+
+8867/2024-04-29 16:03:24/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 143, in comment_fix
+    find_comment.send_keys("쿠쿠쿠")
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webelement.py", line 231, in send_keys
+    self._execute(
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webelement.py", line 395, in _execute
+    return self._parent.execute(command, params)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 347, in execute
+    self.error_handler.check_response(response)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.StaleElementReferenceException: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=124.0.6367.93); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+0   chromedriver                        0x0000000102ddc3e8 chromedriver + 4326376
+1   chromedriver                        0x0000000102dd48b0 chromedriver + 4294832
+2   chromedriver                        0x0000000102a00088 chromedriver + 278664
+3   chromedriver                        0x0000000102a04abc chromedriver + 297660
+4   chromedriver                        0x0000000102a06428 chromedriver + 304168
+5   chromedriver                        0x0000000102a064a0 chromedriver + 304288
+6   chromedriver                        0x0000000102a436e4 chromedriver + 554724
+7   chromedriver                        0x0000000102a43794 chromedriver + 554900
+8   chromedriver                        0x0000000102a3b714 chromedriver + 522004
+9   chromedriver                        0x0000000102a38dd0 chromedriver + 511440
+10  chromedriver                        0x0000000102a7b4f8 chromedriver + 783608
+11  chromedriver                        0x0000000102a374e4 chromedriver + 505060
+12  chromedriver                        0x0000000102a37f5c chromedriver + 507740
+13  chromedriver                        0x0000000102d9f984 chromedriver + 4077956
+14  chromedriver                        0x0000000102da473c chromedriver + 4097852
+15  chromedriver                        0x0000000102d86528 chromedriver + 3974440
+16  chromedriver                        0x0000000102da5054 chromedriver + 4100180
+17  chromedriver                        0x0000000102d77b18 chromedriver + 3914520
+18  chromedriver                        0x0000000102dc565c chromedriver + 4232796
+19  chromedriver                        0x0000000102dc57d8 chromedriver + 4233176
+20  chromedriver                        0x0000000102dd4524 chromedriver + 4293924
+21  libsystem_pthread.dylib             0x0000000181adef94 _pthread_start + 136
+22  libsystem_pthread.dylib             0x0000000181ad9d34 thread_start + 8
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 115, in fetch_order
+    result, message = comment_fix()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 155, in comment_fix
+    raise Exception(ex)
+Exception: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=124.0.6367.93); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+0   chromedriver                        0x0000000102ddc3e8 chromedriver + 4326376
+1   chromedriver                        0x0000000102dd48b0 chromedriver + 4294832
+2   chromedriver                        0x0000000102a00088 chromedriver + 278664
+3   chromedriver                        0x0000000102a04abc chromedriver + 297660
+4   chromedriver                        0x0000000102a06428 chromedriver + 304168
+5   chromedriver                        0x0000000102a064a0 chromedriver + 304288
+6   chromedriver                        0x0000000102a436e4 chromedriver + 554724
+7   chromedriver                        0x0000000102a43794 chromedriver + 554900
+8   chromedriver                        0x0000000102a3b714 chromedriver + 522004
+9   chromedriver                        0x0000000102a38dd0 chromedriver + 511440
+10  chromedriver                        0x0000000102a7b4f8 chromedriver + 783608
+11  chromedriver                        0x0000000102a374e4 chromedriver + 505060
+12  chromedriver                        0x0000000102a37f5c chromedriver + 507740
+13  chromedriver                        0x0000000102d9f984 chromedriver + 4077956
+14  chromedriver                        0x0000000102da473c chromedriver + 4097852
+15  chromedriver                        0x0000000102d86528 chromedriver + 3974440
+16  chromedriver                        0x0000000102da5054 chromedriver + 4100180
+17  chromedriver                        0x0000000102d77b18 chromedriver + 3914520
+18  chromedriver                        0x0000000102dc565c chromedriver + 4232796
+19  chromedriver                        0x0000000102dc57d8 chromedriver + 4233176
+20  chromedriver                        0x0000000102dd4524 chromedriver + 4293924
+21  libsystem_pthread.dylib             0x0000000181adef94 _pthread_start + 136
+22  libsystem_pthread.dylib             0x0000000181ad9d34 thread_start + 8
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 86, in dashboard
+    result, message = fetch_order()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 118, in fetch_order
+    raise Exception(ex)
+Exception: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=124.0.6367.93); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+0   chromedriver                        0x0000000102ddc3e8 chromedriver + 4326376
+1   chromedriver                        0x0000000102dd48b0 chromedriver + 4294832
+2   chromedriver                        0x0000000102a00088 chromedriver + 278664
+3   chromedriver                        0x0000000102a04abc chromedriver + 297660
+4   chromedriver                        0x0000000102a06428 chromedriver + 304168
+5   chromedriver                        0x0000000102a064a0 chromedriver + 304288
+6   chromedriver                        0x0000000102a436e4 chromedriver + 554724
+7   chromedriver                        0x0000000102a43794 chromedriver + 554900
+8   chromedriver                        0x0000000102a3b714 chromedriver + 522004
+9   chromedriver                        0x0000000102a38dd0 chromedriver + 511440
+10  chromedriver                        0x0000000102a7b4f8 chromedriver + 783608
+11  chromedriver                        0x0000000102a374e4 chromedriver + 505060
+12  chromedriver                        0x0000000102a37f5c chromedriver + 507740
+13  chromedriver                        0x0000000102d9f984 chromedriver + 4077956
+14  chromedriver                        0x0000000102da473c chromedriver + 4097852
+15  chromedriver                        0x0000000102d86528 chromedriver + 3974440
+16  chromedriver                        0x0000000102da5054 chromedriver + 4100180
+17  chromedriver                        0x0000000102d77b18 chromedriver + 3914520
+18  chromedriver                        0x0000000102dc565c chromedriver + 4232796
+19  chromedriver                        0x0000000102dc57d8 chromedriver + 4233176
+20  chromedriver                        0x0000000102dd4524 chromedriver + 4293924
+21  libsystem_pthread.dylib             0x0000000181adef94 _pthread_start + 136
+22  libsystem_pthread.dylib             0x0000000181ad9d34 thread_start + 8
+
+
+8867/2024-04-29 16:06:07/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 144, in comment_fix
+    if find_comment2.get_attribute("aria-label") == 'Add a comment…' or find_comments2.get_attribute(
+AttributeError: 'list' object has no attribute 'get_attribute'. Did you mean: '__getattribute__'?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 115, in fetch_order
+    result, message = comment_fix()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 156, in comment_fix
+    raise Exception(ex)
+Exception: 'list' object has no attribute 'get_attribute'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 86, in dashboard
+    result, message = fetch_order()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 118, in fetch_order
+    raise Exception(ex)
+Exception: 'list' object has no attribute 'get_attribute'
+
+8867/2024-04-29 16:06:45/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 145, in comment_fix
+    if find_comment2.get_attribute("aria-label") == 'Add a comment…' or find_comments2.get_attribute(
+AttributeError: 'list' object has no attribute 'get_attribute'. Did you mean: '__getattribute__'?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 115, in fetch_order
+    result, message = comment_fix()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 157, in comment_fix
+    raise Exception(ex)
+Exception: 'list' object has no attribute 'get_attribute'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 86, in dashboard
+    result, message = fetch_order()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 118, in fetch_order
+    raise Exception(ex)
+Exception: 'list' object has no attribute 'get_attribute'
+
+8867/2024-04-29 16:07:27/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 144, in comment_fix
+    if find_comment2.get_attribute("aria-label") == 'Add a comment…' or find_comments2.get_attribute(
+AttributeError: 'list' object has no attribute 'get_attribute'. Did you mean: '__getattribute__'?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 115, in fetch_order
+    result, message = comment_fix()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 157, in comment_fix
+    raise Exception(ex)
+Exception: 'list' object has no attribute 'get_attribute'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 86, in dashboard
+    result, message = fetch_order()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 118, in fetch_order
+    raise Exception(ex)
+Exception: 'list' object has no attribute 'get_attribute'
+
+8867/2024-04-29 16:08:01/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 145, in comment_fix
+    if find_comment2.get_attribute("aria-label") == 'Add a comment…' or find_comments2.get_attribute(
+AttributeError: 'list' object has no attribute 'get_attribute'. Did you mean: '__getattribute__'?
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 115, in fetch_order
+    result, message = comment_fix()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 158, in comment_fix
+    raise Exception(ex)
+Exception: 'list' object has no attribute 'get_attribute'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 86, in dashboard
+    result, message = fetch_order()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 118, in fetch_order
+    raise Exception(ex)
+Exception: 'list' object has no attribute 'get_attribute'
+
+8867/2024-04-29 16:08:45/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 132, in comment_fix
+    find_comments = common.find_elements("TAG_NAME", "textarea", driver, wait)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../common/fun.py", line 155, in find_elements
+    return wait.until(EC.presence_of_all_elements_located((By.TAG_NAME, selector_name)))
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 105, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 115, in fetch_order
+    result, message = comment_fix()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 158, in comment_fix
+    raise Exception(ex)
+Exception: Message: 
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 86, in dashboard
+    result, message = fetch_order()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 118, in fetch_order
+    raise Exception(ex)
+Exception: Message: 
+
+
+8867/2024-04-29 16:10:41/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 138, in comment_fix
+    change_comment.send_keys(comments[tab_index])
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webelement.py", line 231, in send_keys
+    self._execute(
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webelement.py", line 395, in _execute
+    return self._parent.execute(command, params)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 347, in execute
+    self.error_handler.check_response(response)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.StaleElementReferenceException: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=124.0.6367.93); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+0   chromedriver                        0x000000010080c3e8 chromedriver + 4326376
+1   chromedriver                        0x00000001008048b0 chromedriver + 4294832
+2   chromedriver                        0x0000000100430088 chromedriver + 278664
+3   chromedriver                        0x0000000100434abc chromedriver + 297660
+4   chromedriver                        0x0000000100436428 chromedriver + 304168
+5   chromedriver                        0x00000001004364a0 chromedriver + 304288
+6   chromedriver                        0x00000001004736e4 chromedriver + 554724
+7   chromedriver                        0x0000000100473794 chromedriver + 554900
+8   chromedriver                        0x000000010046b714 chromedriver + 522004
+9   chromedriver                        0x0000000100468dd0 chromedriver + 511440
+10  chromedriver                        0x00000001004ab4f8 chromedriver + 783608
+11  chromedriver                        0x00000001004674e4 chromedriver + 505060
+12  chromedriver                        0x0000000100467f5c chromedriver + 507740
+13  chromedriver                        0x00000001007cf984 chromedriver + 4077956
+14  chromedriver                        0x00000001007d473c chromedriver + 4097852
+15  chromedriver                        0x00000001007b6528 chromedriver + 3974440
+16  chromedriver                        0x00000001007d5054 chromedriver + 4100180
+17  chromedriver                        0x00000001007a7b18 chromedriver + 3914520
+18  chromedriver                        0x00000001007f565c chromedriver + 4232796
+19  chromedriver                        0x00000001007f57d8 chromedriver + 4233176
+20  chromedriver                        0x0000000100804524 chromedriver + 4293924
+21  libsystem_pthread.dylib             0x0000000181adef94 _pthread_start + 136
+22  libsystem_pthread.dylib             0x0000000181ad9d34 thread_start + 8
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 115, in fetch_order
+    result, message = comment_fix()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 149, in comment_fix
+    raise Exception(ex)
+Exception: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=124.0.6367.93); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+0   chromedriver                        0x000000010080c3e8 chromedriver + 4326376
+1   chromedriver                        0x00000001008048b0 chromedriver + 4294832
+2   chromedriver                        0x0000000100430088 chromedriver + 278664
+3   chromedriver                        0x0000000100434abc chromedriver + 297660
+4   chromedriver                        0x0000000100436428 chromedriver + 304168
+5   chromedriver                        0x00000001004364a0 chromedriver + 304288
+6   chromedriver                        0x00000001004736e4 chromedriver + 554724
+7   chromedriver                        0x0000000100473794 chromedriver + 554900
+8   chromedriver                        0x000000010046b714 chromedriver + 522004
+9   chromedriver                        0x0000000100468dd0 chromedriver + 511440
+10  chromedriver                        0x00000001004ab4f8 chromedriver + 783608
+11  chromedriver                        0x00000001004674e4 chromedriver + 505060
+12  chromedriver                        0x0000000100467f5c chromedriver + 507740
+13  chromedriver                        0x00000001007cf984 chromedriver + 4077956
+14  chromedriver                        0x00000001007d473c chromedriver + 4097852
+15  chromedriver                        0x00000001007b6528 chromedriver + 3974440
+16  chromedriver                        0x00000001007d5054 chromedriver + 4100180
+17  chromedriver                        0x00000001007a7b18 chromedriver + 3914520
+18  chromedriver                        0x00000001007f565c chromedriver + 4232796
+19  chromedriver                        0x00000001007f57d8 chromedriver + 4233176
+20  chromedriver                        0x0000000100804524 chromedriver + 4293924
+21  libsystem_pthread.dylib             0x0000000181adef94 _pthread_start + 136
+22  libsystem_pthread.dylib             0x0000000181ad9d34 thread_start + 8
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 86, in dashboard
+    result, message = fetch_order()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/comment_fix/../comment_fix/comment_fix_main.py", line 118, in fetch_order
+    raise Exception(ex)
+Exception: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=124.0.6367.93); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+0   chromedriver                        0x000000010080c3e8 chromedriver + 4326376
+1   chromedriver                        0x00000001008048b0 chromedriver + 4294832
+2   chromedriver                        0x0000000100430088 chromedriver + 278664
+3   chromedriver                        0x0000000100434abc chromedriver + 297660
+4   chromedriver                        0x0000000100436428 chromedriver + 304168
+5   chromedriver                        0x00000001004364a0 chromedriver + 304288
+6   chromedriver                        0x00000001004736e4 chromedriver + 554724
+7   chromedriver                        0x0000000100473794 chromedriver + 554900
+8   chromedriver                        0x000000010046b714 chromedriver + 522004
+9   chromedriver                        0x0000000100468dd0 chromedriver + 511440
+10  chromedriver                        0x00000001004ab4f8 chromedriver + 783608
+11  chromedriver                        0x00000001004674e4 chromedriver + 505060
+12  chromedriver                        0x0000000100467f5c chromedriver + 507740
+13  chromedriver                        0x00000001007cf984 chromedriver + 4077956
+14  chromedriver                        0x00000001007d473c chromedriver + 4097852
+15  chromedriver                        0x00000001007b6528 chromedriver + 3974440
+16  chromedriver                        0x00000001007d5054 chromedriver + 4100180
+17  chromedriver                        0x00000001007a7b18 chromedriver + 3914520
+18  chromedriver                        0x00000001007f565c chromedriver + 4232796
+19  chromedriver                        0x00000001007f57d8 chromedriver + 4233176
+20  chromedriver                        0x0000000100804524 chromedriver + 4293924
+21  libsystem_pthread.dylib             0x0000000181adef94 _pthread_start + 136
+22  libsystem_pthread.dylib             0x0000000181ad9d34 thread_start + 8
+
+

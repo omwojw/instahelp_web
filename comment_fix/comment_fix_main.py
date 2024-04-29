@@ -12,7 +12,7 @@ import common.fun as common
 import traceback
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.action_chains import ActionChains
-
+from selenium.webdriver.common.by import By
 
 # Config 읽기
 config = configparser.ConfigParser()
@@ -28,12 +28,13 @@ user_pw = None
 ip = None
 order_id = None
 quantity = None
+comments = None
 order_url = None
 wait_time = int(config['selenium']['wait_time'])
 driver = None
 act_chis = None
 wait = None
-task_service = "LIKE"
+task_service = "COMMENT_FIX"
 task_log_path = "../log/task_history.txt"
 mode = None
 
@@ -110,7 +111,7 @@ def fetch_order() -> tuple:
         #     common.agree_active(tab_index, driver, wait)
         #     common.sleep(1)
 
-        result, message = like()
+        result, message = comment_fix()
         return result, message
     except Exception as ex:
         raise Exception(ex)
@@ -118,30 +119,54 @@ def fetch_order() -> tuple:
 
 
 # 주문 수행
-def like() -> tuple:
+def comment_fix() -> tuple:
     try:
-        common.log('좋아요 시작', tab_index)
-        like_element = common.find_element("CSS_SELECTOR", "span.xp7jhwk", driver, wait)
-        like_svg = common.find_children_element("TAG_NAME", "svg", driver, like_element)
-        common.log('좋아요 종료', tab_index)
-        if like_svg.get_attribute('aria-label') == 'Like' or like_svg.get_attribute('aria-label') == '좋아요':
-            like_element.click()
-            return True, ''
-        else:
-            return False, '이미 좋아요 되어 있음'
+        common.log('지정댓글 시작', tab_index)
+        comment_element = common.find_element("CSS_SELECTOR", "span.xp7jhwk", driver, wait).find_element(By.XPATH, 'following-sibling::*')
+        comment_svg = common.find_children_element("TAG_NAME", "svg", driver, comment_element)
+        if comment_svg.get_attribute('aria-label') == 'Comment' or comment_svg.get_attribute('aria-label') == '댓글 달기':
+            comment_element.click()
+            common.sleep(1)
+
+            click_comment = find_text_area()
+            if click_comment:
+                click_comment.click()
+
+            text_comment = find_text_area()
+            if text_comment:
+                text_comment.send_keys(comments[tab_index])
+                common.sleep(1)
+                send_btn = common.find_element("CSS_SELECTOR", ".xdj266r.x1emribx.xat24cr.x1i64zmx", driver, wait)
+                send_btn.click()
+                common.log('지정댓글 종료', tab_index)
+                return True, ''
+
+        common.log('지정댓글 종료', tab_index)
+        return False, '에러'
     except Exception as ex:
         raise Exception(ex)
         return False, ''
 
 
-def mainFun(_tab_index, _user_id, _user_pw, _ip, _order_id, _quantity, _order_url, _mode) -> str:
-    global tab_index, user_id, user_pw, ip, order_id, quantity, order_url, mode
+def find_text_area() -> object:
+    find_comments = common.find_elements("TAG_NAME", "textarea", driver, wait)
+    for find_comment in find_comments:
+        if find_comment.get_attribute("aria-label") == 'Add a comment…' or find_comment.get_attribute(
+                "aria-label") == '댓글 달기...':
+            return find_comment
+
+    return None
+
+
+def mainFun(_tab_index, _user_id, _user_pw, _ip, _order_id, _quantity, _comments, _order_url, _mode) -> str:
+    global tab_index, user_id, user_pw, ip, order_id, quantity, comments, order_url, mode
     tab_index = _tab_index + 1
     user_id = _user_id
     user_pw = _user_pw
     ip = _ip
     order_id = _order_id
     quantity = _quantity
+    comments = _comments
     order_url = _order_url
     mode = _mode
 
