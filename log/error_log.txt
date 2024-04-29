@@ -3373,3 +3373,17 @@ Stacktrace:
 21  libsystem_pthread.dylib             0x0000000197665d34 thread_start + 8
 
 
+8867/2024-04-29 13:56:06/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/follow/../follow/follow_main.py", line 112, in fetch_order
+    result, message = follow()
+TypeError: cannot unpack non-iterable NoneType object
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/follow/../follow/follow_main.py", line 83, in dashboard
+    result, message = fetch_order()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/follow/../follow/follow_main.py", line 115, in fetch_order
+    raise Exception(ex)
+Exception: cannot unpack non-iterable NoneType object
+
