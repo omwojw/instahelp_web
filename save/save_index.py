@@ -20,7 +20,7 @@ common.get_config(config)
 current_os = common.get_os()
 
 # 계정 읽기
-accounts = common.get_accounts('save_account.txt')
+accounts = common.get_accounts('account.txt')
 
 # 글로벌 변수
 order_service = "SAVE"
