@@ -121,15 +121,21 @@ def follow() -> tuple:
     try:
         common.log('팔로우 시작', tab_index)
         btn_elements = common.find_elements("CSS_SELECTOR", "button._acan", driver, wait)
+        follow_status = 0
         follow_btn = None
         for btn_element in btn_elements:
             if btn_element.text == 'Follow' or btn_element.text == '팔로우':
+                follow_status = 1
                 follow_btn = btn_element
-        if follow_btn:
+            elif btn_element.text == 'Following' or btn_element.text == '팔로잉':
+                follow_status = 2
+        if follow_status == 1:
             follow_btn.click()
             return True, ''
-        else:
+        elif follow_status == 2:
             return False, '이미 팔로우 되어 있음'
+        else:
+            return False, '에러'
     except Exception as ex:
         raise Exception(ex)
         return False, ''
