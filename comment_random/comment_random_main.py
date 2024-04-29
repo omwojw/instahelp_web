@@ -34,7 +34,7 @@ wait_time = int(config['selenium']['wait_time'])
 driver = None
 act_chis = None
 wait = None
-task_service = "COMMENT_FIX"
+task_service = "COMMENT_RANDOM"
 task_log_path = "../log/task_history.txt"
 mode = None
 
@@ -111,7 +111,7 @@ def fetch_order() -> tuple:
         #     common.agree_active(tab_index, driver, wait)
         #     common.sleep(1)
 
-        result, message = comment_fix()
+        result, message = comment_random()
         return result, message
     except Exception as ex:
         raise Exception(ex)
@@ -119,9 +119,9 @@ def fetch_order() -> tuple:
 
 
 # 주문 수행
-def comment_fix() -> tuple:
+def comment_random() -> tuple:
     try:
-        common.log('지정댓글 시작', tab_index)
+        common.log('랜덤댓글 시작', tab_index)
         comment_element = common.find_element("CSS_SELECTOR", "span.xp7jhwk", driver, wait).find_element(By.XPATH, 'following-sibling::*')
         comment_svg = common.find_children_element("TAG_NAME", "svg", driver, comment_element)
         if comment_svg.get_attribute('aria-label') == 'Comment' or comment_svg.get_attribute('aria-label') == '댓글 달기':
@@ -138,10 +138,10 @@ def comment_fix() -> tuple:
                 common.sleep(1)
                 send_btn = common.find_element("CSS_SELECTOR", ".xdj266r.x1emribx.xat24cr.x1i64zmx", driver, wait)
                 send_btn.click()
-                common.log('지정댓글 종료', tab_index)
+                common.log('랜덤댓글 종료', tab_index)
                 return True, ''
 
-        common.log('지정댓글 종료', tab_index)
+        common.log('랜덤댓글 종료', tab_index)
         return False, '에러'
     except Exception as ex:
         raise Exception(ex)

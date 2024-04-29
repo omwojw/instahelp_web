@@ -66,6 +66,26 @@ def get_accounts(path: str) -> list:
     return account_list
 
 
+# 댓글 랜덤 목록
+def get_comment_randoms() -> list:
+    if current_os == 'MAC':
+        file_path = f'../setting/comment_random.txt'
+    else:
+        file_path = os.path.abspath(
+            os.path.join(os.path.dirname(os.path.abspath(__file__)), f"../setting/comment_random.txt"))
+
+    with open(file_path, 'r', encoding='UTF8') as f:
+        comments = f.readlines()
+    comment_list = []
+    for comment in comments:
+        if len(comment.strip()) == 0:
+            continue
+        comment_list.append(comment.strip())
+
+    random.shuffle(comment_list)
+    return comment_list
+
+
 # user agent 목록
 def get_user_agent() -> list:
     if current_os == 'MAC':
@@ -393,7 +413,7 @@ def openSelenium(curt_os: str, wait_time: int, ip: str) -> object:
 
     # Chrome 웹 드라이버 설정
     options = webdriver.ChromeOptions()
-    options.add_argument('--headless')
+    # options.add_argument('--headless')
     options.add_argument('--disable-gpu')
     options.add_argument('--window-size=450x975')
 
@@ -483,8 +503,6 @@ def login(account_id: str, account_pw: str, tab_index, driver, wait) -> bool:
 
         # 로그인 버튼을 클릭(탭)합니다.
         login_btns = find_elements('TAG_NAME', "button", driver, wait)
-        # for s in login_btns:
-        #     print(s.text)
 
         login_btn = search_element('ATTR', login_btns, 'submit', "type")
         login_btn.click()

@@ -10,7 +10,7 @@ import configparser
 import requests
 from concurrent.futures import ProcessPoolExecutor
 import common.fun as common
-import comment_fix.comment_fix_main as comment_fix_main
+import comment_random.comment_random_main as comment_random_main
 
 # Config 읽기
 config = configparser.ConfigParser()
@@ -22,8 +22,11 @@ current_os = common.get_os()
 # 계정 읽기
 accounts = common.get_accounts('account.txt')
 
+# 랜덤 댓글 읽기
+comments = common.get_comment_randoms()
+
 # 글로벌 변수
-order_service = "COMMENT_FIX"
+order_service = "COMMENT_RANDOM"
 order_log_path = "../log/order_history.txt"
 
 mode = None
@@ -37,19 +40,17 @@ def fetch_order() -> bool:
                         data={
                             'key': config['api']['key'],
                             'action': 'getOrder',
-                            'type': config['api']['comment_service']
+                            'type': config['api']['comment_random_service']
                         }, timeout=10).json()
     # 결과가 성공이 아니면
     if res['status'] != 'success':
-        order_id = config['item']['test_comment_fix_order_id']
-        quantity = int(config['item']['test_comment_fix_quantity'])
-        comments = config['item']['test_comment_fix_comment'].split("\\n")
-        order_url = str(config['item']['test_comment_fix_order_url'])
+        order_id = config['item']['test_comment_random_order_id']
+        quantity = int(config['item']['test_comment_random_quantity'])
+        order_url = str(config['item']['test_comment_random_order_url'])
         mode = "TEST"
     else:
         order_id = res['id']
         quantity = int(res['quantity'])
-        comments = res['comments'].split("\\n")
         order_url = res['link']
         mode = "LIVE"
 
@@ -58,15 +59,15 @@ def fetch_order() -> bool:
     else:
         active_accounts = accounts
     common.log(f'모드 : {mode}')
-    process_order(order_id, quantity, comments, order_url, active_accounts)
+    process_order(order_id, quantity, order_url, active_accounts)
 
 
 # 주문 실행
-def process_order(order_id: str, quantity: int, comments: list, order_url: str, active_accounts: list):
+def process_order(order_id: str, quantity: int, order_url: str, active_accounts: list):
 
     with ProcessPoolExecutor() as executor:
         futures = [executor.submit(
-            comment_fix_main.mainFun
+            comment_random_main.mainFun
             , index
             , account.split('|')[0]
             , account.split('|')[1]
@@ -109,6 +110,7 @@ def process_order(order_id: str, quantity: int, comments: list, order_url: str, 
         # 주문 최종 결과 로그 저장
         common.write_order_log(order_log_path, order_service, order_id, quantity, total_success, total_fail)
         # common.sleep(30000)
+
 
 def main():
     # 시작 함수
