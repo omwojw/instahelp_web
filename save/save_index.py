@@ -11,8 +11,6 @@ import requests
 from concurrent.futures import ProcessPoolExecutor
 import common.fun as common
 import save.save_main as save_main
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.common.action_chains import ActionChains
 
 # Config 읽기
 config = configparser.ConfigParser()
@@ -29,10 +27,6 @@ order_service = "SAVE"
 order_log_path = "../log/order_history.txt"
 
 mode = None
-wait_time = int(config['selenium']['wait_time'])
-driver = None
-act_chis = None
-wait = None
 
 
 # 주문 체크
@@ -68,11 +62,6 @@ def fetch_order() -> bool:
 # 주문 실행
 def process_order(order_id: str, quantity: int, order_url: str, active_accounts: list):
 
-    global driver, act_chis, wait
-    driver = common.open_selenium(current_os, wait_time, ip)
-    act_chis = ActionChains(driver)
-    wait = WebDriverWait(driver, wait_time, poll_frequency=1)
-
     with ProcessPoolExecutor() as executor:
         futures = [executor.submit(
             save_main.mainFun
@@ -84,8 +73,6 @@ def process_order(order_id: str, quantity: int, order_url: str, active_accounts:
             , quantity
             , order_url
             , mode
-            , driver
-            , account.split('|')[5]
         ) for index, account in enumerate(active_accounts)]
         results = [future.result() for future in futures]
 

@@ -36,17 +36,12 @@ wait = None
 task_service = "SAVE"
 task_log_path = "../log/task_history.txt"
 mode = None
-account_idx = None
 
 
 # 셀레 니움 실행
 def setup() -> str:
     global driver
-    driver.execute_script("window.open('about:blank', '_blank');")
-    driver.switch_to.window(driver.window_handles[account_idx])
-
-    # driver = common.open_selenium(current_os, wait_time, ip)
-
+    driver = common.open_selenium(current_os, wait_time, ip)
     return dashboard()
 
 
@@ -143,8 +138,8 @@ def save() -> tuple:
         return False, ''
 
 
-def mainFun(_tab_index, _user_id, _user_pw, _ip, _order_id, _quantity, _order_url, _mode, _driver, _account_idx) -> str:
-    global tab_index, user_id, user_pw, ip, order_id, quantity, order_url, mode, driver, account_idx
+def mainFun(_tab_index, _user_id, _user_pw, _ip, _order_id, _quantity, _order_url, _mode) -> str:
+    global tab_index, user_id, user_pw, ip, order_id, quantity, order_url, mode
     tab_index = _tab_index + 1
     user_id = _user_id
     user_pw = _user_pw
@@ -153,8 +148,6 @@ def mainFun(_tab_index, _user_id, _user_pw, _ip, _order_id, _quantity, _order_ur
     quantity = _quantity
     order_url = _order_url
     mode = _mode
-    driver = _driver
-    account_idx = _account_idx
 
     # 시작 함수
     try:
