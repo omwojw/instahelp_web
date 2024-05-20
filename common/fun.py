@@ -27,6 +27,7 @@ elif sys.platform == 'darwin':
     config.read('../setting/config.ini', encoding='utf-8')
     current_os = 'MAC'
 
+browser_cnt = int(config['selenium']['browser_cnt'])
 telegram_token_key = config['telegram']['token_key']
 
 
@@ -322,6 +323,35 @@ def getRemains(order_id: str) -> int:
         raise Exception('퍼팩트 패널  남은개수 가져오기 에러')
 
 
+def resultApi(order_id: str, total_success: int, total_fail: int, quantity: int, order_log_path: str, order_service: str) -> None:
+    if total_success == quantity:  # 전체 성공
+        res = requests.post(config['api']['url'], data={
+            'key': config['api']['key'],
+            'action': 'setCompleted',
+            'id': order_id
+        }, timeout=10)
+        common.log("[Success] -  작업 완료")
+        common.log(f"[Success] -  주문 번호 : {order_id}")
+        common.log(f"[Success] -  주문 수량 : {quantity}")
+        common.log(f"[Success] -  상태 변경 결과 : {res}")
+    else:  # 부분 성공
+        res = requests.post(config['api']['url'], data={
+            'key': config['api']['key'],
+            'action': 'setPartial',
+            'id': order_id,
+            'remains': quantity - total_success
+        }, timeout=10)
+        common.log("[Success] -  작업 부분 완료")
+        common.log(f"[Success] -  주문 번호 : {order_id}")
+        common.log(f"[Success] -  주문 수량 : {quantity}")
+        common.log(f"[Success] -  남은 수량 : {quantity - total_success}")
+        common.log(f"[Success] -  상태 변경 결과 : {res}")
+        common.log(f"총 성공: {total_success}, 총 실패: {total_fail}")
+
+    # 주문 최종 결과 로그 저장
+    common.write_order_log(order_log_path, order_service, order_id, quantity, total_success, total_fail)
+
+
 # 엘리머튼 정보 콘솔출력
 def element_log(element) -> None:
     # 태그 이름
@@ -402,7 +432,7 @@ def element_log(element) -> None:
 
 
 # 셀레니움 연결
-def open_selenium(curt_os: str, wait_time: int, ip: str) -> object:
+def open_selenium(curt_os: str, wait_time: int, ip: str, session_id: int) -> object:
     if curt_os == 'MAC':
         driver_path = config['selenium']['driver_path_mac']
         chrome_path = config['selenium']['chrome_path_mac']
@@ -419,8 +449,8 @@ def open_selenium(curt_os: str, wait_time: int, ip: str) -> object:
     options.add_argument('--window-size=450x975')
     options.add_argument(f'--user-agent={get_user_agent()}')
 
-    # options.add_argument('--user-data-dir=/Users/ohhyesung/Library/Application Support/Google/Chrome/Default')
-    # options.add_argument('--profile-directory=Profile 1')  # 프로필 디렉토리 지정
+    options.add_argument(f'--user-data-dir=/Users/ohhyesung/Library/Application Support/Google/Chrome/Default/instahelp_{session_id}')
+    # options.add_argument(f'--profile-directory=instahelp_{session_id}')  # 프로필 디렉토리 지정
     # options.add_argument("--lang=ko_KR")
     # options.add_argument('--headless')
 
@@ -533,3 +563,16 @@ def random_delay() -> int:
 def click(element):
     sleep(random_delay())
     element.click()
+
+
+def account_setting(accounts, quantity) -> list:
+    if len(accounts) > quantity:
+        temp_active_accounts = accounts[:quantity]
+    else:
+        temp_active_accounts = accounts
+
+    active_accounts = []
+    for i in range(0, len(temp_active_accounts), browser_cnt):
+        active_accounts.append(temp_active_accounts[i:i + browser_cnt])
+
+    return active_accounts

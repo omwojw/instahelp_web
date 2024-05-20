@@ -36,13 +36,15 @@ wait = None
 task_service = "FOLLOW"
 task_log_path = "../log/task_history.txt"
 mode = None
+session_id = None
 
 
 # 셀레 니움 실행
 def setup() -> str:
     global driver
-    driver = common.open_selenium(current_os, wait_time, ip)
-    return dashboard()
+    driver = common.open_selenium(current_os, wait_time, ip, session_id)
+    return '1,0'
+    # return dashboard()
 
 
 # 대시 보드
@@ -142,8 +144,8 @@ def follow() -> tuple:
         return False, ''
 
 
-def mainFun(_tab_index, _user_id, _user_pw, _ip, _order_id, _quantity, _order_url, _mode) -> str:
-    global tab_index, user_id, user_pw, ip, order_id, quantity, order_url, mode
+def mainFun(_tab_index, _user_id, _user_pw, _ip, _order_id, _quantity, _order_url, _mode, _session_id) -> str:
+    global tab_index, user_id, user_pw, ip, order_id, quantity, order_url, mode, session_id
     tab_index = _tab_index + 1
     user_id = _user_id
     user_pw = _user_pw
@@ -152,6 +154,7 @@ def mainFun(_tab_index, _user_id, _user_pw, _ip, _order_id, _quantity, _order_ur
     quantity = _quantity
     order_url = _order_url
     mode = _mode
+    session_id = _session_id
 
     # 시작 함수
     try:

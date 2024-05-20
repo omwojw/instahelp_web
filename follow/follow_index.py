@@ -54,10 +54,9 @@ def fetch_order() -> bool:
     if 'instagram.com' not in order_url:
         order_url = f'https://www.instagram.com/{order_url}/'
 
-    if len(accounts) > quantity:
-        active_accounts = accounts[:quantity]
-    else:
-        active_accounts = accounts
+    # 계정 셋팅
+    active_accounts = common.account_setting(accounts, quantity)
+
     common.log(f'모드 : {mode}')
     process_order(order_id, quantity, order_url, active_accounts)
 
@@ -65,49 +64,28 @@ def fetch_order() -> bool:
 # 주문 실행
 def process_order(order_id: str, quantity: int, order_url: str, active_accounts: list):
 
-    with ProcessPoolExecutor() as executor:
-        futures = [executor.submit(
-            follow_main.mainFun
-            , index
-            , account.split('|')[0]
-            , account.split('|')[1]
-            , account.split('|')[4]
-            , order_id
-            , quantity
-            , order_url
-            , mode
-        ) for index, account in enumerate(active_accounts)]
-        results = [future.result() for future in futures]
+    total_success = 0
+    total_fail = 0
+    for active_account in active_accounts:
+        with ProcessPoolExecutor() as executor:
+            futures = [executor.submit(
+                follow_main.mainFun
+                , index
+                , account.split('|')[0]
+                , account.split('|')[1]
+                , account.split('|')[4]
+                , order_id
+                , quantity
+                , order_url
+                , mode
+                , account.split('|')[0]
+            ) for index, account in enumerate(active_account)]
+            results = [future.result() for future in futures]
 
-        total_success = sum(int(result.split(',')[0]) for result in results)
-        total_fail = sum(int(result.split(',')[1]) for result in results)
+            total_success += sum(int(result.split(',')[0]) for result in results)
+            total_fail += sum(int(result.split(',')[1]) for result in results)
 
-        if total_success == quantity:  # 전체 성공
-            res = requests.post(config['api']['url'], data={
-                'key': config['api']['key'],
-                'action': 'setCompleted',
-                'id': order_id
-            }, timeout=10)
-            common.log("[Success] -  작업 완료")
-            common.log(f"[Success] -  주문 번호 : {order_id}")
-            common.log(f"[Success] -  주문 수량 : {quantity}")
-            common.log(f"[Success] -  상태 변경 결과 : {res}")
-        else:  # 부분 성공
-            res = requests.post(config['api']['url'], data={
-                'key': config['api']['key'],
-                'action': 'setPartial',
-                'id': order_id,
-                'remains': quantity - total_success
-            }, timeout=10)
-            common.log("[Success] -  작업 부분 완료")
-            common.log(f"[Success] -  주문 번호 : {order_id}")
-            common.log(f"[Success] -  주문 수량 : {quantity}")
-            common.log(f"[Success] -  남은 수량 : {quantity - total_success}")
-            common.log(f"[Success] -  상태 변경 결과 : {res}")
-            common.log(f"총 성공: {total_success}, 총 실패: {total_fail}")
-
-        # 주문 최종 결과 로그 저장
-        common.write_order_log(order_log_path, order_service, order_id, quantity, total_success, total_fail)
+    common.resultApi(order_id, total_success, total_fail, quantity, order_log_path, order_service)
 
 
 def main():

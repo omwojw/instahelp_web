@@ -36,12 +36,13 @@ wait = None
 task_service = "SAVE"
 task_log_path = "../log/task_history.txt"
 mode = None
+session_id = None
 
 
 # 셀레 니움 실행
 def setup() -> str:
     global driver
-    driver = common.open_selenium(current_os, wait_time, ip)
+    driver = common.open_selenium(current_os, wait_time, ip, session_id)
     return dashboard()
 
 
@@ -59,10 +60,15 @@ def dashboard() -> str:
 
     # 로그인 여부 체크
     # is_login = common.is_display("ID", "loginForm", driver)
-    is_login = common.is_display("ID", "splash-screen", driver)
+    # is_login = common.is_display("ID", "splash-screen", driver)
+    is_login = False
+    svgs = common.find_elements("TAG_NAME", "svg", driver, wait)
+    for svg in svgs:
+        if svg.get_attribute("aria-label") == '홈':
+            is_login = True
 
     # 로그인 안된 경우
-    if is_login:
+    if not is_login:
         if not common.login(user_id, user_pw, tab_index, driver, wait):
             common.write_task_log(task_log_path, task_service, order_id, user_id, 'NO', '로그인 실패')
             common.remove_from_accounts(task_service, user_id, '로그인 실패')
@@ -127,19 +133,21 @@ def save() -> tuple:
         save_element = common.find_element("CSS_SELECTOR", ".x1gslohp>.x6s0dn4>.x11i5rnm>div", driver, wait)
         save_svg = common.find_children_element("TAG_NAME", "svg", driver, save_element)
 
-        common.log('저장하기 종료', tab_index)
+        is_save = False
+        message = '이미 저장 되어 있음'
         if save_svg.get_attribute('aria-label') == 'Save' or save_svg.get_attribute('aria-label') == '저장':
             common.click(save_element)
-            return True, ''
-        else:
-            return False, '이미 저장 되어 있음'
+            is_save = True
+            message = ""
+        common.log('저장하기 종료', tab_index)
+        return is_save, message
     except Exception as ex:
         raise Exception(ex)
         return False, ''
 
 
-def mainFun(_tab_index, _user_id, _user_pw, _ip, _order_id, _quantity, _order_url, _mode) -> str:
-    global tab_index, user_id, user_pw, ip, order_id, quantity, order_url, mode
+def mainFun(_tab_index, _user_id, _user_pw, _ip, _order_id, _quantity, _order_url, _mode, _session_id) -> str:
+    global tab_index, user_id, user_pw, ip, order_id, quantity, order_url, mode, session_id
     tab_index = _tab_index + 1
     user_id = _user_id
     user_pw = _user_pw
@@ -148,6 +156,7 @@ def mainFun(_tab_index, _user_id, _user_pw, _ip, _order_id, _quantity, _order_ur
     quantity = _quantity
     order_url = _order_url
     mode = _mode
+    session_id = _session_id
 
     # 시작 함수
     try:
