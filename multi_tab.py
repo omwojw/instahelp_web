@@ -1,8 +1,5 @@
 from selenium import webdriver
 
-# Define proxies
-proxy1 = {"httpProxy": "http://proxy1:8080", "httpsProxy": "http://proxy1:8080"}
-proxy2 = {"httpProxy": "http://proxy2:8080", "httpsProxy": "http://proxy2:8080"}
 
 # Create the driver
 driver = webdriver.Chrome()
@@ -17,34 +14,34 @@ tab1_handle = driver.window_handles[1]
 tab2_handle = driver.window_handles[2]
 
 # Set proxy for tab 1
-driver.switch_to_window(tab1_handle)
+driver.switch_to.window(tab1_handle)
 driver.execute_script("""
     var proxy = {
         'proxyType': 'manual',
-        'httpProxy': 'http://proxy1:8080',
-        'ftpProxy': 'http://proxy1:8080',
-        'sslProxy': 'http://proxy1:8080',
+        'httpProxy': 'http://121.126.88.103:56870',
+        'ftpProxy': 'http://121.126.88.103:5687',
+        'sslProxy': 'http://121.126.88.103:5687',
         'noProxy': ''
     };
     arguments[0].capabilities.setCapability('proxy', proxy);
 """, driver.current_window_handle)
 
 # Set proxy for tab 2
-driver.switch_to_window(tab2_handle)
+driver.switch_to.window(tab2_handle)
 driver.execute_script("""
     var proxy = {
         'proxyType': 'manual',
-        'httpProxy': 'http://proxy2:8080',
-        'ftpProxy': 'http://proxy2:8080',
-        'sslProxy': 'http://proxy2:8080',
+        'httpProxy': 'http://124.198.0.25:5944',
+        'ftpProxy': 'http://124.198.0.25:5944',
+        'sslProxy': 'http://124.198.0.25:5944',
         'noProxy': ''
     };
     arguments[0].capabilities.setCapability('proxy', proxy);
 """, driver.current_window_handle)
 
 # Navigate to different URLs in each tab
-driver.switch_to_window(tab1_handle)
+driver.switch_to.window(tab1_handle)
 driver.get("https://ip-check.net/")
 
-driver.switch_to_window(tab2_handle)
+driver.switch_to.window(tab2_handle)
 driver.get("https://ip-check.net/")
