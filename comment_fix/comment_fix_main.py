@@ -42,7 +42,7 @@ mode = None
 # 셀레 니움 실행
 def setup() -> str:
     global driver
-    driver = common.openSelenium(current_os, wait_time, ip)
+    driver = common.open_selenium(current_os, wait_time, ip)
     return dashboard()
 
 
@@ -125,19 +125,19 @@ def comment_fix() -> tuple:
         comment_element = common.find_element("CSS_SELECTOR", "span.xp7jhwk", driver, wait).find_element(By.XPATH, 'following-sibling::*')
         comment_svg = common.find_children_element("TAG_NAME", "svg", driver, comment_element)
         if comment_svg.get_attribute('aria-label') == 'Comment' or comment_svg.get_attribute('aria-label') == '댓글 달기':
-            comment_element.click()
+            common.click(comment_element)
             common.sleep(1)
 
             click_comment = find_text_area()
             if click_comment:
-                click_comment.click()
+                common.click(click_comment)
 
             text_comment = find_text_area()
             if text_comment:
                 text_comment.send_keys(comment)
                 common.sleep(1)
                 send_btn = common.find_element("CSS_SELECTOR", ".xdj266r.x1emribx.xat24cr.x1i64zmx", driver, wait)
-                send_btn.click()
+                common.click(send_btn)
                 common.log('지정댓글 종료', tab_index)
                 return True, ''
 

@@ -12,6 +12,7 @@ import requests
 import random
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
+import pyautogui
 
 # Config 읽기
 import common.fun
@@ -401,7 +402,7 @@ def element_log(element) -> None:
 
 
 # 셀레니움 연결
-def openSelenium(curt_os: str, wait_time: int, ip: str) -> object:
+def open_selenium(curt_os: str, wait_time: int, ip: str) -> object:
     if curt_os == 'MAC':
         driver_path = config['selenium']['driver_path_mac']
         chrome_path = config['selenium']['chrome_path_mac']
@@ -413,14 +414,15 @@ def openSelenium(curt_os: str, wait_time: int, ip: str) -> object:
 
     # Chrome 웹 드라이버 설정
     options = webdriver.ChromeOptions()
-    # options.add_argument('--headless')
+
     options.add_argument('--disable-gpu')
     options.add_argument('--window-size=450x975')
+    options.add_argument(f'--user-agent={get_user_agent()}')
 
-    user_agent = get_user_agent()
-    options.add_argument(f'--user-agent={user_agent}')
-
+    # options.add_argument('--user-data-dir=/Users/ohhyesung/Library/Application Support/Google/Chrome/Default')
+    # options.add_argument('--profile-directory=Profile 1')  # 프로필 디렉토리 지정
     # options.add_argument("--lang=ko_KR")
+    # options.add_argument('--headless')
 
     # 프록시 설정은 윈도우에서만 가능
     if current_os == 'WINDOW':
@@ -429,11 +431,14 @@ def openSelenium(curt_os: str, wait_time: int, ip: str) -> object:
     options.binary_location = chrome_path
 
     # 웹 드라 이버 시작
+    screen_width, _ = pyautogui.size()
+    width = 480
+    margin = 50
     service = ChromeService(executable_path=chromedriver_path)
     selenium_driver = webdriver.Chrome(service=service, options=options)
     selenium_driver.implicitly_wait(wait_time)
-    selenium_driver.set_window_size(450, 975)
-
+    selenium_driver.set_window_size(width, 960)
+    selenium_driver.set_window_position(screen_width + (width + margin) * (1 - 1), 0)
     return selenium_driver
 
 
@@ -519,3 +524,12 @@ def login(account_id: str, account_pw: str, tab_index, driver, wait) -> bool:
 
     except Exception as ex:
         return False
+
+
+def random_delay() -> int:
+    return random.choice([1, 2])
+
+
+def click(element):
+    sleep(random_delay())
+    element.click()

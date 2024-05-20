@@ -41,7 +41,7 @@ mode = None
 # 셀레 니움 실행
 def setup() -> str:
     global driver
-    driver = common.openSelenium(current_os, wait_time, ip)
+    driver = common.open_selenium(current_os, wait_time, ip)
     return dashboard()
 
 
@@ -131,7 +131,7 @@ def follow() -> tuple:
             elif btn_element.text == 'Following' or btn_element.text == '팔로잉':
                 follow_status = 2
         if follow_status == 1:
-            follow_btn.click()
+            common.click(follow_btn)
             return True, ''
         elif follow_status == 2:
             return False, '이미 팔로우 되어 있음'

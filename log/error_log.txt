@@ -1,0 +1,14 @@
+8867/2024-05-20 10:32:54/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/save/../save/save_main.py", line 161, in mainFun
+    return setup()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/save/../save/save_main.py", line 45, in setup
+    driver.execute_script("window.open('about:blank', '_blank');")
+AttributeError: 'NoneType' object has no attribute 'execute_script'
+
+8867/2024-05-20 10:33:36/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/save/../save/save_main.py", line 161, in mainFun
+    return setup()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/save/../save/save_main.py", line 45, in setup
+    driver.execute_script("window.open('about:blank', '_blank');")
+AttributeError: 'NoneType' object has no attribute 'execute_script'
+

@@ -41,7 +41,7 @@ mode = None
 # 셀레 니움 실행
 def setup() -> str:
     global driver
-    driver = common.openSelenium(current_os, wait_time, ip)
+    driver = common.open_selenium(current_os, wait_time, ip)
     return dashboard()
 
 
@@ -125,7 +125,7 @@ def like() -> tuple:
         like_svg = common.find_children_element("TAG_NAME", "svg", driver, like_element)
         common.log('좋아요 종료', tab_index)
         if like_svg.get_attribute('aria-label') == 'Like' or like_svg.get_attribute('aria-label') == '좋아요':
-            like_element.click()
+            common.click(like_element)
             return True, ''
         else:
             return False, '이미 좋아요 되어 있음'
