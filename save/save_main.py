@@ -61,18 +61,23 @@ def dashboard() -> str:
     # 로그인 여부 체크
     # is_login = common.is_display("ID", "loginForm", driver)
     # is_login = common.is_display("ID", "splash-screen", driver)
-    is_login = False
-    svgs = common.find_elements("TAG_NAME", "svg", driver, wait)
-    for svg in svgs:
-        if svg.get_attribute("aria-label") == '홈':
-            is_login = True
+    try:
+        is_login = False
+        svgs = common.find_elements("TAG_NAME", "svg", driver, wait)
+        for svg in svgs:
+            if svg.get_attribute("aria-label") == '홈':
+                is_login = True
 
-    # 로그인 안된 경우
-    if not is_login:
-        if not common.login(user_id, user_pw, tab_index, driver, wait):
-            common.write_task_log(task_log_path, task_service, order_id, user_id, 'NO', '로그인 실패')
-            common.remove_from_accounts(task_service, user_id, '로그인 실패')
-            return f'0,1'
+        # 로그인 안된 경우
+        if not is_login:
+            if not common.login(user_id, user_pw, tab_index, driver, wait):
+                common.write_task_log(task_log_path, task_service, order_id, user_id, 'NO', '로그인 실패', order_url)
+                common.remove_from_accounts(task_service, user_id, '로그인 실패')
+                return f'0,1'
+    except Exception as ex:
+        common.write_task_log(task_log_path, task_service, order_id, user_id, 'NO', '로그인 실패', order_url)
+        common.remove_from_accounts(task_service, user_id, '로그인 실패')
+        return f'0,1'
 
     try:
         if mode == 'LIVE':
@@ -83,7 +88,7 @@ def dashboard() -> str:
 
         # 남은 개수가 0개면 완료처리
         if remains == 0:
-            common.write_task_log(task_log_path, task_service, order_id, user_id, 'NO', '남은 개수 없음')
+            common.write_task_log(task_log_path, task_service, order_id, user_id, 'NO', '남은 개수 없음', order_url)
             common.remove_from_accounts(task_service, user_id, '남은 개수 없음')
             return f'0,1'
 
@@ -92,15 +97,14 @@ def dashboard() -> str:
             if mode == 'LIVE':
                 common.setRemains(order_id, 1)
             success += 1
-            common.write_task_log(task_log_path, task_service, order_id, user_id, 'OK', '없음')
+            common.write_task_log(task_log_path, task_service, order_id, user_id, 'OK', '없음', order_url)
         else:
             fail += 1
-            common.write_task_log(task_log_path, task_service, order_id, user_id, 'NO', message)
+            common.write_task_log(task_log_path, task_service, order_id, user_id, 'NO', message, order_url)
     except Exception as ex:
         fail += 1
-        common.write_task_log(task_log_path, task_service, order_id, user_id, 'NO', '에러발생')
+        common.write_task_log(task_log_path, task_service, order_id, user_id, 'NO', '에러발생', order_url)
         common.remove_from_accounts(task_service, user_id, '태스크 실패')
-        common.remove_from_error(traceback.format_exc(), order_id)
         print(traceback.format_exc())
 
     # 3초간 체류하기
@@ -162,7 +166,6 @@ def mainFun(_tab_index, _user_id, _user_pw, _ip, _order_id, _quantity, _order_ur
     try:
         return setup()
     except Exception as ex:
-        common.remove_from_error(traceback.format_exc(), order_id)
         print(traceback.format_exc())
         return f'0,0'
 

@@ -456,3 +456,26 @@ Stacktrace:
     print(svg.get_attubete("aria-label"))
 AttributeError: 'WebElement' object has no attribute 'get_attubete'. Did you mean: 'get_attribute'?
 
+8867/2024-05-21 13:29:48/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/follow/../follow/follow_main.py", line 164, in mainFun
+    return setup()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/follow/../follow/follow_main.py", line 46, in setup
+    return dashboard()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/follow/../follow/follow_main.py", line 70, in dashboard
+    if not is_login:
+UnboundLocalError: local variable 'is_login' referenced before assignment
+
+8867/2024-05-21 13:35:28/Traceback (most recent call last):
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/follow/../follow/follow_main.py", line 165, in mainFun
+    return setup()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/follow/../follow/follow_main.py", line 46, in setup
+    return dashboard()
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/follow/../follow/follow_main.py", line 65, in dashboard
+    svgs = common.find_elements("TAG_NAME", "svg", driver, wait)
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/follow/../common/fun.py", line 206, in find_elements
+    return wait.until(EC.presence_of_all_elements_located((By.TAG_NAME, selector_name)))
+  File "/Volumes/Expansion/ohs/project/study/python/instahelp_web/venv/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 105, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+

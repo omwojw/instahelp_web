@@ -108,6 +108,15 @@ def get_user_agent() -> list:
     return user_agent_list[0]
 
 
+# 공통 로그 추가
+def write_common_log(path: str, service: str, text: str) -> None:
+    with open(path, "a") as f:
+        current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        message = f"{service}/{current_time}/{text}"
+        f.write(f"{message}\n")
+        send_message(config['telegram']['chat_order_id'], message)
+
+
 # 주문 결과 로그 추가
 def write_order_log(path: str, service: str, order_id: str, quantity: int, success: int, fail: int) -> None:
     with open(path, "a") as f:
@@ -118,10 +127,10 @@ def write_order_log(path: str, service: str, order_id: str, quantity: int, succe
 
 
 # 태스크 로그 추가
-def write_task_log(path: str, service: str, order_id: str, user_id: str, result: str, err_msg: str) -> None:
+def write_task_log(path: str, service: str, order_id: str, user_id: str, result: str, err_msg: str, order_url: str) -> None:
     with open(path, "a") as f:
         current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        message = f'{service}/{current_time}/{order_id}/{user_id}/{result}/{err_msg}'
+        message = f'{service}/{current_time}/{order_id}/{order_url}/{user_id}/{result}/{err_msg}'
         f.write(f"{message}\n")
 
     if result != 'OK':
@@ -323,17 +332,18 @@ def getRemains(order_id: str) -> int:
         raise Exception('퍼팩트 패널  남은개수 가져오기 에러')
 
 
-def resultApi(order_id: str, total_success: int, total_fail: int, quantity: int, order_log_path: str, order_service: str) -> None:
+# 최종 결과 API 연동
+def result_api(order_id: str, total_success: int, total_fail: int, quantity: int, order_log_path: str, order_service: str) -> None:
     if total_success == quantity:  # 전체 성공
         res = requests.post(config['api']['url'], data={
             'key': config['api']['key'],
             'action': 'setCompleted',
             'id': order_id
         }, timeout=10)
-        common.log("[Success] -  작업 완료")
-        common.log(f"[Success] -  주문 번호 : {order_id}")
-        common.log(f"[Success] -  주문 수량 : {quantity}")
-        common.log(f"[Success] -  상태 변경 결과 : {res}")
+        log("[Success] -  작업 완료")
+        log(f"[Success] -  주문 번호 : {order_id}")
+        log(f"[Success] -  주문 수량 : {quantity}")
+        log(f"[Success] -  상태 변경 결과 : {res}")
     else:  # 부분 성공
         res = requests.post(config['api']['url'], data={
             'key': config['api']['key'],
@@ -341,18 +351,18 @@ def resultApi(order_id: str, total_success: int, total_fail: int, quantity: int,
             'id': order_id,
             'remains': quantity - total_success
         }, timeout=10)
-        common.log("[Success] -  작업 부분 완료")
-        common.log(f"[Success] -  주문 번호 : {order_id}")
-        common.log(f"[Success] -  주문 수량 : {quantity}")
-        common.log(f"[Success] -  남은 수량 : {quantity - total_success}")
-        common.log(f"[Success] -  상태 변경 결과 : {res}")
-        common.log(f"총 성공: {total_success}, 총 실패: {total_fail}")
+        log("[Success] -  작업 부분 완료")
+        log(f"[Success] -  주문 번호 : {order_id}")
+        log(f"[Success] -  주문 수량 : {quantity}")
+        log(f"[Success] -  남은 수량 : {quantity - total_success}")
+        log(f"[Success] -  상태 변경 결과 : {res}")
+        log(f"총 성공: {total_success}, 총 실패: {total_fail}")
 
     # 주문 최종 결과 로그 저장
-    common.write_order_log(order_log_path, order_service, order_id, quantity, total_success, total_fail)
+    write_order_log(order_log_path, order_service, order_id, quantity, total_success, total_fail)
 
 
-# 엘리머튼 정보 콘솔출력
+# 엘리먼트 정보 콘솔출력
 def element_log(element) -> None:
     # 태그 이름
     print(f"Tag Name: {element.tag_name}")
@@ -515,7 +525,7 @@ def login(account_id: str, account_pw: str, tab_index, driver, wait) -> bool:
         log('로그인 시작', tab_index)
 
         # 로그인 버튼 클릭
-        find_btns = common.fun.find_elements("CSS_SELECTOR", "button.x5yr21d", driver, wait)
+        find_btns = find_elements("CSS_SELECTOR", "button.x5yr21d", driver, wait)
         login_btn = None
         for find_btn in find_btns:
             if find_btn.text == 'Log in' or find_btn.text == '로그인':
@@ -556,15 +566,18 @@ def login(account_id: str, account_pw: str, tab_index, driver, wait) -> bool:
         return False
 
 
+# 랜덤시간 추출
 def random_delay() -> int:
     return random.choice([1, 2])
 
 
+# 클릭 이벤트
 def click(element):
     sleep(random_delay())
     element.click()
 
 
+# 브라우저 + 계정 셋팅
 def account_setting(accounts, quantity) -> list:
     if len(accounts) > quantity:
         temp_active_accounts = accounts[:quantity]
@@ -574,5 +587,88 @@ def account_setting(accounts, quantity) -> list:
     active_accounts = []
     for i in range(0, len(temp_active_accounts), browser_cnt):
         active_accounts.append(temp_active_accounts[i:i + browser_cnt])
-
     return active_accounts
+
+
+# 중복주문 체크
+def dupl_check(service: int, order_service: str, order_log_path: str) -> bool:
+    # 신규주문건을 전체조회한다.(대기중인것만) 최신순이니 마지막 요소(제일 오래된)를 찾는다
+    res_new = requests.get(
+        f"{config['api_v2']['url']}?apikey={config['api_v2']['key']}&service_ids={service}&order_status=pending",
+        timeout=10).json()
+
+    current_order = None
+    if res_new['data']:
+        new_orders = res_new['data']['list']
+        if len(new_orders) > 0:
+            current_order = new_orders[len(new_orders)-1]
+
+    # 요소가 있다면
+    # 전체조회를 해서 *중복링크 + 대기중, 진행중, 처리중 인경우 주문 막기
+    if current_order:
+        res_dupl = requests.get(
+            f"{config['api_v2']['url']}?apikey={config['api_v2']['key']}&service_ids={service}",
+            timeout=10).json()
+        # 결과가 성공이 아니면
+        if res_dupl['data']:
+            orders = res_dupl['data']['list']
+            for order in orders:
+                if current_order['id'] == order['id']:
+                    continue
+
+                link = order['link']
+                order_url = current_order['link']
+
+                created = order['created'][:10]
+                current_order_created = current_order['created'][:10]
+
+                if service == config['api']['follow_service']:
+                    if 'instagram.com' not in link:
+                        link = f'https://www.instagram.com/{link}'
+
+                    if 'instagram.com' not in order_url:
+                        order_url = f'https://www.instagram.com/{order_url}'
+                if (
+                        order['status'] == 'pending'
+                        # TODO : 개발편의상 대기중 상태만 체크하도록 넣어둠 고객사 요청사항은 대기중, 처리중, 진행중 까지였음
+                        # or order['status'] == 'in_progress' or order[
+                        #     'status'] == 'processing'
+                    ) and link.strip() == order_url.strip() \
+                    and created == current_order_created:
+                    write_common_log("../log/dupl_history.txt", order_service,
+                                     f"{order['id']}/{current_order['id']}/{order_url}/{get_status_text(order['status'])}")
+
+                    write_order_log(order_log_path, order_service, current_order['id'], current_order['quantity'], 0, 0)
+                    return True
+
+    return False
+
+
+# pending 대기중
+# processing 처리중
+# in_progress 진행중
+# completed 완료
+# partial 부분완료
+# canceled 취소
+# error 오류
+# fail 실패
+# 주문상태 한글명으로 변경
+def get_status_text(status: str) -> str:
+    if status == 'pending':
+        return '대기중'
+    elif status == 'in_progress':
+        return '진행중'
+    elif status == 'processing':
+        return '처리중'
+    elif status == 'completed':
+        return '완료'
+    elif status == 'partial':
+        return '부분완료'
+    elif status == 'canceled':
+        return '취소'
+    elif status == 'error':
+        return '오류'
+    elif status == 'fail':
+        return '실패'
+    else:
+        return '없음'

@@ -34,6 +34,11 @@ mode = None
 
 # 주문 체크
 def fetch_order() -> bool:
+    # 주문 중복체크
+    is_dupl_order = common.dupl_check(config['api']['comment_random_service'], order_service, order_log_path)
+    if is_dupl_order:
+        return
+
     global mode
     # 신규 주문건 체크
     res = requests.get(config['api']['url'],
@@ -86,7 +91,7 @@ def process_order(order_id: str, quantity: int, order_url: str, active_accounts:
             total_success += sum(int(result.split(',')[0]) for result in results)
             total_fail += sum(int(result.split(',')[1]) for result in results)
 
-    common.resultApi(order_id, total_success, total_fail, quantity, order_log_path, order_service)
+    common.result_api(order_id, total_success, total_fail, quantity, order_log_path, order_service)
 
 
 def main():
