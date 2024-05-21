@@ -106,6 +106,9 @@ def dashboard() -> str:
         common.write_task_log(task_log_path, task_service, order_id, user_id, 'NO', '에러발생', order_url)
         common.remove_from_accounts(task_service, user_id, '태스크 실패')
         print(traceback.format_exc())
+
+    if success > 0:
+        common.write_working_log(task_service, user_id, success)
     return f'{success},{fail}'
 
 

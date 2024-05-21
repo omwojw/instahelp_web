@@ -117,6 +117,48 @@ def write_common_log(path: str, service: str, text: str) -> None:
         send_message(config['telegram']['chat_order_id'], message)
 
 
+# 작업량 로그
+def write_working_log(service: str, user_id: str, cnt: int) -> None:
+    current_time = datetime.now().strftime('%Y%m%d')
+    file_path = f"../log/working/working_accounts_{current_time}.txt"
+
+    # 파일 읽기 시도
+    try:
+        with open(file_path, 'r', encoding='UTF8') as f:
+            accounts = f.readlines()
+    except FileNotFoundError:
+        # 파일이 없으면 생성
+        os.makedirs(os.path.dirname(file_path), exist_ok=True)
+        with open(file_path, 'w', encoding='UTF8') as f:
+            f.write("")  # 빈 파일 생성
+        accounts = []
+
+    with open(file_path, 'r', encoding='UTF8') as f:
+        accounts = f.readlines()
+    account_list = []
+    for account in accounts:
+        if len(account.strip()) == 0:
+            continue
+        account_list.append(account.strip())
+
+    is_dupl = False
+    for i in range(len(account_list)):
+        account = account_list[i]
+        parts = account.split("/")
+        if parts[0] == service and parts[1] == user_id:
+            parts[2] = int(parts[2]) + cnt
+            account_list[i] = f"{parts[0]}/{parts[1]}/{parts[2]}\n"
+            is_dupl = True
+
+    if not is_dupl:
+        account_list.append(f"{service}/{user_id}/{cnt}")
+
+    with open(file_path, "w") as f:
+        for account in account_list:
+            parts = account.split("/")
+            f.write(f"{parts[0]}/{parts[1]}/{parts[2]}\n")
+
+
 # 주문 결과 로그 추가
 def write_order_log(path: str, service: str, order_id: str, quantity: int, success: int, fail: int) -> None:
     with open(path, "a") as f:

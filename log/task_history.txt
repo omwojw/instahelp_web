@@ -268,3 +268,22 @@ FOLLOW/2024-05-21 13:35:42/8867/tarypabe/OK/없음
 FOLLOW/2024-05-21 13:35:43/8867/tb98432j6fz/OK/없음
 FOLLOW/2024-05-21 13:35:56/8867/tonyp55572024/OK/없음
 FOLLOW/2024-05-21 13:35:57/8867/udp1twwk/OK/없음
+SAVE/2024-05-21 15:50:16/8867/https://www.instagram.com/p/C6KZeeTSN15/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==/sebyfa2024/NO/로그인 실패
+SAVE/2024-05-21 15:50:47/8867/https://www.instagram.com/p/C6KZeeTSN15/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==/sebyfa2024/OK/없음
+SAVE/2024-05-21 15:53:33/8867/https://www.instagram.com/p/C6KZeeTSN15/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==/sebyfa2024/OK/없음
+SAVE/2024-05-21 15:53:55/8867/https://www.instagram.com/p/C6KZeeTSN15/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==/sebyfa2024/NO/이미 저장 되어 있음
+SAVE/2024-05-21 15:54:23/8867/https://www.instagram.com/p/C6KZeeTSN15/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==/sebyfa2024/OK/없음
+SAVE/2024-05-21 15:58:18/8867/https://www.instagram.com/p/C6KZeeTSN15/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==/sebyfa2024/OK/없음
+SAVE/2024-05-21 15:58:47/8867/https://www.instagram.com/p/C6KZeeTSN15/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==/sebyfa2024/OK/없음
+SAVE/2024-05-21 15:59:41/8867/https://www.instagram.com/p/C6KZeeTSN15/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==/sebyfa2024/OK/없음
+SAVE/2024-05-21 16:00:31/8867/https://www.instagram.com/p/C6KZeeTSN15/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==/sebyfa2024/OK/없음
+SAVE/2024-05-21 16:02:11/8867/https://www.instagram.com/p/C6KZeeTSN15/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==/sebyfa2024/OK/없음
+SAVE/2024-05-21 16:02:31/8867/https://www.instagram.com/p/C6KZeeTSN15/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==/sebyfa2024/OK/없음
+SAVE/2024-05-21 16:03:04/8867/https://www.instagram.com/p/C6KZeeTSN15/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==/sebyfa2024/OK/없음
+SAVE/2024-05-21 16:04:56/8867/https://www.instagram.com/p/C6KZeeTSN15/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==/sebyfa2024/OK/없음
+SAVE/2024-05-21 16:05:43/8867/https://www.instagram.com/p/C6KZeeTSN15/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==/sebyfa2024/OK/없음
+SAVE/2024-05-21 16:07:59/8867/https://www.instagram.com/p/C6KZeeTSN15/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==/sebyfa2024/OK/없음
+SAVE/2024-05-21 16:08:21/8867/https://www.instagram.com/p/C6KZeeTSN15/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==/sebyfa2024/NO/이미 저장 되어 있음
+SAVE/2024-05-21 16:08:37/8867/https://www.instagram.com/p/C6KZeeTSN15/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==/sebyfa2024/OK/없음
+SAVE/2024-05-21 16:09:02/8867/https://www.instagram.com/p/C6KZeeTSN15/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==/sebyfa2024/OK/없음
+SAVE/2024-05-21 16:09:41/8867/https://www.instagram.com/p/C6KZeeTSN15/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==/sebyfa2024/OK/없음
