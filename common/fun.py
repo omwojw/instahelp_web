@@ -68,8 +68,48 @@ def get_accounts(path: str) -> list:
     return account_list
 
 
-# 계정 워킹 정보 목록
-def get_workings(service: str) -> list:
+# 계정 태스크가 적은 계정 오름차순 정렬
+def set_sort_accouts(service: str, filter_accounts: list) -> list:
+    current_time = datetime.now().strftime('%Y%m%d')
+
+    if current_os == 'MAC':
+        file_path = f'../log/working/working_accounts_{current_time}.txt'
+    else:
+        file_path = os.path.abspath(
+            os.path.join(os.path.dirname(os.path.abspath(__file__)), f'../log/working/working_accounts_{current_time}.txt'))
+
+    # 파일 읽기 시도
+    try:
+        with open(file_path, 'r', encoding='UTF8') as f:
+            accounts = f.readlines()
+    except FileNotFoundError:
+        # 파일이 없으면 생성
+        os.makedirs(os.path.dirname(file_path), exist_ok=True)
+        with open(file_path, 'w', encoding='UTF8') as f:
+            f.write("")  # 빈 파일 생성
+        accounts = []
+
+    with open(file_path, 'r', encoding='UTF8') as f:
+        accounts = f.readlines()
+
+    account_list = []
+    for account in accounts:
+        if len(account.strip()) == 0:
+            continue
+        if account.split("|")[0] == service:
+            account_list.append(account)
+    accounts_dict = {item.split('|')[1]: int(item.split('|')[2]) for item in account_list}
+
+    def get_sort_key(a):
+        sort_id = a.split('|')[0]
+        return accounts_dict.get(sort_id, -1), sort_id
+
+    sorted_filter_accounts = sorted(filter_accounts, key=get_sort_key)
+    return sorted_filter_accounts
+
+
+# 할당량이 넘은 계정 조회
+def get_accounts_max_working(service: str) -> list:
     current_time = datetime.now().strftime('%Y%m%d')
 
     if current_os == 'MAC':
@@ -96,7 +136,7 @@ def get_workings(service: str) -> list:
         if len(account.strip()) == 0:
             continue
 
-        pats = account.split("/")
+        pats = account.split("|")
         if pats[0] == service:
             if service == config['item']['follow'] and int(pats[2]) >= int(config['item']['follow_today_cnt']):
                 account_list.append(pats[1])
@@ -108,6 +148,40 @@ def get_workings(service: str) -> list:
                 account_list.append(pats[1])
             elif service == config['item']['comment_random'] and int(pats[2]) >= int(config['item']['comment_random_today_cnt']):
                 account_list.append(pats[1])
+    return account_list
+
+
+# 이미 작업이 되어있는 계정
+def get_used_working_accounts(service: str, user_id: str, link: str) -> list:
+    if current_os == 'MAC':
+        file_path = f'../log/working_accounts_save.txt'
+    else:
+        file_path = os.path.abspath(
+            os.path.join(os.path.dirname(os.path.abspath(__file__)), f'../log/working_accounts_save.txt'))
+
+    with open(file_path, 'r', encoding='UTF8') as f:
+        accounts = f.readlines()
+    account_list = []
+    for account in accounts:
+        if len(account.strip()) == 0:
+            continue
+
+        pats = account.split("|")
+        pats_service = pats[0]
+        pats_user_id = pats[2]
+        pats_link = pats[3]
+
+        if pats_service == service:
+
+            if service == config['api']['follow_service']:
+                if 'instagram.com' not in pats_link:
+                    pats_link = f'https://www.instagram.com/{pats_link}'
+
+                if 'instagram.com' not in link:
+                    link = f'https://www.instagram.com/{link}'
+
+            if pats_user_id == user_id and pats_link.strip() == link.strip():
+                account_list.append(pats)
     return account_list
 
 
@@ -153,17 +227,27 @@ def get_user_agent() -> list:
 
 # 공통 로그 추가
 def write_common_log(path: str, service: str, text: str) -> None:
-    with open(path, "a") as f:
+
+    if current_os == 'MAC':
+        file_path = path
+    else:
+        file_path = os.path.abspath(
+            os.path.join(os.path.dirname(os.path.abspath(__file__)), path))
+
+    with open(file_path, "a") as f:
         current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        message = f"{service}/{current_time}/{text}"
+        message = f"{service}|{current_time}|{text}"
         f.write(f"{message}\n")
-        send_message(config['telegram']['chat_order_id'], message)
 
 
-# 작업량 로그
+# 하루 작업량 업데이트
 def write_working_log(service: str, user_id: str, cnt: int) -> None:
     current_time = datetime.now().strftime('%Y%m%d')
-    file_path = f"../log/working/working_accounts_{current_time}.txt"
+    if current_os == 'MAC':
+        file_path = f"../log/working/working_accounts_{current_time}.txt"
+    else:
+        file_path = os.path.abspath(
+            os.path.join(os.path.dirname(os.path.abspath(__file__)), f"../log/working/working_accounts_{current_time}.txt"))
 
     # 파일 읽기 시도
     try:
@@ -187,35 +271,64 @@ def write_working_log(service: str, user_id: str, cnt: int) -> None:
     is_dupl = False
     for i in range(len(account_list)):
         account = account_list[i]
-        parts = account.split("/")
+        parts = account.split("|")
         if parts[0] == service and parts[1] == user_id:
             parts[2] = int(parts[2]) + cnt
-            account_list[i] = f"{parts[0]}/{parts[1]}/{parts[2]}\n"
+            account_list[i] = f"{parts[0]}|{parts[1]}|{parts[2]}\n"
             is_dupl = True
 
     if not is_dupl:
-        account_list.append(f"{service}/{user_id}/{cnt}")
+        account_list.append(f"{service}|{user_id}|{cnt}")
 
     with open(file_path, "w") as f:
         for account in account_list:
-            parts = account.split("/")
-            f.write(f"{parts[0]}/{parts[1]}/{parts[2]}\n")
+            parts = account.split("|")
+            f.write(f"{parts[0]}|{parts[1]}|{parts[2]}\n")
+
+
+# 작업로그
+# 어떤계정이 어떤링크에 작업을 했는지 로그 쌓기
+# 예시로 특정 계정이 이미 팔로우등 5가지 작업이 되어잇는지 체크
+def write_working_save_log(service: str, user_id: str, link: str) -> None:
+
+    if current_os == 'MAC':
+        file_path = f"../log/working_accounts_save.txt"
+    else:
+        file_path = os.path.abspath(
+            os.path.join(os.path.dirname(os.path.abspath(__file__)), f"../log/working_accounts_save.txt"))
+
+    with open(file_path, "a") as f:
+        current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        message = f"{service}|{current_time}|{user_id}|{link}"
+        f.write(f"{message}\n")
 
 
 # 주문 결과 로그 추가
 def write_order_log(path: str, service: str, order_id: str, quantity: int, success: int, fail: int) -> None:
-    with open(path, "a") as f:
+    if current_os == 'MAC':
+        file_path = path
+    else:
+        file_path = os.path.abspath(
+            os.path.join(os.path.dirname(os.path.abspath(__file__)), path))
+
+    with open(file_path, "a") as f:
         current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        message = f"{service}/{current_time}/{order_id}/{quantity}/{success}/{fail}"
+        message = f"{service}|{current_time}|{order_id}|{quantity}|{success}|{fail}"
         f.write(f"{message}\n")
         send_message(config['telegram']['chat_order_id'], message)
 
 
 # 태스크 로그 추가
 def write_task_log(path: str, service: str, order_id: str, user_id: str, result: str, err_msg: str, order_url: str) -> None:
-    with open(path, "a") as f:
+    if current_os == 'MAC':
+        file_path = path
+    else:
+        file_path = os.path.abspath(
+            os.path.join(os.path.dirname(os.path.abspath(__file__)), path))
+
+    with open(file_path, "a") as f:
         current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        message = f'{service}/{current_time}/{order_id}/{order_url}/{user_id}/{result}/{err_msg}'
+        message = f'{service}|{current_time}|{order_id}|{order_url}|{user_id}|{result}|{err_msg}'
         f.write(f"{message}\n")
 
     if result != 'OK':
@@ -224,9 +337,15 @@ def write_task_log(path: str, service: str, order_id: str, user_id: str, result:
 
 # 에러 계정 추가
 def remove_from_accounts(service: str, current_user_id: str, err_msg: str) -> None:
-    with open("../log/error_accounts.txt", "a") as f:
+    if current_os == 'MAC':
+        file_path = "../log/error_accounts.txt"
+    else:
+        file_path = os.path.abspath(
+            os.path.join(os.path.dirname(os.path.abspath(__file__)), "../log/error_accounts.txt"))
+
+    with open(file_path, "a") as f:
         current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        message = f"{service}/{current_time}/{current_user_id}/{err_msg}"
+        message = f"{service}|{current_time}|{current_user_id}|{err_msg}"
         f.write(f"{message}\n")
 
     send_message(config['telegram']['chat_error_account'], message)
@@ -234,9 +353,15 @@ def remove_from_accounts(service: str, current_user_id: str, err_msg: str) -> No
 
 # 에러 로그 추가
 def remove_from_error(log_txt: str, device_name: str) -> None:
-    with open("../log/error_log.txt", "a") as f:
+    if current_os == 'MAC':
+        file_path = "../log/error_log.txt"
+    else:
+        file_path = os.path.abspath(
+            os.path.join(os.path.dirname(os.path.abspath(__file__)), "../log/error_log.txt"))
+
+    with open(file_path, "a") as f:
         current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        f.write(f"{device_name}/{current_time}/{log_txt}\n")
+        f.write(f"{device_name}|{current_time}|{log_txt}\n")
 
 
 # 텔레그램 메시지 보내기 1번
@@ -733,7 +858,7 @@ def dupl_check(service: int, order_service: str, order_log_path: str) -> bool:
                     ) and link.strip() == order_url.strip() \
                     and created == current_order_created:
                     write_common_log("../log/dupl_history.txt", order_service,
-                                     f"{order['id']}/{current_order['id']}/{order_url}/{get_status_text(order['status'])}")
+                                     f"{order['id']}|{current_order['id']}|{order_url}|{get_status_text(order['status'])}")
 
                     write_order_log(order_log_path, order_service, current_order['id'], current_order['quantity'], 0, 0)
                     return True
@@ -769,3 +894,17 @@ def get_status_text(status: str) -> str:
         return '실패'
     else:
         return '없음'
+
+
+def set_filter_accounts(order_service: str, order_url: str, accounts: list) -> list:
+    # 할당량을 다 한 계정 추출
+    not_accounts = get_accounts_max_working(order_service)
+
+    # 할당량을 다 한 계정 제거
+    filter_accounts = [account for account in accounts if account.split('|')[0] not in not_accounts]
+
+    # 이미 작업을 한 계정 제거
+    filter_accounts = [account for account in filter_accounts if
+                       len(get_used_working_accounts(order_service, account.split('|')[0], order_url)) == 0]
+
+    return filter_accounts

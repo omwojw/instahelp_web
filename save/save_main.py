@@ -110,6 +110,7 @@ def dashboard() -> str:
     # 3초간 체류하기
     if success > 0:
         common.write_working_log(task_service, user_id, success)
+        common.write_working_save_log(task_service, user_id, success)
     common.sleep(3)
     return f'{success},{fail}'
 

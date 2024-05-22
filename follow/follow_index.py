@@ -59,17 +59,20 @@ def fetch_order() -> bool:
     if 'instagram.com' not in order_url:
         order_url = f'https://www.instagram.com/{order_url}'
 
-    # 할당량을 다 한 계정 추출
-    not_accounts = common.get_workings(order_service)
+    # 계정 선별
+    filter_accounts = common.set_filter_accounts(order_service, order_url, accounts)
 
-    # 할당량을 다 한 계정 제거
-    filter_accounts = [account for account in accounts if account.split('|')[0] not in not_accounts]
+    # 할당량이 많은 남은 순으로 정렬
+    sorted_accounts = common.set_sort_accouts(order_service, filter_accounts)
 
-    if len(filter_accounts) == 0:
+    # 작업 가능한 계정이 없는경우 취소처리
+    if len(sorted_accounts) == 0:
         common.status_change(order_id, 'setCanceled')
+        common.write_order_log(order_log_path, order_service, order_id, quantity, 0, 0)
+        return
 
     # 계정 개수에 따른 브라우저 셋팅
-    active_accounts = common.account_setting(filter_accounts, quantity)
+    active_accounts = common.account_setting(sorted_accounts, quantity)
 
     common.log(f'모드 : {mode}')
     process_order(order_id, quantity, order_url, active_accounts)
