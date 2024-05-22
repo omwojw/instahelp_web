@@ -82,7 +82,7 @@ def dashboard() -> str:
 
     try:
         if mode == 'LIVE':
-            remains = common.getRemains(order_id)
+            remains = common.get_remains(order_id)
         else:
             remains = 1
         common.log(f'남은 수량 : {remains}', tab_index)
@@ -96,7 +96,7 @@ def dashboard() -> str:
         result, message = fetch_order()
         if result:
             if mode == 'LIVE':
-                common.setRemains(order_id, 1)
+                common.set_remains(order_id, 1)
             success += 1
             common.write_task_log(task_log_path, task_service, order_id, user_id, 'OK', '없음', order_url)
         else:

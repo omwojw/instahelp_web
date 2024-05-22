@@ -68,6 +68,49 @@ def get_accounts(path: str) -> list:
     return account_list
 
 
+# 계정 워킹 정보 목록
+def get_workings(service: str) -> list:
+    current_time = datetime.now().strftime('%Y%m%d')
+
+    if current_os == 'MAC':
+        file_path = f'../log/working/working_accounts_{current_time}.txt'
+    else:
+        file_path = os.path.abspath(
+            os.path.join(os.path.dirname(os.path.abspath(__file__)), f'../log/working/working_accounts_{current_time}.txt'))
+
+    # 파일 읽기 시도
+    try:
+        with open(file_path, 'r', encoding='UTF8') as f:
+            accounts = f.readlines()
+    except FileNotFoundError:
+        # 파일이 없으면 생성
+        os.makedirs(os.path.dirname(file_path), exist_ok=True)
+        with open(file_path, 'w', encoding='UTF8') as f:
+            f.write("")  # 빈 파일 생성
+        accounts = []
+
+    with open(file_path, 'r', encoding='UTF8') as f:
+        accounts = f.readlines()
+    account_list = []
+    for account in accounts:
+        if len(account.strip()) == 0:
+            continue
+
+        pats = account.split("/")
+        if pats[0] == service:
+            if service == config['item']['follow'] and int(pats[2]) >= int(config['item']['follow_today_cnt']):
+                account_list.append(pats[1])
+            elif service == config['item']['save'] and int(pats[2]) >= int(config['item']['save_today_cnt']):
+                account_list.append(pats[1])
+            elif service == config['item']['like'] and int(pats[2]) >= int(config['item']['like_today_cnt']):
+                account_list.append(pats[1])
+            elif service == config['item']['comment_fix'] and int(pats[2]) >= int(config['item']['comment_fix_today_cnt']):
+                account_list.append(pats[1])
+            elif service == config['item']['comment_random'] and int(pats[2]) >= int(config['item']['comment_random_today_cnt']):
+                account_list.append(pats[1])
+    return account_list
+
+
 # 댓글 랜덤 목록
 def get_comment_randoms() -> list:
     if current_os == 'MAC':
@@ -349,9 +392,9 @@ def log(text: str, tab_index='ALL') -> None:
 
 
 # 주문의 남은 수량 변경
-def setRemains(order_id: str, remains: int) -> None:
+def set_remains(order_id: str, remains: int) -> None:
     try:
-        prev_remains = getRemains(order_id)
+        prev_remains = get_remains(order_id)
     except Exception as ex:
         raise Exception(ex)
     try:
@@ -366,12 +409,24 @@ def setRemains(order_id: str, remains: int) -> None:
 
 
 # 주문의 남은 수량 가져오기
-def getRemains(order_id: str) -> int:
+def get_remains(order_id: str) -> int:
     try:
         res = requests.get(f"{config['api_v2']['url']}/{order_id}?apikey={config['api_v2']['key']}", timeout=10).json()
         return int(res['data']['remains'])
     except Exception as ex:
         raise Exception('퍼팩트 패널  남은개수 가져오기 에러')
+
+
+# 주문의 남은 수량 변경
+def status_change(order_id: str, action: str) -> None:
+    try:
+        res = requests.post(config['api']['url'], data={
+            'key': config['api']['key'],
+            'action': action,
+            'id': order_id,
+        }, timeout=10)
+    except Exception as ex:
+        raise Exception('퍼팩트 패널 상태 변경 수정 에러')
 
 
 # 최종 결과 API 연동

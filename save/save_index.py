@@ -23,7 +23,7 @@ current_os = common.get_os()
 accounts = common.get_accounts('account.txt')
 
 # 글로벌 변수
-order_service = "SAVE"
+order_service = config['item']['save']
 order_log_path = "../log/order_history.txt"
 
 mode = None
@@ -56,8 +56,17 @@ def fetch_order() -> bool:
         order_url = res['link']
         mode = "LIVE"
 
-    # 계정 셋팅
-    active_accounts = common.account_setting(accounts, quantity)
+    # 할당량을 다 한 계정 추출
+    not_accounts = common.get_workings(order_service)
+
+    # 할당량을 다 한 계정 제거
+    filter_accounts = [account for account in accounts if account.split('|')[0] not in not_accounts]
+
+    if len(filter_accounts) == 0:
+        common.status_change(order_id, 'setCanceled')
+
+    # 계정 개수에 따른 브라우저 셋팅
+    active_accounts = common.account_setting(filter_accounts, quantity)
 
     common.log(f'모드 : {mode}')
     process_order(order_id, quantity, order_url, active_accounts)
