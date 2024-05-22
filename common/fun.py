@@ -556,6 +556,7 @@ def status_change(order_id: str, action: str) -> None:
 
 # 최종 결과 API 연동
 def result_api(order_id: str, total_success: int, total_fail: int, quantity: int, order_log_path: str, order_service: str) -> None:
+
     if total_success == quantity:  # 전체 성공
         res = requests.post(config['api']['url'], data={
             'key': config['api']['key'],
@@ -563,9 +564,6 @@ def result_api(order_id: str, total_success: int, total_fail: int, quantity: int
             'id': order_id
         }, timeout=10)
         log("[Success] -  작업 완료")
-        log(f"[Success] -  주문 번호 : {order_id}")
-        log(f"[Success] -  주문 수량 : {quantity}")
-        log(f"[Success] -  상태 변경 결과 : {res}")
     else:  # 부분 성공
         res = requests.post(config['api']['url'], data={
             'key': config['api']['key'],
@@ -574,11 +572,12 @@ def result_api(order_id: str, total_success: int, total_fail: int, quantity: int
             'remains': quantity - total_success
         }, timeout=10)
         log("[Success] -  작업 부분 완료")
-        log(f"[Success] -  주문 번호 : {order_id}")
-        log(f"[Success] -  주문 수량 : {quantity}")
-        log(f"[Success] -  남은 수량 : {quantity - total_success}")
-        log(f"[Success] -  상태 변경 결과 : {res}")
-        log(f"총 성공: {total_success}, 총 실패: {total_fail}")
+
+    log(f"[Success] -  주문 번호 : {order_id}")
+    log(f"[Success] -  주문 수량 : {quantity}")
+    log(f"[Success] -  남은 수량 : {quantity - total_success}")
+    log(f"[Success] -  상태 변경 결과 : {res}")
+    log(f"총 성공: {total_success}, 총 실패: {total_fail}")
 
     # 주문 최종 결과 로그 저장
     write_order_log(order_log_path, order_service, order_id, quantity, total_success, total_fail)
@@ -906,5 +905,4 @@ def set_filter_accounts(order_service: str, order_url: str, accounts: list) -> l
     # 이미 작업을 한 계정 제거
     filter_accounts = [account for account in filter_accounts if
                        len(get_used_working_accounts(order_service, account.split('|')[0], order_url)) == 0]
-
     return filter_accounts
