@@ -67,6 +67,13 @@ def dashboard() -> str:
         for svg in svgs:
             if svg.get_attribute("aria-label") == '홈':
                 is_login = True
+                break
+
+        buttons = common.find_elements("TAG_NAME", "button", driver, wait)
+        for button in buttons:
+            if button.text == '로그인':
+                is_login = False
+                break
 
         # 로그인 안된 경우
         if not is_login:

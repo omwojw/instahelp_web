@@ -718,7 +718,10 @@ def open_selenium(curt_os: str, wait_time: int, ip: str, session_id: str) -> obj
     selenium_driver = webdriver.Chrome(service=service, options=options)
     selenium_driver.implicitly_wait(wait_time)
     selenium_driver.set_window_size(width, 960)
-    selenium_driver.set_window_position(screen_width + (width + margin) * (1 - 1), 0)
+    if current_os == 'MAC':
+        selenium_driver.set_window_position(screen_width + (width + margin) * (1 - 1), 0)
+    elif current_os == 'WINDOW':
+        selenium_driver.set_window_position(width, 0)
     return selenium_driver
 
 
