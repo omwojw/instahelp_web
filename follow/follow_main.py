@@ -165,7 +165,6 @@ def follow() -> tuple:
             is_follow = False
             message = '에러'
 
-        common.sleep(100000)
         common.log('팔로우 종료', user_id, tab_index)
         return is_follow, message
     except Exception as ex:
