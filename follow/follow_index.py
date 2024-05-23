@@ -44,6 +44,8 @@ def fetch_order() -> bool:
                             'action': 'getOrder',
                             'type': config['api']['follow_service']
                         }, timeout=10).json()
+
+    print(res)
     # 결과가 성공이 아니면
     if res['status'] != 'success':
         order_id = config['item']['test_follow_order_id']
