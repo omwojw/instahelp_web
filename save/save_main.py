@@ -42,7 +42,7 @@ session_id = None
 # 셀레 니움 실행
 def setup() -> str:
     global driver
-    driver = common.open_selenium(current_os, wait_time, ip, session_id)
+    driver = common.open_selenium(current_os, wait_time, ip, session_id, tab_index)
     return dashboard()
 
 

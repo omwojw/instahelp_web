@@ -42,7 +42,7 @@ session_id = None
 # 셀레 니움 실행
 def setup() -> str:
     global driver
-    driver = common.open_selenium(current_os, wait_time, ip, session_id)
+    driver = common.open_selenium(current_os, wait_time, ip, session_id, tab_index)
     return dashboard()
 
 
@@ -79,11 +79,11 @@ def dashboard() -> str:
         if not is_login:
             if not common.login(user_id, user_pw, tab_index, driver, wait):
                 common.write_task_log(task_log_path, task_service, order_id, user_id, 'NO', '로그인 실패', order_url)
-                common.remove_from_accounts(task_service, user_id, '로그인 실패', True)
+                # common.remove_from_accounts(task_service, user_id, '로그인 실패', True)
                 return f'0,1'
     except Exception as ex:
         common.write_task_log(task_log_path, task_service, order_id, user_id, 'NO', '로그인 실패', order_url)
-        common.remove_from_accounts(task_service, user_id, '로그인 실패', True)
+        # common.remove_from_accounts(task_service, user_id, '로그인 실패', True)
         print(traceback.format_exc())
         return f'0,1'
 
@@ -165,6 +165,7 @@ def follow() -> tuple:
             is_follow = False
             message = '에러'
 
+        common.sleep(1)
         common.log('팔로우 종료', user_id, tab_index)
         return is_follow, message
     except Exception as ex:

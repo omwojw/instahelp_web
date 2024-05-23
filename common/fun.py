@@ -56,7 +56,7 @@ def get_accounts(path: str) -> list:
         file_path = os.path.abspath(
             os.path.join(os.path.dirname(os.path.abspath(__file__)), f"../setting/{path}"))
 
-    with open(file_path, 'r', encoding='UTF8') as f:
+    with open(file_path, 'r', encoding='UTF-8') as f:
         accounts = f.readlines()
     account_list = []
     for account in accounts:
@@ -80,16 +80,16 @@ def set_sort_accouts(service: str, filter_accounts: list) -> list:
 
     # 파일 읽기 시도
     try:
-        with open(file_path, 'r', encoding='UTF8') as f:
+        with open(file_path, 'r', encoding='UTF-8') as f:
             accounts = f.readlines()
     except FileNotFoundError:
         # 파일이 없으면 생성
         os.makedirs(os.path.dirname(file_path), exist_ok=True)
-        with open(file_path, 'w', encoding='UTF8') as f:
+        with open(file_path, 'w', encoding='UTF-8') as f:
             f.write("")  # 빈 파일 생성
         accounts = []
 
-    with open(file_path, 'r', encoding='UTF8') as f:
+    with open(file_path, 'r', encoding='UTF-8') as f:
         accounts = f.readlines()
 
     account_list = []
@@ -120,16 +120,16 @@ def get_accounts_max_working(service: str) -> list:
 
     # 파일 읽기 시도
     try:
-        with open(file_path, 'r', encoding='UTF8') as f:
+        with open(file_path, 'r', encoding='UTF-8') as f:
             accounts = f.readlines()
     except FileNotFoundError:
         # 파일이 없으면 생성
         os.makedirs(os.path.dirname(file_path), exist_ok=True)
-        with open(file_path, 'w', encoding='UTF8') as f:
+        with open(file_path, 'w', encoding='UTF-8') as f:
             f.write("")  # 빈 파일 생성
         accounts = []
 
-    with open(file_path, 'r', encoding='UTF8') as f:
+    with open(file_path, 'r', encoding='UTF-8') as f:
         accounts = f.readlines()
     account_list = []
     for account in accounts:
@@ -159,7 +159,7 @@ def get_used_working_accounts(service: str, user_id: str, link: str) -> list:
         file_path = os.path.abspath(
             os.path.join(os.path.dirname(os.path.abspath(__file__)), f'../log/working_accounts_save.txt'))
 
-    with open(file_path, 'r', encoding='UTF8') as f:
+    with open(file_path, 'r', encoding='UTF-8') as f:
         accounts = f.readlines()
     account_list = []
     for account in accounts:
@@ -193,7 +193,7 @@ def get_comment_randoms() -> list:
         file_path = os.path.abspath(
             os.path.join(os.path.dirname(os.path.abspath(__file__)), f"../setting/comment_random.txt"))
 
-    with open(file_path, 'r', encoding='UTF8') as f:
+    with open(file_path, 'r', encoding='UTF-8') as f:
         comments = f.readlines()
     comment_list = []
     for comment in comments:
@@ -213,7 +213,7 @@ def get_user_agent() -> list:
         file_path = os.path.abspath(
             os.path.join(os.path.dirname(os.path.abspath(__file__)), f"../setting/user_agent.txt"))
 
-    with open(file_path, 'r', encoding='UTF8') as f:
+    with open(file_path, 'r', encoding='UTF-8') as f:
         user_agents = f.readlines()
     user_agent_list = []
     for user_agent in user_agents:
@@ -234,7 +234,7 @@ def write_common_log(path: str, service: str, text: str) -> None:
         file_path = os.path.abspath(
             os.path.join(os.path.dirname(os.path.abspath(__file__)), path))
 
-    with open(file_path, "a") as f:
+    with open(file_path, "a", encoding='UTF-8') as f:
         current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         message = f"{service}|{current_time}|{text}"
         f.write(f"{message}\n")
@@ -251,16 +251,16 @@ def write_working_log(service: str, user_id: str, cnt: int) -> None:
 
     # 파일 읽기 시도
     try:
-        with open(file_path, 'r', encoding='UTF8') as f:
+        with open(file_path, 'r', encoding='UTF-8') as f:
             accounts = f.readlines()
     except FileNotFoundError:
         # 파일이 없으면 생성
         os.makedirs(os.path.dirname(file_path), exist_ok=True)
-        with open(file_path, 'w', encoding='UTF8') as f:
+        with open(file_path, 'w', encoding='UTF-8') as f:
             f.write("")  # 빈 파일 생성
         accounts = []
 
-    with open(file_path, 'r', encoding='UTF8') as f:
+    with open(file_path, 'r', encoding='UTF-8') as f:
         accounts = f.readlines()
     account_list = []
     for account in accounts:
@@ -274,13 +274,13 @@ def write_working_log(service: str, user_id: str, cnt: int) -> None:
         parts = account.split("|")
         if parts[0] == service and parts[1] == user_id:
             parts[2] = int(parts[2]) + cnt
-            account_list[i] = f"{parts[0]}|{parts[1]}|{parts[2]}\n"
+            account_list[i] = f"{parts[0]}|{parts[1]}|{parts[2]}"
             is_dupl = True
 
     if not is_dupl:
         account_list.append(f"{service}|{user_id}|{cnt}")
 
-    with open(file_path, "w") as f:
+    with open(file_path, "w", encoding='UTF-8') as f:
         for account in account_list:
             parts = account.split("|")
             f.write(f"{parts[0]}|{parts[1]}|{parts[2]}\n")
@@ -297,7 +297,7 @@ def write_working_save_log(service: str, user_id: str, link: str) -> None:
         file_path = os.path.abspath(
             os.path.join(os.path.dirname(os.path.abspath(__file__)), f"../log/working_accounts_save.txt"))
 
-    with open(file_path, "a") as f:
+    with open(file_path, "a", encoding='UTF-8') as f:
         current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         message = f"{service}|{current_time}|{user_id}|{link}"
         f.write(f"{message}\n")
@@ -311,7 +311,7 @@ def write_order_log(path: str, service: str, order_id: str, quantity: int, succe
         file_path = os.path.abspath(
             os.path.join(os.path.dirname(os.path.abspath(__file__)), path))
 
-    with open(file_path, "a") as f:
+    with open(file_path, "a", encoding='UTF-8') as f:
         current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         message = f"{service}|{current_time}|{order_id}|{quantity}|{success}|{fail}"
         f.write(f"{message}\n")
@@ -326,7 +326,7 @@ def write_task_log(path: str, service: str, order_id: str, user_id: str, result:
         file_path = os.path.abspath(
             os.path.join(os.path.dirname(os.path.abspath(__file__)), path))
 
-    with open(file_path, "a") as f:
+    with open(file_path, "a", encoding='UTF-8') as f:
         current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         message = f'{service}|{current_time}|{order_id}|{order_url}|{user_id}|{result}|{err_msg}'
         f.write(f"{message}\n")
@@ -345,10 +345,10 @@ def remove_from_accounts(service: str, current_user_id: str, err_msg: str, is_lo
             account_file_path = os.path.abspath(
                 os.path.join(os.path.dirname(os.path.abspath(__file__)), "../setting/account.txt"))
 
-        with open(account_file_path, "r") as f:
+        with open(account_file_path, "r", encoding='UTF-8') as f:
             lines = f.readlines()
 
-        with open(account_file_path, "w") as f:
+        with open(account_file_path, "w", encoding='UTF-8') as f:
             for line in lines:
                 if line.split("|")[0] != current_user_id:
                     f.write(line)
@@ -359,7 +359,7 @@ def remove_from_accounts(service: str, current_user_id: str, err_msg: str, is_lo
         file_path = os.path.abspath(
             os.path.join(os.path.dirname(os.path.abspath(__file__)), "../log/error_accounts.txt"))
 
-    with open(file_path, "a") as f:
+    with open(file_path, "a", encoding='UTF-8') as f:
         current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         message = f"{service}|{current_time}|{current_user_id}|{err_msg}"
         f.write(f"{message}\n")
@@ -375,7 +375,7 @@ def remove_from_error(log_txt: str, device_name: str) -> None:
         file_path = os.path.abspath(
             os.path.join(os.path.dirname(os.path.abspath(__file__)), "../log/error_log.txt"))
 
-    with open(file_path, "a") as f:
+    with open(file_path, "a", encoding='UTF-8') as f:
         current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         f.write(f"{device_name}|{current_time}|{log_txt}\n")
 
@@ -679,7 +679,7 @@ def element_log(element) -> None:
 
 
 # 셀레니움 연결
-def open_selenium(curt_os: str, wait_time: int, ip: str, session_id: str) -> object:
+def open_selenium(curt_os: str, wait_time: int, ip: str, session_id: str, idx: int) -> object:
     log('셀레니움 연결', session_id)
     if curt_os == 'MAC':
         driver_path = config['selenium']['driver_path_mac']
@@ -698,9 +698,12 @@ def open_selenium(curt_os: str, wait_time: int, ip: str, session_id: str) -> obj
     options.add_argument(f'--user-agent={get_user_agent()}')
 
     if current_os == 'MAC':
-        options.add_argument(f'--user-data-dir=/Users/ohhyesung/Library/Application Support/Google/Chrome/Default/instahelp_{session_id}')
-
-    # options.add_argument(f'--profile-directory=instahelp_{session_id}')  # 프로필 디렉토리 지정
+        options.add_argument(
+            f'--user-data-dir=/Users/ohhyesung/Library/Application Support/Google/Chrome/Default/instahelp_{session_id}')
+    elif current_os == 'WINDOW':
+        options.add_argument(
+            f'--user-data-dir=C:/Users/A/AppData/Local/Google/Chrome/User Data/Default/instahelp_{session_id}')
+        # options.add_argument(f'--profile-directory=Default\\instahelp_{session_id}')  # 프로필 디렉토리 지정
     # options.add_argument("--lang=ko_KR")
     # options.add_argument('--headless')
 
@@ -721,7 +724,10 @@ def open_selenium(curt_os: str, wait_time: int, ip: str, session_id: str) -> obj
     if current_os == 'MAC':
         selenium_driver.set_window_position(screen_width + (width + margin) * (1 - 1), 0)
     elif current_os == 'WINDOW':
-        selenium_driver.set_window_position(width, 0)
+        if idx > 3:
+            selenium_driver.set_window_position(screen_width + (width + margin) * (idx%3 - 1), 200)
+        else:
+            selenium_driver.set_window_position(screen_width + (width + margin) * (idx - 1), 200)
     return selenium_driver
 
 
