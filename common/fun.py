@@ -393,11 +393,6 @@ async def send_alert(chat_id: str, message: str):
     await bot.sendMessage(chat_id=chat_id, text=text)
 
 
-# 대기
-def sleep(second: int) -> None:
-    time.sleep(second)
-
-
 # element 찾는 공통 함수 오브젝트
 def find_element(selector_type: str, selector_name: str, driver, wait) -> object:
     if not is_display(selector_type, selector_name, driver):
@@ -940,3 +935,19 @@ def set_filter_accounts(order_service: str, order_url: str, accounts: list) -> l
     filter_accounts = [account for account in filter_accounts if
                        len(get_used_working_accounts(order_service, account.split('|')[0], order_url)) == 0]
     return filter_accounts
+
+
+# 대기
+def sleep(second: int, second_range=1) -> None:
+    times = random_delay_range(second, second_range)
+    time.sleep(times)
+
+
+# 랜덤시간 추출
+def random_delay_range(second: int, second_range: int) -> int:
+    return random.choice(get_surrounding_numbers(second, second_range))
+
+
+# 랜덤 숫자 배열만들기
+def get_surrounding_numbers(base_number, delta):
+    return [base_number + i for i in range(delta + 1)]
