@@ -696,7 +696,9 @@ def open_selenium(curt_os: str, wait_time: int, ip: str, session_id: int) -> obj
     options.add_argument('--window-size=450x975')
     options.add_argument(f'--user-agent={get_user_agent()}')
 
-    options.add_argument(f'--user-data-dir=/Users/ohhyesung/Library/Application Support/Google/Chrome/Default/instahelp_{session_id}')
+    if current_os == 'MAC':
+        options.add_argument(f'--user-data-dir=/Users/ohhyesung/Library/Application Support/Google/Chrome/Default/instahelp_{session_id}')
+
     # options.add_argument(f'--profile-directory=instahelp_{session_id}')  # 프로필 디렉토리 지정
     # options.add_argument("--lang=ko_KR")
     # options.add_argument('--headless')
