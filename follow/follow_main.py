@@ -54,6 +54,7 @@ def dashboard() -> str:
 
     # 페이지 띄우기
     driver.get("https://instagram.com/")
+    common.sleep(3)
 
     success = 0
     fail = 0
@@ -79,14 +80,13 @@ def dashboard() -> str:
         if not is_login:
             if not common.login(user_id, user_pw, tab_index, driver, wait):
                 common.write_task_log(task_log_path, task_service, order_id, user_id, 'NO', '로그인 실패', order_url)
-                # common.remove_from_accounts(task_service, user_id, '로그인 실패', True)
+                common.remove_from_accounts(task_service, user_id, '로그인 실패', True)
                 return f'0,1'
     except Exception as ex:
         common.write_task_log(task_log_path, task_service, order_id, user_id, 'NO', '로그인 실패', order_url)
-        # common.remove_from_accounts(task_service, user_id, '로그인 실패', True)
+        common.remove_from_accounts(task_service, user_id, '로그인 실패', True)
         print(traceback.format_exc())
         return f'0,1'
-
     try:
         if mode == 'LIVE':
             remains = common.get_remains(order_id)

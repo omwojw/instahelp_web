@@ -702,8 +702,8 @@ def open_selenium(curt_os: str, wait_time: int, ip: str, session_id: str, idx: i
             f'--user-data-dir=/Users/ohhyesung/Library/Application Support/Google/Chrome/Default/instahelp_{session_id}')
     elif current_os == 'WINDOW':
         options.add_argument(
-            f'--user-data-dir=C:/Users/A/AppData/Local/Google/Chrome/User Data/Default/instahelp_{session_id}')
-        # options.add_argument(f'--profile-directory=Default\\instahelp_{session_id}')  # 프로필 디렉토리 지정
+            f'--user-data-dir=C:/workspace/instahelp_session/instahelp_{session_id}')
+        options.add_argument(f'--profile-directory=Default')  # 프로필 디렉토리 지정
     # options.add_argument("--lang=ko_KR")
     # options.add_argument('--headless')
 
