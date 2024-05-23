@@ -180,7 +180,7 @@ def get_used_working_accounts(service: str, user_id: str, link: str) -> list:
                 if 'instagram.com' not in link:
                     link = f'https://www.instagram.com/{link}'
 
-            if pats_user_id == user_id and pats_link.strip() == link.strip():
+            if pats_user_id == user_id and pats_link.strip().upper() == link.strip().upper():
                 account_list.append(pats)
     return account_list
 
@@ -336,7 +336,23 @@ def write_task_log(path: str, service: str, order_id: str, user_id: str, result:
 
 
 # 에러 계정 추가
-def remove_from_accounts(service: str, current_user_id: str, err_msg: str) -> None:
+def remove_from_accounts(service: str, current_user_id: str, err_msg: str, is_login = False) -> None:
+
+    if is_login:
+        if current_os == 'MAC':
+            account_file_path = "../setting/account.txt"
+        else:
+            account_file_path = os.path.abspath(
+                os.path.join(os.path.dirname(os.path.abspath(__file__)), "../setting/account.txt"))
+
+        with open(account_file_path, "r") as f:
+            lines = f.readlines()
+
+        with open(account_file_path, "w") as f:
+            for line in lines:
+                if line.split("|")[0] != current_user_id:
+                    f.write(line)
+
     if current_os == 'MAC':
         file_path = "../log/error_accounts.txt"
     else:
@@ -511,9 +527,9 @@ def get_current_time() -> str:
 
 
 # 커스텀 로그
-def log(text: str, tab_index='ALL') -> None:
+def log(text: str, user_id='-', tab_index='-') -> None:
     if config['log']['show'] == 'True':
-        print(f'[{tab_index}][{get_current_time()}] {text}')
+        print(f'[{tab_index}][{user_id}] {text}')
 
 
 # 주문의 남은 수량 변경
@@ -683,7 +699,7 @@ def open_selenium(curt_os: str, wait_time: int, ip: str, session_id: int) -> obj
     options.add_argument(f'--user-data-dir=/Users/ohhyesung/Library/Application Support/Google/Chrome/Default/instahelp_{session_id}')
     # options.add_argument(f'--profile-directory=instahelp_{session_id}')  # 프로필 디렉토리 지정
     # options.add_argument("--lang=ko_KR")
-    options.add_argument('--headless')
+    # options.add_argument('--headless')
 
     # 프록시 설정은 윈도우에서만 가능
     if current_os == 'WINDOW':
@@ -704,35 +720,35 @@ def open_selenium(curt_os: str, wait_time: int, ip: str, session_id: int) -> obj
 
 
 # 화면에 동의요청 화면이 나왔는지 체크
-def agree_check(tab_index, driver) -> bool:
-    log('동의여부 체크 시작', tab_index)
+def agree_check(user_id, tab_index, driver) -> bool:
+    log('동의여부 체크 시작', user_id, tab_index)
     is_agree = is_display("CSS_SELECTOR", ".wbloks_1>.wbloks_1>.wbloks_1>.wbloks_1>.wbloks_1.wbloks_1>span",
                           driver)
-    log(f'동의여부 체크 종료 : {"동의 되어있지 않음" if is_agree else "동의 되어있음"}', tab_index)
+    log(f'동의여부 체크 종료 : {"동의 되어있지 않음" if is_agree else "동의 되어있음"}', user_id, tab_index)
     return is_agree
 
 
 # 동의 하기
-def agree_active(tab_index, driver, wait) -> tuple:
+def agree_active(user_id, tab_index, driver, wait) -> tuple:
     try:
-        log('동의하기 클릭 시작', tab_index)
+        log('동의하기 클릭 시작', user_id, tab_index)
         agree_elements = find_elements("TAG_NAME", "input", driver, wait)
         filter_agree_elements = search_elements("ATTR", agree_elements, "checkbox", "type")
         for agree in filter_agree_elements:
-            agree.click()
+            click(agree)
 
         agrees = find_elements("CLASS_NAME", "wbloks_1", driver, wait)
         for agree in agrees:
             if agree.get_attribute("aria-label") == '동의함':
-                agree.click()
+                click(agree)
 
                 agrees_close = find_elements("CLASS_NAME", "wbloks_1", driver, wait)
                 for agree_close in agrees_close:
                     if agree_close.get_attribute("aria-label") == '닫기':
-                        agree_close.click()
-                        log('동의하기 클릭 종료', tab_index)
+                        click(agree_close)
+                        log('동의하기 클릭 종료', user_id, tab_index)
                         return True, ''
-        log('동의하기 클릭 종료', tab_index)
+        log('동의하기 클릭 종료', user_id, tab_index)
         return False, ''
     except Exception as ex:
         raise Exception(ex)
@@ -743,7 +759,7 @@ def agree_active(tab_index, driver, wait) -> tuple:
 def login(account_id: str, account_pw: str, tab_index, driver, wait) -> bool:
     try:
         # 로그인
-        log('로그인 시작', tab_index)
+        log('로그인 시작', account_id, tab_index)
 
         # 로그인 버튼 클릭
         find_btns = find_elements("CSS_SELECTOR", "button.x5yr21d", driver, wait)
@@ -753,36 +769,42 @@ def login(account_id: str, account_pw: str, tab_index, driver, wait) -> bool:
                 login_btn = find_btn
 
         if login_btn:
-            login_btn.click()
+            click(login_btn)
         else:
             return False
 
         # 계정을 입력합니다.
         id_input = find_element('NAME', "username", driver, wait)
-        id_input.click()
+        click(id_input)
         id_input.send_keys(account_id)
 
         # 비밀번호를 입력합니다.
         pw_input = find_element('NAME', "password", driver, wait)
-        pw_input.click()
+        click(pw_input)
         pw_input.send_keys(account_pw)
 
         # 로그인 버튼을 클릭(탭)합니다.
         login_btns = find_elements('TAG_NAME', "button", driver, wait)
 
         login_btn = search_element('ATTR', login_btns, 'submit', "type")
-        login_btn.click()
-        log('로그인 종료', tab_index)
+        click(login_btn)
+        log('로그인 종료', account_id, tab_index)
         sleep(5)
 
-        log('로그인 정보 저장 시작', tab_index)
-        btn = find_element("TAG_NAME", "button", driver, wait)
-        log('로그인 정보 저장 종료', tab_index)
-        if not btn:
-            return False
-        else:
-            return True
+        spans = find_elements("TAG_NAME", "span", driver, wait)
+        for span in spans:
+            if span.text == '비밀번호 오류':
+                return False
 
+        log('로그인 정보 저장 시작', account_id, tab_index)
+        is_login = False
+        account_save_btns = find_elements("TAG_NAME", "button", driver, wait)
+        for account_save_btn in account_save_btns:
+            if account_save_btn.text == '정보 저장':
+                is_login = True
+        log('로그인 정보 저장 종료', account_id, tab_index)
+        log(f'로그인 성공여부 {is_login}', account_id, tab_index)
+        return is_login
     except Exception as ex:
         return False
 

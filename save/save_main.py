@@ -72,11 +72,12 @@ def dashboard() -> str:
         if not is_login:
             if not common.login(user_id, user_pw, tab_index, driver, wait):
                 common.write_task_log(task_log_path, task_service, order_id, user_id, 'NO', '로그인 실패', order_url)
-                common.remove_from_accounts(task_service, user_id, '로그인 실패')
+                common.remove_from_accounts(task_service, user_id, '로그인 실패', True)
                 return f'0,1'
     except Exception as ex:
         common.write_task_log(task_log_path, task_service, order_id, user_id, 'NO', '로그인 실패', order_url)
-        common.remove_from_accounts(task_service, user_id, '로그인 실패')
+        common.remove_from_accounts(task_service, user_id, '로그인 실패', True)
+        print(traceback.format_exc())
         return f'0,1'
 
     try:
@@ -84,7 +85,7 @@ def dashboard() -> str:
             remains = common.get_remains(order_id)
         else:
             remains = 1
-        common.log(f'남은 수량 : {remains}', tab_index)
+        common.log(f'남은 수량 : {remains}', user_id, tab_index)
 
         # 남은 개수가 0개면 완료처리
         if remains == 0:
@@ -110,7 +111,7 @@ def dashboard() -> str:
     # 3초간 체류하기
     if success > 0:
         common.write_working_log(task_service, user_id, success)
-        common.write_working_save_log(task_service, user_id, success)
+        common.write_working_save_log(task_service, user_id, order_url)
     common.sleep(3)
     return f'{success},{fail}'
 
@@ -119,11 +120,11 @@ def dashboard() -> str:
 def fetch_order() -> tuple:
     try:
         driver.get(order_url)
-        common.sleep(1)
+        common.sleep(2)
 
-        # if common.agree_check(tab_index, driver):
+        # if common.agree_check(user_id, tab_index, driver):
         #     common.sleep(1)
-        #     common.agree_active(tab_index, driver, wait)
+        #     common.agree_active(user_id, tab_index, driver, wait)
         #     common.sleep(1)
 
         result, message = save()
@@ -136,17 +137,20 @@ def fetch_order() -> tuple:
 # 주문 수행
 def save() -> tuple:
     try:
-        common.log('저장하기 시작', tab_index)
+        common.log('저장하기 시작', user_id, tab_index)
         save_element = common.find_element("CSS_SELECTOR", ".x1gslohp>.x6s0dn4>.x11i5rnm>div", driver, wait)
         save_svg = common.find_children_element("TAG_NAME", "svg", driver, save_element)
 
-        is_save = False
-        message = '이미 저장 되어 있음'
         if save_svg.get_attribute('aria-label') == 'Save' or save_svg.get_attribute('aria-label') == '저장':
             common.click(save_element)
             is_save = True
             message = ""
-        common.log('저장하기 종료', tab_index)
+        else:
+            is_save = False
+            message = '이미 저장 되어 있음'
+
+        common.sleep(1)
+        common.log('저장하기 종료', user_id, tab_index)
         return is_save, message
     except Exception as ex:
         raise Exception(ex)

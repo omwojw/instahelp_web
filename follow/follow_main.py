@@ -72,11 +72,12 @@ def dashboard() -> str:
         if not is_login:
             if not common.login(user_id, user_pw, tab_index, driver, wait):
                 common.write_task_log(task_log_path, task_service, order_id, user_id, 'NO', '로그인 실패', order_url)
-                common.remove_from_accounts(task_service, user_id, '로그인 실패')
+                common.remove_from_accounts(task_service, user_id, '로그인 실패', True)
                 return f'0,1'
     except Exception as ex:
         common.write_task_log(task_log_path, task_service, order_id, user_id, 'NO', '로그인 실패', order_url)
-        common.remove_from_accounts(task_service, user_id, '로그인 실패')
+        common.remove_from_accounts(task_service, user_id, '로그인 실패', True)
+        print(traceback.format_exc())
         return f'0,1'
 
     try:
@@ -84,7 +85,7 @@ def dashboard() -> str:
             remains = common.get_remains(order_id)
         else:
             remains = 1
-        common.log(f'남은 수량 : {remains}', tab_index)
+        common.log(f'남은 수량 : {remains}', user_id, tab_index)
 
         # 남은 개수가 0개면 완료처리
         if remains == 0:
@@ -109,7 +110,7 @@ def dashboard() -> str:
 
     if success > 0:
         common.write_working_log(task_service, user_id, success)
-        common.write_working_save_log(task_service, user_id, success)
+        common.write_working_save_log(task_service, user_id, order_url)
     common.sleep(3)
     return f'{success},{fail}'
 
@@ -118,11 +119,11 @@ def dashboard() -> str:
 def fetch_order() -> tuple:
     try:
         driver.get(order_url)
-        common.sleep(1)
+        common.sleep(2)
 
-        # if common.agree_check(tab_index, driver):
+        # if common.agree_check(user_id, tab_index, driver):
         #     common.sleep(1)
-        #     common.agree_active(tab_index, driver, wait)
+        #     common.agree_active(user_id, tab_index, driver, wait)
         #     common.sleep(1)
 
         result, message = follow()
@@ -135,7 +136,7 @@ def fetch_order() -> tuple:
 # 주문 수행
 def follow() -> tuple:
     try:
-        common.log('팔로우 시작', tab_index)
+        common.log('팔로우 시작', user_id, tab_index)
         btn_elements = common.find_elements("CSS_SELECTOR", "button._acan", driver, wait)
         follow_status = 0
         follow_btn = None
@@ -145,13 +146,21 @@ def follow() -> tuple:
                 follow_btn = btn_element
             elif btn_element.text == 'Following' or btn_element.text == '팔로잉':
                 follow_status = 2
+
         if follow_status == 1:
             common.click(follow_btn)
-            return True, ''
+            is_follow = True
+            message = ''
         elif follow_status == 2:
-            return False, '이미 팔로우 되어 있음'
+            is_follow = False
+            message = '이미 팔로우 되어 있음'
         else:
-            return False, '에러'
+            is_follow = False
+            message = '에러'
+
+        common.sleep(100000)
+        common.log('팔로우 종료', user_id, tab_index)
+        return is_follow, message
     except Exception as ex:
         raise Exception(ex)
         return False, ''
