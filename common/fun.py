@@ -679,7 +679,8 @@ def element_log(element) -> None:
 
 
 # 셀레니움 연결
-def open_selenium(curt_os: str, wait_time: int, ip: str, session_id: int) -> object:
+def open_selenium(curt_os: str, wait_time: int, ip: str, session_id: str) -> object:
+    log('셀레니움 연결', session_id)
     if curt_os == 'MAC':
         driver_path = config['selenium']['driver_path_mac']
         chrome_path = config['selenium']['chrome_path_mac']
