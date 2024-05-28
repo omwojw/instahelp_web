@@ -700,7 +700,8 @@ def open_selenium(curt_os: str, wait_time: int, ip: str, session_id: str, idx: i
             f'--user-data-dir=C:/workspace/instahelp_session/instahelp_{session_id}')
         options.add_argument(f'--profile-directory=Default')  # 프로필 디렉토리 지정
     # options.add_argument("--lang=ko_KR")
-    # options.add_argument('--headless')
+    options.add_argument('--headless')
+    options.add_argument("--log-level=3")  # INFO, WARNING, LOG, ERROR
 
     # 프록시 설정은 윈도우에서만 가능
     if current_os == 'WINDOW':
@@ -807,8 +808,9 @@ def login(account_id: str, account_pw: str, tab_index, driver, wait) -> bool:
         is_login = False
         account_save_btns = find_elements("TAG_NAME", "button", driver, wait)
         for account_save_btn in account_save_btns:
-            if account_save_btn.text == '정보 저장':
+            if account_save_btn.text == 'Save info' or account_save_btn.text == '정보 저장':
                 is_login = True
+
         log('로그인 정보 저장 종료', account_id, tab_index)
         log(f'로그인 성공여부 {is_login}', account_id, tab_index)
         return is_login
