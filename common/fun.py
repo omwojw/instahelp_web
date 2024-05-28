@@ -5,7 +5,6 @@ import os
 import sys
 import asyncio
 import telegram
-import json
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 import requests
@@ -13,6 +12,7 @@ import random
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 import pyautogui
+import traceback
 
 # Config 읽기
 import common.fun
@@ -319,7 +319,7 @@ def write_order_log(path: str, service: str, order_id: str, quantity: int, succe
 
 
 # 태스크 로그 추가
-def write_task_log(path: str, service: str, order_id: str, user_id: str, result: str, err_msg: str, order_url: str) -> None:
+def write_task_log(path: str, service: str, order_id: str, user_id: str, result: bool, err_msg: str, order_url: str) -> None:
     if current_os == 'MAC':
         file_path = path
     else:
@@ -331,7 +331,7 @@ def write_task_log(path: str, service: str, order_id: str, user_id: str, result:
         message = f'{service}|{current_time}|{order_id}|{order_url}|{user_id}|{result}|{err_msg}'
         f.write(f"{message}\n")
 
-    # if result != 'OK':
+    # if not result:
     #     send_message(config['telegram']['chat_error_task'], message)
 
 
@@ -712,9 +712,11 @@ def open_selenium(curt_os: str, wait_time: int, ip: str, session_id: str, idx: i
     options.binary_location = chrome_path
 
     # 웹 드라 이버 시작
-    screen_width, _ = pyautogui.size()
+    screen_width, screen_height = pyautogui.size()
     width = 480
     margin = 50
+
+
     service = ChromeService(executable_path=chromedriver_path)
     selenium_driver = webdriver.Chrome(service=service, options=options)
     selenium_driver.implicitly_wait(wait_time)
@@ -722,10 +724,12 @@ def open_selenium(curt_os: str, wait_time: int, ip: str, session_id: str, idx: i
     if current_os == 'MAC':
         selenium_driver.set_window_position(screen_width + (width + margin) * (1 - 1), 0)
     elif current_os == 'WINDOW':
-        if idx > 3:
-            selenium_driver.set_window_position(screen_width + (width + margin) * (idx%3 - 1), 200)
-        else:
-            selenium_driver.set_window_position(screen_width + (width + margin) * (idx - 1), 200)
+        # if idx > 3:
+        #     selenium_driver.set_window_position(screen_width + (width + margin) * (idx%3 - 1), 200)
+        # else:
+        #     selenium_driver.set_window_position(screen_width + (width + margin) * (idx - 1), 200)
+
+        selenium_driver.set_window_position(1820-(width+margin), screen_height+margin)
     return selenium_driver
 
 
@@ -767,21 +771,29 @@ def agree_active(user_id, tab_index, driver, wait) -> tuple:
 
 # 로그인
 def login(account_id: str, account_pw: str, tab_index, driver, wait) -> bool:
+
+
     try:
         # 로그인
         log('로그인 시작', account_id, tab_index)
 
-        # 로그인 버튼 클릭
-        find_btns = find_elements("CSS_SELECTOR", "button.x5yr21d", driver, wait)
-        login_btn = None
-        for find_btn in find_btns:
-            if find_btn.text == 'Log in' or find_btn.text == '로그인':
-                login_btn = find_btn
-
-        if login_btn:
-            click(login_btn)
-        else:
+        login_url = 'https://www.instagram.com/accounts/login/'
+        driver.get(login_url)
+        sleep(3)
+        if login_url != driver.current_url:
             return False
+
+        # 로그인 버튼 클릭
+        # find_btns = find_elements("CSS_SELECTOR", "button.x5yr21d", driver, wait)
+        # login_btn = None
+        # for find_btn in find_btns:
+        #     if find_btn.text == 'Log in' or find_btn.text == '로그인':
+        #         login_btn = find_btn
+        #
+        # if login_btn:
+        #     click(login_btn)
+        # else:
+        #     return False
 
         # 계정을 입력합니다.
         id_input = find_element('NAME', "username", driver, wait)
@@ -806,17 +818,26 @@ def login(account_id: str, account_pw: str, tab_index, driver, wait) -> bool:
             if span.text == '비밀번호 오류':
                 return False
 
-        log('로그인 정보 저장 시작', account_id, tab_index)
-        is_login = False
-        account_save_btns = find_elements("TAG_NAME", "button", driver, wait)
-        for account_save_btn in account_save_btns:
-            if account_save_btn.text == 'Save info' or account_save_btn.text == '정보 저장':
-                is_login = True
+        # account_save_btns = find_elements("TAG_NAME", "button", driver, wait)
+        # for account_save_btn in account_save_btns:
+        #     if account_save_btn.text == 'Save info' or account_save_btn.text == '정보 저장':
+        #         log('로그인 정보 저장 시작', account_id, tab_index)
+        #         click(account_save_btn)
+        #         sleep(3)
+        #         log('로그인 정보 저장 종료', account_id, tab_index)
 
-        log('로그인 정보 저장 종료', account_id, tab_index)
+        is_login = True
+        log('로그인 검증 시작', account_id, tab_index)
+        home_url = "https://www.instagram.com/"
+        driver.get(home_url)
+        sleep(1)
+        if home_url != driver.current_url:
+            is_login = False
+        log('로그인 검증 종료', account_id, tab_index)
         log(f'로그인 성공여부 {is_login}', account_id, tab_index)
         return is_login
     except Exception as ex:
+        print(traceback.format_exc())
         return False
 
 
