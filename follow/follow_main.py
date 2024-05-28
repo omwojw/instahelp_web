@@ -54,7 +54,7 @@ def dashboard() -> str:
 
     # 페이지 띄우기
     driver.get("https://instagram.com/")
-    common.sleep(3)
+    common.sleep(5)
 
     success = 0
     fail = 0

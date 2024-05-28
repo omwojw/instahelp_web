@@ -700,7 +700,9 @@ def open_selenium(curt_os: str, wait_time: int, ip: str, session_id: str, idx: i
             f'--user-data-dir=C:/workspace/instahelp_session/instahelp_{session_id}')
         options.add_argument(f'--profile-directory=Default')  # 프로필 디렉토리 지정
     # options.add_argument("--lang=ko_KR")
-    options.add_argument('--headless')
+    # options.add_argument('--headless')
+
+
     options.add_argument("--log-level=3")  # INFO, WARNING, LOG, ERROR
 
     # 프록시 설정은 윈도우에서만 가능
