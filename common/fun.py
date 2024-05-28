@@ -331,8 +331,8 @@ def write_task_log(path: str, service: str, order_id: str, user_id: str, result:
         message = f'{service}|{current_time}|{order_id}|{order_url}|{user_id}|{result}|{err_msg}'
         f.write(f"{message}\n")
 
-    if result != 'OK':
-        send_message(config['telegram']['chat_error_task'], message)
+    # if result != 'OK':
+    #     send_message(config['telegram']['chat_error_task'], message)
 
 
 # 에러 계정 추가
@@ -364,7 +364,7 @@ def remove_from_accounts(service: str, current_user_id: str, err_msg: str, is_lo
         message = f"{service}|{current_time}|{current_user_id}|{err_msg}"
         f.write(f"{message}\n")
 
-    send_message(config['telegram']['chat_error_account'], message)
+    # send_message(config['telegram']['chat_error_account'], message)
 
 
 # 에러 로그 추가
