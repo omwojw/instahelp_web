@@ -120,7 +120,7 @@ def dashboard() -> str:
         common.sleep(3)
         return f'{success},{fail}'
     except Exception as ex:
-        common.remove_from_accounts(task_service, order_id, user_id, '태스크 실패')
+        # common.remove_from_accounts(task_service, order_id, user_id, '태스크 실패')
         print(traceback.format_exc())
         return f'0,1,태스크 실패'
 
