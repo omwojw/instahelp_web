@@ -75,3 +75,46 @@ FOLLOW|2024-06-03 11:07:10|6881|https://www.instagram.com/exgafisey2|uzmaqabik6|
 FOLLOW|2024-06-03 11:07:15|6881|https://www.instagram.com/exgafisey2|silas.jude2|True|성공
 FOLLOW|2024-06-03 11:13:30|6887|https://www.instagram.com/exgafisey2|uzmaqabik6|False|로그인 실패
 FOLLOW|2024-06-03 11:13:31|6887|https://www.instagram.com/exgafisey2|yezajeti|False|로그인 실패
+FOLLOW|2024-06-03 13:09:13|6889|https://www.instagram.com/exgafisey2|jessivzbroky0|False|로그인 실패
+FOLLOW|2024-06-03 13:09:23|6889|https://www.instagram.com/exgafisey2|jennifhxluc696|False|로그인 실패
+FOLLOW|2024-06-03 13:09:24|6889|https://www.instagram.com/exgafisey2|deano0olivi0v|False|로그인 실패
+FOLLOW|2024-06-03 13:09:28|6889|https://www.instagram.com/exgafisey2|katc5anthob6r|False|로그인 실패
+FOLLOW|2024-06-03 13:09:38|6889|https://www.instagram.com/exgafisey2|jul7bfernandgl|False|로그인 실패
+FOLLOW|2024-06-03 13:09:39|6889|https://www.instagram.com/exgafisey2|erb4ellisef|False|로그인 실패
+FOLLOW|2024-06-03 13:09:42|6889|https://www.instagram.com/exgafisey2|jessixcbenszi|False|로그인 실패
+FOLLOW|2024-06-03 13:09:51|6889|https://www.instagram.com/exgafisey2|d06vcinzd|False|태스크 실패
+FOLLOW|2024-06-03 13:10:10|6889|https://www.instagram.com/exgafisey2|daniely7opadil2n|False|팔로우 버튼을 눌렀지만 에러
+FOLLOW|2024-06-03 13:10:33|6889|https://www.instagram.com/exgafisey2|branhpada7o3|False|태스크 실패
+FOLLOW|2024-06-03 13:10:38|6889|https://www.instagram.com/exgafisey2|caitlgz2martinnt|True|성공
+FOLLOW|2024-06-03 13:10:48|6889|https://www.instagram.com/exgafisey2|kaitlh4burge329|True|성공
+FOLLOW|2024-06-03 13:10:50|6889|https://www.instagram.com/exgafisey2|em106randa5a|True|성공
+FOLLOW|2024-06-03 13:10:56|6889|https://www.instagram.com/exgafisey2|katv3gomqbe|False|팔로우 버튼을 눌렀지만 에러
+FOLLOW|2024-06-03 13:11:06|6889|https://www.instagram.com/exgafisey2|dacahjacks3t0|False|팔로우 버튼을 눌렀지만 에러
+FOLLOW|2024-06-03 13:11:15|6889|https://www.instagram.com/exgafisey2|lesla9mcol0c2|False|로그인 실패
+FOLLOW|2024-06-03 13:11:30|6889|https://www.instagram.com/exgafisey2|melinjsjohnsewy|False|로그인 실패
+FOLLOW|2024-06-03 13:11:31|6889|https://www.instagram.com/exgafisey2|linjhamiltu5|False|태스크 실패
+FOLLOW|2024-06-03 13:11:49|6889|https://www.instagram.com/exgafisey2|maris2qawillianm|False|태스크 실패
+FOLLOW|2024-06-03 13:11:49|6889|https://www.instagram.com/exgafisey2|alex3bqjacksust|True|성공
+FOLLOW|2024-06-03 13:12:26|6889|https://www.instagram.com/exgafisey2|kris0ytbark6j|False|태스크 실패
+FOLLOW|2024-06-03 13:12:37|6889|https://www.instagram.com/exgafisey2|ti0ltayl4q|False|태스크 실패
+FOLLOW|2024-06-03 13:12:55|6889|https://www.instagram.com/exgafisey2|madis6bkennexs|True|성공
+FOLLOW|2024-06-03 13:12:57|6889|https://www.instagram.com/exgafisey2|listnblaeyi|True|성공
+FOLLOW|2024-06-03 13:13:05|6889|https://www.instagram.com/exgafisey2|tamf3nmarj|True|성공
+FOLLOW|2024-06-03 13:13:07|6889|https://www.instagram.com/exgafisey2|sussvsh6p8|False|팔로우 버튼을 눌렀지만 에러
+FOLLOW|2024-06-03 13:13:10|6889|https://www.instagram.com/exgafisey2|sa5inhawkiho|False|태스크 실패
+FOLLOW|2024-06-03 13:13:18|6889|https://www.instagram.com/exgafisey2|mr67sus7lr|True|성공
+FOLLOW|2024-06-03 13:13:19|6889|https://www.instagram.com/exgafisey2|mikayqfsmiy9t|True|성공
+FOLLOW|2024-06-03 13:13:23|6889|https://www.instagram.com/exgafisey2|veronie4ribge|False|팔로우 버튼을 눌렀지만 에러
+FOLLOW|2024-06-03 13:21:50|6890|https://www.instagram.com/exgafisey2|maris2qawillianm|False|로그인 실패
+FOLLOW|2024-06-03 13:21:50|6890|https://www.instagram.com/exgafisey2|ti0ltayl4q|False|로그인 실패
+FOLLOW|2024-06-03 13:21:53|6890|https://www.instagram.com/exgafisey2|linjhamiltu5|False|로그인 실패
+FOLLOW|2024-06-03 13:22:02|6890|https://www.instagram.com/exgafisey2|kris0ytbark6j|False|로그인 실패
+FOLLOW|2024-06-03 13:22:03|6890|https://www.instagram.com/exgafisey2|d06vcinzd|False|로그인 실패
+FOLLOW|2024-06-03 13:22:04|6890|https://www.instagram.com/exgafisey2|veronie4ribge|False|로그인 실패
+FOLLOW|2024-06-03 13:22:05|6890|https://www.instagram.com/exgafisey2|sussvsh6p8|False|로그인 실패
+FOLLOW|2024-06-03 13:22:22|6890|https://www.instagram.com/exgafisey2|daniely7opadil2n|False|로그인 실패
+FOLLOW|2024-06-03 13:22:27|6890|https://www.instagram.com/exgafisey2|dacahjacks3t0|False|팔로우 버튼을 눌렀지만 에러
+FOLLOW|2024-06-03 13:22:28|6890|https://www.instagram.com/exgafisey2|katv3gomqbe|True|성공
+FOLLOW|2024-06-03 13:22:32|6890|https://www.instagram.com/exgafisey2|branhpada7o3|True|성공
+FOLLOW|2024-06-03 13:22:47|6890|https://www.instagram.com/exgafisey2|sa5inhawkiho|True|성공
+FOLLOW|2024-06-03 13:27:03|6891|https://www.instagram.com/exgafisey2|dacahjacks3t0|True|성공

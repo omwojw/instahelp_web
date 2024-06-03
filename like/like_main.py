@@ -90,7 +90,7 @@ def dashboard() -> str:
         else:
             common.log(f'로그인 성공여부 True', user_id, tab_index)
     except Exception as ex:
-        common.remove_from_accounts(task_service, user_id, '로그인 실패', True)
+        common.remove_from_accounts(task_service, order_id, user_id, '로그인 실패', True)
         # print(traceback.format_exc())
         return f'0,1,로그인 실패'
 
@@ -103,7 +103,7 @@ def dashboard() -> str:
 
         # 남은 개수가 0개면 완료처리
         if remains == 0:
-            # common.remove_from_accounts(task_service, user_id, '남은 개수 없음')
+            # common.remove_from_accounts(task_service, order_id, user_id, '남은 개수 없음')
             return f'0,1,남은 개수 없음'
 
         result, message = fetch_order()
@@ -116,11 +116,11 @@ def dashboard() -> str:
 
         if success > 0:
             common.write_working_log(task_service, user_id, success)
-            common.write_working_save_log(task_service, user_id, order_url)
+            common.write_working_save_log(task_service, order_id, user_id, order_url)
         common.sleep(3)
         return f'{success},{fail}'
     except Exception as ex:
-        common.remove_from_accounts(task_service, user_id, '태스크 실패')
+        common.remove_from_accounts(task_service, order_id, user_id, '태스크 실패')
         print(traceback.format_exc())
         return f'0,1,태스크 실패'
 

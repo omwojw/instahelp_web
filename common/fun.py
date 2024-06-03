@@ -169,8 +169,8 @@ def get_used_working_accounts(service: str, user_id: str, link: str) -> list:
 
         pats = account.split("|")
         pats_service = pats[0]
-        pats_user_id = pats[2]
-        pats_link = pats[3]
+        pats_user_id = pats[3]
+        pats_link = pats[4]
 
         if pats_service == service:
 
@@ -290,7 +290,7 @@ def write_working_log(service: str, user_id: str, cnt: int) -> None:
 # 작업로그
 # 어떤계정이 어떤링크에 작업을 했는지 로그 쌓기
 # 예시로 특정 계정이 이미 팔로우등 5가지 작업이 되어잇는지 체크
-def write_working_save_log(service: str, user_id: str, link: str) -> None:
+def write_working_save_log(service: str, order_id: str, user_id: str, link: str) -> None:
 
     if current_os == 'MAC':
         file_path = f"../log/working_accounts_save.txt"
@@ -300,7 +300,7 @@ def write_working_save_log(service: str, user_id: str, link: str) -> None:
 
     with open(file_path, "a", encoding='UTF-8') as f:
         current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        message = f"{service}|{current_time}|{user_id}|{link}"
+        message = f"{service}|{current_time}|{order_id}|{user_id}|{link}"
         f.write(f"{message}\n")
 
 
@@ -337,7 +337,7 @@ def write_task_log(path: str, service: str, order_id: str, user_id: str, result:
 
 
 # 에러 계정 추가
-def remove_from_accounts(service: str, current_user_id: str, err_msg: str, is_login = False) -> None:
+def remove_from_accounts(service: str, order_id: str, current_user_id: str, err_msg: str, is_login = False) -> None:
 
     if is_login:
         if current_os == 'MAC':
@@ -362,7 +362,7 @@ def remove_from_accounts(service: str, current_user_id: str, err_msg: str, is_lo
 
     with open(file_path, "a", encoding='UTF-8') as f:
         current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        message = f"{service}|{current_time}|{current_user_id}|{err_msg}"
+        message = f"{service}|{current_time}|{order_id}|{current_user_id}|{err_msg}"
         f.write(f"{message}\n")
 
     # send_message(config['telegram']['chat_error_account'], message)
