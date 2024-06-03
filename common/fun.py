@@ -28,6 +28,7 @@ elif sys.platform == 'darwin':
     current_os = 'MAC'
 
 browser_cnt = int(config['selenium']['browser_cnt'])
+is_headless = bool(config['selenium']['headless'])
 telegram_token_key = config['telegram']['token_key']
 
 
@@ -700,7 +701,9 @@ def open_selenium(curt_os: str, wait_time: int, ip: str, session_id: str, idx: i
             f'--user-data-dir=C:/workspace/instahelp_session/instahelp_{session_id}')
         options.add_argument(f'--profile-directory=Default')  # 프로필 디렉토리 지정
     # options.add_argument("--lang=ko_KR")
-    # options.add_argument('--headless')
+
+    if is_headless:
+        options.add_argument('--headless')
 
 
     options.add_argument("--log-level=3")  # INFO, WARNING, LOG, ERROR
@@ -976,3 +979,10 @@ def random_delay_range(second: int, second_range: int) -> int:
 # 랜덤 숫자 배열만들기
 def get_surrounding_numbers(base_number, delta):
     return [base_number + i for i in range(delta + 1)]
+
+
+# 작업 가능한 계정이 없는경우 취소처리
+def not_working_accounts(order_log_path: str, order_service: str, order_id: str, quantity: int) -> None:
+    log('가용 가능한 계정이 존재하지 않습니다.')
+    status_change(order_id, 'setCanceled')
+    write_order_log(order_log_path, order_service, order_id, quantity, 0, 0)

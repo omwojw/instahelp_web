@@ -10,7 +10,7 @@ import configparser
 import requests
 from concurrent.futures import ProcessPoolExecutor
 import common.fun as common
-import comment_fix.comment_fix_main as comment_fix_main
+import comment_fix.comment_fix_main as main_process
 
 # Config 읽기
 config = configparser.ConfigParser()
@@ -46,8 +46,8 @@ def fetch_order() -> bool:
                         }, timeout=10).json()
     # 결과가 성공이 아니면
     if res['status'] != 'success':
-        order_id = config['item']['test_comment_fix_order_id']
-        quantity = int(config['item']['test_comment_fix_quantity'])
+        order_id = config['item']['test_order_id']
+        quantity = int(config['item']['test_quantity'])
         comments = config['item']['test_comment_fix_comment'].split("\\n")
         order_url = str(config['item']['test_comment_fix_order_url'])
         mode = "TEST"
@@ -57,6 +57,7 @@ def fetch_order() -> bool:
         comments = res['comments'].split("\\n")
         order_url = res['link']
         mode = "LIVE"
+    common.log(f'모드 : {mode}')
 
     # 계정 선별
     filter_accounts = common.set_filter_accounts(order_service, order_url, accounts)
@@ -66,14 +67,14 @@ def fetch_order() -> bool:
 
     # 작업 가능한 계정이 없는경우 취소처리
     if len(sorted_accounts) == 0:
-        common.status_change(order_id, 'setCanceled')
-        common.write_order_log(order_log_path, order_service, order_id, quantity, 0, 0)
+        common.not_working_accounts(order_log_path, order_service, order_id, quantity)
         return
+    else:
+        common.log(f'주문건수[{quantity}], 가용계정[{len(sorted_accounts)}]')
 
     # 계정 개수에 따른 브라우저 셋팅
     active_accounts = common.account_setting(sorted_accounts, quantity)
 
-    common.log(f'모드 : {mode}')
     process_order(order_id, quantity, comments, order_url, active_accounts)
 
 
@@ -85,7 +86,7 @@ def process_order(order_id: str, quantity: int, comments: list, order_url: str, 
     for active_account in active_accounts:
         with ProcessPoolExecutor() as executor:
             futures = [executor.submit(
-                comment_fix_main.mainFun
+                main_process.main_fun
                 , index
                 , account.split('|')[0]
                 , account.split('|')[1]

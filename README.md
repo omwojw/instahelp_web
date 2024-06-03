@@ -53,7 +53,9 @@ instahelp_web
 │   ├── save_index.py #실행\
 │   └── save_main.py #로직\
 ├── setting #셋팅 데이터모음\
-│   ├── account.txt #계정\
+│   ├── account.txt #선별된 계정(로그인 에러 없는 계정)\
+│   ├── account_.txt #전체 계정(프록시 적용 된 계정)\
+│   ├── account_before.txt #전체 계정(프록시 적용 안된 계정들)\
 │   ├── comment_random.txt #댓글(랜덤)시 댓글 모음\
 │   ├── config.ini #각종 설정\
 │   └── user_agent.txt #에이전트 모음\

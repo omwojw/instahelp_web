@@ -22,21 +22,22 @@ common.get_config(config)
 current_os = common.get_os()
 
 # 글로벌 변수
-tab_index = None
-user_id = None
-user_pw = None
-ip = None
-order_id = None
-quantity = None
-order_url = None
+tab_index = 0
+user_id = ''
+user_pw = ''
+ip = ''
+order_id = ''
+quantity = 0
+order_url = ''
+session_id = ''
+mode = ''
+
 wait_time = int(config['selenium']['wait_time'])
 driver = None
 act_chis = None
 wait = None
-task_service = "LIKE"
+task_service = config['item']['like']
 task_log_path = "../log/task_history.txt"
-mode = None
-session_id = None
 
 
 # 셀레 니움 실행
@@ -89,10 +90,9 @@ def dashboard() -> str:
         else:
             common.log(f'로그인 성공여부 True', user_id, tab_index)
     except Exception as ex:
-        common.write_task_log(task_log_path, task_service, order_id, user_id, False, '로그인 실패', order_url)
         common.remove_from_accounts(task_service, user_id, '로그인 실패', True)
-        print(traceback.format_exc())
-        return f'0,1'
+        # print(traceback.format_exc())
+        return f'0,1,로그인 실패'
 
     try:
         if mode == 'LIVE':
@@ -103,9 +103,8 @@ def dashboard() -> str:
 
         # 남은 개수가 0개면 완료처리
         if remains == 0:
-            common.write_task_log(task_log_path, task_service, order_id, user_id, False, '남은 개수 없음', order_url)
-            common.remove_from_accounts(task_service, user_id, '남은 개수 없음')
-            return f'0,1'
+            # common.remove_from_accounts(task_service, user_id, '남은 개수 없음')
+            return f'0,1,남은 개수 없음'
 
         result, message = fetch_order()
         if result:
@@ -114,18 +113,16 @@ def dashboard() -> str:
             success += 1
         else:
             fail += 1
-        common.write_task_log(task_log_path, task_service, order_id, user_id, result, message, order_url)
+
+        if success > 0:
+            common.write_working_log(task_service, user_id, success)
+            common.write_working_save_log(task_service, user_id, order_url)
+        common.sleep(3)
+        return f'{success},{fail}'
     except Exception as ex:
-        fail += 1
-        common.write_task_log(task_log_path, task_service, order_id, user_id, False, '에러발생', order_url)
         common.remove_from_accounts(task_service, user_id, '태스크 실패')
         print(traceback.format_exc())
-
-    if success > 0:
-        common.write_working_log(task_service, user_id, success)
-        common.write_working_save_log(task_service, user_id, order_url)
-    common.sleep(3)
-    return f'{success},{fail}'
+        return f'0,1,태스크 실패'
 
 
 # 주문 프로 세스
@@ -139,15 +136,14 @@ def fetch_order() -> tuple:
         #     common.agree_active(user_id, tab_index, driver, wait)
         #     common.sleep(1)
 
-        result, message = like()
+        result, message = process()
         return result, message
     except Exception as ex:
         raise Exception(ex)
-        return False, ''
 
 
 # 주문 수행
-def like() -> tuple:
+def process() -> tuple:
     try:
         common.log('좋아요 시작', user_id, tab_index)
         like_element = common.find_element("CSS_SELECTOR", "span.xp7jhwk", driver, wait)
@@ -162,15 +158,15 @@ def like() -> tuple:
             is_like = False
             message = '이미 좋아요 되어 있음'
 
-        common.sleep(1)
+        common.sleep(2)
         common.log('좋아요 종료', user_id, tab_index)
         return is_like, message
     except Exception as ex:
         raise Exception(ex)
-        return False, ''
 
 
-def mainFun(_tab_index, _user_id, _user_pw, _ip, _order_id, _quantity, _order_url, _mode, _session_id) -> str:
+def main_fun(_tab_index: int, _user_id: str, _user_pw: str, _ip: str, _order_id: str, _quantity: int,
+             _order_url: str, _mode: str, _session_id) -> str:
     global tab_index, user_id, user_pw, ip, order_id, quantity, order_url, mode, session_id
     tab_index = _tab_index + 1
     user_id = _user_id
@@ -184,8 +180,22 @@ def mainFun(_tab_index, _user_id, _user_pw, _ip, _order_id, _quantity, _order_ur
 
     # 시작 함수
     try:
-        return setup()
+        result = setup()
+        success = int(result.split(',')[0])
+        fail = int(result.split(',')[1])
+        message = result.split(',')[2]
+
+        is_result = False
+        if success > 0:
+            is_result = True
+
+        if fail > 0:
+            is_result = False
+
+        common.write_task_log(task_log_path, task_service, order_id, user_id, is_result, message, order_url)
+        return result
     except Exception as ex:
+        common.write_task_log(task_log_path, task_service, order_id, user_id, False, '에러발생', order_url)
         print(traceback.format_exc())
-        return f'0,0'
+        return f'0,1,에러발생'
 
