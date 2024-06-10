@@ -28,7 +28,7 @@ elif sys.platform == 'darwin':
     current_os = 'MAC'
 
 browser_cnt = int(config['selenium']['browser_cnt'])
-is_headless = bool(config['selenium']['headless'])
+is_headless = bool(config['selenium']['headless'] == 'True')
 telegram_token_key = config['telegram']['token_key']
 
 
@@ -689,6 +689,7 @@ def open_selenium(curt_os: str, wait_time: int, ip: str, session_id: str, idx: i
     # Chrome 웹 드라이버 설정
     options = webdriver.ChromeOptions()
 
+    options.add_argument('--disable-images')
     options.add_argument('--disable-gpu')
     options.add_argument('--window-size=450x975')
     options.add_argument(f'--user-agent={get_user_agent()}')
@@ -704,7 +705,6 @@ def open_selenium(curt_os: str, wait_time: int, ip: str, session_id: str, idx: i
 
     if is_headless:
         options.add_argument('--headless')
-
 
     options.add_argument("--log-level=3")  # INFO, WARNING, LOG, ERROR
 
