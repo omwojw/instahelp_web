@@ -184,6 +184,8 @@ def process() -> tuple:
 
 def main_fun(_tab_index: int, _user_id: str, _user_pw: str, _ip: str, _order_id: str, _quantity: int,
              _order_url: str, _mode: str, _session_id: str) -> str:
+
+
     global tab_index, user_id, user_pw, ip, order_id, quantity, order_url, mode, session_id
     tab_index = _tab_index + 1
     user_id = _user_id
@@ -197,6 +199,9 @@ def main_fun(_tab_index: int, _user_id: str, _user_pw: str, _ip: str, _order_id:
 
     # 시작 함수
     try:
+        initial_memory_usage = common.measure_memory_usage()
+        common.log(f"초기 메모리 사용량: {initial_memory_usage:.2f} MB", user_id, tab_index)
+
         result = setup()
         success = int(result.split(',')[0])
         fail = int(result.split(',')[1])
@@ -215,4 +220,10 @@ def main_fun(_tab_index: int, _user_id: str, _user_pw: str, _ip: str, _order_id:
         common.write_task_log(task_log_path, task_service, order_id, user_id, False, '에러발생', order_url)
         print(traceback.format_exc())
         return f'0,1,에러발생'
+    finally:
+        final_memory_usage = common.measure_memory_usage()
+        common.log(f"마지막 메모리 사용량: {final_memory_usage:.2f} MB", user_id, tab_index)
+
+        global driver
+        driver.quit()
 

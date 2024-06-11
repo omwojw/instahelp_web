@@ -1,0 +1,7 @@
+version: '3'
+services:
+  selenium:
+    build: .
+    environment:
+      - START_XVFB=false
+    shm_size: '2gb'

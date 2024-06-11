@@ -1,6 +1,7 @@
 import sys
 import os
-
+import time
+from datetime import timedelta
 if sys.platform.startswith('win'):
     sys.path.append(os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")))
 elif sys.platform == 'darwin':
@@ -27,6 +28,8 @@ order_service = config['item']['follow']
 order_log_path = "../log/order_history.txt"
 
 mode = None
+start_time = time.time()
+tot_active_accounts = 0
 
 
 # 주문 체크
@@ -77,16 +80,22 @@ def fetch_order() -> bool:
     # 계정 개수에 따른 브라우저 셋팅
     active_accounts = common.account_setting(sorted_accounts, quantity)
 
+    global tot_active_accounts
+    tot_active_accounts = len(sorted_accounts)
+
     process_order(order_id, quantity, order_url, active_accounts)
 
 
 # 주문 실행
 def process_order(order_id: str, quantity: int, order_url: str, active_accounts: list):
 
+    max_workers = common.get_optimal_max_workers()
+    # common.log(f"최대 작업 인스턴스: {max_workers}")
+
     total_success = 0
     total_fail = 0
     for active_account in active_accounts:
-        with ProcessPoolExecutor() as executor:
+        with ProcessPoolExecutor(max_workers=max_workers) as executor:
             futures = [executor.submit(
                 main_process.main_fun
                 , index
@@ -105,6 +114,13 @@ def process_order(order_id: str, quantity: int, order_url: str, active_accounts:
             total_fail += sum(int(result.split(',')[1]) for result in results)
 
     common.result_api(order_id, total_success, total_fail, quantity, order_log_path, order_service)
+
+    end_time = time.time()
+
+    global start_time
+    elapsed_time = timedelta(seconds=end_time - start_time)
+    formatted_time = common.format_timedelta(elapsed_time)
+    common.log(f"걸린시간: {formatted_time} 계정개수 {tot_active_accounts}")
 
 
 def main():
