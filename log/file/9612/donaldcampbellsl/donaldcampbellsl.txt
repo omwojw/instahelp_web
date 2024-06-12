@@ -1,0 +1,8 @@
+[2][donaldcampbellsl] 로그인 시작
+[2][donaldcampbellsl] 로그인 종료
+[2][donaldcampbellsl] 로그인 검증 시작
+[2][donaldcampbellsl] 로그인 검증 종료
+[2][donaldcampbellsl] 로그인 성공여부 False
+[2][donaldcampbellsl] 마지막 메모리 사용량: 86.94 MB
+[2][donaldcampbellsl] 녹화가 완료되었습니다. 'donaldcampbellsl.avi' 파일이 저장되었습니다.
+[2][donaldcampbellsl] 스크린샷이 완료되었습니다. 'donaldcampbellsl.png' 파일이 저장되었습니다.

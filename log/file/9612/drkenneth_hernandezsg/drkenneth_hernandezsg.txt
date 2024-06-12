@@ -1,0 +1,15 @@
+[6][drkenneth_hernandezsg] 로그인 시작
+[6][drkenneth_hernandezsg] 로그인 종료
+[6][drkenneth_hernandezsg] 로그인 검증 시작
+[6][drkenneth_hernandezsg] 로그인 검증 종료
+[6][drkenneth_hernandezsg] 로그인 성공여부 True
+[6][drkenneth_hernandezsg] 남은 수량 : 1
+[6][drkenneth_hernandezsg] 동의여부 체크 시작
+[6][drkenneth_hernandezsg] 동의여부 체크 종료 : 동의 필요함
+[6][drkenneth_hernandezsg] 동의하기 클릭 시작
+[6][drkenneth_hernandezsg] 동의하기 클릭 종료 - 성공
+[6][drkenneth_hernandezsg] 팔로우 시작
+[6][drkenneth_hernandezsg] 팔로우 종료 - 팔로우 버튼을 눌렀지만 에러
+[6][drkenneth_hernandezsg] 마지막 메모리 사용량: 86.63 MB
+[6][drkenneth_hernandezsg] 녹화가 완료되었습니다. 'drkenneth_hernandezsg.avi' 파일이 저장되었습니다.
+[6][drkenneth_hernandezsg] 스크린샷이 완료되었습니다. 'drkenneth_hernandezsg.png' 파일이 저장되었습니다.

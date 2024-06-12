@@ -180,6 +180,8 @@ def process() -> tuple:
                 if after_element.text == 'Following' or after_element.text == '팔로잉':
                     is_follow = True
                     message = '성공'
+                elif after_element.text == '동의함':
+                    message = '동의함 처리됨'
 
         elif follow_status == 2:
             is_follow = False
