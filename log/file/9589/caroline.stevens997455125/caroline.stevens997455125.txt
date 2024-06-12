@@ -1,0 +1,10 @@
+[2][caroline.stevens997455125] 로그인 시작
+[2][caroline.stevens997455125] 로그인 종료
+[2][caroline.stevens997455125] 로그인 검증 시작
+[2][caroline.stevens997455125] 로그인 검증 종료
+[2][caroline.stevens997455125] 로그인 성공여부 True
+[2][caroline.stevens997455125] 남은 수량 : 1
+[2][caroline.stevens997455125] 팔로우 시작
+[2][caroline.stevens997455125] 마지막 메모리 사용량: 87.18 MB
+[2][caroline.stevens997455125] 녹화가 완료되었습니다. 'caroline.stevens997455125.avi' 파일이 저장되었습니다.
+[2][caroline.stevens997455125] 스크린샷이 완료되었습니다. 'caroline.stevens997455125.png' 파일이 저장되었습니다.

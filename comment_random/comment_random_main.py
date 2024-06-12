@@ -12,6 +12,9 @@ import traceback
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.webdriver import WebDriver
+from typing import Optional
+
 
 # Config 읽기
 config = configparser.ConfigParser()
@@ -33,9 +36,9 @@ comment = ''
 mode = ''
 
 wait_time = int(config['selenium']['wait_time'])
-driver = None
+driver: Optional[WebDriver] = None
 act_chis = None
-wait = None
+wait: Optional[WebDriverWait] = None
 task_service = config['item']['comment_random']
 task_log_path = "../log/task_history.txt"
 
@@ -68,6 +71,7 @@ def dashboard() -> str:
         # 페이지 띄우기
         home_url = "https://www.instagram.com/"
         driver.get(home_url)
+        common.set_lang(driver)
 
         is_login1 = False
         is_login2 = False
@@ -138,10 +142,14 @@ def fetch_order() -> tuple:
         driver.get(order_url)
         common.sleep(2)
 
-        # if common.agree_check(user_id, tab_index, driver):
-        #     common.sleep(1)
-        #     common.agree_active(user_id, tab_index, driver, wait)
-        #     common.sleep(1)
+        if common.agree_check(user_id, tab_index, driver, wait):
+            common.sleep(1)
+            is_agree, agree_message = common.agree_active(user_id, tab_index, driver, wait)
+
+            if not is_agree:
+                raise Exception(agree_message)
+
+            common.sleep(1)
 
         result, message = process()
         return result, message

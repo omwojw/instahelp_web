@@ -1,0 +1,11 @@
+[1][caroline.stevens997455125] 로그인 성공여부 True
+[1][caroline.stevens997455125] 남은 수량 : 1
+[1][caroline.stevens997455125] 동의여부 체크 시작
+[1][caroline.stevens997455125] 동의여부 체크 종료 : 동의 필요함
+[1][caroline.stevens997455125] 동의하기 클릭 시작
+[1][caroline.stevens997455125] 동의하기 클릭 종료
+[1][caroline.stevens997455125] 팔로우 시작
+[1][caroline.stevens997455125] 팔로우 종료 - 성공
+[1][caroline.stevens997455125] 마지막 메모리 사용량: 87.64 MB
+[1][caroline.stevens997455125] 녹화가 완료되었습니다. 'caroline.stevens997455125.avi' 파일이 저장되었습니다.
+[1][caroline.stevens997455125] 스크린샷이 완료되었습니다. 'caroline.stevens997455125.png' 파일이 저장되었습니다.

@@ -272,3 +272,23 @@ FOLLOW|2024-06-12 12:25:55|99999|https://www.instagram.com/1nusytvdqj|vuqw2wmbbd
 FOLLOW|2024-06-12 12:26:40|99999|https://www.instagram.com/1nusytvdqj|vuqw2wmbbd|False|에러발생
 FOLLOW|2024-06-12 12:34:38|9033|https://www.instagram.com/1nusytvdqj|vuqw2wmbbd|False|에러발생
 FOLLOW|2024-06-12 12:36:12|9485|https://www.instagram.com/1nusytvdqj|vuqw2wmbbd|False|에러발생
+FOLLOW|2024-06-12 14:08:34|9624|https://www.instagram.com/uk4uu0rslo|adalynn.snyder967483234|False|태스크 실패
+FOLLOW|2024-06-12 14:08:58|9624|https://www.instagram.com/uk4uu0rslo|anya.carpenter418127372|False|태스크 실패
+FOLLOW|2024-06-12 14:11:08|9659|https://www.instagram.com/uk4uu0rslo|adalynn.snyder967483234|False|로그인 실패
+FOLLOW|2024-06-12 14:15:31|9565|https://www.instagram.com/uk4uu0rslo|anya.carpenter418127372|False|태스크 실패
+FOLLOW|2024-06-12 14:24:58|9737|https://www.instagram.com/uk4uu0rslo|adalynn.snyder967483234|False|태스크 실패
+FOLLOW|2024-06-12 14:25:21|9451|https://www.instagram.com/uk4uu0rslo|adalynn.snyder967483234|False|로그인 실패
+FOLLOW|2024-06-12 14:28:07|9916|https://www.instagram.com/uk4uu0rslo|anya.carpenter418127372|False|에러발생
+FOLLOW|2024-06-12 14:28:50|9546|https://www.instagram.com/uk4uu0rslo|anya.carpenter418127372|False|에러발생
+FOLLOW|2024-06-12 14:29:32|9929|https://www.instagram.com/uk4uu0rslo|anya.carpenter418127372|False|에러발생
+FOLLOW|2024-06-12 14:30:12|9765|https://www.instagram.com/uk4uu0rslo|anya.carpenter418127372|False|에러발생
+FOLLOW|2024-06-12 14:31:38|9011|https://www.instagram.com/uk4uu0rslo|anya.carpenter418127372|False|에러발생
+FOLLOW|2024-06-12 14:33:20|9556|https://www.instagram.com/uk4uu0rslo|anya.carpenter418127372|False|에러발생
+FOLLOW|2024-06-12 14:33:43|9349|https://www.instagram.com/uk4uu0rslo|anya.carpenter418127372|False|에러발생
+FOLLOW|2024-06-12 14:36:51|9011|https://www.instagram.com/uk4uu0rslo|anya.carpenter418127372|False|에러발생
+FOLLOW|2024-06-12 14:37:10|9735|https://www.instagram.com/uk4uu0rslo|anya.carpenter418127372|False|에러발생
+FOLLOW|2024-06-12 14:42:41|9468|https://www.instagram.com/uk4uu0rslo|anya.carpenter418127372|False|태스크 실패
+FOLLOW|2024-06-12 14:47:08|9589|https://www.instagram.com/uk4uu0rslo|david.fox789355748|False|태스크 실패
+FOLLOW|2024-06-12 14:47:13|9589|https://www.instagram.com/uk4uu0rslo|caroline.stevens997455125|False|태스크 실패
+FOLLOW|2024-06-12 14:47:13|9589|https://www.instagram.com/uk4uu0rslo|calliope.scott794205659|True|성공
+FOLLOW|2024-06-12 15:35:47|9718|https://www.instagram.com/uk4uu0rslo|caroline.stevens997455125|True|성공

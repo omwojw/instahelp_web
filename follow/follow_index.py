@@ -27,12 +27,12 @@ accounts = common.get_accounts('account.txt')
 order_service = config['item']['follow']
 order_log_path = "../log/order_history.txt"
 
-mode = None
+mode = ""
 start_time = time.time()
 
 
 # 주문 체크
-def fetch_order() -> bool:
+def fetch_order() -> None:
     # 주문 중복체크
     is_dupl_order = common.dupl_check(int(config['api']['follow_service']), order_service, order_log_path)
     if is_dupl_order:
@@ -73,7 +73,7 @@ def fetch_order() -> bool:
         common.not_working_accounts(order_log_path, order_service, order_id, quantity)
         return
     else:
-        common.log(f'주문건수[{quantity}], 가용 가능한 계정[{len(sorted_accounts)}]')
+        common.log(f'주문번호[{order_id}], 주문건수[{quantity}], 가용 가능한 계정[{len(sorted_accounts)}]')
 
     # 계정 개수에 따른 브라우저 셋팅
     active_accounts = common.account_setting(sorted_accounts, quantity)
@@ -108,13 +108,12 @@ def process_order(order_id: str, quantity: int, order_url: str, active_accounts:
             total_success += sum(int(result.split(',')[0]) for result in results)
             total_fail += sum(int(result.split(',')[1]) for result in results)
 
-    common.result_api(order_id, total_success, total_fail, quantity, order_log_path, order_service)
-
     end_time = time.time()
     global start_time
     elapsed_time = timedelta(seconds=end_time - start_time)
     formatted_time = common.format_timedelta(elapsed_time)
     common.log(f"걸린시간: {formatted_time} 계정개수 {total_success + total_fail}")
+    common.result_api(order_id, total_success, total_fail, quantity, order_log_path, order_service, formatted_time)
 
 
 def main():

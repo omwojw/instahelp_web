@@ -1,0 +1,8 @@
+[1][adalynn.snyder967483234] 로그인 시작
+[1][adalynn.snyder967483234] 로그인 종료
+[1][adalynn.snyder967483234] 로그인 검증 시작
+[1][adalynn.snyder967483234] 로그인 검증 종료
+[1][adalynn.snyder967483234] 로그인 성공여부 True
+[1][adalynn.snyder967483234] 남은 수량 : 1
+[1][adalynn.snyder967483234] 팔로우 시작
+[1][adalynn.snyder967483234] 마지막 메모리 사용량: 87.22 MB

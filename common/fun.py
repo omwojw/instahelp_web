@@ -21,6 +21,12 @@ from PIL import Image
 import io
 import logging
 from fake_useragent import UserAgent
+from selenium.webdriver.chrome.webdriver import WebDriver
+from datetime import timedelta
+from typing import List
+from selenium.webdriver.remote.webelement import WebElement
+from selenium.webdriver.support.ui import WebDriverWait
+from typing import Optional
 ua = UserAgent()
 user_agent = ua.random
 
@@ -39,17 +45,17 @@ browser_cnt = int(config['selenium']['browser_cnt'])
 is_headless = bool(config['selenium']['headless'] == 'True')
 telegram_token_key = config['telegram']['token_key']
 
-video_out = None
-video_chrome_window = None
+
+video_out: Optional[cv2.VideoWriter] = None
 video_start_time = 0
 recording = True
-record_thread = None
+record_thread: Optional[threading.Thread] = None
 screen_size = (480, 960)
-logger = None
+logger: Optional[logging] = None
 
 
 # config 셋팅
-def get_config(new_confit) -> None:
+def get_config(new_confit: configparser.ConfigParser) -> None:
     if sys.platform.startswith('win'):
         new_confit.read(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'setting', 'config.ini'),
                         encoding='utf-8')
@@ -223,7 +229,7 @@ def get_comment_randoms() -> list:
 
 
 # user agent 목록
-def get_user_agent() -> list:
+def get_user_agent() -> object:
     if current_os == 'MAC':
         file_path = f'../setting/user_agent.txt'
     else:
@@ -290,8 +296,7 @@ def write_working_log(service: str, user_id: str, cnt: int) -> None:
         account = account_list[i]
         parts = account.split("|")
         if parts[0] == service and parts[1] == user_id:
-            parts[2] = int(parts[2]) + cnt
-            account_list[i] = f"{parts[0]}|{parts[1]}|{parts[2]}"
+            account_list[i] = f"{parts[0]}|{parts[1]}|{int(parts[2]) + cnt}"
             is_dupl = True
 
     if not is_dupl:
@@ -321,7 +326,7 @@ def write_working_save_log(service: str, order_id: str, user_id: str, link: str)
 
 
 # 주문 결과 로그 추가
-def write_order_log(path: str, service: str, order_id: str, quantity: int, success: int, fail: int) -> None:
+def write_order_log(path: str, service: str, order_id: str, quantity: int, success: int, fail: int, order_time: str) -> None:
     if current_os == 'MAC':
         file_path = path
     else:
@@ -330,7 +335,7 @@ def write_order_log(path: str, service: str, order_id: str, quantity: int, succe
 
     with open(file_path, "a", encoding='UTF-8') as f:
         current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        message = f"{service}|{current_time}|{order_id}|{quantity}|{success}|{fail}"
+        message = f"{service}|{current_time}|{order_id}|{quantity}|{success}|{fail}|{order_time}"
         f.write(f"{message}\n")
         send_message(config['telegram']['chat_order_id'], message)
 
@@ -353,7 +358,7 @@ def write_task_log(path: str, service: str, order_id: str, user_id: str, result:
 
 
 # 에러 계정 추가
-def remove_from_accounts(service: str, order_id: str, current_user_id: str, err_msg: str, is_login = False) -> None:
+def remove_from_accounts(service: str, order_id: str, current_user_id: str, err_msg: str, is_login=False) -> None:
 
     if is_login:
         if current_os == 'MAC':
@@ -404,14 +409,14 @@ def send_message(chat_id: str, message: str) -> None:
 
 
 # 텔레그램 메시지 보내기 2번
-async def send_alert(chat_id: str, message: str):
+async def send_alert(chat_id: str, message: str) -> None:
     text = f'{message}'
     bot = telegram.Bot(token=telegram_token_key)
     await bot.sendMessage(chat_id=chat_id, text=text)
 
 
 # element 찾는 공통 함수 오브젝트
-def find_element(selector_type: str, selector_name: str, driver, wait) -> object:
+def find_element(selector_type: str, selector_name: str, driver: WebDriver, wait: WebDriverWait) -> WebElement:
     if not is_display(selector_type, selector_name, driver):
         sleep(1)
         if not is_display(selector_type, selector_name, driver):
@@ -430,7 +435,7 @@ def find_element(selector_type: str, selector_name: str, driver, wait) -> object
 
 
 # element 찾는 공통 함수 배열
-def find_elements(selector_type: str, selector_name: str, driver, wait) -> list:
+def find_elements(selector_type: str, selector_name: str, driver: WebDriver, wait: WebDriverWait) -> List[WebElement]:
     if not is_display(selector_type, selector_name, driver):
         sleep(1)
         if not is_display(selector_type, selector_name, driver):
@@ -449,14 +454,14 @@ def find_elements(selector_type: str, selector_name: str, driver, wait) -> list:
 
 
 # element 찾는 공통 함수 오브젝트
-def find_children_element(selector_type: str, selector_name: str, driver, element) -> object:
+def find_children_element(selector_type: str, selector_name: str, driver: WebDriver, element: WebElement) -> WebElement:
     if not is_display(selector_type, selector_name, driver):
         sleep(1)
         if not is_display(selector_type, selector_name, driver):
             sleep(1)
 
     if selector_type == 'ID':
-        return element.find_element(By.Id, selector_name)
+        return element.find_element(By.ID, selector_name)
     elif selector_type == 'NAME':
         return element.find_element(By.NAME, selector_name)
     elif selector_type == 'TAG_NAME':
@@ -468,14 +473,14 @@ def find_children_element(selector_type: str, selector_name: str, driver, elemen
 
 
 # element 찾는 공통 함수 오브젝트
-def find_children_elements(element, selector_type: str, selector_name: str, driver) -> object:
+def find_children_elements(element: WebElement, selector_type: str, selector_name: str, driver) -> List[WebElement]:
     if not is_display(selector_type, selector_name, driver):
         sleep(1)
         if not is_display(selector_type, selector_name, driver):
             sleep(1)
 
     if selector_type == 'ID':
-        return element.find_elements(By.Id, selector_name)
+        return element.find_elements(By.ID, selector_name)
     elif selector_type == 'NAME':
         return element.find_elements(By.NAME, selector_name)
     elif selector_type == 'TAG_NAME':
@@ -489,6 +494,7 @@ def find_children_elements(element, selector_type: str, selector_name: str, driv
 # 디스 플레이 체크 여부
 def is_display(selector_type: str, selector_name: str, driver) -> bool:
     is_displayed = False
+    count = 0
     if selector_type == 'ID':
         count = len(driver.find_elements(By.ID, selector_name))
     elif selector_type == 'NAME':
@@ -506,7 +512,7 @@ def is_display(selector_type: str, selector_name: str, driver) -> bool:
 
 
 # 배열에서 특정 엘리먼트 찾기
-def search_elements(selector_type: str, search_list: list, search_text: str, attr_name="") -> list:
+def search_elements(selector_type: str, search_list: list, search_text: str, attr_name="") -> List[WebElement]:
     result = []
     for search_item in search_list:
         if selector_type == 'TEXT':
@@ -520,7 +526,7 @@ def search_elements(selector_type: str, search_list: list, search_text: str, att
 
 
 # 배열에서 특정 엘리먼트 찾기
-def search_element(selector_type: str, search_list: list, search_text: str, attr_name="") -> object:
+def search_element(selector_type: str, search_list: list, search_text: str, attr_name="") -> Optional[WebElement]:
     for search_item in search_list:
         if selector_type == 'TEXT':
             if search_item.text == search_text:
@@ -539,13 +545,18 @@ def get_current_time() -> str:
 
 
 # 커스텀 로그
-def log(text: str, user_id='-', tab_index='-') -> None:
+def log(text: str, user_id='-', tab_index=0) -> None:
+    if tab_index == 0:
+        tab_index_text = '-'
+    else:
+        tab_index_text = str(tab_index)
+
     if config['log']['show'] == 'True':
-        print(f'[{tab_index}][{user_id}] {text}')
+        print(f'[{tab_index_text}][{user_id}] {text}')
 
         global logger
         if logger:
-            logger.debug(f'[{tab_index}][{user_id}] {text}')
+            logger.debug(f'[{tab_index_text}][{user_id}] {text}')
 
 
 # 주문의 남은 수량 변경
@@ -587,7 +598,8 @@ def status_change(order_id: str, action: str) -> None:
 
 
 # 최종 결과 API 연동
-def result_api(order_id: str, total_success: int, total_fail: int, quantity: int, order_log_path: str, order_service: str) -> None:
+def result_api(order_id: str, total_success: int, total_fail: int, quantity: int, order_log_path: str,
+               order_service: str, order_time: str) -> None:
 
     if total_success == quantity:  # 전체 성공
         res = requests.post(config['api']['url'], data={
@@ -612,11 +624,11 @@ def result_api(order_id: str, total_success: int, total_fail: int, quantity: int
     log(f"총 성공: {total_success}, 총 실패: {total_fail}")
 
     # 주문 최종 결과 로그 저장
-    write_order_log(order_log_path, order_service, order_id, quantity, total_success, total_fail)
+    write_order_log(order_log_path, order_service, order_id, quantity, total_success, total_fail, order_time)
 
 
 # 엘리먼트 정보 콘솔출력
-def element_log(element) -> None:
+def element_log(element: WebElement) -> None:
     # 태그 이름
     print(f"Tag Name: {element.tag_name}")
 
@@ -696,7 +708,7 @@ def element_log(element) -> None:
 
 # 셀레니움 연결
 def open_selenium(curt_os: str, wait_time: int, ip: str, session_id: str, idx: int) -> object:
-    log('셀레니움 연결', session_id, str(idx))
+    log('셀레니움 연결', session_id, idx)
     if curt_os == 'MAC':
         driver_path = config['selenium']['driver_path_mac']
         chrome_path = config['selenium']['chrome_path_mac']
@@ -766,7 +778,6 @@ def open_selenium(curt_os: str, wait_time: int, ip: str, session_id: str, idx: i
     # 렌더링 관련 성능 문제를 해결하기 위해 사용합니다. 특정 환경에서 성능 향상이 있을 수 있습니다.
     options.add_argument("--disable-features=VizDisplayCompositor")
 
-
     # 세션
     if current_os == 'MAC':
         options.add_argument(
@@ -776,14 +787,12 @@ def open_selenium(curt_os: str, wait_time: int, ip: str, session_id: str, idx: i
             f'--user-data-dir=C:/workspace/instahelp_session/instahelp_{session_id}')
         options.add_argument(f'--profile-directory=Default')  # 프로필 디렉토리 지정
 
-
     # 헤드리스 모드
     if is_headless:
         options.add_argument('--headless')
 
         # 헤드리스 모드일때 한국어로
         options.add_argument('--lang=ko')
-
 
     # 프록시 설정은 윈도우에서만 가능
     if current_os == 'WINDOW':
@@ -793,13 +802,14 @@ def open_selenium(curt_os: str, wait_time: int, ip: str, session_id: str, idx: i
 
     # 웹 드라 이버 시작
     screen_width, screen_height = pyautogui.size()
-    width = 480
+    global screen_size
+    width = screen_size[0]
     margin = 50
 
     service = ChromeService(executable_path=chromedriver_path)
     selenium_driver = webdriver.Chrome(service=service, options=options)
     selenium_driver.implicitly_wait(wait_time)
-    selenium_driver.set_window_size(width, 960)
+    selenium_driver.set_window_size(width, screen_size[1])
     if current_os == 'MAC':
         selenium_driver.set_window_position(screen_width + (width + margin) * (1 - 1), 0)
     elif current_os == 'WINDOW':
@@ -814,16 +824,19 @@ def open_selenium(curt_os: str, wait_time: int, ip: str, session_id: str, idx: i
 
 
 # 화면에 동의요청 화면이 나왔는지 체크
-def agree_check(user_id, tab_index, driver) -> bool:
+def agree_check(user_id: str, tab_index: int, driver: WebDriver, wait: WebDriverWait) -> bool:
     log('동의여부 체크 시작', user_id, tab_index)
-    is_agree = is_display("CSS_SELECTOR", ".wbloks_1>.wbloks_1>.wbloks_1>.wbloks_1>.wbloks_1.wbloks_1>span",
-                          driver)
-    log(f'동의여부 체크 종료 : {"동의 되어있지 않음" if is_agree else "동의 되어있음"}', user_id, tab_index)
+    agrees = find_elements("TAG_NAME", "span", driver, wait)
+    is_agree = False
+    for agree in agrees:
+        if agree.text == 'Instagram 앱을 사용하려면 다음 항목에 동의해야 합니다':
+            is_agree = True
+    log(f'동의여부 체크 종료 : {"동의 필요함" if is_agree else "동의 필요하지 않음"}', user_id, tab_index)
     return is_agree
 
 
 # 동의 하기
-def agree_active(user_id, tab_index, driver, wait) -> tuple:
+def agree_active(user_id: str, tab_index: int, driver: WebDriver, wait: WebDriverWait) -> tuple:
     try:
         log('동의하기 클릭 시작', user_id, tab_index)
         agree_elements = find_elements("TAG_NAME", "input", driver, wait)
@@ -840,13 +853,12 @@ def agree_active(user_id, tab_index, driver, wait) -> tuple:
                 for agree_close in agrees_close:
                     if agree_close.get_attribute("aria-label") == '닫기':
                         click(agree_close)
-                        log('동의하기 클릭 종료', user_id, tab_index)
-                        return True, ''
-        log('동의하기 클릭 종료', user_id, tab_index)
-        return False, ''
+                        log('동의하기 클릭 종료 - 성공', user_id, tab_index)
+                        return True, '성공'
+        log('동의하기 클릭 종료 - 에러', user_id, tab_index)
+        return False, '동의하기 에러'
     except Exception as ex:
         raise Exception(ex)
-        return False, ''
 
 
 # 로그인
@@ -927,13 +939,13 @@ def random_delay() -> int:
 
 
 # 클릭 이벤트
-def click(element):
+def click(element: WebElement):
     sleep(random_delay())
     element.click()
 
 
 # 브라우저 + 계정 셋팅
-def account_setting(accounts, quantity) -> list:
+def account_setting(accounts: list, quantity: int) -> list:
     if len(accounts) > quantity:
         temp_active_accounts = accounts[:quantity]
     else:
@@ -993,7 +1005,7 @@ def dupl_check(service: int, order_service: str, order_log_path: str) -> bool:
                     write_common_log("../log/dupl_history.txt", order_service,
                                      f"{order['id']}|{current_order['id']}|{order_url}|{get_status_text(order['status'])}")
 
-                    write_order_log(order_log_path, order_service, current_order['id'], current_order['quantity'], 0, 0)
+                    write_order_log(order_log_path, order_service, current_order['id'], current_order['quantity'], 0, 0, '-')
                     return True
 
     return False
@@ -1054,7 +1066,7 @@ def random_delay_range(second: int, second_range: int) -> int:
 
 
 # 랜덤 숫자 배열만들기
-def get_surrounding_numbers(base_number, delta):
+def get_surrounding_numbers(base_number, delta) -> List[int]:
     return [base_number + i for i in range(delta + 1)]
 
 
@@ -1062,21 +1074,21 @@ def get_surrounding_numbers(base_number, delta):
 def not_working_accounts(order_log_path: str, order_service: str, order_id: str, quantity: int) -> None:
     log('가용 가능한 계정이 존재하지 않습니다.')
     status_change(order_id, 'setCanceled')
-    write_order_log(order_log_path, order_service, order_id, quantity, 0, 0)
+    write_order_log(order_log_path, order_service, order_id, quantity, 0, 0, '-')
 
 
-def measure_memory_usage():
+def measure_memory_usage() -> float:
     process = psutil.Process(os.getpid())
     mem_info = process.memory_info()
     return mem_info.rss / (1024 * 1024)  # Convert bytes to MB
 
 
-def sample_memory_usage_per_instance():
+def sample_memory_usage_per_instance() -> float:
     memory_usage = measure_memory_usage()
     return memory_usage
 
 
-def get_optimal_max_workers():
+def get_optimal_max_workers() -> int:
     cpu_count = os.cpu_count()
     # log(f"개발서버 CPU 코어 개수: {cpu_count}")
 
@@ -1088,7 +1100,7 @@ def get_optimal_max_workers():
     # log(f"인스턴스당 메모리 사용량: {memory_usage_per_instance:.2f} MB")
 
     # Calculate max workers based on memory usage per instance
-    max_memory_based_workers = total_memory // (memory_usage_per_instance * 1024 * 1024)
+    max_memory_based_workers = int(total_memory // (memory_usage_per_instance * 1024 * 1024))
 
     # Calculate max workers based on both CPU and memory constraints
     optimal_max_workers = min(cpu_count * 2, max_memory_based_workers)
@@ -1097,13 +1109,13 @@ def get_optimal_max_workers():
     return max(1, min(300, optimal_max_workers))
 
 
-def format_timedelta(td) -> str:
+def format_timedelta(td: timedelta) -> str:
     total_seconds = int(td.total_seconds())
     minutes, seconds = divmod(total_seconds, 60)
-    return f"{minutes} 분 {seconds} 초"
+    return f"{minutes}:{seconds}"
 
 
-def save_screenshot(order_id: str, user_id: str, tab_index, driver) -> None:
+def save_screenshot(order_id: str, user_id: str, tab_index: int, driver: WebDriver) -> None:
     if current_os == 'MAC':
         file_path = f'../log/file/{order_id}/{user_id}/{user_id}.png'
     else:
@@ -1115,8 +1127,8 @@ def save_screenshot(order_id: str, user_id: str, tab_index, driver) -> None:
     log(f"스크린샷이 완료되었습니다. '{user_id}.png' 파일이 저장되었습니다.", user_id, tab_index)
 
 
-def record_start(order_id: str, user_id: str, driver):
-    global video_chrome_window, video_out, video_start_time, record_thread, recording
+def record_start(order_id: str, user_id: str, driver: WebDriver) -> None:
+    global video_out, video_start_time, record_thread, recording
 
     fourcc = cv2.VideoWriter_fourcc(*"XVID")
 
@@ -1137,7 +1149,7 @@ def record_start(order_id: str, user_id: str, driver):
 
 
 # 녹화 시작 (별도의 스레드나 비동기 처리를 사용하는 방법도 있음)
-def record_screen(driver):
+def record_screen(driver: WebDriver) -> None:
     global recording
     while recording:
         frame = capture_screenshot(driver)
@@ -1145,24 +1157,23 @@ def record_screen(driver):
         time.sleep(1 / 5.0)  # 20 FPS로 녹화
 
 
-def capture_screenshot(driver):
-    global video_chrome_window, screen_size
+def capture_screenshot(driver: WebDriver) -> np.ndarray:
+    global screen_size
     png = driver.get_screenshot_as_png()
     img = Image.open(io.BytesIO(png))
     img = img.resize(screen_size)
     return cv2.cvtColor(np.array(img), cv2.COLOR_RGB2BGR)
 
 
-def record_end(user_id: str, tab_index):
+def record_end(user_id: str, tab_index: int) -> None:
     global recording, record_thread, video_out
     recording = False
     record_thread.join()
     video_out.release()
-    cv2.destroyAllWindows()
     log(f"녹화가 완료되었습니다. '{user_id}.avi' 파일이 저장되었습니다.", user_id, tab_index)
 
 
-def last_memory_used(user_id: str, tab_index):
+def last_memory_used(user_id: str, tab_index: int):
     final_memory_usage = measure_memory_usage()
     log(f"마지막 메모리 사용량: {final_memory_usage:.2f} MB", user_id, tab_index)
 
@@ -1171,7 +1182,7 @@ def make_dir(file_path: str) -> None:
     os.makedirs(os.path.dirname(file_path), exist_ok=True)
 
 
-def set_logger(order_id: str, user_id: str, tab_index):
+def set_logger(order_id: str, user_id: str, tab_index: int) -> None:
     if current_os == 'MAC':
         log_filename = f'../log/file/{order_id}/{user_id}/{user_id}.txt'
     else:
@@ -1180,17 +1191,30 @@ def set_logger(order_id: str, user_id: str, tab_index):
                          f'../log/file/{order_id}/{user_id}/{user_id}.txt'))
 
     # 로그 설정
-    log = logging.getLogger(f"Process_{tab_index}")
-    log.setLevel(logging.DEBUG)
+    logging_ele = logging.getLogger(f"Process_{tab_index}")
+    logging_ele.setLevel(logging.DEBUG)
 
     # 파일 핸들러 추가
     fh = logging.FileHandler(log_filename, encoding='utf-8')
     fh.setLevel(logging.DEBUG)
-    log.addHandler(fh)
+    logging_ele.addHandler(fh)
 
     global logger
-    logger = log
+    logger = logging_ele
 
 
-def get_test_order_id():
+def get_test_order_id() -> int:
     return random.randint(9000, 9999)
+
+
+def set_lang(driver: WebDriver) -> None:
+    # 언어 설정을 한국어로 변경하는 JavaScript 실행
+    driver.execute_script("""
+                document.cookie = "ig_lang=ko";
+                location.reload();
+            """)
+    #
+    # if '약관' in driver.page_source:
+    #     print("'약관' 단어를 찾았습니다.")
+    # else:
+    #     print("'약관' 단어를 찾지 못했습니다.")
