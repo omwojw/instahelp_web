@@ -1,17 +1,37 @@
 FROM python:3.8-slim
 
-# Install necessary packages
+# 기본 패키지 설치
 RUN apt-get update && apt-get install -y \
-    chromium-driver \
-    chromium-browser \
+    wget \
+    unzip \
+    gnupg \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Python packages
+# Google Chrome 설치
+RUN wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add - \
+    && echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list \
+    && apt-get update \
+    && apt-get install -y \
+    google-chrome-stable \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# Chromedriver 복사 및 압축 해제
+#COPY chromedriver_linux64.zip /usr/local/bin/chromedriver.zip
+#RUN echo "Checking if chromedriver.zip exists:" && ls -l /usr/local/bin/chromedriver.zip \
+#    && unzip /usr/local/bin/chromedriver.zip -d /usr/local/bin \
+#    && echo "Checking if chromedriver was unzipped:" && ls -l /usr/local/bin/chromedriver \
+#    && rm /usr/local/bin/chromedriver.zip \
+#    && echo "Removed zip file" \
+#    && chmod +x /usr/local/bin/chromedriver \
+#    && echo "Set executable permission for chromedriver" && ls -l /usr/local/bin/chromedriver
+
+# 필요한 Python 패키지 설치
 RUN pip install selenium
 
-# Copy the script into the container
-COPY your_script.py /your_script.py
+# 스크립트를 컨테이너로 복사
+COPY index.py /index.py
 
-# Command to run the script
+# 스크립트를 실행하는 명령 설정
 CMD ["python", "/index.py"]

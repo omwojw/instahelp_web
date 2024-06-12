@@ -6,12 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="f45090a8-3937-4745-9af1-b5942561f191" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/log/error_accounts.txt" beforeDir="false" afterPath="$PROJECT_DIR$/log/error_accounts.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log/order_history.txt" beforeDir="false" afterPath="$PROJECT_DIR$/log/order_history.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log/task_history.txt" beforeDir="false" afterPath="$PROJECT_DIR$/log/task_history.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/log/working/working_accounts_20240612.txt" beforeDir="false" afterPath="$PROJECT_DIR$/log/working/working_accounts_20240612.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/log/working_accounts_save.txt" beforeDir="false" afterPath="$PROJECT_DIR$/log/working_accounts_save.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/setting/account.txt" beforeDir="false" afterPath="$PROJECT_DIR$/setting/account.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/remove/fast/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/remove/fast/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/remove/fast/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/remove/fast/docker-compose.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/remove/fast/index.py" beforeDir="false" afterPath="$PROJECT_DIR$/remove/fast/index.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/setting/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/setting/config.ini" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,22 +40,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.follow_index.executor&quot;: &quot;Run&quot;,
-    &quot;Python.index (1).executor&quot;: &quot;Run&quot;,
-    &quot;Python.index.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.follow_index.executor": "Run",
+    "Python.index (1).executor": "Run",
+    "Python.index.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/workspace/instahelp_web/remove/fast",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\workspace\instahelp_web\remove\fast" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\workspace\instahelp_web\remove\fast" />
+    </key>
+  </component>
   <component name="RunManager" selected="Python.follow_index">
     <configuration name="follow_index" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="instahelp_web" />
@@ -126,11 +135,15 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
+      <deployment type="dockerfile" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Python.follow_index" />
-        <item itemvalue="Python.index (1)" />
         <item itemvalue="Python.index" />
+        <item itemvalue="Python.index (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -153,6 +166,8 @@
       <workItem from="1718086952048" duration="1931000" />
       <workItem from="1718089934684" duration="374000" />
       <workItem from="1718092082140" duration="22055000" />
+      <workItem from="1718176199861" duration="143000" />
+      <workItem from="1718176393104" duration="5028000" />
     </task>
     <servers />
   </component>
@@ -160,8 +175,8 @@
     <option name="version" value="3" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/instahelp_web$follow_index.coverage" NAME="follow_index Coverage Results" MODIFIED="1718174915603" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/follow" />
+    <SUITE FILE_PATH="coverage/instahelp_web$follow_index.coverage" NAME="follow_index Coverage Results" MODIFIED="1718178686847" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/follow" />
     <SUITE FILE_PATH="coverage/instahelp_web$index__1_.coverage" NAME="index (1) Coverage Results" MODIFIED="1718161921956" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/remove/multi_log" />
-    <SUITE FILE_PATH="coverage/instahelp_web$index.coverage" NAME="index Coverage Results" MODIFIED="1718088020051" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/remove/fast" />
+    <SUITE FILE_PATH="coverage/instahelp_web$index.coverage" NAME="index Coverage Results" MODIFIED="1718176783270" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/remove/fast" />
   </component>
 </project>

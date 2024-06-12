@@ -1,7 +1,10 @@
-version: '3'
+version: '3.9'
+
 services:
   selenium:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     environment:
       - START_XVFB=false
     shm_size: '2gb'
