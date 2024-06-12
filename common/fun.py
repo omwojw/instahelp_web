@@ -16,6 +16,13 @@ import traceback
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 import psutil
+from pygetwindow import getWindowsWithTitle
+import cv2
+import threading
+import numpy as np
+from PIL import Image
+import io
+
 # Config 읽기
 import common.fun
 
@@ -32,6 +39,13 @@ elif sys.platform == 'darwin':
 browser_cnt = int(config['selenium']['browser_cnt'])
 is_headless = bool(config['selenium']['headless'] == 'True')
 telegram_token_key = config['telegram']['token_key']
+
+video_out = None
+video_chrome_window = None
+video_start_time = 0
+recording = True
+record_thread = None
+screen_size = (480, 960)
 
 
 # config 셋팅
@@ -691,6 +705,8 @@ def open_selenium(curt_os: str, wait_time: int, ip: str, session_id: str, idx: i
     # Chrome 웹 드라이버 설정
     options = webdriver.ChromeOptions()
 
+    options.add_argument('--window-size=1920,1080')
+
     # 크롬 확장프로그램 비활성화
     # 확장 프로그램이 성능을 저하시키거나 불필요한 리소스를 사용할 수 있으므로 이를 비활성화하여 성능을 최적화합니다.
     options.add_argument("--disable-extensions")
@@ -781,7 +797,8 @@ def open_selenium(curt_os: str, wait_time: int, ip: str, session_id: str, idx: i
         # else:
         #     selenium_driver.set_window_position(screen_width + (width + margin) * (idx - 1), 200)
 
-        selenium_driver.set_window_position(1820-(width+margin), screen_height+margin)
+        selenium_driver.set_window_position(0, 0)
+        # selenium_driver.set_window_position(1820-(width+margin), screen_height+margin)
     return selenium_driver
 
 
@@ -1069,7 +1086,77 @@ def get_optimal_max_workers():
     return max(1, min(300, optimal_max_workers))
 
 
-def format_timedelta(td):
+def format_timedelta(td) -> str:
     total_seconds = int(td.total_seconds())
     minutes, seconds = divmod(total_seconds, 60)
     return f"{minutes} 분 {seconds} 초"
+
+
+def save_screenshot(order_id: str, user_id: str, tab_index, driver) -> None:
+    if current_os == 'MAC':
+        file_path = f'../log/file/{order_id}/{user_id}.png'
+    else:
+        file_path = os.path.abspath(
+            os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                         f'../log/file/{order_id}/{user_id}.png'))
+    make_dir(file_path)
+    driver.save_screenshot(file_path)
+    log(f"스크린샷이 완료되었습니다. '{user_id}.png' 파일이 저장되었습니다.", user_id, tab_index)
+
+
+def record_start(order_id: str, user_id: str, driver):
+    global video_chrome_window, video_out, video_start_time, record_thread, recording
+
+    fourcc = cv2.VideoWriter_fourcc(*"XVID")
+
+    if current_os == 'MAC':
+        file_path = f'../log/file/{order_id}/{user_id}.avi'
+    else:
+        file_path = os.path.abspath(
+            os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                         f'../log/file/{order_id}/{user_id}.avi'))
+
+    make_dir(file_path)
+
+    global screen_size
+    video_out = cv2.VideoWriter(f'{file_path}', fourcc, 5.0, screen_size)
+    video_start_time = time.time()
+    record_thread = threading.Thread(target=record_screen, args=(driver,))
+    record_thread.start()
+
+
+# 녹화 시작 (별도의 스레드나 비동기 처리를 사용하는 방법도 있음)
+def record_screen(driver):
+    global recording
+    while recording:
+        frame = capture_screenshot(driver)
+        video_out.write(frame)
+        time.sleep(1 / 5.0)  # 20 FPS로 녹화
+
+
+def capture_screenshot(driver):
+    global video_chrome_window, screen_size
+    png = driver.get_screenshot_as_png()
+    img = Image.open(io.BytesIO(png))
+    img = img.resize(screen_size)
+    return cv2.cvtColor(np.array(img), cv2.COLOR_RGB2BGR)
+
+
+def record_end(user_id: str, tab_index):
+    global recording, record_thread, video_out
+    recording = False
+    record_thread.join()
+    video_out.release()
+    cv2.destroyAllWindows()
+    log(f"녹화가 완료되었습니다. '{user_id}.avi' 파일이 저장되었습니다.", user_id, tab_index)
+
+
+def last_memory_used(user_id: str, tab_index):
+    final_memory_usage = measure_memory_usage()
+    log(f"마지막 메모리 사용량: {final_memory_usage:.2f} MB", user_id, tab_index)
+
+
+def make_dir(file_path: str) -> None:
+    os.makedirs(os.path.dirname(file_path), exist_ok=True)
+
+

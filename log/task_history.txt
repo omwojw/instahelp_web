@@ -236,3 +236,33 @@ FOLLOW|2024-06-11 17:07:58|99999|https://www.instagram.com/vuqw2wmbbd|mm863n0wiv
 FOLLOW|2024-06-11 17:08:01|99999|https://www.instagram.com/vuqw2wmbbd|sbbhfvesvn|False|에러발생
 FOLLOW|2024-06-11 17:13:56|99999|https://www.instagram.com/vuqw2wmbbd|mm863n0wiv|False|에러발생
 FOLLOW|2024-06-11 17:14:24|99999|https://www.instagram.com/vuqw2wmbbd|sbbhfvesvn|False|태스크 실패
+FOLLOW|2024-06-12 09:22:55|99999|https://www.instagram.com/vuqw2wmbbd|sbbhfvesvn|False|에러발생
+FOLLOW|2024-06-12 09:23:38|99999|https://www.instagram.com/vuqw2wmbbd|mm863n0wiv|False|팔로우 버튼을 눌렀지만 에러
+FOLLOW|2024-06-12 09:24:45|99999|https://www.instagram.com/vuqw2wmbbd|sbbhfvesvn|False|에러발생
+FOLLOW|2024-06-12 09:24:48|99999|https://www.instagram.com/vuqw2wmbbd|mm863n0wiv|False|에러발생
+FOLLOW|2024-06-12 09:26:49|99999|https://www.instagram.com/vuqw2wmbbd|vr6zvcurck|False|태스크 실패
+FOLLOW|2024-06-12 09:27:28|99999|https://www.instagram.com/vuqw2wmbbd|tp0bpduupv|True|성공
+FOLLOW|2024-06-12 09:35:29|99999|https://www.instagram.com/1nusytvdqjs|0hi34ohute|False|에러발생
+FOLLOW|2024-06-12 09:40:34|99999|https://www.instagram.com/1nusytvdqjs|0hi34ohute|False|태스크 실패
+FOLLOW|2024-06-12 09:47:04|99999|https://www.instagram.com/1nusytvdqj|0hi34ohute|True|성공
+FOLLOW|2024-06-12 09:56:13|99999|https://www.instagram.com/1nusytvdqj|0kmouvhihm|True|성공
+FOLLOW|2024-06-12 10:07:09|99999|https://www.instagram.com/1nusytvdqj|0tp5chcla6|True|성공
+FOLLOW|2024-06-12 10:34:07|99999|https://www.instagram.com/1nusytvdqj|1nusytvdqj|False|태스크 실패
+FOLLOW|2024-06-12 10:39:48|99999|https://www.instagram.com/1nusytvdqj|2reakhfagc|False|에러발생
+FOLLOW|2024-06-12 10:43:02|99999|https://www.instagram.com/1nusytvdqj|2reakhfagc|True|성공
+FOLLOW|2024-06-12 10:46:08|99999|https://www.instagram.com/1nusytvdqj|5qziktlnqw|False|에러발생
+FOLLOW|2024-06-12 10:46:58|99999|https://www.instagram.com/1nusytvdqj|5qziktlnqw|False|로그인 실패
+FOLLOW|2024-06-12 10:48:33|99999|https://www.instagram.com/1nusytvdqj|9vt4l7fnky|True|성공
+FOLLOW|2024-06-12 10:59:12|99999|https://www.instagram.com/1nusytvdqj|cc4wxmcyww|True|성공
+FOLLOW|2024-06-12 11:00:38|99999|https://www.instagram.com/1nusytvdqj|jujyvnusma|True|성공
+FOLLOW|2024-06-12 11:03:04|99999|https://www.instagram.com/1nusytvdqj|mm863n0wiv|True|성공
+FOLLOW|2024-06-12 11:05:18|99999|https://www.instagram.com/1nusytvdqj|oauzmtx3vf|False|에러발생
+FOLLOW|2024-06-12 11:09:27|99999|https://www.instagram.com/1nusytvdqj|oauzmtx3vf|False|이미 팔로우 되어 있음
+FOLLOW|2024-06-12 11:14:31|99999|https://www.instagram.com/1nusytvdqj|oauzmtx3vf|False|이미 팔로우 되어 있음
+FOLLOW|2024-06-12 11:16:48|99999|https://www.instagram.com/1nusytvdqj|oauzmtx3vf|False|이미 팔로우 되어 있음
+FOLLOW|2024-06-12 11:17:55|99999|https://www.instagram.com/1nusytvdqj|sbbhfvesvn|False|에러발생
+FOLLOW|2024-06-12 11:19:00|99999|https://www.instagram.com/1nusytvdqj|sbbhfvesvn|False|에러발생
+FOLLOW|2024-06-12 11:20:13|99999|https://www.instagram.com/1nusytvdqj|uk4uu0rslo|True|성공
+FOLLOW|2024-06-12 11:23:42|99999|https://www.instagram.com/1nusytvdqj|uriumuojii|True|성공
+FOLLOW|2024-06-12 11:25:17|99999|https://www.instagram.com/1nusytvdqj|vr6zvcurck|False|에러발생
+FOLLOW|2024-06-12 11:27:21|99999|https://www.instagram.com/1nusytvdqj|vr6zvcurck|True|성공

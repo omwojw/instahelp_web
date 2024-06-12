@@ -1,7 +1,6 @@
 import sys
 import os
 
-
 if sys.platform.startswith('win'):
     sys.path.append(os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")))
 elif sys.platform == 'darwin':
@@ -50,6 +49,10 @@ def setup() -> str:
 # 대시 보드
 def dashboard() -> str:
     global driver, act_chis, wait
+
+    # 녹화시작
+    common.record_start(order_id, user_id, driver)
+
     act_chis = ActionChains(driver)
     wait = WebDriverWait(driver, wait_time, poll_frequency=1)
     success = 0
@@ -185,7 +188,6 @@ def process() -> tuple:
 def main_fun(_tab_index: int, _user_id: str, _user_pw: str, _ip: str, _order_id: str, _quantity: int,
              _order_url: str, _mode: str, _session_id: str) -> str:
 
-
     global tab_index, user_id, user_pw, ip, order_id, quantity, order_url, mode, session_id
     tab_index = _tab_index + 1
     user_id = _user_id
@@ -221,9 +223,20 @@ def main_fun(_tab_index: int, _user_id: str, _user_pw: str, _ip: str, _order_id:
         print(traceback.format_exc())
         return f'0,1,에러발생'
     finally:
-        final_memory_usage = common.measure_memory_usage()
-        common.log(f"마지막 메모리 사용량: {final_memory_usage:.2f} MB", user_id, tab_index)
 
         global driver
+
+        # 마지막 최종 메모리 사용량 로그
+        common.last_memory_used(user_id, tab_index)
+
+        # 녹화 종료
+        common.record_end(user_id, tab_index)
+
+        # 스크린샷 저장
+        common.save_screenshot(order_id, user_id, tab_index, driver)
+
+        # 인스턴스 종료
         driver.quit()
+
+
 

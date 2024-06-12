@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f45090a8-3937-4745-9af1-b5942561f191" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/instahelp_web.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/instahelp_web.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/fun.py" beforeDir="false" afterPath="$PROJECT_DIR$/common/fun.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/follow/follow_index.py" beforeDir="false" afterPath="$PROJECT_DIR$/follow/follow_index.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/follow/follow_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/follow/follow_main.py" afterDir="false" />
@@ -128,7 +123,7 @@
       <workItem from="1718084365128" duration="2192000" />
       <workItem from="1718086952048" duration="1931000" />
       <workItem from="1718089934684" duration="374000" />
-      <workItem from="1718092082140" duration="1539000" />
+      <workItem from="1718092082140" duration="10009000" />
     </task>
     <servers />
   </component>
@@ -136,7 +131,7 @@
     <option name="version" value="3" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/instahelp_web$follow_index.coverage" NAME="follow_index Coverage Results" MODIFIED="1718093618663" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/follow" />
+    <SUITE FILE_PATH="coverage/instahelp_web$follow_index.coverage" NAME="follow_index Coverage Results" MODIFIED="1718159189254" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/follow" />
     <SUITE FILE_PATH="coverage/instahelp_web$index.coverage" NAME="index Coverage Results" MODIFIED="1718088020051" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/remove/fast" />
   </component>
 </project>
