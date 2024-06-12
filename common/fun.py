@@ -13,18 +13,17 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 import pyautogui
 import traceback
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
 import psutil
-from pygetwindow import getWindowsWithTitle
 import cv2
 import threading
 import numpy as np
 from PIL import Image
 import io
+import logging
+from fake_useragent import UserAgent
+ua = UserAgent()
+user_agent = ua.random
 
-# Config 읽기
-import common.fun
 
 config = configparser.ConfigParser()
 current_os = None
@@ -46,6 +45,7 @@ video_start_time = 0
 recording = True
 record_thread = None
 screen_size = (480, 960)
+logger = None
 
 
 # config 셋팅
@@ -543,6 +543,10 @@ def log(text: str, user_id='-', tab_index='-') -> None:
     if config['log']['show'] == 'True':
         print(f'[{tab_index}][{user_id}] {text}')
 
+        global logger
+        if logger:
+            logger.debug(f'[{tab_index}][{user_id}] {text}')
+
 
 # 주문의 남은 수량 변경
 def set_remains(order_id: str, remains: int) -> None:
@@ -699,13 +703,20 @@ def open_selenium(curt_os: str, wait_time: int, ip: str, session_id: str, idx: i
     else:
         driver_path = config['selenium']['driver_path_window']
         chrome_path = config['selenium']['chrome_path_window']
+
     # Chrome 웹 드라이버 경로 설정
     chromedriver_path = driver_path
 
     # Chrome 웹 드라이버 설정
     options = webdriver.ChromeOptions()
 
-    options.add_argument('--window-size=1920,1080')
+    # 셀레니움 로그레벨
+    options.add_argument("--log-level=3")  # INFO, WARNING, LOG, ERROR
+
+    # 셀레니움 헤더 에이전트 랜덤
+    # options.add_argument(f'--user-agent={get_user_agent()}')
+    options.add_argument(f'--user-agent={user_agent}')
+
 
     # 크롬 확장프로그램 비활성화
     # 확장 프로그램이 성능을 저하시키거나 불필요한 리소스를 사용할 수 있으므로 이를 비활성화하여 성능을 최적화합니다.
@@ -755,8 +766,6 @@ def open_selenium(curt_os: str, wait_time: int, ip: str, session_id: str, idx: i
     # 렌더링 관련 성능 문제를 해결하기 위해 사용합니다. 특정 환경에서 성능 향상이 있을 수 있습니다.
     options.add_argument("--disable-features=VizDisplayCompositor")
 
-    # user agent header 추가
-    options.add_argument(f'--user-agent={get_user_agent()}')
 
     # 세션
     if current_os == 'MAC':
@@ -772,7 +781,9 @@ def open_selenium(curt_os: str, wait_time: int, ip: str, session_id: str, idx: i
     if is_headless:
         options.add_argument('--headless')
 
-    options.add_argument("--log-level=3")  # INFO, WARNING, LOG, ERROR
+        # 헤드리스 모드일때 한국어로
+        options.add_argument('--lang=ko')
+
 
     # 프록시 설정은 윈도우에서만 가능
     if current_os == 'WINDOW':
@@ -1094,11 +1105,11 @@ def format_timedelta(td) -> str:
 
 def save_screenshot(order_id: str, user_id: str, tab_index, driver) -> None:
     if current_os == 'MAC':
-        file_path = f'../log/file/{order_id}/{user_id}.png'
+        file_path = f'../log/file/{order_id}/{user_id}/{user_id}.png'
     else:
         file_path = os.path.abspath(
             os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                         f'../log/file/{order_id}/{user_id}.png'))
+                         f'../log/file/{order_id}/{user_id}/{user_id}.png'))
     make_dir(file_path)
     driver.save_screenshot(file_path)
     log(f"스크린샷이 완료되었습니다. '{user_id}.png' 파일이 저장되었습니다.", user_id, tab_index)
@@ -1110,11 +1121,11 @@ def record_start(order_id: str, user_id: str, driver):
     fourcc = cv2.VideoWriter_fourcc(*"XVID")
 
     if current_os == 'MAC':
-        file_path = f'../log/file/{order_id}/{user_id}.avi'
+        file_path = f'../log/file/{order_id}/{user_id}/{user_id}.avi'
     else:
         file_path = os.path.abspath(
             os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                         f'../log/file/{order_id}/{user_id}.avi'))
+                         f'../log/file/{order_id}/{user_id}/{user_id}.avi'))
 
     make_dir(file_path)
 
@@ -1160,3 +1171,26 @@ def make_dir(file_path: str) -> None:
     os.makedirs(os.path.dirname(file_path), exist_ok=True)
 
 
+def set_logger(order_id: str, user_id: str, tab_index):
+    if current_os == 'MAC':
+        log_filename = f'../log/file/{order_id}/{user_id}/{user_id}.txt'
+    else:
+        log_filename = os.path.abspath(
+            os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                         f'../log/file/{order_id}/{user_id}/{user_id}.txt'))
+
+    # 로그 설정
+    log = logging.getLogger(f"Process_{tab_index}")
+    log.setLevel(logging.DEBUG)
+
+    # 파일 핸들러 추가
+    fh = logging.FileHandler(log_filename, encoding='utf-8')
+    fh.setLevel(logging.DEBUG)
+    log.addHandler(fh)
+
+    global logger
+    logger = log
+
+
+def get_test_order_id():
+    return random.randint(9000, 9999)

@@ -46,7 +46,7 @@ def fetch_order() -> bool:
                         }, timeout=10).json()
     # 결과가 성공이 아니면
     if res['status'] != 'success':
-        order_id = config['item']['test_order_id']
+        order_id = common.get_test_order_id()
         quantity = int(config['item']['test_quantity'])
         order_url = str(config['item']['test_save_order_url'])
         mode = "TEST"

@@ -266,3 +266,9 @@ FOLLOW|2024-06-12 11:20:13|99999|https://www.instagram.com/1nusytvdqj|uk4uu0rslo
 FOLLOW|2024-06-12 11:23:42|99999|https://www.instagram.com/1nusytvdqj|uriumuojii|True|성공
 FOLLOW|2024-06-12 11:25:17|99999|https://www.instagram.com/1nusytvdqj|vr6zvcurck|False|에러발생
 FOLLOW|2024-06-12 11:27:21|99999|https://www.instagram.com/1nusytvdqj|vr6zvcurck|True|성공
+FOLLOW|2024-06-12 12:21:40|99999|https://www.instagram.com/1nusytvdqj|vuqw2wmbbd|False|태스크 실패
+FOLLOW|2024-06-12 12:23:55|99999|https://www.instagram.com/1nusytvdqj|vuqw2wmbbd|False|에러발생
+FOLLOW|2024-06-12 12:25:55|99999|https://www.instagram.com/1nusytvdqj|vuqw2wmbbd|False|에러발생
+FOLLOW|2024-06-12 12:26:40|99999|https://www.instagram.com/1nusytvdqj|vuqw2wmbbd|False|에러발생
+FOLLOW|2024-06-12 12:34:38|9033|https://www.instagram.com/1nusytvdqj|vuqw2wmbbd|False|에러발생
+FOLLOW|2024-06-12 12:36:12|9485|https://www.instagram.com/1nusytvdqj|vuqw2wmbbd|False|에러발생

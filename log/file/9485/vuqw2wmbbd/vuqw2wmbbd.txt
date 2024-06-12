@@ -1,0 +1,11 @@
+[1][vuqw2wmbbd] 로그인 시작
+[1][vuqw2wmbbd] 로그인 종료
+[1][vuqw2wmbbd] 로그인 검증 시작
+[1][vuqw2wmbbd] 로그인 검증 종료
+[1][vuqw2wmbbd] 로그인 성공여부 True
+[1][vuqw2wmbbd] 남은 수량 : 1
+[1][vuqw2wmbbd] 팔로우 시작
+[1][vuqw2wmbbd] 팔로우 종료 - 에러발생
+[1][vuqw2wmbbd] 마지막 메모리 사용량: 86.95 MB
+[1][vuqw2wmbbd] 녹화가 완료되었습니다. 'vuqw2wmbbd.avi' 파일이 저장되었습니다.
+[1][vuqw2wmbbd] 스크린샷이 완료되었습니다. 'vuqw2wmbbd.png' 파일이 저장되었습니다.

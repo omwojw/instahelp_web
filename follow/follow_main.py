@@ -53,6 +53,9 @@ def dashboard() -> str:
     # 녹화시작
     common.record_start(order_id, user_id, driver)
 
+    # 로그객체 생성
+    common.set_logger(order_id, user_id, tab_index)
+
     act_chis = ActionChains(driver)
     wait = WebDriverWait(driver, wait_time, poll_frequency=1)
     success = 0
