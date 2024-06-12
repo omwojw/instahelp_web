@@ -190,7 +190,6 @@ def process() -> tuple:
 
 def main_fun(_tab_index: int, _user_id: str, _user_pw: str, _ip: str, _order_id: str, _quantity: int,
              _order_url: str, _mode: str, _session_id: str) -> str:
-
     global tab_index, user_id, user_pw, ip, order_id, quantity, order_url, mode, session_id
     tab_index = _tab_index + 1
     user_id = _user_id
@@ -240,6 +239,3 @@ def main_fun(_tab_index: int, _user_id: str, _user_pw: str, _ip: str, _order_id:
 
         # 인스턴스 종료
         driver.quit()
-
-
-

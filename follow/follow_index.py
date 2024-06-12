@@ -34,7 +34,7 @@ start_time = time.time()
 # 주문 체크
 def fetch_order() -> bool:
     # 주문 중복체크
-    is_dupl_order = common.dupl_check(config['api']['follow_service'], order_service, order_log_path)
+    is_dupl_order = common.dupl_check(int(config['api']['follow_service']), order_service, order_log_path)
     if is_dupl_order:
         return
 
@@ -46,7 +46,6 @@ def fetch_order() -> bool:
                             'action': 'getOrder',
                             'type': config['api']['follow_service']
                         }, timeout=10).json()
-
     # 결과가 성공이 아니면
     if res['status'] != 'success':
         order_id = common.get_test_order_id()
@@ -91,7 +90,6 @@ def process_order(order_id: str, quantity: int, order_url: str, active_accounts:
     total_success = 0
     total_fail = 0
     for active_account in active_accounts:
-
         with ProcessPoolExecutor(max_workers=max_workers) as executor:
             futures = [executor.submit(
                 main_process.main_fun
@@ -113,7 +111,6 @@ def process_order(order_id: str, quantity: int, order_url: str, active_accounts:
     common.result_api(order_id, total_success, total_fail, quantity, order_log_path, order_service)
 
     end_time = time.time()
-
     global start_time
     elapsed_time = timedelta(seconds=end_time - start_time)
     formatted_time = common.format_timedelta(elapsed_time)

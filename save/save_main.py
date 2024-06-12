@@ -1,7 +1,6 @@
 import sys
 import os
 
-
 if sys.platform.startswith('win'):
     sys.path.append(os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")))
 elif sys.platform == 'darwin':
@@ -50,6 +49,13 @@ def setup() -> str:
 # 대시 보드
 def dashboard() -> str:
     global driver, act_chis, wait
+
+    # 녹화시작
+    common.record_start(order_id, user_id, driver)
+
+    # 로그객체 생성
+    common.set_logger(order_id, user_id, tab_index)
+
     act_chis = ActionChains(driver)
     wait = WebDriverWait(driver, wait_time, poll_frequency=1)
     success = 0
@@ -119,7 +125,7 @@ def dashboard() -> str:
             common.write_working_log(task_service, user_id, success)
             common.write_working_save_log(task_service, order_id, user_id, order_url)
         common.sleep(3)
-        return f'{success},{fail}'
+        return f'{success},{fail},{message}'
     except Exception as ex:
         # common.remove_from_accounts(task_service, order_id, user_id, '태스크 실패')
         print(traceback.format_exc())
@@ -181,6 +187,9 @@ def main_fun(_tab_index: int, _user_id: str, _user_pw: str, _ip: str, _order_id:
 
     # 시작 함수
     try:
+        initial_memory_usage = common.measure_memory_usage()
+        common.log(f"초기 메모리 사용량: {initial_memory_usage:.2f} MB", user_id, tab_index)
+
         result = setup()
         success = int(result.split(',')[0])
         fail = int(result.split(',')[1])
@@ -199,4 +208,18 @@ def main_fun(_tab_index: int, _user_id: str, _user_pw: str, _ip: str, _order_id:
         common.write_task_log(task_log_path, task_service, order_id, user_id, False, '에러발생', order_url)
         print(traceback.format_exc())
         return f'0,1,에러발생'
+    finally:
 
+        global driver
+
+        # 마지막 최종 메모리 사용량 로그
+        common.last_memory_used(user_id, tab_index)
+
+        # 녹화 종료
+        common.record_end(user_id, tab_index)
+
+        # 스크린샷 저장
+        common.save_screenshot(order_id, user_id, tab_index, driver)
+
+        # 인스턴스 종료
+        driver.quit()
