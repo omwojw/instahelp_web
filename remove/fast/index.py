@@ -12,7 +12,7 @@ def setup_driver():
     chrome_options.add_argument("--headless")
 
     # ChromeDriver와 Chrome 브라우저 경로 설정
-    chrome_service = ChromeService(executable_path="/usr/local/bin/chromedriver")
+    chrome_service = ChromeService(executable_path="/usr/local/bin/chromedriver_linux")
     chrome_options.binary_location = "/usr/bin/google-chrome"
 
     driver = webdriver.Chrome(service=chrome_service, options=chrome_options)

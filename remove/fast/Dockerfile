@@ -18,8 +18,8 @@ RUN wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add
     && rm -rf /var/lib/apt/lists/*
 
 # Chromedriver 복사 및 압축 해제
-COPY chromedriver /usr/local/bin/
-RUN chmod +x /usr/local/bin/chromedriver
+COPY chromedriver_linux /usr/local/bin/
+RUN chmod +x /usr/local/bin/chromedriver_linux
 
 
 # 필요한 Python 패키지 설치
@@ -29,5 +29,5 @@ RUN pip install selenium
 COPY index.py /index.py
 
 # 스크립트를 실행하는 명령 설정
-CMD ["python", "/index.py"]
-#CMD ["sh", "-c", "python /index.py & tail -f /dev/null"]
+#CMD ["python", "/index.py"]
+CMD ["sh", "-c", "python /index.py & tail -f /dev/null"]
