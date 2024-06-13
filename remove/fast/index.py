@@ -8,21 +8,22 @@ from datetime import timedelta
 
 def setup_driver():
     chrome_options = Options()
-
-    # 헤드리스 모드
+    chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--headless")
 
-    # chrome_options.binary_location = "C:/Program Files/Google/Chrome/Application/chrome.exe"
-    service = ChromeService(executable_path="/usr/local/bin/chromedriver")
-    driver = webdriver.Chrome(service=service, options=chrome_options)
+    # ChromeDriver와 Chrome 브라우저 경로 설정
+    chrome_service = ChromeService(executable_path="/usr/local/bin/chromedriver")
+    chrome_options.binary_location = "/usr/bin/google-chrome"
+
+    driver = webdriver.Chrome(service=chrome_service, options=chrome_options)
     return driver
 
 
 def login(idx, user_id, user_pw, login_url):
-    # driver = setup_driver()
-    # driver.get(login_url)
-    print(f"{idx+1} - {user_id} - {user_pw}")
-    # driver.quit()
+    driver = setup_driver()
+    driver.get(login_url)
+    print(f"{idx+1} - {user_id} - {user_pw} - {driver.current_url}")
+    driver.quit()
 
 
 def format_timedelta(td):
@@ -36,6 +37,13 @@ def main():
     active_accounts = [
         "user1|password1",
         "user2|password2",
+        "user3|password3",
+        "user3|password3",
+        "user3|password3",
+        "user3|password3",
+        "user3|password3",
+        "user3|password3",
+        "user3|password3",
         "user3|password3",
     ]
 
@@ -57,8 +65,6 @@ def main():
     elapsed_time = timedelta(seconds=end_time - start_time)
     formatted_time = format_timedelta(elapsed_time)
     print(f"걸린시간: {formatted_time} 계정개수 {len(active_accounts)}")
-
-    time.sleep(100000)
 
 
 if __name__ == '__main__':

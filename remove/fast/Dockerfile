@@ -18,14 +18,9 @@ RUN wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add
     && rm -rf /var/lib/apt/lists/*
 
 # Chromedriver 복사 및 압축 해제
-#COPY chromedriver_linux64.zip /usr/local/bin/chromedriver.zip
-#RUN echo "Checking if chromedriver.zip exists:" && ls -l /usr/local/bin/chromedriver.zip \
-#    && unzip /usr/local/bin/chromedriver.zip -d /usr/local/bin \
-#    && echo "Checking if chromedriver was unzipped:" && ls -l /usr/local/bin/chromedriver \
-#    && rm /usr/local/bin/chromedriver.zip \
-#    && echo "Removed zip file" \
-#    && chmod +x /usr/local/bin/chromedriver \
-#    && echo "Set executable permission for chromedriver" && ls -l /usr/local/bin/chromedriver
+COPY chromedriver /usr/local/bin/
+RUN chmod +x /usr/local/bin/chromedriver
+
 
 # 필요한 Python 패키지 설치
 RUN pip install selenium
@@ -35,3 +30,4 @@ COPY index.py /index.py
 
 # 스크립트를 실행하는 명령 설정
 CMD ["python", "/index.py"]
+#CMD ["sh", "-c", "python /index.py & tail -f /dev/null"]
