@@ -2,10 +2,11 @@ import sys
 import os
 import time
 from datetime import timedelta
-if sys.platform.startswith('win'):
-    sys.path.append(os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")))
-elif sys.platform == 'darwin':
-    sys.path.append("../")
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")))
+# if sys.platform.startswith('win'):
+#     sys.path.append(os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")))
+# elif sys.platform == 'darwin':
+#     sys.path.append("../")
 
 import configparser
 import requests

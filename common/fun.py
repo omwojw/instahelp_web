@@ -27,19 +27,21 @@ from typing import List
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support.ui import WebDriverWait
 from typing import Optional
+import re
+import ast
 ua = UserAgent()
 user_agent = ua.random
 
 
 config = configparser.ConfigParser()
 current_os = None
+config.read(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'setting', 'config.ini'), encoding='utf-8')
 if sys.platform.startswith('win'):
-    config.read(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'setting', 'config.ini'),
-                encoding='utf-8')
     current_os = 'WINDOW'
 elif sys.platform == 'darwin':
-    config.read('../setting/config.ini', encoding='utf-8')
     current_os = 'MAC'
+elif sys.platform == 'linux':
+    current_os = 'LINUX'
 
 browser_cnt = int(config['selenium']['browser_cnt'])
 is_headless = bool(config['selenium']['headless'] == 'True')
@@ -56,11 +58,8 @@ logger: Optional[logging] = None
 
 # config 셋팅
 def get_config(new_confit: configparser.ConfigParser) -> None:
-    if sys.platform.startswith('win'):
-        new_confit.read(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'setting', 'config.ini'),
-                        encoding='utf-8')
-    elif sys.platform == 'darwin':
-        new_confit.read('../setting/config.ini', encoding='utf-8')
+    new_confit.read(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'setting', 'config.ini'),
+                    encoding='utf-8')
 
 
 # 실행 OS 정보
@@ -69,6 +68,8 @@ def get_os() -> str:
         return 'WINDOW'
     elif sys.platform == 'darwin':
         return 'MAC'
+    elif sys.platform == 'linux':
+        return 'LINUX'
 
 
 # 계정 정보 목록
@@ -712,9 +713,12 @@ def open_selenium(curt_os: str, wait_time: int, ip: str, session_id: str, idx: i
     if curt_os == 'MAC':
         driver_path = config['selenium']['driver_path_mac']
         chrome_path = config['selenium']['chrome_path_mac']
-    else:
+    elif curt_os == 'WINDOW':
         driver_path = config['selenium']['driver_path_window']
         chrome_path = config['selenium']['chrome_path_window']
+    elif curt_os == 'LINUX':
+        driver_path = config['selenium']['driver_path_linux']
+        chrome_path = config['selenium']['chrome_path_linux']
 
     # Chrome 웹 드라이버 경로 설정
     chromedriver_path = driver_path
@@ -786,6 +790,9 @@ def open_selenium(curt_os: str, wait_time: int, ip: str, session_id: str, idx: i
         options.add_argument(
             f'--user-data-dir=C:/workspace/instahelp_session/instahelp_{session_id}')
         options.add_argument(f'--profile-directory=Default')  # 프로필 디렉토리 지정
+    elif current_os == 'LINUX':
+        options.add_argument(
+            f'--user-data-dir=/instahelp_session/instahelp_{session_id}')
 
     # 헤드리스 모드
     if is_headless:
@@ -797,6 +804,8 @@ def open_selenium(curt_os: str, wait_time: int, ip: str, session_id: str, idx: i
     # 프록시 설정은 윈도우에서만 가능
     if current_os == 'WINDOW':
         options.add_argument(f'--proxy-server={ip}')
+    # elif current_os == 'LINUX':
+    #     options.add_argument(f'--proxy-server={ip}')
 
     options.binary_location = chrome_path
 
@@ -820,6 +829,8 @@ def open_selenium(curt_os: str, wait_time: int, ip: str, session_id: str, idx: i
 
         selenium_driver.set_window_position(0, 0)
         # selenium_driver.set_window_position(1820-(width+margin), screen_height+margin)
+    elif current_os == 'LINUX':
+        selenium_driver.set_window_position(0, 0)
     return selenium_driver
 
 
@@ -1218,3 +1229,26 @@ def set_lang(driver: WebDriver) -> None:
     #     print("'약관' 단어를 찾았습니다.")
     # else:
     #     print("'약관' 단어를 찾지 못했습니다.")
+
+
+def extract_final_results(text: str, result_type: str):
+    # 정규 표현식 패턴 정의: "최종결과["와 "]" 사이의 내용을 매칭
+    pattern = r"최종결과\[(.*?)\]"
+
+    # 정규 표현식을 사용하여 매칭되는 부분 추출
+    match = re.search(pattern, text)
+
+    if match:
+        # 매칭된 부분을 쉼표로 분할하여 리스트로 변환
+        result_str = match.group(1)
+        result_list = [int(num.strip()) for num in result_str.split(',')]
+
+        # 결과 타입에 따라 값 반환
+        if result_type == 'SUCCESS' and len(result_list) > 0:
+            return result_list[0]
+        elif result_type == 'FAIL' and len(result_list) > 1:
+            return result_list[1]
+        else:
+            return None
+    else:
+        return None

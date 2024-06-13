@@ -303,3 +303,4 @@ FOLLOW|2024-06-12 15:52:34|9612|https://www.instagram.com/uk4uu0rslo|edwa.rdmart
 FOLLOW|2024-06-12 15:52:37|9612|https://www.instagram.com/uk4uu0rslo|dr.deborah_williamss8|False|팔로우 버튼을 눌렀지만 에러
 FOLLOW|2024-06-12 15:53:03|9612|https://www.instagram.com/uk4uu0rslo|drkenneth_hernandezsg|False|팔로우 버튼을 눌렀지만 에러
 FOLLOW|2024-06-12 16:52:30|9934|https://www.instagram.com/uk4uu0rslo|david.fox789355748|False|태스크 실패
+FOLLOW|2024-06-13 17:33:10|9528|https://www.instagram.com/uk4uu0rslo|0hi34ohute|True|성공
