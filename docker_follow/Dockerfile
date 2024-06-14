@@ -1,4 +1,4 @@
-FROM python:3.8-slim
+FROM python:3.9
 
 # 기본 패키지 설치
 RUN apt-get update && apt-get install -y \
@@ -17,9 +17,12 @@ RUN wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
+WORKDIR /instahelp_web
 
 # 필요한 Python 패키지 설치
-RUN pip install selenium
+COPY requirements.txt /tmp/requirements.txt
+RUN pip install --upgrade pip
+RUN pip install --no-cache-dir -r /tmp/requirements.txt
 
 # 스크립트를 실행하는 명령 설정
 CMD ["tail", "-f", "/dev/null"]
