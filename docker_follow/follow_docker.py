@@ -10,12 +10,13 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__f
 
 import configparser
 import requests
-from concurrent.futures import ProcessPoolExecutor
 import common.fun as common
-import follow.follow_main as main_process
 import docker
 import json
 import subprocess
+from concurrent.futures import ProcessPoolExecutor
+from docker.models.containers import Container
+from docker import DockerClient
 
 # Config 읽기
 config = configparser.ConfigParser()
@@ -76,50 +77,80 @@ def fetch_order() -> None:
     if len(sorted_accounts) == 0:
         common.not_working_accounts(order_log_path, order_service, order_id, quantity)
         return
-    else:
-        common.log(f'주문번호[{order_id}], 주문건수[{quantity}], 가용 가능한 계정[{len(sorted_accounts)}]')
+
+    # 최대 개수 체크
+    if common.order_max_check(quantity):
+        common.max_order_log(order_log_path, order_service, order_id, quantity)
+        return
+
 
     # 계정 개수에 따른 브라우저 셋팅
     active_accounts = common.account_setting(sorted_accounts, quantity)
 
+    # 현황 로그
+    common.log(f'주문번호[{order_id}], 주문건수[{quantity}], 가용 가능한 계정[{len(sorted_accounts)}], 컨테이너 사용개수[{len(active_accounts)}]')
+
+    # 프로세스 실행
     process_order(order_id, quantity, order_url, active_accounts)
 
 
 # 주문 실행
 def process_order(order_id: str, quantity: int, order_url: str, active_accounts: list):
-    max_workers = common.get_optimal_max_workers()
-    common.log(f"최대 작업 인스턴스: {max_workers}")
+    project_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
     total_success = 0
     total_fail = 0
-    for active_account in active_accounts:
-        subprocess.run(["docker-compose", "up", "-d", "--build"], check=True)
 
-        client = docker.from_env()
-        containers = client.containers.list()
-        container = containers[0]
+    subprocess.run(
+        ["docker-compose", "up", "-d", "--scale", f"s={len(active_accounts)}", "--build"],
+        check=True,
+        cwd=project_dir,
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL
+    )
 
-        # 컨테이너 내에서 명령 실행
-        command = f"python /instahelp_web/docker_follow/follow_index.py {json.dumps(active_account)} {order_id} {quantity} {order_url}"
-        exec_id = client.api.exec_create(container.id, command)
-        output = client.api.exec_start(exec_id, stream=True)
+    max_workers = common.get_optimal_max_workers()
+    with ProcessPoolExecutor(max_workers=max_workers) as executor:
+        futures = [executor.submit(
+            open_docker
+            , index
+            , account
+            , order_id
+            , quantity
+            , order_url
+        ) for index, account in enumerate(active_accounts)]
+        results = [future.result() for future in futures]
 
-        for line in output:
-            print(line.decode("utf-8"))
-
-        success = common.extract_final_results(output, 'SUCCESS')
-        fail = common.extract_final_results(output, 'FAIL')
-
-        if success and fail:
-            total_success += int(success)
-            total_fail += int(fail)
+        total_success += sum(int(result.split(',')[0]) for result in results)
+        total_fail += sum(int(result.split(',')[1]) for result in results)
 
     end_time = time.time()
     global start_time
     elapsed_time = timedelta(seconds=end_time - start_time)
     formatted_time = common.format_timedelta(elapsed_time)
-    common.log(f"걸린시간: {formatted_time} 계정개수 {total_success + total_fail}")
+    common.log(f"걸린시간: {formatted_time}, 계정개수 {total_success + total_fail}")
     common.result_api(order_id, total_success, total_fail, quantity, order_log_path, order_service, formatted_time)
+
+
+def open_docker(index: int, active_account: list, order_id: str, quantity: int, order_url: str) -> str:
+    client = docker.from_env()
+    containers = client.containers.list()
+    container = containers[index]
+    common.log(f"컨테이너 실행성공", container.name, index + 1)
+
+    # 컨테이너 내에서 명령 실행
+    command = f'python /instahelp_web/docker_follow/follow_index.py \'{json.dumps(active_account)}\' {order_id} {quantity} {order_url}'
+    exec_id = client.api.exec_create(container.id, command)
+    output = client.api.exec_start(exec_id, stream=True)
+
+    result_print = ""
+    for line in output:
+        result_print += line.decode("utf-8")
+
+    success = common.extract_final_results(result_print, 'SUCCESS')
+    fail = common.extract_final_results(result_print, 'FAIL')
+    common.log(f"컨테이너 성공: {success}, 실패: {fail}", container.name, index + 1)
+    return f"{success},{fail}"
 
 
 def main():

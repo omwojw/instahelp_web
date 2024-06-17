@@ -1,0 +1,161 @@
+import sys
+import os
+import time
+from datetime import timedelta
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")))
+# if sys.platform.startswith('win'):
+#     sys.path.append(os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")))
+# elif sys.platform == 'darwin':
+#     sys.path.append("../")
+
+import configparser
+import requests
+import common.fun as common
+import docker
+import json
+import subprocess
+from concurrent.futures import ProcessPoolExecutor
+
+# Config 읽기
+config = configparser.ConfigParser()
+common.get_config(config)
+
+# OS 읽기
+current_os = common.get_os()
+
+# 계정 읽기
+accounts = common.get_accounts('account.txt')
+
+# 글로벌 변수
+order_service = config['item']['follow']
+order_log_path = "../log/order_history.txt"
+
+mode = ""
+start_time = time.time()
+
+
+# 주문 체크
+def fetch_order() -> None:
+    # 주문 중복체크
+    is_dupl_order = common.dupl_check(int(config['api']['follow_service']), order_service, order_log_path)
+    if is_dupl_order:
+        return
+
+    global mode
+    # 신규 주문건 체크
+    res = requests.get(config['api']['url'],
+                        data={
+                            'key': config['api']['key'],
+                            'action': 'getOrder',
+                            'type': config['api']['follow_service']
+                        }, timeout=10).json()
+    # 결과가 성공이 아니면
+    if res['status'] != 'success':
+        order_id = common.get_test_order_id()
+        quantity = int(config['item']['test_quantity'])
+        order_url = str(config['item']['test_follow_order_url'])
+        mode = "TEST"
+    else:
+        order_id = res['id']
+        quantity = int(res['quantity'])
+        order_url = res['link']
+        mode = "LIVE"
+    common.log(f'모드 : {mode}')
+
+    if 'instagram.com' not in order_url:
+        order_url = f'https://www.instagram.com/{order_url}'
+
+    # 계정 선별
+    filter_accounts = common.set_filter_accounts(order_service, order_url, accounts)
+
+    # 할당량이 많은 남은 순으로 정렬
+    sorted_accounts = common.set_sort_accouts(order_service, filter_accounts)
+
+    # 작업 가능한 계정이 없는경우 취소처리
+    if len(sorted_accounts) == 0:
+        common.not_working_accounts(order_log_path, order_service, order_id, quantity)
+        return
+    else:
+        common.log(f'주문번호[{order_id}], 주문건수[{quantity}], 가용 가능한 계정[{len(sorted_accounts)}]')
+
+    # 최대 개수 체크
+    if common.order_max_check(quantity):
+        common.max_order_log(order_log_path, order_service, order_id, quantity)
+        return
+
+
+    # 계정 개수에 따른 브라우저 셋팅
+    active_accounts = common.account_setting(sorted_accounts, quantity)
+
+    process_order(order_id, quantity, order_url, active_accounts)
+
+
+# 주문 실행
+def process_order(order_id: str, quantity: int, order_url: str, active_accounts: list):
+    max_workers = common.get_optimal_max_workers()
+
+    total_success = 0
+    total_fail = 0
+
+    with ProcessPoolExecutor(max_workers=max_workers) as executor:
+        futures = [executor.submit(
+            open_docker
+            , index
+            , order_id
+            , quantity
+            , order_url
+            , account
+        ) for index, account in enumerate(active_accounts)]
+        results = [future.result() for future in futures]
+
+        total_success += sum(int(result.split(',')[0]) for result in results)
+        total_fail += sum(int(result.split(',')[1]) for result in results)
+
+    end_time = time.time()
+    global start_time
+    elapsed_time = timedelta(seconds=end_time - start_time)
+    formatted_time = common.format_timedelta(elapsed_time)
+    common.log(f"걸린시간: {formatted_time}, 계정개수 {total_success + total_fail}")
+    common.result_api(order_id, total_success, total_fail, quantity, order_log_path, order_service, formatted_time)
+
+
+def open_docker(index: int, order_id: str, quantity: int, order_url: str, active_account: list):
+    project_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+    try:
+        result = subprocess.run(
+            ["docker-compose", "up", "-d", "--scale", "--build"],
+            check=True,
+            cwd=project_dir,
+            capture_output=True,
+            text=True
+        )
+        print(result.stdout)
+    except subprocess.CalledProcessError as e:
+        print(f"Command '{e.cmd}' returned non-zero exit status {e.returncode}.")
+        print(f"Error output: {e.stderr}")
+        raise
+
+    client = docker.from_env()
+    container = client.containers.get(f"follow_{index + 1}")
+
+    # 컨테이너 내에서 명령 실행
+    command = f'python /instahelp_web/docker_follow/follow_index.py \'{json.dumps(active_account)}\' {order_id} {quantity} {order_url}'
+    exec_id = client.api.exec_create(container.id, command)
+    output = client.api.exec_start(exec_id, stream=True)
+
+    result_print = ""
+    for line in output:
+        result_print += line.decode("utf-8")
+
+    success = common.extract_final_results(result_print, 'SUCCESS')
+    fail = common.extract_final_results(result_print, 'FAIL')
+    return f"{success},{fail}"
+
+
+def main():
+    # 시작 함수
+    fetch_order()
+
+
+if __name__ == '__main__':
+    main()

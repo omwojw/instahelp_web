@@ -1,2 +1,2 @@
-cd C:\workspace\instahelp_web\follow
+cd C:\workspace\instahelp_web\docker_follow
 python follow_index.py

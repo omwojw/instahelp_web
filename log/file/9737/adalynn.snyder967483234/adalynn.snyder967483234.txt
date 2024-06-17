@@ -1,5 +1,0 @@
-[1][adalynn.snyder967483234] 로그인 성공여부 True
-[1][adalynn.snyder967483234] 남은 수량 : 1
-[1][adalynn.snyder967483234] 팔로우 시작
-[1][adalynn.snyder967483234] 마지막 메모리 사용량: 85.14 MB
-[1][adalynn.snyder967483234] 녹화가 완료되었습니다. 'adalynn.snyder967483234.avi' 파일이 저장되었습니다.

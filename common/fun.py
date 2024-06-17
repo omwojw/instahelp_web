@@ -11,7 +11,6 @@ import requests
 import random
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
-import pyautogui
 import traceback
 import psutil
 import cv2
@@ -28,7 +27,6 @@ from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support.ui import WebDriverWait
 from typing import Optional
 import re
-import ast
 ua = UserAgent()
 user_agent = ua.random
 
@@ -38,12 +36,15 @@ current_os = None
 config.read(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'setting', 'config.ini'), encoding='utf-8')
 if sys.platform.startswith('win'):
     current_os = 'WINDOW'
+    import pyautogui
 elif sys.platform == 'darwin':
     current_os = 'MAC'
+    import pyautogui
 elif sys.platform == 'linux':
     current_os = 'LINUX'
 
 browser_cnt = int(config['selenium']['browser_cnt'])
+order_max_cnt = int(config['selenium']['order_max_cnt'])
 is_headless = bool(config['selenium']['headless'] == 'True')
 telegram_token_key = config['telegram']['token_key']
 
@@ -53,7 +54,8 @@ video_start_time = 0
 recording = True
 record_thread: Optional[threading.Thread] = None
 screen_size = (480, 960)
-logger: Optional[logging] = None
+# logger: Optional[logging] = None
+logger = logging.getLogger(__name__)
 
 
 # config 셋팅
@@ -74,11 +76,8 @@ def get_os() -> str:
 
 # 계정 정보 목록
 def get_accounts(path: str) -> list:
-    if current_os == 'MAC':
-        file_path = f'../setting/{path}'
-    else:
-        file_path = os.path.abspath(
-            os.path.join(os.path.dirname(os.path.abspath(__file__)), f"../setting/{path}"))
+    file_path = os.path.abspath(
+        os.path.join(os.path.dirname(os.path.abspath(__file__)), f"../setting/{path}"))
 
     with open(file_path, 'r', encoding='UTF-8') as f:
         accounts = f.readlines()
@@ -95,12 +94,8 @@ def get_accounts(path: str) -> list:
 # 계정 태스크가 적은 계정 오름차순 정렬
 def set_sort_accouts(service: str, filter_accounts: list) -> list:
     current_time = datetime.now().strftime('%Y%m%d')
-
-    if current_os == 'MAC':
-        file_path = f'../log/working/working_accounts_{current_time}.txt'
-    else:
-        file_path = os.path.abspath(
-            os.path.join(os.path.dirname(os.path.abspath(__file__)), f'../log/working/working_accounts_{current_time}.txt'))
+    file_path = os.path.abspath(
+        os.path.join(os.path.dirname(os.path.abspath(__file__)), f'../log/working/working_accounts_{current_time}.txt'))
 
     # 파일 읽기 시도
     try:
@@ -136,11 +131,8 @@ def set_sort_accouts(service: str, filter_accounts: list) -> list:
 def get_accounts_max_working(service: str) -> list:
     current_time = datetime.now().strftime('%Y%m%d')
 
-    if current_os == 'MAC':
-        file_path = f'../log/working/working_accounts_{current_time}.txt'
-    else:
-        file_path = os.path.abspath(
-            os.path.join(os.path.dirname(os.path.abspath(__file__)), f'../log/working/working_accounts_{current_time}.txt'))
+    file_path = os.path.abspath(
+        os.path.join(os.path.dirname(os.path.abspath(__file__)), f'../log/working/working_accounts_{current_time}.txt'))
 
     # 파일 읽기 시도
     try:
@@ -177,11 +169,8 @@ def get_accounts_max_working(service: str) -> list:
 
 # 이미 작업이 되어있는 계정
 def get_used_working_accounts(service: str, user_id: str, link: str) -> list:
-    if current_os == 'MAC':
-        file_path = f'../log/working_accounts_save.txt'
-    else:
-        file_path = os.path.abspath(
-            os.path.join(os.path.dirname(os.path.abspath(__file__)), f'../log/working_accounts_save.txt'))
+    file_path = os.path.abspath(
+        os.path.join(os.path.dirname(os.path.abspath(__file__)), f'../log/working_accounts_save.txt'))
 
     with open(file_path, 'r', encoding='UTF-8') as f:
         accounts = f.readlines()
@@ -211,11 +200,8 @@ def get_used_working_accounts(service: str, user_id: str, link: str) -> list:
 
 # 댓글 랜덤 목록
 def get_comment_randoms() -> list:
-    if current_os == 'MAC':
-        file_path = f'../setting/comment_random.txt'
-    else:
-        file_path = os.path.abspath(
-            os.path.join(os.path.dirname(os.path.abspath(__file__)), f"../setting/comment_random.txt"))
+    file_path = os.path.abspath(
+        os.path.join(os.path.dirname(os.path.abspath(__file__)), f"../setting/comment_random.txt"))
 
     with open(file_path, 'r', encoding='UTF-8') as f:
         comments = f.readlines()
@@ -231,11 +217,8 @@ def get_comment_randoms() -> list:
 
 # user agent 목록
 def get_user_agent() -> object:
-    if current_os == 'MAC':
-        file_path = f'../setting/user_agent.txt'
-    else:
-        file_path = os.path.abspath(
-            os.path.join(os.path.dirname(os.path.abspath(__file__)), f"../setting/user_agent.txt"))
+    file_path = os.path.abspath(
+        os.path.join(os.path.dirname(os.path.abspath(__file__)), f"../setting/user_agent.txt"))
 
     with open(file_path, 'r', encoding='UTF-8') as f:
         user_agents = f.readlines()
@@ -251,12 +234,8 @@ def get_user_agent() -> object:
 
 # 공통 로그 추가
 def write_common_log(path: str, service: str, text: str) -> None:
-
-    if current_os == 'MAC':
-        file_path = path
-    else:
-        file_path = os.path.abspath(
-            os.path.join(os.path.dirname(os.path.abspath(__file__)), path))
+    file_path = os.path.abspath(
+        os.path.join(os.path.dirname(os.path.abspath(__file__)), path))
 
     with open(file_path, "a", encoding='UTF-8') as f:
         current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
@@ -267,11 +246,8 @@ def write_common_log(path: str, service: str, text: str) -> None:
 # 하루 작업량 업데이트
 def write_working_log(service: str, user_id: str, cnt: int) -> None:
     current_time = datetime.now().strftime('%Y%m%d')
-    if current_os == 'MAC':
-        file_path = f"../log/working/working_accounts_{current_time}.txt"
-    else:
-        file_path = os.path.abspath(
-            os.path.join(os.path.dirname(os.path.abspath(__file__)), f"../log/working/working_accounts_{current_time}.txt"))
+    file_path = os.path.abspath(
+        os.path.join(os.path.dirname(os.path.abspath(__file__)), f"../log/working/working_accounts_{current_time}.txt"))
 
     # 파일 읽기 시도
     try:
@@ -313,12 +289,8 @@ def write_working_log(service: str, user_id: str, cnt: int) -> None:
 # 어떤계정이 어떤링크에 작업을 했는지 로그 쌓기
 # 예시로 특정 계정이 이미 팔로우등 5가지 작업이 되어잇는지 체크
 def write_working_save_log(service: str, order_id: str, user_id: str, link: str) -> None:
-
-    if current_os == 'MAC':
-        file_path = f"../log/working_accounts_save.txt"
-    else:
-        file_path = os.path.abspath(
-            os.path.join(os.path.dirname(os.path.abspath(__file__)), f"../log/working_accounts_save.txt"))
+    file_path = os.path.abspath(
+        os.path.join(os.path.dirname(os.path.abspath(__file__)), f"../log/working_accounts_save.txt"))
 
     with open(file_path, "a", encoding='UTF-8') as f:
         current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
@@ -328,11 +300,8 @@ def write_working_save_log(service: str, order_id: str, user_id: str, link: str)
 
 # 주문 결과 로그 추가
 def write_order_log(path: str, service: str, order_id: str, quantity: int, success: int, fail: int, order_time: str) -> None:
-    if current_os == 'MAC':
-        file_path = path
-    else:
-        file_path = os.path.abspath(
-            os.path.join(os.path.dirname(os.path.abspath(__file__)), path))
+    file_path = os.path.abspath(
+        os.path.join(os.path.dirname(os.path.abspath(__file__)), path))
 
     with open(file_path, "a", encoding='UTF-8') as f:
         current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
@@ -343,11 +312,8 @@ def write_order_log(path: str, service: str, order_id: str, quantity: int, succe
 
 # 태스크 로그 추가
 def write_task_log(path: str, service: str, order_id: str, user_id: str, result: bool, err_msg: str, order_url: str) -> None:
-    if current_os == 'MAC':
-        file_path = path
-    else:
-        file_path = os.path.abspath(
-            os.path.join(os.path.dirname(os.path.abspath(__file__)), path))
+    file_path = os.path.abspath(
+        os.path.join(os.path.dirname(os.path.abspath(__file__)), path))
 
     with open(file_path, "a", encoding='UTF-8') as f:
         current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
@@ -362,11 +328,8 @@ def write_task_log(path: str, service: str, order_id: str, user_id: str, result:
 def remove_from_accounts(service: str, order_id: str, current_user_id: str, err_msg: str, is_login=False) -> None:
 
     if is_login:
-        if current_os == 'MAC':
-            account_file_path = "../setting/account.txt"
-        else:
-            account_file_path = os.path.abspath(
-                os.path.join(os.path.dirname(os.path.abspath(__file__)), "../setting/account.txt"))
+        account_file_path = os.path.abspath(
+            os.path.join(os.path.dirname(os.path.abspath(__file__)), "../setting/account.txt"))
 
         with open(account_file_path, "r", encoding='UTF-8') as f:
             lines = f.readlines()
@@ -376,11 +339,8 @@ def remove_from_accounts(service: str, order_id: str, current_user_id: str, err_
                 if line.split("|")[0] != current_user_id:
                     f.write(line)
 
-    if current_os == 'MAC':
-        file_path = "../log/error_accounts.txt"
-    else:
-        file_path = os.path.abspath(
-            os.path.join(os.path.dirname(os.path.abspath(__file__)), "../log/error_accounts.txt"))
+    file_path = os.path.abspath(
+        os.path.join(os.path.dirname(os.path.abspath(__file__)), "../log/error_accounts.txt"))
 
     with open(file_path, "a", encoding='UTF-8') as f:
         current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
@@ -392,11 +352,8 @@ def remove_from_accounts(service: str, order_id: str, current_user_id: str, err_
 
 # 에러 로그 추가
 def remove_from_error(log_txt: str, device_name: str) -> None:
-    if current_os == 'MAC':
-        file_path = "../log/error_log.txt"
-    else:
-        file_path = os.path.abspath(
-            os.path.join(os.path.dirname(os.path.abspath(__file__)), "../log/error_log.txt"))
+    file_path = os.path.abspath(
+        os.path.join(os.path.dirname(os.path.abspath(__file__)), "../log/error_log.txt"))
 
     with open(file_path, "a", encoding='UTF-8') as f:
         current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
@@ -711,6 +668,7 @@ def element_log(element: WebElement) -> None:
 def open_selenium(curt_os: str, wait_time: int, ip: str, session_id: str, idx: int) -> object:
     log('셀레니움 연결', session_id, idx)
     driver_path = ''
+    chrome_path = ''
     if curt_os == 'MAC':
         driver_path = config['selenium']['driver_path_mac']
         chrome_path = config['selenium']['chrome_path_mac']
@@ -811,7 +769,6 @@ def open_selenium(curt_os: str, wait_time: int, ip: str, session_id: str, idx: i
     options.binary_location = chrome_path
 
     # 웹 드라 이버 시작
-    screen_width, screen_height = pyautogui.size()
     global screen_size
     width = screen_size[0]
     margin = 50
@@ -821,8 +778,10 @@ def open_selenium(curt_os: str, wait_time: int, ip: str, session_id: str, idx: i
     selenium_driver.implicitly_wait(wait_time)
     selenium_driver.set_window_size(width, screen_size[1])
     if current_os == 'MAC':
+        screen_width, screen_height = pyautogui.size()
         selenium_driver.set_window_position(screen_width + (width + margin) * (1 - 1), 0)
     elif current_os == 'WINDOW':
+        screen_width, screen_height = pyautogui.size()
         # if idx > 3:
         #     selenium_driver.set_window_position(screen_width + (width + margin) * (idx%3 - 1), 200)
         # else:
@@ -1089,6 +1048,12 @@ def not_working_accounts(order_log_path: str, order_service: str, order_id: str,
     write_order_log(order_log_path, order_service, order_id, quantity, 0, 0, '-')
 
 
+def max_order_log(order_log_path: str, order_service: str, order_id: str, quantity: int) -> None:
+    log('주문개수가 최대 주문개수를 초과하였습니다.')
+    status_change(order_id, 'setCanceled')
+    write_order_log(order_log_path, order_service, order_id, quantity, 0, 0, '-')
+
+
 def measure_memory_usage() -> float:
     process = psutil.Process(os.getpid())
     mem_info = process.memory_info()
@@ -1128,12 +1093,9 @@ def format_timedelta(td: timedelta) -> str:
 
 
 def save_screenshot(order_id: str, user_id: str, tab_index: int, driver: WebDriver) -> None:
-    if current_os == 'MAC':
-        file_path = f'../log/file/{order_id}/{user_id}/{user_id}.png'
-    else:
-        file_path = os.path.abspath(
-            os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                         f'../log/file/{order_id}/{user_id}/{user_id}.png'))
+    file_path = os.path.abspath(
+        os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                     f'../log/file/{order_id}/{user_id}/{user_id}.png'))
     make_dir(file_path)
     driver.save_screenshot(file_path)
     log(f"스크린샷이 완료되었습니다. '{user_id}.png' 파일이 저장되었습니다.", user_id, tab_index)
@@ -1144,12 +1106,9 @@ def record_start(order_id: str, user_id: str, driver: WebDriver) -> None:
 
     fourcc = cv2.VideoWriter_fourcc(*"XVID")
 
-    if current_os == 'MAC':
-        file_path = f'../log/file/{order_id}/{user_id}/{user_id}.avi'
-    else:
-        file_path = os.path.abspath(
-            os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                         f'../log/file/{order_id}/{user_id}/{user_id}.avi'))
+    file_path = os.path.abspath(
+        os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                     f'../log/file/{order_id}/{user_id}/{user_id}.avi'))
 
     make_dir(file_path)
 
@@ -1195,12 +1154,9 @@ def make_dir(file_path: str) -> None:
 
 
 def set_logger(order_id: str, user_id: str, tab_index: int) -> None:
-    if current_os == 'MAC':
-        log_filename = f'../log/file/{order_id}/{user_id}/{user_id}.txt'
-    else:
-        log_filename = os.path.abspath(
-            os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                         f'../log/file/{order_id}/{user_id}/{user_id}.txt'))
+    log_filename = os.path.abspath(
+        os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                     f'../log/file/{order_id}/{user_id}/{user_id}.txt'))
 
     # 로그 설정
     logging_ele = logging.getLogger(f"Process_{tab_index}")
@@ -1253,3 +1209,10 @@ def extract_final_results(text: str, result_type: str):
             return None
     else:
         return None
+
+
+def order_max_check(quantity: int) -> bool:
+    if order_max_cnt < quantity:
+        return True
+    else:
+        return False
