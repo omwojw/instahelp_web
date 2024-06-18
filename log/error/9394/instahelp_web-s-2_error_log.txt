@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "C:\workspace\instahelp_web\docker_follow\follow_docker.py", line 167, in open_docker
+    common.remove_from_error(result_print, order_id, container.name)
+  File "C:\workspace\instahelp_web\common\fun.py", line 361, in remove_from_error
+    f.write(f"{log_txt}")
+OSError: [Errno 28] No space left on device

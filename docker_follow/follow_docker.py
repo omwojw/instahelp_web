@@ -163,7 +163,7 @@ def open_docker(index: int, active_account: list, order_id: str, quantity: int, 
         if not fail:
             fail = 0
 
-        if success == 0 or fail == 0:
+        if (success + fail) != len(active_account):
             common.remove_from_error(result_print, order_id, container.name)
 
         common.log(f"컨테이너 실행종료, 실행개수: [{success + fail}], 성공: [{success}], 실패: [{fail}]", container.name, index + 1)
