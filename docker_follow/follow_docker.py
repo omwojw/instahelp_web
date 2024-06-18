@@ -15,8 +15,7 @@ import docker
 import json
 import subprocess
 from concurrent.futures import ProcessPoolExecutor
-from docker.models.containers import Container
-from docker import DockerClient
+import traceback
 
 # Config 읽기
 config = configparser.ConfigParser()
@@ -146,19 +145,35 @@ def open_docker(index: int, active_account: list, order_id: str, quantity: int, 
     container = containers[index]
     common.log(f"컨테이너 실행성공", container.name, index + 1)
 
-    # 컨테이너 내에서 명령 실행
-    command = f'python /instahelp_web/docker_follow/follow_index.py \'{json.dumps(active_account)}\' {order_id} {quantity} {order_url}'
-    exec_id = client.api.exec_create(container.id, command)
-    output = client.api.exec_start(exec_id, stream=True)
+    try:
+        # 컨테이너 내에서 명령 실행
+        command = f'python /instahelp_web/docker_follow/follow_index.py \'{json.dumps(active_account)}\' {order_id} {quantity} {order_url}'
+        exec_id = client.api.exec_create(container.id, command)
+        output = client.api.exec_start(exec_id, stream=True)
 
-    result_print = ""
-    for line in output:
-        result_print += line.decode("utf-8")
+        result_print = ""
+        for line in output:
+            result_print += line.decode("utf-8")
 
-    success = common.extract_final_results(result_print, 'SUCCESS')
-    fail = common.extract_final_results(result_print, 'FAIL')
-    common.log(f"컨테이너 성공: {success}, 실패: {fail}", container.name, index + 1)
-    return f"{success},{fail}"
+        success = common.extract_final_results(result_print, 'SUCCESS')
+        fail = common.extract_final_results(result_print, 'FAIL')
+
+        if not success:
+            success = 0
+        if not fail:
+            fail = 0
+
+        if success == 0 or fail == 0:
+            common.remove_from_error(result_print, order_id, container.name)
+
+        common.log(f"컨테이너 실행종료, 실행개수: [{success + fail}], 성공: [{success}], 실패: [{fail}]", container.name, index + 1)
+        return f"{success},{fail}"
+    except Exception as e:
+        common.remove_from_error(traceback.format_exc(), order_id, container.name)
+        return f"0,0"
+    finally:
+        if not container:
+            container.quit()
 
 
 def main():

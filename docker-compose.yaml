@@ -11,4 +11,5 @@ services:
     shm_size: '2gb'
     volumes:
       - .:/instahelp_web
+      - ../instahelp_session:/instahelp_session
     command: ["tail", "-f", "/dev/null"]

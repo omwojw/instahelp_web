@@ -9,7 +9,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__f
 import configparser
 from concurrent.futures import ProcessPoolExecutor
 import common.fun as common
-import follow.follow_main as main_process
+import docker_follow.follow_main as main_process
 import json
 
 # Config 읽기
@@ -69,8 +69,8 @@ def process_order(active_accounts: list):
 
 def main():
     # 시작 함수
-    # fetch_order()
-    return common.log(f'최종결과[1,1]')
+    fetch_order()
+    # return common.log(f'최종결과[1,1]')
 
 
 if __name__ == '__main__':

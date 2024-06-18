@@ -44,8 +44,17 @@ task_log_path = "../log/task_history.txt"
 # 셀레 니움 실행
 def setup() -> str:
     global driver
-    driver = common.open_selenium(current_os, wait_time, ip, session_id, tab_index)
-    return dashboard()
+    try:
+        driver = common.open_selenium(current_os, wait_time, ip, session_id, tab_index)
+    except Exception as e:
+        common.sleep(3)
+        driver = common.open_selenium(current_os, wait_time, ip, session_id, tab_index)
+
+    # 인스턴스 종료
+    if driver is not None:
+        return dashboard()
+    else:
+        return f'0,1,셀레니움 오픈 실패'
 
 
 # 대시 보드
@@ -247,4 +256,5 @@ def main_fun(_tab_index: int, _user_id: str, _user_pw: str, _ip: str, _order_id:
         common.save_screenshot(order_id, user_id, tab_index, driver)
 
         # 인스턴스 종료
-        driver.quit()
+        if not driver:
+            driver.quit()

@@ -328,38 +328,37 @@ def write_task_log(path: str, service: str, order_id: str, user_id: str, result:
 
 # 에러 계정 추가
 def remove_from_accounts(service: str, order_id: str, current_user_id: str, err_msg: str, is_login=False) -> None:
+    if config['log']['error_accounts_copy'] == 'True':
+        if is_login:
+            account_file_path = os.path.abspath(
+                os.path.join(os.path.dirname(os.path.abspath(__file__)), "../setting/account.txt"))
 
-    if is_login:
-        account_file_path = os.path.abspath(
-            os.path.join(os.path.dirname(os.path.abspath(__file__)), "../setting/account.txt"))
+            with open(account_file_path, "r", encoding='UTF-8') as f:
+                lines = f.readlines()
 
-        with open(account_file_path, "r", encoding='UTF-8') as f:
-            lines = f.readlines()
+            with open(account_file_path, "w", encoding='UTF-8') as f:
+                for line in lines:
+                    if line.split("|")[0] != current_user_id:
+                        f.write(line)
 
-        with open(account_file_path, "w", encoding='UTF-8') as f:
-            for line in lines:
-                if line.split("|")[0] != current_user_id:
-                    f.write(line)
+        file_path = os.path.abspath(
+            os.path.join(os.path.dirname(os.path.abspath(__file__)), "../log/error_accounts.txt"))
 
-    file_path = os.path.abspath(
-        os.path.join(os.path.dirname(os.path.abspath(__file__)), "../log/error_accounts.txt"))
+        with open(file_path, "a", encoding='UTF-8') as f:
+            current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            message = f"{service}|{current_time}|{order_id}|{current_user_id}|{err_msg}"
+            f.write(f"{message}\n")
 
-    with open(file_path, "a", encoding='UTF-8') as f:
-        current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        message = f"{service}|{current_time}|{order_id}|{current_user_id}|{err_msg}"
-        f.write(f"{message}\n")
-
-    # send_message(config['telegram']['chat_error_account'], message)
+        # send_message(config['telegram']['chat_error_account'], message)
 
 
 # 에러 로그 추가
-def remove_from_error(log_txt: str, device_name: str) -> None:
+def remove_from_error(log_txt: str, order_id: str, docker_name: str) -> None:
     file_path = os.path.abspath(
-        os.path.join(os.path.dirname(os.path.abspath(__file__)), "../log/error_log.txt"))
-
+        os.path.join(os.path.dirname(os.path.abspath(__file__)), f"../log/error/{order_id}/{docker_name}_error_log.txt"))
+    make_dir(file_path)
     with open(file_path, "a", encoding='UTF-8') as f:
-        current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        f.write(f"{device_name}|{current_time}|{log_txt}\n")
+        f.write(f"{log_txt}")
 
 
 # 텔레그램 메시지 보내기 1번
@@ -581,7 +580,7 @@ def result_api(order_id: str, total_success: int, total_fail: int, quantity: int
     log(f"[Success] -  주문 수량 : {quantity}")
     log(f"[Success] -  남은 수량 : {quantity - total_success}")
     log(f"[Success] -  상태 변경 결과 : {res}")
-    log(f"총 성공: {total_success}, 총 실패: {total_fail}")
+    log(f"총 성공: [{total_success}], 총 실패: [{total_fail}]")
 
     # 주문 최종 결과 로그 저장
     write_order_log(order_log_path, order_service, order_id, quantity, total_success, total_fail, order_time)
@@ -1053,8 +1052,9 @@ def set_filter_accounts(order_service: str, order_url: str, accounts: list) -> l
 
 # 대기
 def sleep(second: int, second_range=1) -> None:
-    times = random_delay_range(second, second_range)
-    time.sleep(times)
+    if config['selenium']['is_sleep'] == 'True':
+        times = random_delay_range(second, second_range)
+        time.sleep(times)
 
 
 # 랜덤시간 추출
