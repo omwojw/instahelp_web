@@ -1,0 +1,10 @@
+[1][dotrucmai630] 로그인 시작
+[1][dotrucmai630] 로그인 종료
+[1][dotrucmai630] 로그인 검증 시작
+[1][dotrucmai630] 로그인 검증 종료
+[1][dotrucmai630] 로그인 성공여부 True
+[1][dotrucmai630] 남은 수량 : 1
+[1][dotrucmai630] 동의여부 체크 시작
+[1][dotrucmai630] 동의여부 체크 종료 : 동의 필요하지 않음
+[1][dotrucmai630] 팔로우 시작
+[1][dotrucmai630] 마지막 메모리 사용량: 52.69 MB

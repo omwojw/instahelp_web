@@ -1,0 +1,13 @@
+[1][dothanhhau9382] 로그인 시작
+[1][dothanhhau9382] 로그인 종료
+[1][dothanhhau9382] 로그인 검증 시작
+[1][dothanhhau9382] 로그인 검증 종료
+[1][dothanhhau9382] 로그인 성공여부 True
+[1][dothanhhau9382] 남은 수량 : 1
+[1][dothanhhau9382] 동의여부 체크 시작
+[1][dothanhhau9382] 동의여부 체크 종료 : 동의 필요함
+[1][dothanhhau9382] 동의하기 클릭 시작
+[1][dothanhhau9382] 동의하기 클릭 종료 - 성공
+[1][dothanhhau9382] 팔로우 시작
+[1][dothanhhau9382] 팔로우 종료 - 성공
+[1][dothanhhau9382] 마지막 메모리 사용량: 51.96 MB

@@ -358,3 +358,127 @@ FOLLOW|2024-06-17 08:31:16|9430|https://www.instagram.com/uk4uu0rslo|hazel.warre
 FOLLOW|2024-06-17 08:33:43|9643|https://www.instagram.com/uk4uu0rslo|hazel.warren8361042|False|팔로우 버튼을 눌렀지만 에러
 FOLLOW|2024-06-17 08:33:45|9643|https://www.instagram.com/uk4uu0rslo|hailey.gardner0957409|False|팔로우 버튼을 눌렀지만 에러
 FOLLOW|2024-06-17 08:33:48|9643|https://www.instagram.com/uk4uu0rslo|david.fox789355748|False|팔로우 버튼을 눌렀지만 에러
+FOLLOW|2024-06-18 04:49:17|9979|https://www.instagram.com/uk4uu0rslo|buithunga3171|True|성공
+FOLLOW|2024-06-18 04:49:18|9979|https://www.instagram.com/uk4uu0rslo|dangantuong9265|True|성공
+FOLLOW|2024-06-18 04:49:31|9979|https://www.instagram.com/uk4uu0rslo|buithunga5014|True|성공
+FOLLOW|2024-06-18 04:52:05|9979|https://www.instagram.com/uk4uu0rslo|buicongluat38|True|성공
+FOLLOW|2024-06-18 05:36:31|7072|https://www.instagram.com/duongthuytrang842|duongkhanhmy5467|False|에러발생
+FOLLOW|2024-06-18 05:36:31|7072|https://www.instagram.com/duongthuytrang842|dothanhhau9382|False|에러발생
+FOLLOW|2024-06-18 05:36:31|7072|https://www.instagram.com/duongthuytrang842|ngohoangthai3753|False|에러발생
+FOLLOW|2024-06-18 05:36:31|7072|https://www.instagram.com/duongthuytrang842|hothanhnguyen7020|False|에러발생
+FOLLOW|2024-06-18 05:36:31|7072|https://www.instagram.com/duongthuytrang842|ngothanhgiang3345|False|에러발생
+FOLLOW|2024-06-18 05:36:31|7072|https://www.instagram.com/duongthuytrang842|hoconghao780|False|에러발생
+FOLLOW|2024-06-18 05:36:31|7072|https://www.instagram.com/duongthuytrang842|buithungan826|False|에러발생
+FOLLOW|2024-06-18 05:36:31|7072|https://www.instagram.com/duongthuytrang842|lebichhue6665|False|에러발생
+FOLLOW|2024-06-18 05:36:31|7072|https://www.instagram.com/duongthuytrang842|hoanghuuchau204|False|에러발생
+FOLLOW|2024-06-18 05:36:31|7072|https://www.instagram.com/duongthuytrang842|dangvantrinh9552|False|에러발생
+FOLLOW|2024-06-18 05:36:31|7072|https://www.instagram.com/duongthuytrang842|duongtrucquynh716|False|에러발생
+FOLLOW|2024-06-18 05:36:31|7072|https://www.instagram.com/duongthuytrang842|lekhacminh4980|False|에러발생
+FOLLOW|2024-06-18 05:36:31|7072|https://www.instagram.com/duongthuytrang842|dovuanh260|False|에러발생
+FOLLOW|2024-06-18 05:36:31|7072|https://www.instagram.com/duongthuytrang842|hoanghoaiphong361|False|에러발생
+FOLLOW|2024-06-18 05:36:31|7072|https://www.instagram.com/duongthuytrang842|leviethuong4950|False|에러발생
+FOLLOW|2024-06-18 05:36:31|7072|https://www.instagram.com/duongthuytrang842|lethuananh523|False|에러발생
+FOLLOW|2024-06-18 05:36:31|7072|https://www.instagram.com/duongthuytrang842|duongthuytrang842|False|에러발생
+FOLLOW|2024-06-18 05:36:31|7072|https://www.instagram.com/duongthuytrang842|dangthaohuong324|False|에러발생
+FOLLOW|2024-06-18 05:36:31|7072|https://www.instagram.com/duongthuytrang842|homyloan9634|False|에러발생
+FOLLOW|2024-06-18 05:36:31|7072|https://www.instagram.com/duongthuytrang842|ngocamlien715|False|에러발생
+FOLLOW|2024-06-18 05:36:31|7072|https://www.instagram.com/duongthuytrang842|ngothanhan6768|False|에러발생
+FOLLOW|2024-06-18 05:36:31|7072|https://www.instagram.com/duongthuytrang842|dothanhhao122|False|에러발생
+FOLLOW|2024-06-18 05:36:31|7072|https://www.instagram.com/duongthuytrang842|ngothuphuong5507|False|에러발생
+FOLLOW|2024-06-18 05:36:31|7072|https://www.instagram.com/duongthuytrang842|leuyennha704|False|에러발생
+FOLLOW|2024-06-18 05:36:31|7072|https://www.instagram.com/duongthuytrang842|ngosontung440|False|에러발생
+FOLLOW|2024-06-18 05:36:31|7072|https://www.instagram.com/duongthuytrang842|hosuongsuong318|False|에러발생
+FOLLOW|2024-06-18 05:36:31|7072|https://www.instagram.com/duongthuytrang842|dotrucmai630|False|에러발생
+FOLLOW|2024-06-18 05:36:31|7072|https://www.instagram.com/duongthuytrang842|lyuyenkhanh640|False|에러발생
+FOLLOW|2024-06-18 05:36:31|7072|https://www.instagram.com/duongthuytrang842|hoangphuhai961|False|에러발생
+FOLLOW|2024-06-18 05:36:31|7072|https://www.instagram.com/duongthuytrang842|dohatien59|False|에러발생
+FOLLOW|2024-06-18 05:38:10|9386|https://www.instagram.com/duongthuytrang842|lyuyenkhanh640|False|에러발생
+FOLLOW|2024-06-18 05:38:10|9386|https://www.instagram.com/duongthuytrang842|duongthuytrang842|False|에러발생
+FOLLOW|2024-06-18 05:38:10|9386|https://www.instagram.com/duongthuytrang842|ngocamlien715|False|에러발생
+FOLLOW|2024-06-18 05:38:10|9386|https://www.instagram.com/duongthuytrang842|lekhacminh4980|False|에러발생
+FOLLOW|2024-06-18 05:38:10|9386|https://www.instagram.com/duongthuytrang842|dangthaohuong324|False|에러발생
+FOLLOW|2024-06-18 05:38:10|9386|https://www.instagram.com/duongthuytrang842|lebichhue6665|False|에러발생
+FOLLOW|2024-06-18 05:38:10|9386|https://www.instagram.com/duongthuytrang842|buithungan826|False|에러발생
+FOLLOW|2024-06-18 05:38:10|9386|https://www.instagram.com/duongthuytrang842|hoconghao780|False|에러발생
+FOLLOW|2024-06-18 05:38:10|9386|https://www.instagram.com/duongthuytrang842|dothanhhao122|False|에러발생
+FOLLOW|2024-06-18 05:38:10|9386|https://www.instagram.com/duongthuytrang842|lethuananh523|False|에러발생
+FOLLOW|2024-06-18 05:38:10|9386|https://www.instagram.com/duongthuytrang842|leviethuong4950|False|에러발생
+FOLLOW|2024-06-18 05:38:10|9386|https://www.instagram.com/duongthuytrang842|hoanghoaiphong361|False|에러발생
+FOLLOW|2024-06-18 05:38:10|9386|https://www.instagram.com/duongthuytrang842|ngohoangthai3753|False|에러발생
+FOLLOW|2024-06-18 05:38:10|9386|https://www.instagram.com/duongthuytrang842|duongkhanhmy5467|False|에러발생
+FOLLOW|2024-06-18 05:38:10|9386|https://www.instagram.com/duongthuytrang842|dohatien59|False|에러발생
+FOLLOW|2024-06-18 05:38:10|9386|https://www.instagram.com/duongthuytrang842|duongtrucquynh716|False|에러발생
+FOLLOW|2024-06-18 05:38:10|9386|https://www.instagram.com/duongthuytrang842|ngothanhgiang3345|False|에러발생
+FOLLOW|2024-06-18 05:38:10|9386|https://www.instagram.com/duongthuytrang842|leuyennha704|False|에러발생
+FOLLOW|2024-06-18 05:38:10|9386|https://www.instagram.com/duongthuytrang842|ngosontung440|False|에러발생
+FOLLOW|2024-06-18 05:38:10|9386|https://www.instagram.com/duongthuytrang842|hoangphuhai961|False|에러발생
+FOLLOW|2024-06-18 05:38:10|9386|https://www.instagram.com/duongthuytrang842|dotrucmai630|False|에러발생
+FOLLOW|2024-06-18 05:38:10|9386|https://www.instagram.com/duongthuytrang842|ngothanhan6768|False|에러발생
+FOLLOW|2024-06-18 05:38:10|9386|https://www.instagram.com/duongthuytrang842|dovuanh260|False|에러발생
+FOLLOW|2024-06-18 05:38:10|9386|https://www.instagram.com/duongthuytrang842|hothanhnguyen7020|False|에러발생
+FOLLOW|2024-06-18 05:38:11|9386|https://www.instagram.com/duongthuytrang842|hosuongsuong318|False|에러발생
+FOLLOW|2024-06-18 05:38:11|9386|https://www.instagram.com/duongthuytrang842|dothanhhau9382|False|에러발생
+FOLLOW|2024-06-18 05:38:11|9386|https://www.instagram.com/duongthuytrang842|homyloan9634|False|에러발생
+FOLLOW|2024-06-18 05:38:11|9386|https://www.instagram.com/duongthuytrang842|ngothuphuong5507|False|에러발생
+FOLLOW|2024-06-18 05:38:11|9386|https://www.instagram.com/duongthuytrang842|dangvantrinh9552|False|에러발생
+FOLLOW|2024-06-18 05:38:11|9386|https://www.instagram.com/duongthuytrang842|hoanghuuchau204|False|에러발생
+FOLLOW|2024-06-18 05:40:59|7073|https://www.instagram.com/duongthuytrang842|hothanhnguyen7020|False|로그인 실패
+FOLLOW|2024-06-18 05:41:14|7073|https://www.instagram.com/duongthuytrang842|dangvantrinh9552|False|태스크 실패
+FOLLOW|2024-06-18 05:41:19|7073|https://www.instagram.com/duongthuytrang842|lekhacminh4980|False|태스크 실패
+FOLLOW|2024-06-18 05:41:19|7073|https://www.instagram.com/duongthuytrang842|leuyennha704|False|태스크 실패
+FOLLOW|2024-06-18 05:41:24|7073|https://www.instagram.com/duongthuytrang842|dangthaohuong324|True|성공
+FOLLOW|2024-06-18 05:41:26|7073|https://www.instagram.com/duongthuytrang842|hoanghoaiphong361|True|성공
+FOLLOW|2024-06-18 05:41:28|7073|https://www.instagram.com/duongthuytrang842|dovuanh260|True|성공
+FOLLOW|2024-06-18 05:41:29|7073|https://www.instagram.com/duongthuytrang842|hoanghuuchau204|True|성공
+FOLLOW|2024-06-18 05:41:29|7073|https://www.instagram.com/duongthuytrang842|dothanhhao122|True|성공
+FOLLOW|2024-06-18 05:41:30|7073|https://www.instagram.com/duongthuytrang842|ngothanhgiang3345|True|성공
+FOLLOW|2024-06-18 05:41:30|7073|https://www.instagram.com/duongthuytrang842|lethuananh523|True|성공
+FOLLOW|2024-06-18 05:41:30|7073|https://www.instagram.com/duongthuytrang842|hosuongsuong318|True|성공
+FOLLOW|2024-06-18 05:41:31|7073|https://www.instagram.com/duongthuytrang842|ngothanhan6768|True|성공
+FOLLOW|2024-06-18 05:41:31|7073|https://www.instagram.com/duongthuytrang842|homyloan9634|True|성공
+FOLLOW|2024-06-18 05:41:31|7073|https://www.instagram.com/duongthuytrang842|lebichhue6665|True|성공
+FOLLOW|2024-06-18 05:41:33|7073|https://www.instagram.com/duongthuytrang842|leviethuong4950|True|성공
+FOLLOW|2024-06-18 05:41:33|7073|https://www.instagram.com/duongthuytrang842|ngothuphuong5507|True|성공
+FOLLOW|2024-06-18 05:41:34|7073|https://www.instagram.com/duongthuytrang842|duongtrucquynh716|True|성공
+FOLLOW|2024-06-18 05:41:46|7073|https://www.instagram.com/duongthuytrang842|buithungan826|True|성공
+FOLLOW|2024-06-18 05:41:47|7073|https://www.instagram.com/duongthuytrang842|hoangphuhai961|True|성공
+FOLLOW|2024-06-18 05:41:48|7073|https://www.instagram.com/duongthuytrang842|dohatien59|True|성공
+FOLLOW|2024-06-18 05:41:48|7073|https://www.instagram.com/duongthuytrang842|hoconghao780|True|성공
+FOLLOW|2024-06-18 05:41:49|7073|https://www.instagram.com/duongthuytrang842|ngosontung440|True|성공
+FOLLOW|2024-06-18 05:41:49|7073|https://www.instagram.com/duongthuytrang842|dothanhhau9382|True|성공
+FOLLOW|2024-06-18 05:41:50|7073|https://www.instagram.com/duongthuytrang842|lyuyenkhanh640|True|성공
+FOLLOW|2024-06-18 05:41:51|7073|https://www.instagram.com/duongthuytrang842|ngohoangthai3753|True|성공
+FOLLOW|2024-06-18 05:41:52|7073|https://www.instagram.com/duongthuytrang842|duongkhanhmy5467|True|성공
+FOLLOW|2024-06-18 05:41:55|7073|https://www.instagram.com/duongthuytrang842|dotrucmai630|False|태스크 실패
+FOLLOW|2024-06-18 05:42:07|7073|https://www.instagram.com/duongthuytrang842|duongthuytrang842|False|태스크 실패
+FOLLOW|2024-06-18 05:42:26|7073|https://www.instagram.com/duongthuytrang842|ngocamlien715|True|성공
+FOLLOW|2024-06-18 05:46:47|9832|https://www.instagram.com/votamnhi198|dangantuong9265|False|로그인 실패
+FOLLOW|2024-06-18 05:46:48|9832|https://www.instagram.com/votamnhi198|phanxuanquy820|False|로그인 실패
+FOLLOW|2024-06-18 05:46:48|9832|https://www.instagram.com/votamnhi198|buicongluat38|False|로그인 실패
+FOLLOW|2024-06-18 05:46:48|9832|https://www.instagram.com/votamnhi198|buithunga5014|False|로그인 실패
+FOLLOW|2024-06-18 05:46:49|9832|https://www.instagram.com/votamnhi198|buithunga3171|False|로그인 실패
+FOLLOW|2024-06-18 05:46:54|9832|https://www.instagram.com/votamnhi198|lekhacminh4980|False|태스크 실패
+FOLLOW|2024-06-18 05:47:06|9832|https://www.instagram.com/votamnhi198|ngothuyminh3160|True|성공
+FOLLOW|2024-06-18 05:47:07|9832|https://www.instagram.com/votamnhi198|dangthaohuong324|True|성공
+FOLLOW|2024-06-18 05:47:08|9832|https://www.instagram.com/votamnhi198|dovuanh260|True|성공
+FOLLOW|2024-06-18 05:47:08|9832|https://www.instagram.com/votamnhi198|nguyensansan784|True|성공
+FOLLOW|2024-06-18 05:47:09|9832|https://www.instagram.com/votamnhi198|buithungan826|True|성공
+FOLLOW|2024-06-18 05:47:09|9832|https://www.instagram.com/votamnhi198|tranquangduong478|True|성공
+FOLLOW|2024-06-18 05:47:10|9832|https://www.instagram.com/votamnhi198|voquangthach906|True|성공
+FOLLOW|2024-06-18 05:47:10|9832|https://www.instagram.com/votamnhi198|dothanhhau9382|True|성공
+FOLLOW|2024-06-18 05:47:11|9832|https://www.instagram.com/votamnhi198|duongthuytrang842|True|성공
+FOLLOW|2024-06-18 05:47:11|9832|https://www.instagram.com/votamnhi198|phamthuoanh440|True|성공
+FOLLOW|2024-06-18 05:47:12|9832|https://www.instagram.com/votamnhi198|nguyendalan744|True|성공
+FOLLOW|2024-06-18 05:47:13|9832|https://www.instagram.com/votamnhi198|dohatien59|True|성공
+FOLLOW|2024-06-18 05:47:13|9832|https://www.instagram.com/votamnhi198|dothanhhao122|True|성공
+FOLLOW|2024-06-18 05:47:23|9832|https://www.instagram.com/votamnhi198|phancamnhung9367|True|성공
+FOLLOW|2024-06-18 05:47:24|9832|https://www.instagram.com/votamnhi198|phambaolan316|True|성공
+FOLLOW|2024-06-18 05:47:24|9832|https://www.instagram.com/votamnhi198|votamnhi198|False|태스크 실패
+FOLLOW|2024-06-18 05:47:27|9832|https://www.instagram.com/votamnhi198|vominhthong8749|True|성공
+FOLLOW|2024-06-18 05:47:27|9832|https://www.instagram.com/votamnhi198|phanhoangngon232|True|성공
+FOLLOW|2024-06-18 05:47:27|9832|https://www.instagram.com/votamnhi198|vominhthu1100|True|성공
+FOLLOW|2024-06-18 05:47:28|9832|https://www.instagram.com/votamnhi198|phamthuylieu8122|True|성공
+FOLLOW|2024-06-18 05:47:29|9832|https://www.instagram.com/votamnhi198|ngoyennhi939|True|성공
+FOLLOW|2024-06-18 05:47:29|9832|https://www.instagram.com/votamnhi198|dangvantrinh9552|True|성공
+FOLLOW|2024-06-18 05:47:29|9832|https://www.instagram.com/votamnhi198|leuyennha704|True|성공
+FOLLOW|2024-06-18 05:47:33|9832|https://www.instagram.com/votamnhi198|dotrucmai630|False|태스크 실패

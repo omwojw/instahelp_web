@@ -69,8 +69,8 @@ def process_order(active_accounts: list):
 
 def main():
     # 시작 함수
-    fetch_order()
-    # return common.log(f'최종결과[1,1]')
+    # fetch_order()
+    return common.log(f'최종결과[1,1]')
 
 
 if __name__ == '__main__':

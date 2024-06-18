@@ -83,12 +83,20 @@ def fetch_order() -> None:
         common.max_order_log(order_log_path, order_service, order_id, quantity)
         return
 
-
     # 계정 개수에 따른 브라우저 셋팅
-    active_accounts = common.account_setting(sorted_accounts, quantity)
+    browser_cnt, active_accounts = common.account_docker_setting(sorted_accounts, quantity)
+
+    # 컨테이너와 계정 일치하는지 체크
+    act_cnt = 0
+    for idx, active_ac in enumerate(active_accounts):
+        act_cnt += len(active_ac)
+    if quantity != act_cnt and len(sorted_accounts) != act_cnt:
+        common.cul_working_accounts(order_log_path, order_service, order_id, quantity)
+        return
 
     # 현황 로그
-    common.log(f'주문번호[{order_id}], 주문건수[{quantity}], 가용 가능한 계정[{len(sorted_accounts)}], 컨테이너 사용개수[{len(active_accounts)}]')
+    common.log(
+        f'주문번호[{order_id}], 주문건수[{quantity}], 가용 가능한 계정[{len(sorted_accounts)}], 컨테이너 사용개수[{len(active_accounts)}], 컨테이너별 브라우저 사용개수[{browser_cnt}], 배열의 계정개수[{len(active_accounts)}]{[len(a) for a in active_accounts]}')
 
     # 프로세스 실행
     process_order(order_id, quantity, order_url, active_accounts)

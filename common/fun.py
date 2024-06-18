@@ -27,6 +27,7 @@ from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support.ui import WebDriverWait
 from typing import Optional
 import re
+import math
 ua = UserAgent()
 user_agent = ua.random
 
@@ -43,8 +44,9 @@ elif sys.platform == 'darwin':
 elif sys.platform == 'linux':
     current_os = 'LINUX'
 
+max_docker_cnt = int(config['selenium']['max_docker_cnt'])
 browser_cnt = int(config['selenium']['browser_cnt'])
-order_max_cnt = int(config['selenium']['order_max_cnt'])
+max_order_cnt = int(config['selenium']['max_order_cnt'])
 is_headless = bool(config['selenium']['headless'] == 'True')
 telegram_token_key = config['telegram']['token_key']
 
@@ -928,6 +930,30 @@ def account_setting(accounts: list, quantity: int) -> list:
     return active_accounts
 
 
+def account_docker_setting(accounts: list, quantity: int) -> tuple:
+    if len(accounts) > quantity:
+        temp_active_accounts = accounts[:quantity]
+    else:
+        temp_active_accounts = accounts
+
+    global browser_cnt, max_docker_cnt
+    if max_docker_cnt > quantity:
+        max_docker_cnt = quantity
+        browser_cnt = 1
+    else:
+        browser_cnt = math.ceil(len(temp_active_accounts)/max_docker_cnt)
+
+    active_accounts = [[] for _ in range(max_docker_cnt)]
+
+    for i, account in enumerate(temp_active_accounts):
+        active_accounts[i % max_docker_cnt].append(account)
+
+    # 빈 배열 제거
+    active_accounts = [acc for acc in active_accounts if acc]
+
+    return browser_cnt, active_accounts
+
+
 # 중복주문 체크
 def dupl_check(service: int, order_service: str, order_log_path: str) -> bool:
     # 신규주문건을 전체조회한다.(대기중인것만) 최신순이니 마지막 요소(제일 오래된)를 찾는다
@@ -1048,6 +1074,12 @@ def not_working_accounts(order_log_path: str, order_service: str, order_id: str,
     write_order_log(order_log_path, order_service, order_id, quantity, 0, 0, '-')
 
 
+def cul_working_accounts(order_log_path: str, order_service: str, order_id: str, quantity: int) -> None:
+    log('컨테이너별 브라우저 계정 셋팅에 에러가 있습니다.')
+    status_change(order_id, 'setCanceled')
+    write_order_log(order_log_path, order_service, order_id, quantity, 0, 0, '-')
+
+
 def max_order_log(order_log_path: str, order_service: str, order_id: str, quantity: int) -> None:
     log('주문개수가 최대 주문개수를 초과하였습니다.')
     status_change(order_id, 'setCanceled')
@@ -1093,30 +1125,32 @@ def format_timedelta(td: timedelta) -> str:
 
 
 def save_screenshot(order_id: str, user_id: str, tab_index: int, driver: WebDriver) -> None:
-    file_path = os.path.abspath(
-        os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                     f'../log/file/{order_id}/{user_id}/{user_id}.png'))
-    make_dir(file_path)
-    driver.save_screenshot(file_path)
-    log(f"스크린샷이 완료되었습니다. '{user_id}.png' 파일이 저장되었습니다.", user_id, tab_index)
+    if config['log']['file'] == 'True':
+        file_path = os.path.abspath(
+            os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                         f'../log/file/{order_id}/{user_id}/{user_id}.png'))
+        make_dir(file_path)
+        driver.save_screenshot(file_path)
+        log(f"스크린샷이 완료되었습니다. '{user_id}.png' 파일이 저장되었습니다.", user_id, tab_index)
 
 
 def record_start(order_id: str, user_id: str, driver: WebDriver) -> None:
-    global video_out, video_start_time, record_thread, recording
+    if config['log']['file'] == 'True':
+        global video_out, video_start_time, record_thread, recording
 
-    fourcc = cv2.VideoWriter_fourcc(*"XVID")
+        fourcc = cv2.VideoWriter_fourcc(*"XVID")
 
-    file_path = os.path.abspath(
-        os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                     f'../log/file/{order_id}/{user_id}/{user_id}.avi'))
+        file_path = os.path.abspath(
+            os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                         f'../log/file/{order_id}/{user_id}/{user_id}.avi'))
 
-    make_dir(file_path)
+        make_dir(file_path)
 
-    global screen_size
-    video_out = cv2.VideoWriter(f'{file_path}', fourcc, 5.0, screen_size)
-    video_start_time = time.time()
-    record_thread = threading.Thread(target=record_screen, args=(driver,))
-    record_thread.start()
+        global screen_size
+        video_out = cv2.VideoWriter(f'{file_path}', fourcc, 5.0, screen_size)
+        video_start_time = time.time()
+        record_thread = threading.Thread(target=record_screen, args=(driver,))
+        record_thread.start()
 
 
 # 녹화 시작 (별도의 스레드나 비동기 처리를 사용하는 방법도 있음)
@@ -1137,11 +1171,12 @@ def capture_screenshot(driver: WebDriver) -> np.ndarray:
 
 
 def record_end(user_id: str, tab_index: int) -> None:
-    global recording, record_thread, video_out
-    recording = False
-    record_thread.join()
-    video_out.release()
-    log(f"녹화가 완료되었습니다. '{user_id}.avi' 파일이 저장되었습니다.", user_id, tab_index)
+    if config['log']['file'] == 'True':
+        global recording, record_thread, video_out
+        recording = False
+        record_thread.join()
+        video_out.release()
+        log(f"녹화가 완료되었습니다. '{user_id}.avi' 파일이 저장되었습니다.", user_id, tab_index)
 
 
 def last_memory_used(user_id: str, tab_index: int):
@@ -1157,6 +1192,8 @@ def set_logger(order_id: str, user_id: str, tab_index: int) -> None:
     log_filename = os.path.abspath(
         os.path.join(os.path.dirname(os.path.abspath(__file__)),
                      f'../log/file/{order_id}/{user_id}/{user_id}.txt'))
+
+    make_dir(log_filename)
 
     # 로그 설정
     logging_ele = logging.getLogger(f"Process_{tab_index}")
@@ -1212,7 +1249,7 @@ def extract_final_results(text: str, result_type: str):
 
 
 def order_max_check(quantity: int) -> bool:
-    if order_max_cnt < quantity:
+    if max_order_cnt < quantity:
         return True
     else:
         return False
