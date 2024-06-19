@@ -834,7 +834,7 @@ def agree_active(user_id: str, tab_index: int, driver: WebDriver, wait: WebDrive
 
 
 # 로그인
-def login(account_id: str, account_pw: str, tab_index, driver, wait) -> bool:
+def login(account_id: str, account_pw: str, tab_index: int, driver: WebDriver, wait: WebDriverWait) -> tuple:
 
 
     try:
@@ -847,17 +847,6 @@ def login(account_id: str, account_pw: str, tab_index, driver, wait) -> bool:
         if login_url != driver.current_url:
             return False
 
-        # 로그인 버튼 클릭
-        # find_btns = find_elements("CSS_SELECTOR", "button.x5yr21d", driver, wait)
-        # login_btn = None
-        # for find_btn in find_btns:
-        #     if find_btn.text == 'Log in' or find_btn.text == '로그인':
-        #         login_btn = find_btn
-        #
-        # if login_btn:
-        #     click(login_btn)
-        # else:
-        #     return False
 
         # 계정을 입력합니다.
         id_input = find_element('NAME', "username", driver, wait)
@@ -882,27 +871,80 @@ def login(account_id: str, account_pw: str, tab_index, driver, wait) -> bool:
             if span.text == '비밀번호 오류':
                 return False
 
-        # account_save_btns = find_elements("TAG_NAME", "button", driver, wait)
-        # for account_save_btn in account_save_btns:
-        #     if account_save_btn.text == 'Save info' or account_save_btn.text == '정보 저장':
-        #         log('로그인 정보 저장 시작', account_id, tab_index)
-        #         click(account_save_btn)
-        #         sleep(3)
-        #         log('로그인 정보 저장 종료', account_id, tab_index)
-
-        is_login = True
+        is_login1 = False
+        is_login2 = False
+        message = ''
         log('로그인 검증 시작', account_id, tab_index)
         home_url = "https://www.instagram.com/"
         driver.get(home_url)
         sleep(1)
-        if home_url != driver.current_url:
-            is_login = False
+
+        # 로그인 성공
+        if home_url == driver.current_url:
+            is_login1 = True
+            message = ''
+
+            # 검증이 성공했다고 해도 동의하기가 나올수도 있음
+            if agree_check(account_id, tab_index, driver, wait):
+                sleep(1)
+                is_agree, agree_message = agree_active(account_id, tab_index, driver, wait)
+
+                if not is_agree:
+                    is_login1 = False
+                    message = '동의하기 에러'
+                sleep(1)
+
+        # 로그인 실패
+        else:
+
+
+            # 계정 차단의 경우
+            if 'suspended' in driver.current_url:
+                is_login1 = False
+                message = '계정차단'
+
+            # 비정상적인 로그인 시도 감지
+            elif 'challenge/action' in driver.current_url:
+                is_login1 = False
+                message = '비정상적인 로그인 감지'
+
+                # TODO 이메일 이증
+
+            # 계정 봇 의심 경고 경우
+            elif 'challenge' in driver.current_url:
+                divs = find_elements("CLASS_NAME", "wbloks_1", driver, wait)
+                for div in divs:
+                    if div.get_attribute("aria-label") == '닫기':
+                        click(div)
+                        sleep(3)
+                        is_login1 = True
+                        message = ''
+                        break
+            else:
+                is_login1 = False
+                message = '원인불명'
+
+        # 로그인 2차 검증
+        if is_login1:
+            is_login2 = False
+            message = '2차 로그인 검증 에러'
+            if is_display("TAG_NAME", "svg", driver):
+                svgs = find_elements("TAG_NAME", "svg", driver, wait)
+                for svg in svgs:
+                    if svg.get_attribute("aria-label") == '홈':
+                        is_login2 = True
+                        message = ''
+                        break
+
+        is_login = is_login1 and is_login2
+
+
         log('로그인 검증 종료', account_id, tab_index)
         log(f'로그인 성공여부 {is_login}', account_id, tab_index)
-        return is_login
+        return is_login, message
     except Exception as ex:
         print(traceback.format_exc())
-        return False
+        return False, '로그인 실패'
 
 
 # 랜덤시간 추출

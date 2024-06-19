@@ -82,10 +82,34 @@ def dashboard() -> str:
 
         is_login1 = False
         is_login2 = False
+
+        # 자동 로그인 성공
         if home_url == driver.current_url:
             is_login1 = True
+
+            # 검증이 성공했다고 해도 동의하기가 나올수도 있음
+            if common.agree_check(user_id, tab_index, driver, wait):
+                common.sleep(1)
+                is_agree, agree_message = common.agree_active(user_id, tab_index, driver, wait)
+
+                if not is_agree:
+                    is_login1 = False
+                common.sleep(1)
+
+        # 자동 로그인 실패
         else:
-            if 'challenge' in driver.current_url:
+            # 계정 차단의 경우
+            if 'suspended' in driver.current_url:
+                is_login1 = False
+                raise Exception('계정차단')
+
+            # 비정상적인 로그인 시도 감지
+            elif 'challenge/action' in driver.current_url:
+                is_login1 = False
+                raise Exception('비정상적인 로그인 감지')
+
+            # 계정 봇 의심 경고 경우
+            elif 'challenge' in driver.current_url:
                 divs = common.find_elements("CLASS_NAME", "wbloks_1", driver, wait)
                 for div in divs:
                     if div.get_attribute("aria-label") == '닫기':
@@ -94,23 +118,30 @@ def dashboard() -> str:
                         is_login1 = True
                         break
 
-        if common.is_display("TAG_NAME", "svg", driver):
-            svgs = common.find_elements("TAG_NAME", "svg", driver, wait)
-            for svg in svgs:
-                if svg.get_attribute("aria-label") == '홈':
-                    is_login2 = True
-                    break
+            # 로그인 페이지로 이동의 경우
+
+        # 로그인 2차 검증
+        if is_login1:
+            if common.is_display("TAG_NAME", "svg", driver):
+                svgs = common.find_elements("TAG_NAME", "svg", driver, wait)
+                for svg in svgs:
+                    if svg.get_attribute("aria-label") == '홈':
+                        is_login2 = True
+                        break
+
+        is_login = is_login1 and is_login2
 
         # 로그인 안된 경우
-        if not is_login1 or not is_login2:
-            if not common.login(user_id, user_pw, tab_index, driver, wait):
-                raise Exception('로그인 실패')
+        if not is_login:
+            login, message = common.login(user_id, user_pw, tab_index, driver, wait)
+            if not login:
+                raise Exception(message)
         else:
             common.log(f'로그인 성공여부 True', user_id, tab_index)
     except Exception as ex:
-        common.remove_from_accounts(task_service, order_id, user_id, '로그인 실패', True)
+        common.remove_from_accounts(task_service, order_id, user_id, str(ex), True)
         # print(traceback.format_exc())
-        return f'0,1,로그인 실패'
+        return f'0,1,{str(ex)}'
 
     try:
         if mode == 'LIVE':
