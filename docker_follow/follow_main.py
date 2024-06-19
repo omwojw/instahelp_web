@@ -98,15 +98,16 @@ def dashboard() -> str:
 
         # 자동 로그인 실패
         else:
-            # 계정 차단의 경우
-            if 'suspended' in driver.current_url:
-                is_login1 = False
-                raise Exception('계정차단')
 
-            # 비정상적인 로그인 시도 감지
+            # 계정 정지
+            if 'accounts/suspended' in driver.current_url:
+                is_login1 = False
+                raise Exception('계정정지')
+
+            # 인증 후 살리기
             elif 'challenge/action' in driver.current_url:
                 is_login1 = False
-                raise Exception('비정상적인 로그인 감지')
+                raise Exception('인증필요')
 
             # 계정 봇 의심 경고 경우
             elif 'challenge' in driver.current_url:

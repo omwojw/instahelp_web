@@ -836,7 +836,6 @@ def agree_active(user_id: str, tab_index: int, driver: WebDriver, wait: WebDrive
 # 로그인
 def login(account_id: str, account_pw: str, tab_index: int, driver: WebDriver, wait: WebDriverWait) -> tuple:
 
-
     try:
         # 로그인
         log('로그인 시작', account_id, tab_index)
@@ -845,7 +844,7 @@ def login(account_id: str, account_pw: str, tab_index: int, driver: WebDriver, w
         driver.get(login_url)
         sleep(3)
         if login_url != driver.current_url:
-            return False
+            return False, '로그인 페이지를 벗어남'
 
 
         # 계정을 입력합니다.
@@ -869,15 +868,21 @@ def login(account_id: str, account_pw: str, tab_index: int, driver: WebDriver, w
         spans = find_elements("TAG_NAME", "span", driver, wait)
         for span in spans:
             if span.text == '비밀번호 오류':
-                return False
+                return False, '비밀번호 오류'
 
-        is_login1 = False
-        is_login2 = False
-        message = ''
+        divs = find_elements("TAG_NAME", "div", driver, wait)
+        for div in divs:
+            if div.text == '잘못된 비밀번호입니다. 다시 확인하세요.':
+                return False, '비밀번호 오류'
+
         log('로그인 검증 시작', account_id, tab_index)
         home_url = "https://www.instagram.com/"
         driver.get(home_url)
         sleep(1)
+
+        is_login1 = False
+        is_login2 = False
+        message = ''
 
         # 로그인 성공
         if home_url == driver.current_url:
@@ -897,16 +902,15 @@ def login(account_id: str, account_pw: str, tab_index: int, driver: WebDriver, w
         # 로그인 실패
         else:
 
-
-            # 계정 차단의 경우
-            if 'suspended' in driver.current_url:
+            # 계정 정지
+            if 'accounts/suspended' in driver.current_url:
                 is_login1 = False
-                message = '계정차단'
+                message = '계정정지'
 
-            # 비정상적인 로그인 시도 감지
+            # 인증 후 살리기
             elif 'challenge/action' in driver.current_url:
                 is_login1 = False
-                message = '비정상적인 로그인 감지'
+                message = '인증필요'
 
                 # TODO 이메일 이증
 
