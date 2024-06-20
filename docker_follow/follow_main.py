@@ -82,6 +82,18 @@ def dashboard() -> str:
         common.set_lang(driver)
         common.sleep(3)
 
+        try:
+            import os
+            os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'  # 경고 및 오류만 표시
+            os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'  # oneDNN 최적화 비활성화
+
+            import tensorflow as tf
+
+            # GPU 사용 가능 여부 확인
+            common.log("Num GPUs Available: ", len(tf.config.experimental.list_physical_devices('GPU')))
+        except Exception as e:
+            common.log(traceback.format_exc(), user_id, tab_index)
+
         # # 로그인 버튼 클릭
         # find_btns = common.find_elements("CSS_SELECTOR", "button.x5yr21d", driver, wait)
         # login_btn = None

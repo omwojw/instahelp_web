@@ -110,7 +110,6 @@ hanngocuyen1890|Abc@1237487|hanngocuyen1890@navalcadets.com|Abc@123456|49.254.95
 lexuanngoc3673|Abc@1232025|lexuanngoc3673@navalcadets.com|Abc@123456|49.254.133.46:6533
 dangdayen2619|Abc@1237749|dangdayen2619@navalcadets.com|Abc@123456|115.144.177.101:5166
 nguyenthuyngan9698|Abc@1231271|nguyenthuyngan9698@navalcadets.com|Abc@123456|121.126.55.233:5082
-banhuyenvi5039|Abc@1233987|banhuyenvi5039@navalcadets.com|Abc@123456|115.144.97.248:5089
 phungnhuanh7650|Abc@1237708|phungnhuanh7650@navalcadets.com|Abc@123456|115.144.36.50:5369
 nguyenquynhvan6553|Abc@1237685|nguyenquynhvan6553@navalcadets.com|Abc@123456|121.126.88.101:5685
 thaiuyennha4356|Abc@1236056|thaiuyennha4356@navalcadets.com|Abc@123456|115.144.59.99:5449

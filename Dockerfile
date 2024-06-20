@@ -27,6 +27,9 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /instahelp_web
 
+# GPU 환경설정
+#ENV TF_ENABLE_ONEDNN_OPTS=0
+
 # 필요한 Python 패키지 설치
 COPY setting/requirements.txt /tmp/requirements.txt
 RUN pip install --upgrade pip
