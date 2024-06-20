@@ -4,22 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f45090a8-3937-4745-9af1-b5942561f191" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/instahelp_web.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/instahelp_web.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker_follow/follow_docker.py" beforeDir="false" afterPath="$PROJECT_DIR$/docker_follow/follow_docker.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker_follow/follow_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/docker_follow/follow_main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/log/error_accounts.txt" beforeDir="false" afterPath="$PROJECT_DIR$/log/error_accounts.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/log/order_history.txt" beforeDir="false" afterPath="$PROJECT_DIR$/log/order_history.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/log/task_history.txt" beforeDir="false" afterPath="$PROJECT_DIR$/log/task_history.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/log/working/working_accounts_20240620.txt" beforeDir="false" afterPath="$PROJECT_DIR$/log/working/working_accounts_20240620.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/log/working_accounts_save.txt" beforeDir="false" afterPath="$PROJECT_DIR$/log/working_accounts_save.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/setting/account.txt" beforeDir="false" afterPath="$PROJECT_DIR$/setting/account.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/setting/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/setting/requirements.txt" afterDir="false" />
-    </list>
+    <list default="true" id="f45090a8-3937-4745-9af1-b5942561f191" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -161,7 +146,7 @@
       <workItem from="1718176393104" duration="5028000" />
       <workItem from="1718256248538" duration="2725000" />
       <workItem from="1718265311414" duration="57989000" />
-      <workItem from="1718872672072" duration="2940000" />
+      <workItem from="1718872672072" duration="2959000" />
     </task>
     <servers />
   </component>
