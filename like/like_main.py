@@ -100,7 +100,6 @@ def dashboard() -> str:
             common.log(f'로그인 성공여부 True', user_id, tab_index)
     except Exception as ex:
         common.remove_from_accounts(task_service, order_id, user_id, '로그인 실패', True)
-        # print(traceback.format_exc())
         return f'0,1,로그인 실패'
 
     try:
@@ -130,7 +129,7 @@ def dashboard() -> str:
         return f'{success},{fail},{message}'
     except Exception as ex:
         # common.remove_from_accounts(task_service, order_id, user_id, '태스크 실패')
-        print(traceback.format_exc())
+        common.log(traceback.format_exc(), user_id, tab_index)
         return f'0,1,태스크 실패'
 
 
@@ -212,7 +211,7 @@ def main_fun(_tab_index: int, _user_id: str, _user_pw: str, _ip: str, _order_id:
         return result
     except Exception as ex:
         common.write_task_log(task_log_path, task_service, order_id, user_id, False, '에러발생', order_url)
-        print(traceback.format_exc())
+        common.log(traceback.format_exc(), user_id, tab_index)
         return f'0,1,에러발생'
     finally:
 

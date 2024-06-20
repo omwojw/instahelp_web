@@ -1,0 +1,7 @@
+[2][nguyenhuutai8121] 로그인 시작
+[2][nguyenhuutai8121] 로그인 종료
+[2][nguyenhuutai8121] 로그인 검증 시작
+[2][nguyenhuutai8121] 로그인 검증 종료
+[2][nguyenhuutai8121] 로그인 성공여부 False - False
+[2][nguyenhuutai8121] Task[0,1,계정정지]
+[2][nguyenhuutai8121] 마지막 메모리 사용량: 52.32 MB

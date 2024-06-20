@@ -1,0 +1,7 @@
+[3][hosuongsuong318] 로그인 시작
+[3][hosuongsuong318] 로그인 종료
+[3][hosuongsuong318] 로그인 검증 시작
+[3][hosuongsuong318] 로그인 검증 종료
+[3][hosuongsuong318] 로그인 성공여부 False - False
+[3][hosuongsuong318] Task[0,1,계정정지]
+[3][hosuongsuong318] 마지막 메모리 사용량: 11.31 MB

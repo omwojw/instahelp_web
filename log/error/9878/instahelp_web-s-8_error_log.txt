@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\workspace\instahelp_web\docker_follow\follow_docker.py", line 156, in open_docker
+    result_print += line.decode("utf-8")
+                    ^^^^^^^^^^^^^^^^^^^^
+UnicodeDecodeError: 'utf-8' codec can't decode byte 0xec in position 1439: unexpected end of data

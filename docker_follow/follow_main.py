@@ -157,6 +157,7 @@ def dashboard() -> str:
                 if not is_login1:
                     raise Exception('의심경고')
 
+        common.sleep(3)
         # 로그인 2차 검증
         if is_login1:
             if common.is_display("TAG_NAME", "svg", driver):
@@ -180,7 +181,6 @@ def dashboard() -> str:
             common.log(f'자동 로그인 성공여부 {is_login1} - {is_login2}', user_id, tab_index)
     except Exception as ex:
         common.remove_from_accounts(task_service, order_id, user_id, str(ex), True)
-        # print(traceback.format_exc())
         return f'0,1,{str(ex)}'
 
     try:
@@ -208,7 +208,7 @@ def dashboard() -> str:
         common.sleep(3)
         return f'{success},{fail},{message}'
     except Exception as ex:
-        print(traceback.format_exc())
+        common.log(traceback.format_exc(), user_id, tab_index)
         return f'0,1,태스크 실패'
 
 
@@ -306,12 +306,12 @@ def main_fun(_tab_index: int, _user_id: str, _user_pw: str, _ip: str, _order_id:
             is_result = False
 
         common.write_task_log(task_log_path, task_service, order_id, user_id, is_result, message, order_url)
-        common.log(f'Task[{result}]')
+        common.log(f'Task[{result}]', user_id, tab_index)
         return result
     except Exception as ex:
         common.write_task_log(task_log_path, task_service, order_id, user_id, False, '에러발생', order_url)
-        print(traceback.format_exc())
-        common.log(f'Task[0,1,에러발생]')
+        common.log(traceback.format_exc(), user_id, tab_index)
+        common.log(f'Task[0,1,에러발생]', user_id, tab_index)
         return f'0,1,에러발생'
     finally:
 

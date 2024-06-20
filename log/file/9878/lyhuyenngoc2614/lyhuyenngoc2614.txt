@@ -1,0 +1,14 @@
+[18][lyhuyenngoc2614] 로그인 시작
+[18][lyhuyenngoc2614] 로그인 종료
+[18][lyhuyenngoc2614] 로그인 검증 시작
+[18][lyhuyenngoc2614] 동의여부 체크 시작
+[18][lyhuyenngoc2614] 동의여부 체크 종료 : 동의 필요하지 않음
+[18][lyhuyenngoc2614] 로그인 검증 종료
+[18][lyhuyenngoc2614] 로그인 성공여부 True - True
+[18][lyhuyenngoc2614] 남은 수량 : 1
+[18][lyhuyenngoc2614] 동의여부 체크 시작
+[18][lyhuyenngoc2614] 동의여부 체크 종료 : 동의 필요하지 않음
+[18][lyhuyenngoc2614] 팔로우 시작
+[18][lyhuyenngoc2614] 팔로우 종료 - 성공
+[18][lyhuyenngoc2614] Task[1,0,성공]
+[18][lyhuyenngoc2614] 마지막 메모리 사용량: 11.94 MB

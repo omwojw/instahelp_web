@@ -1,0 +1,7 @@
+[1][banhuyenvi5039] 로그인 시작
+[1][banhuyenvi5039] 로그인 종료
+[1][banhuyenvi5039] 로그인 검증 시작
+[1][banhuyenvi5039] 로그인 검증 종료
+[1][banhuyenvi5039] 로그인 성공여부 False - False
+[1][banhuyenvi5039] Task[0,1,의심경고]
+[1][banhuyenvi5039] 마지막 메모리 사용량: 11.17 MB

@@ -1,0 +1,14 @@
+[3][nguyenphuocnguyen7520] 로그인 시작
+[3][nguyenphuocnguyen7520] 로그인 종료
+[3][nguyenphuocnguyen7520] 로그인 검증 시작
+[3][nguyenphuocnguyen7520] 동의여부 체크 시작
+[3][nguyenphuocnguyen7520] 동의여부 체크 종료 : 동의 필요하지 않음
+[3][nguyenphuocnguyen7520] 로그인 검증 종료
+[3][nguyenphuocnguyen7520] 로그인 성공여부 True - True
+[3][nguyenphuocnguyen7520] 남은 수량 : 1
+[3][nguyenphuocnguyen7520] 동의여부 체크 시작
+[3][nguyenphuocnguyen7520] 동의여부 체크 종료 : 동의 필요하지 않음
+[3][nguyenphuocnguyen7520] 팔로우 시작
+[3][nguyenphuocnguyen7520] 팔로우 종료 - 성공
+[3][nguyenphuocnguyen7520] Task[1,0,성공]
+[3][nguyenphuocnguyen7520] 마지막 메모리 사용량: 52.78 MB

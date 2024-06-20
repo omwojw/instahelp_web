@@ -1,0 +1,46 @@
+[3][leuyennha704] 로그인 시작
+[3][leuyennha704] 로그인 종료
+[3][leuyennha704] 로그인 검증 시작
+[3][leuyennha704] 동의여부 체크 시작
+[3][leuyennha704] Traceback (most recent call last):
+  File "/instahelp_web/common/fun.py", line 894, in login
+    if agree_check(account_id, tab_index, driver, wait):
+  File "/instahelp_web/common/fun.py", line 803, in agree_check
+    if agree.text == 'Instagram 앱을 사용하려면 다음 항목에 동의해야 합니다':
+  File "/usr/local/lib/python3.9/site-packages/selenium/webdriver/remote/webelement.py", line 90, in text
+    return self._execute(Command.GET_ELEMENT_TEXT)["value"]
+  File "/usr/local/lib/python3.9/site-packages/selenium/webdriver/remote/webelement.py", line 395, in _execute
+    return self._parent.execute(command, params)
+  File "/usr/local/lib/python3.9/site-packages/selenium/webdriver/remote/webdriver.py", line 347, in execute
+    self.error_handler.check_response(response)
+  File "/usr/local/lib/python3.9/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.StaleElementReferenceException: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome-headless-shell=126.0.6478.61); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+#0 0x564a72d676aa <unknown>
+#1 0x564a72a4a0dc <unknown>
+#2 0x564a72a4f7e9 <unknown>
+#3 0x564a72a51595 <unknown>
+#4 0x564a72a5161c <unknown>
+#5 0x564a72a90ae2 <unknown>
+#6 0x564a72ab9872 <unknown>
+#7 0x564a72a8ad89 <unknown>
+#8 0x564a72ab9a3e <unknown>
+#9 0x564a72ad85c3 <unknown>
+#10 0x564a72ab9613 <unknown>
+#11 0x564a72a894f7 <unknown>
+#12 0x564a72a89e4e <unknown>
+#13 0x564a72d2d87b <unknown>
+#14 0x564a72d31921 <unknown>
+#15 0x564a72d1936e <unknown>
+#16 0x564a72d32482 <unknown>
+#17 0x564a72cfdccf <unknown>
+#18 0x564a72d570a8 <unknown>
+#19 0x564a72d57280 <unknown>
+#20 0x564a72d667dc <unknown>
+#21 0x7f333fcb0134 <unknown>
+
+
+[3][leuyennha704] Task[0,1,로그인 실패]
+[3][leuyennha704] 마지막 메모리 사용량: 12.82 MB

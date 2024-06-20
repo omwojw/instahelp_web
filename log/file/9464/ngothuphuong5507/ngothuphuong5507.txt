@@ -1,0 +1,7 @@
+[1][ngothuphuong5507] 로그인 시작
+[1][ngothuphuong5507] 로그인 종료
+[1][ngothuphuong5507] 로그인 검증 시작
+[1][ngothuphuong5507] 로그인 검증 종료
+[1][ngothuphuong5507] 로그인 성공여부 False - False
+[1][ngothuphuong5507] Task[0,1,계정정지]
+[1][ngothuphuong5507] 마지막 메모리 사용량: 52.46 MB

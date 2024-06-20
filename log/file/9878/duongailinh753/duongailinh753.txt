@@ -1,0 +1,14 @@
+[15][duongailinh753] 로그인 시작
+[15][duongailinh753] 로그인 종료
+[15][duongailinh753] 로그인 검증 시작
+[15][duongailinh753] 동의여부 체크 시작
+[15][duongailinh753] 동의여부 체크 종료 : 동의 필요하지 않음
+[15][duongailinh753] 로그인 검증 종료
+[15][duongailinh753] 로그인 성공여부 True - True
+[15][duongailinh753] 남은 수량 : 1
+[15][duongailinh753] 동의여부 체크 시작
+[15][duongailinh753] 동의여부 체크 종료 : 동의 필요하지 않음
+[15][duongailinh753] 팔로우 시작
+[15][duongailinh753] 팔로우 종료 - 성공
+[15][duongailinh753] Task[1,0,성공]
+[15][duongailinh753] 마지막 메모리 사용량: 11.88 MB

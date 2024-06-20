@@ -1,0 +1,13 @@
+[2][dangthaohuong324] 로그인 시작
+[2][dangthaohuong324] 로그인 종료
+[2][dangthaohuong324] 로그인 검증 시작
+[2][dangthaohuong324] 동의여부 체크 시작
+[2][dangthaohuong324] 동의여부 체크 종료 : 동의 필요하지 않음
+[2][dangthaohuong324] 로그인 검증 종료
+[2][dangthaohuong324] 로그인 성공여부 True - True
+[2][dangthaohuong324] 남은 수량 : 1
+[2][dangthaohuong324] 동의여부 체크 시작
+[2][dangthaohuong324] 동의여부 체크 종료 : 동의 필요하지 않음
+[2][dangthaohuong324] 팔로우 시작
+[-][-] Task[0,1,태스크 실패]
+[2][dangthaohuong324] 마지막 메모리 사용량: 52.78 MB

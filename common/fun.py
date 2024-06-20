@@ -864,15 +864,18 @@ def login(account_id: str, account_pw: str, tab_index: int, driver: WebDriver, w
         log('로그인 종료', account_id, tab_index)
         sleep(5)
 
-        spans = find_elements("TAG_NAME", "span", driver, wait)
-        for span in spans:
-            if span.text == '비밀번호 오류':
-                return False, '비밀번호 오류'
+        try:
+            spans = find_elements("TAG_NAME", "span", driver, wait)
+            for span in spans:
+                if span.text == '비밀번호 오류':
+                    return False, '비밀번호 오류'
 
-        divs = find_elements("TAG_NAME", "div", driver, wait)
-        for div in divs:
-            if div.text == '잘못된 비밀번호입니다. 다시 확인하세요.':
-                return False, '비밀번호 오류'
+            divs = find_elements("TAG_NAME", "div", driver, wait)
+            for div in divs:
+                if div.text == '잘못된 비밀번호입니다. 다시 확인하세요.':
+                    return False, '비밀번호 오류'
+        except Exception as e:
+            sleep(1)
 
         log('로그인 검증 시작', account_id, tab_index)
         home_url = "https://www.instagram.com/"
@@ -948,6 +951,7 @@ def login(account_id: str, account_pw: str, tab_index: int, driver: WebDriver, w
             else:
                 message = '원인불명'
 
+        sleep(3)
         # 로그인 2차 검증
         if is_login1:
             if is_display("TAG_NAME", "svg", driver):
@@ -966,7 +970,7 @@ def login(account_id: str, account_pw: str, tab_index: int, driver: WebDriver, w
         log(f'로그인 성공여부 {is_login1} - {is_login2}', account_id, tab_index)
         return is_login, message
     except Exception as ex:
-        print(traceback.format_exc())
+        log(traceback.format_exc(), account_id, tab_index)
         return False, '로그인 실패'
 
 

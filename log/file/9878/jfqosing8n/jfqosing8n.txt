@@ -1,0 +1,7 @@
+[17][jfqosing8n] 로그인 시작
+[17][jfqosing8n] 로그인 종료
+[17][jfqosing8n] 로그인 검증 시작
+[17][jfqosing8n] 로그인 검증 종료
+[17][jfqosing8n] 로그인 성공여부 False - False
+[17][jfqosing8n] Task[0,1,계정정지]
+[17][jfqosing8n] 마지막 메모리 사용량: 11.40 MB

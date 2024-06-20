@@ -1,0 +1,43 @@
+[11][vuchithanh218] 로그인 시작
+[11][vuchithanh218] 로그인 종료
+[11][vuchithanh218] 로그인 검증 시작
+[11][vuchithanh218] 동의여부 체크 시작
+[11][vuchithanh218] 동의여부 체크 종료 : 동의 필요하지 않음
+[11][vuchithanh218] 로그인 검증 종료
+[11][vuchithanh218] 로그인 성공여부 True - True
+[11][vuchithanh218] 남은 수량 : 1
+[11][vuchithanh218] 동의여부 체크 시작
+[11][vuchithanh218] 동의여부 체크 종료 : 동의 필요하지 않음
+[11][vuchithanh218] 팔로우 시작
+[11][vuchithanh218] Traceback (most recent call last):
+  File "/instahelp_web/docker_follow/follow_main.py", line 240, in process
+    btn_elements = common.find_elements("CSS_SELECTOR", "button._acan", driver, wait)
+  File "/instahelp_web/common/fun.py", line 411, in find_elements
+    return wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, selector_name)))
+  File "/usr/local/lib/python3.9/site-packages/selenium/webdriver/support/wait.py", line 105, in until
+    raise TimeoutException(message, screen, stacktrace)
+selenium.common.exceptions.TimeoutException: Message: 
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/instahelp_web/docker_follow/follow_main.py", line 230, in fetch_order
+    result, message = process()
+  File "/instahelp_web/docker_follow/follow_main.py", line 275, in process
+    raise Exception(ex)
+Exception: Message: 
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/instahelp_web/docker_follow/follow_main.py", line 197, in dashboard
+    result, message = fetch_order()
+  File "/instahelp_web/docker_follow/follow_main.py", line 233, in fetch_order
+    raise Exception(ex)
+Exception: Message: 
+
+
+[11][vuchithanh218] Task[0,1,태스크 실패]
+[11][vuchithanh218] 마지막 메모리 사용량: 12.53 MB

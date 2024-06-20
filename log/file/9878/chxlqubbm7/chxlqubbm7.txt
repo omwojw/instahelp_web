@@ -1,0 +1,14 @@
+[1][chxlqubbm7] 로그인 시작
+[1][chxlqubbm7] 로그인 종료
+[1][chxlqubbm7] 로그인 검증 시작
+[1][chxlqubbm7] 동의여부 체크 시작
+[1][chxlqubbm7] 동의여부 체크 종료 : 동의 필요하지 않음
+[1][chxlqubbm7] 로그인 검증 종료
+[1][chxlqubbm7] 로그인 성공여부 True - True
+[1][chxlqubbm7] 남은 수량 : 1
+[1][chxlqubbm7] 동의여부 체크 시작
+[1][chxlqubbm7] 동의여부 체크 종료 : 동의 필요하지 않음
+[1][chxlqubbm7] 팔로우 시작
+[1][chxlqubbm7] 팔로우 종료 - 팔로우 버튼을 눌렀지만 에러
+[1][chxlqubbm7] Task[0,1,팔로우 버튼을 눌렀지만 에러]
+[1][chxlqubbm7] 마지막 메모리 사용량: 11.61 MB

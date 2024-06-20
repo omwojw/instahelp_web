@@ -1,0 +1,46 @@
+[19][ngoyennhi939] 로그인 시작
+[19][ngoyennhi939] 로그인 종료
+[19][ngoyennhi939] 로그인 검증 시작
+[19][ngoyennhi939] 동의여부 체크 시작
+[19][ngoyennhi939] Traceback (most recent call last):
+  File "/instahelp_web/common/fun.py", line 894, in login
+    if agree_check(account_id, tab_index, driver, wait):
+  File "/instahelp_web/common/fun.py", line 803, in agree_check
+    if agree.text == 'Instagram 앱을 사용하려면 다음 항목에 동의해야 합니다':
+  File "/usr/local/lib/python3.9/site-packages/selenium/webdriver/remote/webelement.py", line 90, in text
+    return self._execute(Command.GET_ELEMENT_TEXT)["value"]
+  File "/usr/local/lib/python3.9/site-packages/selenium/webdriver/remote/webelement.py", line 395, in _execute
+    return self._parent.execute(command, params)
+  File "/usr/local/lib/python3.9/site-packages/selenium/webdriver/remote/webdriver.py", line 347, in execute
+    self.error_handler.check_response(response)
+  File "/usr/local/lib/python3.9/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.StaleElementReferenceException: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome-headless-shell=126.0.6478.61); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+#0 0x562738c8b6aa <unknown>
+#1 0x56273896e0dc <unknown>
+#2 0x5627389737e9 <unknown>
+#3 0x562738975595 <unknown>
+#4 0x56273897561c <unknown>
+#5 0x5627389b4ae2 <unknown>
+#6 0x5627389dd872 <unknown>
+#7 0x5627389aed89 <unknown>
+#8 0x5627389dda3e <unknown>
+#9 0x5627389fc5c3 <unknown>
+#10 0x5627389dd613 <unknown>
+#11 0x5627389ad4f7 <unknown>
+#12 0x5627389ade4e <unknown>
+#13 0x562738c5187b <unknown>
+#14 0x562738c55921 <unknown>
+#15 0x562738c3d36e <unknown>
+#16 0x562738c56482 <unknown>
+#17 0x562738c21ccf <unknown>
+#18 0x562738c7b0a8 <unknown>
+#19 0x562738c7b280 <unknown>
+#20 0x562738c8a7dc <unknown>
+#21 0x7f32e2b24134 <unknown>
+
+
+[19][ngoyennhi939] Task[0,1,로그인 실패]
+[19][ngoyennhi939] 마지막 메모리 사용량: 13.12 MB

@@ -1,0 +1,14 @@
+[7][phamthuylieu8122] 로그인 시작
+[7][phamthuylieu8122] 로그인 종료
+[7][phamthuylieu8122] 로그인 검증 시작
+[7][phamthuylieu8122] 동의여부 체크 시작
+[7][phamthuylieu8122] 동의여부 체크 종료 : 동의 필요하지 않음
+[7][phamthuylieu8122] 로그인 검증 종료
+[7][phamthuylieu8122] 로그인 성공여부 True - True
+[7][phamthuylieu8122] 남은 수량 : 1
+[7][phamthuylieu8122] 동의여부 체크 시작
+[7][phamthuylieu8122] 동의여부 체크 종료 : 동의 필요하지 않음
+[7][phamthuylieu8122] 팔로우 시작
+[7][phamthuylieu8122] 팔로우 종료 - 성공
+[7][phamthuylieu8122] Task[1,0,성공]
+[7][phamthuylieu8122] 마지막 메모리 사용량: 12.19 MB
