@@ -77,9 +77,9 @@ def dashboard() -> str:
             is_login1 = True
         else:
             if 'challenge' in driver.current_url:
-                divs = common.find_elements("CLASS_NAME", "wbloks_1", driver, wait)
+                divs = common.find_elements("TAG_NAME", "div", driver, wait)
                 for div in divs:
-                    if div.get_attribute("aria-label") == '닫기':
+                    if div.get_attribute("aria-label") == '닫기' or div.get_attribute('aria-label') == 'Dismiss':
                         common.click(div)
                         common.sleep(3)
                         is_login1 = True
@@ -88,7 +88,7 @@ def dashboard() -> str:
         if common.is_display("TAG_NAME", "svg", driver):
             svgs = common.find_elements("TAG_NAME", "svg", driver, wait)
             for svg in svgs:
-                if svg.get_attribute("aria-label") == '홈':
+                if svg.get_attribute("aria-label") == '홈' or svg.get_attribute("aria-label") == 'Home':
                     is_login2 = True
                     break
 
@@ -138,7 +138,7 @@ def dashboard() -> str:
 # 주문 프로 세스
 def fetch_order() -> tuple:
     try:
-        driver.get(order_url)
+        common.move_page(driver, order_url)
         common.sleep(2)
 
         if common.agree_check(user_id, tab_index, driver, wait):

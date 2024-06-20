@@ -17,6 +17,14 @@ RUN wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
+# 한글 폰트 설치
+RUN apt-get update && apt-get install -y \
+    fonts-nanum \
+    fonts-noto-cjk \
+    && fc-cache -fv \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /instahelp_web
 
 # 필요한 Python 패키지 설치

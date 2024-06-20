@@ -45,12 +45,11 @@ elif sys.platform == 'linux':
     current_os = 'LINUX'
 
 max_docker_cnt = int(config['selenium']['max_docker_cnt'])
-browser_cnt = int(config['selenium']['browser_cnt'])
 max_order_cnt = int(config['selenium']['max_order_cnt'])
 is_headless = bool(config['selenium']['headless'] == 'True')
 telegram_token_key = config['telegram']['token_key']
 
-
+browser_cnt = 0
 video_out: Optional[cv2.VideoWriter] = None
 video_start_time = 0
 recording = True
@@ -841,7 +840,7 @@ def login(account_id: str, account_pw: str, tab_index: int, driver: WebDriver, w
         log('로그인 시작', account_id, tab_index)
 
         login_url = 'https://www.instagram.com/accounts/login/'
-        driver.get(login_url)
+        move_page(driver, login_url)
         sleep(3)
         if login_url != driver.current_url:
             return False, '로그인 페이지를 벗어남'
@@ -877,7 +876,7 @@ def login(account_id: str, account_pw: str, tab_index: int, driver: WebDriver, w
 
         log('로그인 검증 시작', account_id, tab_index)
         home_url = "https://www.instagram.com/"
-        driver.get(home_url)
+        move_page(driver, home_url)
         sleep(1)
 
         is_login1 = False
@@ -887,7 +886,6 @@ def login(account_id: str, account_pw: str, tab_index: int, driver: WebDriver, w
         # 로그인 성공
         if home_url == driver.current_url:
             is_login1 = True
-            message = ''
 
             # 검증이 성공했다고 해도 동의하기가 나올수도 있음
             if agree_check(account_id, tab_index, driver, wait):
@@ -904,47 +902,68 @@ def login(account_id: str, account_pw: str, tab_index: int, driver: WebDriver, w
 
             # 계정 정지
             if 'accounts/suspended' in driver.current_url:
-                is_login1 = False
                 message = '계정정지'
+
+            # 메타 정보동의
+            elif '/consent/' in driver.current_url:
+                message = '광고설정'
+
+                divs = find_elements("TAG_NAME", "div", driver, wait)
+                for div in divs:
+                    if div.text == '시작하기':
+                        click(div)
+                        sleep(1)
+
+                        spans = find_elements("TAG_NAME", "span", driver, wait)
+                        for span in spans:
+                            if span.text == '무료 사용':
+                                click(span)
+                                sleep(1)
+
+                                span_agrees = find_elements("TAG_NAME", "span", driver, wait)
+                                for span_agree in span_agrees:
+                                    if span_agree.text == '동의':
+                                        click(span_agree)
+                                        sleep(1)
+                                        is_login1 = True
+                                        message = ''
+                                        break
 
             # 인증 후 살리기
             elif 'challenge/action' in driver.current_url:
-                is_login1 = False
                 message = '인증필요'
-
                 # TODO 이메일 이증
 
             # 계정 봇 의심 경고 경우
             elif 'challenge' in driver.current_url:
-                divs = find_elements("CLASS_NAME", "wbloks_1", driver, wait)
+                message = '의심경고'
+                divs = find_elements("TAG_NAME", "div", driver, wait)
                 for div in divs:
-                    if div.get_attribute("aria-label") == '닫기':
+                    if div.get_attribute("aria-label") == '닫기' or div.get_attribute('aria-label') == 'Dismiss':
                         click(div)
                         sleep(3)
                         is_login1 = True
                         message = ''
                         break
             else:
-                is_login1 = False
                 message = '원인불명'
 
         # 로그인 2차 검증
         if is_login1:
-            is_login2 = False
-            message = '2차 로그인 검증 에러'
             if is_display("TAG_NAME", "svg", driver):
                 svgs = find_elements("TAG_NAME", "svg", driver, wait)
                 for svg in svgs:
-                    if svg.get_attribute("aria-label") == '홈':
+                    if svg.get_attribute("aria-label") == '홈' or svg.get_attribute("aria-label") == 'Home':
                         is_login2 = True
                         message = ''
                         break
 
+            if not is_login2:
+                message = '2차 로그인 검증 에러'
         is_login = is_login1 and is_login2
 
-
         log('로그인 검증 종료', account_id, tab_index)
-        log(f'로그인 성공여부 {is_login}', account_id, tab_index)
+        log(f'로그인 성공여부 {is_login1} - {is_login2}', account_id, tab_index)
         return is_login, message
     except Exception as ex:
         print(traceback.format_exc())
@@ -964,6 +983,7 @@ def click(element: WebElement):
 
 # 브라우저 + 계정 셋팅
 def account_setting(accounts: list, quantity: int) -> list:
+    global browser_cnt
     if len(accounts) > quantity:
         temp_active_accounts = accounts[:quantity]
     else:
@@ -1269,6 +1289,18 @@ def set_lang(driver: WebDriver) -> None:
     #     print("'약관' 단어를 찾았습니다.")
     # else:
     #     print("'약관' 단어를 찾지 못했습니다.")
+
+
+def move_page(driver: WebDriver, url: str):
+    driver.get(url)
+    set_language_cookie(driver)  # 페이지 이동 후 쿠키 설정
+
+
+# 페이지 이동 전후로 쿠키를 다시 설정하는 함수
+def set_language_cookie(driver):
+    driver.execute_script("""
+        document.cookie = "ig_lang=ko";
+    """)
 
 
 def extract_final_results(text: str, result_type: str):

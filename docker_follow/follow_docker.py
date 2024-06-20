@@ -143,7 +143,7 @@ def open_docker(index: int, active_account: list, order_id: str, quantity: int, 
     client = docker.from_env()
     containers = client.containers.list()
     container = containers[index]
-    common.log(f"컨테이너 실행성공", container.name, index + 1)
+    # common.log(f"컨테이너 실행성공", container.name, index + 1)
 
     try:
         # 컨테이너 내에서 명령 실행
@@ -172,8 +172,8 @@ def open_docker(index: int, active_account: list, order_id: str, quantity: int, 
         common.remove_from_error(traceback.format_exc(), order_id, container.name)
         return f"0,0"
     finally:
-        if not container:
-            container.quit()
+        if container:
+            container.stop()
 
 
 def main():

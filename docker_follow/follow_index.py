@@ -64,6 +64,7 @@ def process_order(active_accounts: list):
         total_success += sum(int(result.split(',')[0]) for result in results)
         total_fail += sum(int(result.split(',')[1]) for result in results)
 
+    # 실제 콘솔에 찍는 내용보다는 _docker.py 에서 결과 출력하기 위한 콘솔용
     common.log(f'최종결과[{total_success},{total_fail}]')
 
 

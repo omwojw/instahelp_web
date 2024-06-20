@@ -51,7 +51,7 @@ def setup() -> str:
         driver = common.open_selenium(current_os, wait_time, ip, session_id, tab_index)
 
     # 인스턴스 종료
-    if driver is not None:
+    if driver:
         return dashboard()
     else:
         return f'0,1,셀레니움 오픈 실패'
@@ -76,9 +76,21 @@ def dashboard() -> str:
     try:
 
         # 페이지 띄우기
+        login_url = "https://www.instagram.com/accounts/login/"
         home_url = "https://www.instagram.com/"
-        driver.get(home_url)
+        driver.get(login_url)
         common.set_lang(driver)
+        common.sleep(3)
+
+        # # 로그인 버튼 클릭
+        # find_btns = common.find_elements("CSS_SELECTOR", "button.x5yr21d", driver, wait)
+        # login_btn = None
+        # for find_btn in find_btns:
+        #     if find_btn.text == 'Log in' or find_btn.text == '로그인':
+        #         login_btn = find_btn
+        # if login_btn:
+        #     common.click(login_btn)
+
 
         is_login1 = False
         is_login2 = False
@@ -98,37 +110,64 @@ def dashboard() -> str:
 
         # 자동 로그인 실패
         else:
-
             # 계정 정지
             if 'accounts/suspended' in driver.current_url:
-                is_login1 = False
                 raise Exception('계정정지')
+
+            # 메타 정보동의
+            elif '/consent/' in driver.current_url:
+                divs = common.find_elements("TAG_NAME", "div", driver, wait)
+                for div in divs:
+                    if div.text == '시작하기':
+                        common.click(div)
+                        common.sleep(1)
+
+                        spans = common.find_elements("TAG_NAME", "span", driver, wait)
+                        for span in spans:
+                            if span.text == '무료 사용':
+                                common.click(span)
+                                common.sleep(1)
+
+                                span_agrees = common.find_elements("TAG_NAME", "span", driver, wait)
+                                for span_agree in span_agrees:
+                                    if span_agree.text == '동의':
+                                        common.click(span_agree)
+                                        common.sleep(1)
+                                        is_login1 = True
+                                        break
+
+                if not is_login1:
+                    raise Exception('광고설정')
 
             # 인증 후 살리기
             elif 'challenge/action' in driver.current_url:
-                is_login1 = False
                 raise Exception('인증필요')
+                # TODO 이메일 이증
 
             # 계정 봇 의심 경고 경우
             elif 'challenge' in driver.current_url:
-                divs = common.find_elements("CLASS_NAME", "wbloks_1", driver, wait)
+                divs = common.find_elements("TAG_NAME", "div", driver, wait)
                 for div in divs:
-                    if div.get_attribute("aria-label") == '닫기':
+                    if div.get_attribute("aria-label") == '닫기' or div.get_attribute('aria-label') == 'Dismiss':
                         common.click(div)
                         common.sleep(3)
                         is_login1 = True
                         break
 
-            # 로그인 페이지로 이동의 경우
+                if not is_login1:
+                    raise Exception('의심경고')
 
         # 로그인 2차 검증
         if is_login1:
             if common.is_display("TAG_NAME", "svg", driver):
                 svgs = common.find_elements("TAG_NAME", "svg", driver, wait)
                 for svg in svgs:
-                    if svg.get_attribute("aria-label") == '홈':
+                    if svg.get_attribute("aria-label") == '홈' or svg.get_attribute("aria-label") == 'Home':
                         is_login2 = True
                         break
+
+            if not is_login2:
+                raise Exception('2차 로그인 검증 에러')
 
         is_login = is_login1 and is_login2
 
@@ -138,7 +177,7 @@ def dashboard() -> str:
             if not login:
                 raise Exception(message)
         else:
-            common.log(f'로그인 성공여부 True', user_id, tab_index)
+            common.log(f'자동 로그인 성공여부 {is_login1} - {is_login2}', user_id, tab_index)
     except Exception as ex:
         common.remove_from_accounts(task_service, order_id, user_id, str(ex), True)
         # print(traceback.format_exc())
@@ -153,7 +192,6 @@ def dashboard() -> str:
 
         # 남은 개수가 0개면 완료처리
         if remains == 0:
-            # common.remove_from_accounts(task_service, order_id, user_id, '남은 개수 없음')
             return f'0,1,남은 개수 없음'
 
         result, message = fetch_order()
@@ -170,7 +208,6 @@ def dashboard() -> str:
         common.sleep(3)
         return f'{success},{fail},{message}'
     except Exception as ex:
-        # common.remove_from_accounts(task_service, order_id, user_id, '태스크 실패')
         print(traceback.format_exc())
         return f'0,1,태스크 실패'
 
@@ -178,7 +215,7 @@ def dashboard() -> str:
 # 주문 프로 세스
 def fetch_order() -> tuple:
     try:
-        driver.get(order_url)
+        common.move_page(driver, order_url)
         common.sleep(2)
 
         if common.agree_check(user_id, tab_index, driver, wait):
@@ -269,10 +306,12 @@ def main_fun(_tab_index: int, _user_id: str, _user_pw: str, _ip: str, _order_id:
             is_result = False
 
         common.write_task_log(task_log_path, task_service, order_id, user_id, is_result, message, order_url)
+        common.log(f'Task[{result}]')
         return result
     except Exception as ex:
         common.write_task_log(task_log_path, task_service, order_id, user_id, False, '에러발생', order_url)
         print(traceback.format_exc())
+        common.log(f'Task[0,1,에러발생]')
         return f'0,1,에러발생'
     finally:
 
@@ -288,5 +327,5 @@ def main_fun(_tab_index: int, _user_id: str, _user_pw: str, _ip: str, _order_id:
         common.save_screenshot(order_id, user_id, tab_index, driver)
 
         # 인스턴스 종료
-        if not driver:
+        if driver:
             driver.quit()
