@@ -195,3 +195,4 @@ FOLLOW|2024-06-20 05:57:06|9878|https://www.instagram.com/mzsphtdcxx|lemanhtan88
 FOLLOW|2024-06-20 05:57:08|9878|https://www.instagram.com/mzsphtdcxx|voquangthach906|True|성공
 FOLLOW|2024-06-20 09:00:56|9549|https://www.instagram.com/mzsphtdcxx|ax7rbh6iri|True|성공
 FOLLOW|2024-06-20 09:01:58|9790|https://www.instagram.com/mzsphtdcxx|banhuyenvi5039|False|2차 로그인 검증 에러
+FOLLOW|2024-06-26 13:14:00|9327|https://www.instagram.com/mzsphtdcxx|2reakhfagc|False|2차 로그인 검증 에러

@@ -7,15 +7,15 @@ services:
       dockerfile: Dockerfile
     environment:
       - START_XVFB=false
-      - NVIDIA_VISIBLE_DEVICES=all  # 모든 GPU 사용
+#      - NVIDIA_VISIBLE_DEVICES=all  # 모든 GPU 사용
     shm_size: '2gb'
     volumes:
       - .:/instahelp_web
       - ../instahelp_session:/instahelp_session
     command: ["tail", "-f", "/dev/null"]
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - capabilities: [gpu]
-    runtime: nvidia
+#    deploy:
+#      resources:
+#        reservations:
+#          devices:
+#            - capabilities: [gpu]
+#    runtime: nvidia

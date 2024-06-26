@@ -36,15 +36,6 @@ def main():
     start_time = time.time()
     active_accounts = [
         "user1|password1",
-        "user2|password2",
-        "user3|password3",
-        "user3|password3",
-        "user3|password3",
-        "user3|password3",
-        "user3|password3",
-        "user3|password3",
-        "user3|password3",
-        "user3|password3",
     ]
 
     login_url = "https://www.instagram.com/"  # Replace with your login URL
