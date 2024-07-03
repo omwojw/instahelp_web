@@ -301,6 +301,7 @@ def write_working_save_log(service: str, order_id: str, user_id: str, link: str)
 
 # 주문 결과 로그 추가
 def write_order_log(path: str, service: str, order_id: str, quantity: int, success: int, fail: int, order_time: str) -> None:
+    log(f"총 성공: [{success}], 총 실패: [{fail}]")
     file_path = os.path.abspath(
         os.path.join(os.path.dirname(os.path.abspath(__file__)), path))
 
@@ -363,7 +364,11 @@ def remove_from_error(log_txt: str, order_id: str, docker_name: str) -> None:
 # 텔레그램 메시지 보내기 1번
 def send_message(chat_id: str, message: str) -> None:
     if config['log']['telegram'] == 'True':
-        asyncio.run(send_alert(chat_id, message))
+        loop = asyncio.get_event_loop()
+        if loop.is_closed():
+            loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(loop)
+        loop.run_until_complete(send_alert(chat_id, message))
 
 
 # 텔레그램 메시지 보내기 2번
@@ -556,8 +561,7 @@ def status_change(order_id: str, action: str) -> None:
 
 
 # 최종 결과 API 연동
-def result_api(order_id: str, total_success: int, total_fail: int, quantity: int, order_log_path: str,
-               order_service: str, order_time: str) -> None:
+def result_api(order_id: str, total_success: int, total_fail: int, quantity: int) -> None:
 
     if total_success == quantity:  # 전체 성공
         res = requests.post(config['api']['url'], data={
@@ -581,8 +585,7 @@ def result_api(order_id: str, total_success: int, total_fail: int, quantity: int
     log(f"[Success] -  상태 변경 결과 : {res}")
     log(f"총 성공: [{total_success}], 총 실패: [{total_fail}]")
 
-    # 주문 최종 결과 로그 저장
-    write_order_log(order_log_path, order_service, order_id, quantity, total_success, total_fail, order_time)
+
 
 
 # 엘리먼트 정보 콘솔출력
@@ -963,7 +966,7 @@ def login(account_id: str, account_pw: str, tab_index: int, driver: WebDriver, w
                         break
 
             if not is_login2:
-                message = '2차 로그인 검증 에러'
+                message = '로그인(2차) 검증 에러'
         is_login = is_login1 and is_login2
 
         log('로그인 검증 종료', account_id, tab_index)
@@ -988,6 +991,8 @@ def click(element: WebElement):
 # 브라우저 + 계정 셋팅
 def account_setting(accounts: list, quantity: int) -> list:
     global browser_cnt
+    if browser_cnt == 0:
+        browser_cnt = 300
     if len(accounts) > quantity:
         temp_active_accounts = accounts[:quantity]
     else:

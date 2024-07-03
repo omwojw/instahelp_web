@@ -73,12 +73,20 @@ def fetch_order() -> None:
     if len(sorted_accounts) == 0:
         common.not_working_accounts(order_log_path, order_service, order_id, quantity)
         return
-    else:
-        common.log(f'주문번호[{order_id}], 주문건수[{quantity}], 가용 가능한 계정[{len(sorted_accounts)}]')
+
+    # 최대 개수 체크
+    if common.order_max_check(quantity):
+        common.max_order_log(order_log_path, order_service, order_id, quantity)
+        return
 
     # 계정 개수에 따른 브라우저 셋팅
     active_accounts = common.account_setting(sorted_accounts, quantity)
 
+    # 현황 로그
+    common.log(
+        f'주문번호[{order_id}], 주문건수[{quantity}], 가용 가능한 계정[{len(sorted_accounts)}]')
+
+    # 프로세스 실행
     process_order(order_id, quantity, order_url, active_accounts)
 
 
@@ -114,7 +122,12 @@ def process_order(order_id: str, quantity: int, order_url: str, active_accounts:
     elapsed_time = timedelta(seconds=end_time - start_time)
     formatted_time = common.format_timedelta(elapsed_time)
     common.log(f"걸린시간: {formatted_time} 계정개수 {total_success + total_fail}")
-    common.result_api(order_id, total_success, total_fail, quantity, order_log_path, order_service, formatted_time)
+
+    if mode == 'LIVE':
+        common.result_api(order_id, total_success, total_fail, quantity)
+
+    # 주문 최종 결과 로그 저장
+    common.write_order_log(order_log_path, order_service, order_id, quantity, total_success, total_fail, formatted_time)
 
 
 def main():

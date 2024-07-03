@@ -6,8 +6,18 @@
   <component name="ChangeListManager">
     <list default="true" id="f45090a8-3937-4745-9af1-b5942561f191" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/remove/gpu/index.py" beforeDir="false" afterPath="$PROJECT_DIR$/remove/gpu/index.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/chromedriver.exe" beforeDir="false" afterPath="$PROJECT_DIR$/resources/chromedriver.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/fun.py" beforeDir="false" afterPath="$PROJECT_DIR$/common/fun.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker_follow/follow_docker.py" beforeDir="false" afterPath="$PROJECT_DIR$/docker_follow/follow_docker.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker_follow/follow_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/docker_follow/follow_main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/follow/follow_index.py" beforeDir="false" afterPath="$PROJECT_DIR$/follow/follow_index.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/follow/follow_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/follow/follow_main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/error_accounts.txt" beforeDir="false" afterPath="$PROJECT_DIR$/log/error_accounts.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/order_history.txt" beforeDir="false" afterPath="$PROJECT_DIR$/log/order_history.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/task_history.txt" beforeDir="false" afterPath="$PROJECT_DIR$/log/task_history.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/working_accounts_save.txt" beforeDir="false" afterPath="$PROJECT_DIR$/log/working_accounts_save.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/setting/account.txt" beforeDir="false" afterPath="$PROJECT_DIR$/setting/account.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/setting/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/setting/config.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/setting/requirements_.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,7 +142,7 @@
       <workItem from="1719406109971" duration="1103000" />
       <workItem from="1719463962647" duration="2543000" />
       <workItem from="1719471681233" duration="37000" />
-      <workItem from="1719471774793" duration="7325000" />
+      <workItem from="1719471774793" duration="12066000" />
     </task>
     <servers />
   </component>

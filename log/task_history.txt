@@ -196,3 +196,118 @@ FOLLOW|2024-06-20 05:57:08|9878|https://www.instagram.com/mzsphtdcxx|voquangthac
 FOLLOW|2024-06-20 09:00:56|9549|https://www.instagram.com/mzsphtdcxx|ax7rbh6iri|True|성공
 FOLLOW|2024-06-20 09:01:58|9790|https://www.instagram.com/mzsphtdcxx|banhuyenvi5039|False|2차 로그인 검증 에러
 FOLLOW|2024-06-26 13:14:00|9327|https://www.instagram.com/mzsphtdcxx|2reakhfagc|False|2차 로그인 검증 에러
+FOLLOW|2024-07-03 10:23:54|9159|https://www.instagram.com/dangvantrinh9552|0aj59etw7r|False|태스크 실패
+FOLLOW|2024-07-03 10:26:33|9749|https://www.instagram.com/dangvantrinh9552|0aj59etw7r|True|성공
+FOLLOW|2024-07-03 10:33:46|9627|https://www.instagram.com/dangvantrinh9552|0hi34ohute|False|2차 로그인 검증 에러
+FOLLOW|2024-07-03 10:35:03|9571|https://www.instagram.com/dangvantrinh9552|0kmouvhihm|False|2차 로그인 검증 에러
+FOLLOW|2024-07-03 10:39:43|9588|https://www.instagram.com/dangvantrinh9552|1nusytvdqj|False|로그인(2차) 검증 에러
+FOLLOW|2024-07-03 10:42:26|9116|https://www.instagram.com/dangvantrinh9552|5qziktlnqw|True|성공
+FOLLOW|2024-07-03 11:05:40|9263|https://www.instagram.com/dangvantrinh9552|7sid6epr4p|False|로그인(2차) 검증 에러
+FOLLOW|2024-07-03 11:10:52|9972|https://www.instagram.com/dangvantrinh9552|8ia0jwrlis|False|로그인(2차) 검증 에러
+FOLLOW|2024-07-03 11:11:36|9569|https://www.instagram.com/dangvantrinh9552|8ikfbevah6|False|Message: unknown error: net::ERR_PROXY_CONNECTION_FAILED
+  (Session info: chrome=126.0.6478.127)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6C59BEEA2+31554]
+	(No symbol) [0x00007FF6C5937ED9]
+	(No symbol) [0x00007FF6C57F872A]
+	(No symbol) [0x00007FF6C57F0782]
+	(No symbol) [0x00007FF6C57E1294]
+	(No symbol) [0x00007FF6C57E2B02]
+	(No symbol) [0x00007FF6C57E15C1]
+	(No symbol) [0x00007FF6C57E0DA1]
+	(No symbol) [0x00007FF6C57E0CE0]
+	(No symbol) [0x00007FF6C57DEC6D]
+	(No symbol) [0x00007FF6C57DF2AC]
+	(No symbol) [0x00007FF6C57FB501]
+	(No symbol) [0x00007FF6C588D33E]
+	(No symbol) [0x00007FF6C586D02A]
+	(No symbol) [0x00007FF6C588C977]
+	(No symbol) [0x00007FF6C586CDD3]
+	(No symbol) [0x00007FF6C583A33B]
+	(No symbol) [0x00007FF6C583AED1]
+	GetHandleVerifier [0x00007FF6C5CC8B1D+3217341]
+	GetHandleVerifier [0x00007FF6C5D15AE3+3532675]
+	GetHandleVerifier [0x00007FF6C5D0B0E0+3489152]
+	GetHandleVerifier [0x00007FF6C5A6E776+750614]
+	(No symbol) [0x00007FF6C594375F]
+	(No symbol) [0x00007FF6C593EB14]
+	(No symbol) [0x00007FF6C593ECA2]
+	(No symbol) [0x00007FF6C592E16F]
+	BaseThreadInitThunk [0x00007FFAACE1257D+29]
+	RtlUserThreadStart [0x00007FFAADA4AF28+40]
+
+FOLLOW|2024-07-03 11:12:27|9591|https://www.instagram.com/dangvantrinh9552|9vt4l7fnky|False|로그인(2차) 검증 에러
+FOLLOW|2024-07-03 11:14:28|9776|https://www.instagram.com/dangvantrinh9552|aohge2p2mn|False|로그인(2차) 검증 에러
+FOLLOW|2024-07-03 11:23:13|9912|https://www.instagram.com/dangvantrinh9552|ax7rbh6iri|False|로그인(2차) 검증 에러
+FOLLOW|2024-07-03 11:23:48|9393|https://www.instagram.com/dangvantrinh9552|bxpc4jrc8p|False|Message: unknown error: net::ERR_PROXY_CONNECTION_FAILED
+  (Session info: chrome-headless-shell=126.0.6478.127)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6C59BEEA2+31554]
+	(No symbol) [0x00007FF6C5937ED9]
+	(No symbol) [0x00007FF6C57F872A]
+	(No symbol) [0x00007FF6C57F0782]
+	(No symbol) [0x00007FF6C57E1294]
+	(No symbol) [0x00007FF6C57E2B02]
+	(No symbol) [0x00007FF6C57E15C1]
+	(No symbol) [0x00007FF6C57E0DA1]
+	(No symbol) [0x00007FF6C57E0CE0]
+	(No symbol) [0x00007FF6C57DEC6D]
+	(No symbol) [0x00007FF6C57DF2AC]
+	(No symbol) [0x00007FF6C57FB501]
+	(No symbol) [0x00007FF6C588D33E]
+	(No symbol) [0x00007FF6C586D02A]
+	(No symbol) [0x00007FF6C588C977]
+	(No symbol) [0x00007FF6C586CDD3]
+	(No symbol) [0x00007FF6C583A33B]
+	(No symbol) [0x00007FF6C583AED1]
+	GetHandleVerifier [0x00007FF6C5CC8B1D+3217341]
+	GetHandleVerifier [0x00007FF6C5D15AE3+3532675]
+	GetHandleVerifier [0x00007FF6C5D0B0E0+3489152]
+	GetHandleVerifier [0x00007FF6C5A6E776+750614]
+	(No symbol) [0x00007FF6C594375F]
+	(No symbol) [0x00007FF6C593EB14]
+	(No symbol) [0x00007FF6C593ECA2]
+	(No symbol) [0x00007FF6C592E16F]
+	BaseThreadInitThunk [0x00007FFAACE1257D+29]
+	RtlUserThreadStart [0x00007FFAADA4AF28+40]
+
+FOLLOW|2024-07-03 11:23:48|9393|https://www.instagram.com/dangvantrinh9552|chxlqubbm7|False|Message: unknown error: net::ERR_PROXY_CONNECTION_FAILED
+  (Session info: chrome-headless-shell=126.0.6478.127)
+Stacktrace:
+	GetHandleVerifier [0x00007FF6C59BEEA2+31554]
+	(No symbol) [0x00007FF6C5937ED9]
+	(No symbol) [0x00007FF6C57F872A]
+	(No symbol) [0x00007FF6C57F0782]
+	(No symbol) [0x00007FF6C57E1294]
+	(No symbol) [0x00007FF6C57E2B02]
+	(No symbol) [0x00007FF6C57E15C1]
+	(No symbol) [0x00007FF6C57E0DA1]
+	(No symbol) [0x00007FF6C57E0CE0]
+	(No symbol) [0x00007FF6C57DEC6D]
+	(No symbol) [0x00007FF6C57DF2AC]
+	(No symbol) [0x00007FF6C57FB501]
+	(No symbol) [0x00007FF6C588D33E]
+	(No symbol) [0x00007FF6C586D02A]
+	(No symbol) [0x00007FF6C588C977]
+	(No symbol) [0x00007FF6C586CDD3]
+	(No symbol) [0x00007FF6C583A33B]
+	(No symbol) [0x00007FF6C583AED1]
+	GetHandleVerifier [0x00007FF6C5CC8B1D+3217341]
+	GetHandleVerifier [0x00007FF6C5D15AE3+3532675]
+	GetHandleVerifier [0x00007FF6C5D0B0E0+3489152]
+	GetHandleVerifier [0x00007FF6C5A6E776+750614]
+	(No symbol) [0x00007FF6C594375F]
+	(No symbol) [0x00007FF6C593EB14]
+	(No symbol) [0x00007FF6C593ECA2]
+	(No symbol) [0x00007FF6C592E16F]
+	BaseThreadInitThunk [0x00007FFAACE1257D+29]
+	RtlUserThreadStart [0x00007FFAADA4AF28+40]
+
+FOLLOW|2024-07-03 11:25:07|9393|https://www.instagram.com/dangvantrinh9552|cc4wxmcyww|False|로그인(2차) 검증 에러
+FOLLOW|2024-07-03 11:25:09|9393|https://www.instagram.com/dangvantrinh9552|bawkrkkyk3|False|로그인(2차) 검증 에러
+FOLLOW|2024-07-03 11:26:04|9393|https://www.instagram.com/dangvantrinh9552|builychau117|True|성공
+FOLLOW|2024-07-03 11:26:19|9393|https://www.instagram.com/dangvantrinh9552|banhhonghanh6419|True|성공
+FOLLOW|2024-07-03 11:26:42|9393|https://www.instagram.com/dangvantrinh9552|buithungan826|True|성공
+FOLLOW|2024-07-03 11:26:52|9393|https://www.instagram.com/dangvantrinh9552|buiquocbinh3670|True|성공
+FOLLOW|2024-07-03 11:26:53|9393|https://www.instagram.com/dangvantrinh9552|buithanhlam8154|True|성공
+FOLLOW|2024-07-03 11:27:17|9393|https://www.instagram.com/dangvantrinh9552|buivannhi6448|True|성공

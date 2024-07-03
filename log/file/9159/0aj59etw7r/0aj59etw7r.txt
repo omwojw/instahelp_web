@@ -1,0 +1,89 @@
+[1][0aj59etw7r] 로그인 시작
+[1][0aj59etw7r] 로그인 종료
+[1][0aj59etw7r] 로그인 검증 시작
+[1][0aj59etw7r] 동의여부 체크 시작
+[1][0aj59etw7r] 동의여부 체크 종료 : 동의 필요하지 않음
+[1][0aj59etw7r] 로그인 검증 종료
+[1][0aj59etw7r] 로그인 성공여부 True - True
+[1][0aj59etw7r] 남은 수량 : 1
+[1][0aj59etw7r] 동의여부 체크 시작
+[1][0aj59etw7r] Traceback (most recent call last):
+  File "C:\workspace\instahelp_web\follow\follow_main.py", line 211, in fetch_order
+    if common.agree_check(user_id, tab_index, driver, wait):
+  File "C:\workspace\instahelp_web\common\fun.py", line 803, in agree_check
+    if agree.text == 'Instagram 앱을 사용하려면 다음 항목에 동의해야 합니다':
+  File "C:\workspace\instahelp_web\venv\lib\site-packages\selenium\webdriver\remote\webelement.py", line 90, in text
+    return self._execute(Command.GET_ELEMENT_TEXT)["value"]
+  File "C:\workspace\instahelp_web\venv\lib\site-packages\selenium\webdriver\remote\webelement.py", line 395, in _execute
+    return self._parent.execute(command, params)
+  File "C:\workspace\instahelp_web\venv\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 347, in execute
+    self.error_handler.check_response(response)
+  File "C:\workspace\instahelp_web\venv\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.StaleElementReferenceException: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome-headless-shell=126.0.6478.127); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+	GetHandleVerifier [0x00007FF6C59BEEA2+31554]
+	(No symbol) [0x00007FF6C5937ED9]
+	(No symbol) [0x00007FF6C57F872A]
+	(No symbol) [0x00007FF6C57FE55E]
+	(No symbol) [0x00007FF6C5800EB1]
+	(No symbol) [0x00007FF6C5800F50]
+	(No symbol) [0x00007FF6C58421DB]
+	(No symbol) [0x00007FF6C586D02A]
+	(No symbol) [0x00007FF6C583BA76]
+	(No symbol) [0x00007FF6C586D240]
+	(No symbol) [0x00007FF6C588C977]
+	(No symbol) [0x00007FF6C586CDD3]
+	(No symbol) [0x00007FF6C583A33B]
+	(No symbol) [0x00007FF6C583AED1]
+	GetHandleVerifier [0x00007FF6C5CC8B1D+3217341]
+	GetHandleVerifier [0x00007FF6C5D15AE3+3532675]
+	GetHandleVerifier [0x00007FF6C5D0B0E0+3489152]
+	GetHandleVerifier [0x00007FF6C5A6E776+750614]
+	(No symbol) [0x00007FF6C594375F]
+	(No symbol) [0x00007FF6C593EB14]
+	(No symbol) [0x00007FF6C593ECA2]
+	(No symbol) [0x00007FF6C592E16F]
+	BaseThreadInitThunk [0x00007FFAACE1257D+29]
+	RtlUserThreadStart [0x00007FFAADA4AF28+40]
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\workspace\instahelp_web\follow\follow_main.py", line 187, in dashboard
+    result, message = fetch_order()
+  File "C:\workspace\instahelp_web\follow\follow_main.py", line 223, in fetch_order
+    raise Exception(ex)
+Exception: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome-headless-shell=126.0.6478.127); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Stacktrace:
+	GetHandleVerifier [0x00007FF6C59BEEA2+31554]
+	(No symbol) [0x00007FF6C5937ED9]
+	(No symbol) [0x00007FF6C57F872A]
+	(No symbol) [0x00007FF6C57FE55E]
+	(No symbol) [0x00007FF6C5800EB1]
+	(No symbol) [0x00007FF6C5800F50]
+	(No symbol) [0x00007FF6C58421DB]
+	(No symbol) [0x00007FF6C586D02A]
+	(No symbol) [0x00007FF6C583BA76]
+	(No symbol) [0x00007FF6C586D240]
+	(No symbol) [0x00007FF6C588C977]
+	(No symbol) [0x00007FF6C586CDD3]
+	(No symbol) [0x00007FF6C583A33B]
+	(No symbol) [0x00007FF6C583AED1]
+	GetHandleVerifier [0x00007FF6C5CC8B1D+3217341]
+	GetHandleVerifier [0x00007FF6C5D15AE3+3532675]
+	GetHandleVerifier [0x00007FF6C5D0B0E0+3489152]
+	GetHandleVerifier [0x00007FF6C5A6E776+750614]
+	(No symbol) [0x00007FF6C594375F]
+	(No symbol) [0x00007FF6C593EB14]
+	(No symbol) [0x00007FF6C593ECA2]
+	(No symbol) [0x00007FF6C592E16F]
+	BaseThreadInitThunk [0x00007FFAACE1257D+29]
+	RtlUserThreadStart [0x00007FFAADA4AF28+40]
+
+
+[1][0aj59etw7r] Task[0,1,태스크 실패]
+[1][0aj59etw7r] 마지막 메모리 사용량: 70.92 MB

@@ -138,7 +138,12 @@ def process_order(order_id: str, quantity: int, order_url: str, active_accounts:
     elapsed_time = timedelta(seconds=end_time - start_time)
     formatted_time = common.format_timedelta(elapsed_time)
     common.log(f"걸린시간: {formatted_time}, 계정개수 {total_success + total_fail}")
-    common.result_api(order_id, total_success, total_fail, quantity, order_log_path, order_service, formatted_time)
+
+    if mode == 'LIVE':
+        common.result_api(order_id, total_success, total_fail, quantity)
+
+    # 주문 최종 결과 로그 저장
+    common.write_order_log(order_log_path, order_service, order_id, quantity, total_success, total_fail, formatted_time)
 
 
 def open_docker(index: int, active_account: list, order_id: str, quantity: int, order_url: str) -> str:
