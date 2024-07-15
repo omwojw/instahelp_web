@@ -1,9 +1,0 @@
-[1][ax7rbh6iri] 로그인 시작
-[1][ax7rbh6iri] 로그인 종료
-[1][ax7rbh6iri] 로그인 검증 시작
-[1][ax7rbh6iri] 동의여부 체크 시작
-[1][ax7rbh6iri] 동의여부 체크 종료 : 동의 필요하지 않음
-[1][ax7rbh6iri] 로그인 검증 종료
-[1][ax7rbh6iri] 로그인 성공여부 True - False
-[1][ax7rbh6iri] Task[0,1,로그인(2차) 검증 에러]
-[1][ax7rbh6iri] 마지막 메모리 사용량: 70.38 MB

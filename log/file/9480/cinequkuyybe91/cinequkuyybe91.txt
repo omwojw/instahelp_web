@@ -1,0 +1,7 @@
+[1][cinequkuyybe91] 로그인 시작
+[1][cinequkuyybe91] 로그인 종료
+[1][cinequkuyybe91] 로그인 검증 시작
+[1][cinequkuyybe91] 로그인 검증 종료
+[1][cinequkuyybe91] 로그인 성공여부 False - False
+[1][cinequkuyybe91] Task[0,1,인증필요]
+[1][cinequkuyybe91] 마지막 메모리 사용량: 79.68 MB

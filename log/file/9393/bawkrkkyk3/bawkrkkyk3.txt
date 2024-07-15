@@ -1,9 +1,0 @@
-[2][bawkrkkyk3] 로그인 시작
-[2][bawkrkkyk3] 로그인 종료
-[2][bawkrkkyk3] 로그인 검증 시작
-[2][bawkrkkyk3] 동의여부 체크 시작
-[2][bawkrkkyk3] 동의여부 체크 종료 : 동의 필요하지 않음
-[2][bawkrkkyk3] 로그인 검증 종료
-[2][bawkrkkyk3] 로그인 성공여부 True - False
-[2][bawkrkkyk3] Task[0,1,로그인(2차) 검증 에러]
-[2][bawkrkkyk3] 마지막 메모리 사용량: 70.64 MB

@@ -7,7 +7,36 @@
     <list default="true" id="f45090a8-3937-4745-9af1-b5942561f191" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/fun.py" beforeDir="false" afterPath="$PROJECT_DIR$/common/fun.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker_follow/follow_index.py" beforeDir="false" afterPath="$PROJECT_DIR$/docker_follow/follow_index.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker_follow/follow_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/docker_follow/follow_main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/follow/follow_index.py" beforeDir="false" afterPath="$PROJECT_DIR$/follow/follow_index.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/follow/follow_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/follow/follow_main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/error/9464/instahelp_web-s-6_error_log.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/error/9878/instahelp_web-s-8_error_log.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/file/9116/5qziktlnqw/5qziktlnqw.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/file/9159/0aj59etw7r/0aj59etw7r.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/file/9263/7sid6epr4p/7sid6epr4p.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/file/9327/2reakhfagc/2reakhfagc.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/file/9393/banhhonghanh6419/banhhonghanh6419.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/file/9393/bawkrkkyk3/bawkrkkyk3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/file/9393/builychau117/builychau117.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/file/9393/buiquocbinh3670/buiquocbinh3670.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/file/9393/buithanhlam8154/buithanhlam8154.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/file/9393/buithungan826/buithungan826.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/file/9393/buivannhi6448/buivannhi6448.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/file/9393/bxpc4jrc8p/bxpc4jrc8p.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/file/9393/cc4wxmcyww/cc4wxmcyww.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/file/9393/chxlqubbm7/chxlqubbm7.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/file/9569/8ikfbevah6/8ikfbevah6.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/file/9571/0kmouvhihm/0kmouvhihm.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/file/9588/1nusytvdqj/1nusytvdqj.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/file/9591/9vt4l7fnky/9vt4l7fnky.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/file/9627/0hi34ohute/0hi34ohute.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/file/9657/ax7rbh6iri/ax7rbh6iri.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/file/9749/0aj59etw7r/0aj59etw7r.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/file/9776/aohge2p2mn/aohge2p2mn.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/file/9912/ax7rbh6iri/ax7rbh6iri.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/log/file/9972/8ia0jwrlis/8ia0jwrlis.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/log/order_history.txt" beforeDir="false" afterPath="$PROJECT_DIR$/log/order_history.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log/task_history.txt" beforeDir="false" afterPath="$PROJECT_DIR$/log/task_history.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log/working/working_accounts_20240703.txt" beforeDir="false" afterPath="$PROJECT_DIR$/log/working/working_accounts_20240703.txt" afterDir="false" />
@@ -46,7 +75,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Python.follow_docker.executor": "Run",
+    "Python.follow_docker.executor": "Debug",
     "Python.follow_index.executor": "Debug",
     "Python.index (1).executor": "Run",
     "Python.index.executor": "Run",
@@ -75,7 +104,7 @@
       <recent name="C:\workspace\instahelp_web\remove\fast" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.follow_index">
+  <component name="RunManager" selected="Python.follow_docker">
     <configuration name="follow_docker" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="instahelp_web" />
       <option name="ENV_FILES" value="" />
@@ -130,8 +159,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.follow_index" />
         <item itemvalue="Python.follow_docker" />
+        <item itemvalue="Python.follow_index" />
       </list>
     </recent_temporary>
   </component>
@@ -165,7 +194,7 @@
       <workItem from="1719463962647" duration="2543000" />
       <workItem from="1719471681233" duration="37000" />
       <workItem from="1719471774793" duration="20619000" />
-      <workItem from="1721004639474" duration="5392000" />
+      <workItem from="1721004639474" duration="12554000" />
     </task>
     <servers />
   </component>
@@ -173,8 +202,8 @@
     <option name="version" value="3" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/instahelp_web$follow_docker.coverage" NAME="follow_docker Coverage Results" MODIFIED="1719974751124" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/docker_follow" />
-    <SUITE FILE_PATH="coverage/instahelp_web$follow_index.coverage" NAME="follow_index Coverage Results" MODIFIED="1721016572976" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/follow" />
+    <SUITE FILE_PATH="coverage/instahelp_web$follow_docker.coverage" NAME="follow_docker Coverage Results" MODIFIED="1721024273006" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/docker_follow" />
+    <SUITE FILE_PATH="coverage/instahelp_web$follow_index.coverage" NAME="follow_index Coverage Results" MODIFIED="1721023999416" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/follow" />
     <SUITE FILE_PATH="coverage/instahelp_web$index__1_.coverage" NAME="index (1) Coverage Results" MODIFIED="1718161921956" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/remove/multi_log" />
     <SUITE FILE_PATH="coverage/instahelp_web$index.coverage" NAME="index Coverage Results" MODIFIED="1719405814126" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/remove/fast" />
   </component>

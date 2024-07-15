@@ -758,10 +758,11 @@ def open_selenium(curt_os: str, wait_time: int, ip: str, session_id: str, idx: i
 
     # 헤드리스 모드
     if is_headless:
-        options.add_argument('--headless')
+        if curt_os == 'WINDOW':
+            options.add_argument('--headless')
 
-        # 헤드리스 모드일때 한국어로
-        options.add_argument('--lang=ko')
+            # 헤드리스 모드일때 한국어로
+            options.add_argument('--lang=ko')
 
     # 프록시 설정은 윈도우에서만 가능
     if current_os == 'WINDOW':
@@ -880,10 +881,15 @@ def login(account_id: str, account_pw: str, tab_index: int, driver: WebDriver, w
         except Exception as e:
             sleep(1)
 
+
+
+
         log('로그인 검증 시작', account_id, tab_index)
         home_url = "https://www.instagram.com/"
-        move_page(driver, home_url)
-        sleep(3)
+
+        if home_url == driver.current_url or 'accounts/onetap' in driver.current_url:
+            move_page(driver, home_url)
+            sleep(3)
 
         is_login1 = False
         is_login2 = False
@@ -1293,7 +1299,7 @@ def set_logger(order_id: str, user_id: str, tab_index: int) -> None:
 
 
 def get_test_order_id() -> int:
-    return random.randint(9000, 9999)
+    return random.randint(1, 9999)
 
 
 def set_lang(driver: WebDriver) -> None:

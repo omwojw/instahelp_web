@@ -64,9 +64,6 @@ def dashboard() -> str:
     # 녹화시작
     common.record_start(order_id, user_id, driver)
 
-    # 로그객체 생성
-    common.set_logger(order_id, user_id, tab_index)
-
     act_chis = ActionChains(driver)
     wait = WebDriverWait(driver, wait_time, poll_frequency=1)
     success = 0
@@ -262,6 +259,11 @@ def process() -> tuple:
         common.log(f'팔로우 종료 - {message}', user_id, tab_index)
         return is_follow, message
     except Exception as ex:
+        spans = common.find_elements("TAG_NAME", "span", driver, wait)
+        for span in spans:
+            if span.text == '죄송합니다. 페이지를 사용할 수 없습니다.':
+                return False, '타겟계정 없음'
+
         raise Exception(ex)
 
 
@@ -280,6 +282,9 @@ def main_fun(_tab_index: int, _user_id: str, _user_pw: str, _ip: str, _order_id:
 
     # 시작 함수
     try:
+        # 로그객체 생성
+        common.set_logger(order_id, user_id, tab_index)
+
         initial_memory_usage = common.measure_memory_usage()
         common.log(f"초기 메모리 사용량: {initial_memory_usage:.2f} MB", user_id, tab_index)
 

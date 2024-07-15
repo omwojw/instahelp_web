@@ -1,0 +1,89 @@
+[1][cinequkuyybe91] 초기 메모리 사용량: 51.42 MB
+[1][cinequkuyybe91] 셀레니움 연결
+[1][cinequkuyybe91] 셀레니움 연결
+[1][cinequkuyybe91] Traceback (most recent call last):
+  File "/instahelp_web/docker_follow/follow_main.py", line 48, in setup
+    driver = common.open_selenium(current_os, wait_time, ip, session_id, tab_index)
+  File "/instahelp_web/common/fun.py", line 780, in open_selenium
+    selenium_driver = webdriver.Chrome(service=service, options=options)
+  File "/usr/local/lib/python3.9/site-packages/selenium/webdriver/chrome/webdriver.py", line 45, in __init__
+    super().__init__(
+  File "/usr/local/lib/python3.9/site-packages/selenium/webdriver/chromium/webdriver.py", line 61, in __init__
+    super().__init__(command_executor=executor, options=options)
+  File "/usr/local/lib/python3.9/site-packages/selenium/webdriver/remote/webdriver.py", line 208, in __init__
+    self.start_session(capabilities)
+  File "/usr/local/lib/python3.9/site-packages/selenium/webdriver/remote/webdriver.py", line 292, in start_session
+    response = self.execute(Command.NEW_SESSION, caps)["value"]
+  File "/usr/local/lib/python3.9/site-packages/selenium/webdriver/remote/webdriver.py", line 347, in execute
+    self.error_handler.check_response(response)
+  File "/usr/local/lib/python3.9/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.SessionNotCreatedException: Message: session not created: Chrome failed to start: exited normally.
+  (session not created: DevToolsActivePort file doesn't exist)
+  (The process started from chrome location /usr/bin/google-chrome is no longer running, so ChromeDriver is assuming that Chrome has crashed.)
+Stacktrace:
+#0 0x55ce268ee6aa <unknown>
+#1 0x55ce265d10dc <unknown>
+#2 0x55ce2660602a <unknown>
+#3 0x55ce2660243b <unknown>
+#4 0x55ce2664cef9 <unknown>
+#5 0x55ce26640613 <unknown>
+#6 0x55ce266104f7 <unknown>
+#7 0x55ce26610e4e <unknown>
+#8 0x55ce268b487b <unknown>
+#9 0x55ce268b8921 <unknown>
+#10 0x55ce268a036e <unknown>
+#11 0x55ce268b9482 <unknown>
+#12 0x55ce26884ccf <unknown>
+#13 0x55ce268de0a8 <unknown>
+#14 0x55ce268de280 <unknown>
+#15 0x55ce268ed7dc <unknown>
+#16 0x7f08ba18f134 <unknown>
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/instahelp_web/docker_follow/follow_main.py", line 290, in main_fun
+    result = setup()
+  File "/instahelp_web/docker_follow/follow_main.py", line 51, in setup
+    driver = common.open_selenium(current_os, wait_time, ip, session_id, tab_index)
+  File "/instahelp_web/common/fun.py", line 780, in open_selenium
+    selenium_driver = webdriver.Chrome(service=service, options=options)
+  File "/usr/local/lib/python3.9/site-packages/selenium/webdriver/chrome/webdriver.py", line 45, in __init__
+    super().__init__(
+  File "/usr/local/lib/python3.9/site-packages/selenium/webdriver/chromium/webdriver.py", line 61, in __init__
+    super().__init__(command_executor=executor, options=options)
+  File "/usr/local/lib/python3.9/site-packages/selenium/webdriver/remote/webdriver.py", line 208, in __init__
+    self.start_session(capabilities)
+  File "/usr/local/lib/python3.9/site-packages/selenium/webdriver/remote/webdriver.py", line 292, in start_session
+    response = self.execute(Command.NEW_SESSION, caps)["value"]
+  File "/usr/local/lib/python3.9/site-packages/selenium/webdriver/remote/webdriver.py", line 347, in execute
+    self.error_handler.check_response(response)
+  File "/usr/local/lib/python3.9/site-packages/selenium/webdriver/remote/errorhandler.py", line 229, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.SessionNotCreatedException: Message: session not created: Chrome failed to start: exited normally.
+  (session not created: DevToolsActivePort file doesn't exist)
+  (The process started from chrome location /usr/bin/google-chrome is no longer running, so ChromeDriver is assuming that Chrome has crashed.)
+Stacktrace:
+#0 0x55c5c887b6aa <unknown>
+#1 0x55c5c855e0dc <unknown>
+#2 0x55c5c859302a <unknown>
+#3 0x55c5c858f43b <unknown>
+#4 0x55c5c85d9ef9 <unknown>
+#5 0x55c5c85cd613 <unknown>
+#6 0x55c5c859d4f7 <unknown>
+#7 0x55c5c859de4e <unknown>
+#8 0x55c5c884187b <unknown>
+#9 0x55c5c8845921 <unknown>
+#10 0x55c5c882d36e <unknown>
+#11 0x55c5c8846482 <unknown>
+#12 0x55c5c8811ccf <unknown>
+#13 0x55c5c886b0a8 <unknown>
+#14 0x55c5c886b280 <unknown>
+#15 0x55c5c887a7dc <unknown>
+#16 0x7f3d8beb8134 <unknown>
+
+
+[1][cinequkuyybe91] Task[0,1,에러발생]
+[1][cinequkuyybe91] 마지막 메모리 사용량: 53.00 MB
