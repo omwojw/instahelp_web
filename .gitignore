@@ -161,4 +161,8 @@ cython_debug/
 
 
 log/
-setting/
+setting/account.txt
+setting/account_.txt
+setting/account_before.txt
+setting/proxy.txt
+setting/user_agent.txt

@@ -5,18 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f45090a8-3937-4745-9af1-b5942561f191" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/fun.py" beforeDir="false" afterPath="$PROJECT_DIR$/common/fun.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker_follow/follow_index.py" beforeDir="false" afterPath="$PROJECT_DIR$/docker_follow/follow_index.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/follow/follow_index.py" beforeDir="false" afterPath="$PROJECT_DIR$/follow/follow_index.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/log/file/4132/cinequkuyybe91/cinequkuyybe91.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/log/file/6608/cinequkuyybe91/cinequkuyybe91.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/log/file/995/cinequkuyybe91/cinequkuyybe91.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/log/order_history.txt" beforeDir="false" afterPath="$PROJECT_DIR$/log/order_history.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/log/task_history.txt" beforeDir="false" afterPath="$PROJECT_DIR$/log/task_history.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/log/working/working_accounts_20240715.txt" beforeDir="false" afterPath="$PROJECT_DIR$/log/working/working_accounts_20240715.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/log/working_accounts_save.txt" beforeDir="false" afterPath="$PROJECT_DIR$/log/working_accounts_save.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/setting/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/setting/config.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -166,7 +155,7 @@
       <workItem from="1719463962647" duration="2543000" />
       <workItem from="1719471681233" duration="37000" />
       <workItem from="1719471774793" duration="20619000" />
-      <workItem from="1721004639474" duration="13873000" />
+      <workItem from="1721004639474" duration="14238000" />
     </task>
     <servers />
   </component>
