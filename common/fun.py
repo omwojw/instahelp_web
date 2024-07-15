@@ -883,25 +883,34 @@ def login(account_id: str, account_pw: str, tab_index: int, driver: WebDriver, w
         log('로그인 검증 시작', account_id, tab_index)
         home_url = "https://www.instagram.com/"
         move_page(driver, home_url)
-        sleep(1)
+        sleep(3)
 
         is_login1 = False
         is_login2 = False
         message = ''
 
+
         # 로그인 성공
         if home_url == driver.current_url:
             is_login1 = True
 
-            # 검증이 성공했다고 해도 동의하기가 나올수도 있음
-            if agree_check(account_id, tab_index, driver, wait):
-                sleep(1)
-                is_agree, agree_message = agree_active(account_id, tab_index, driver, wait)
-
-                if not is_agree:
+            buttons = find_elements("TAG_NAME", "button", driver, wait)
+            for button in buttons:
+                if button.text == '로그인':
                     is_login1 = False
-                    message = '동의하기 에러'
-                sleep(1)
+                    message = '신규 로그인 실패'
+                    break
+
+            if is_login1:
+                # 검증이 성공했다고 해도 동의하기가 나올수도 있음
+                if agree_check(account_id, tab_index, driver, wait):
+                    sleep(1)
+                    is_agree, agree_message = agree_active(account_id, tab_index, driver, wait)
+
+                    if not is_agree:
+                        is_login1 = False
+                        message = '동의하기 에러'
+                    sleep(1)
 
         # 로그인 실패
         else:
