@@ -756,13 +756,13 @@ def open_selenium(curt_os: str, wait_time: int, ip: str, session_id: str, idx: i
         options.add_argument(
             f'--user-data-dir=/instahelp_session/instahelp_{session_id}')
 
-    # 헤드리스 모드
-    if is_headless:
-        if curt_os == 'WINDOW':
-            options.add_argument('--headless')
+    # 헤드리스 모드, 리눅스 환경에서는 무조건 헤드리스로
+    if is_headless or curt_os == 'LINUX':
+        options.add_argument('--headless')
 
-            # 헤드리스 모드일때 한국어로
-            options.add_argument('--lang=ko')
+        # 헤드리스 모드일때 한국어로
+        options.add_argument('--lang=ko')
+
 
     # 프록시 설정은 윈도우에서만 가능
     if current_os == 'WINDOW':

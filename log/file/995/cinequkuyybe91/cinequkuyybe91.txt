@@ -1,4 +1,4 @@
-[1][cinequkuyybe91] 초기 메모리 사용량: 51.46 MB
+[1][cinequkuyybe91] 초기 메모리 사용량: 50.90 MB
 [1][cinequkuyybe91] 셀레니움 연결
 [1][cinequkuyybe91] 셀레니움 연결
 [1][cinequkuyybe91] Traceback (most recent call last):
@@ -22,23 +22,23 @@ selenium.common.exceptions.SessionNotCreatedException: Message: session not crea
   (session not created: DevToolsActivePort file doesn't exist)
   (The process started from chrome location /usr/bin/google-chrome is no longer running, so ChromeDriver is assuming that Chrome has crashed.)
 Stacktrace:
-#0 0x5631eed2e6aa <unknown>
-#1 0x5631eea110dc <unknown>
-#2 0x5631eea4602a <unknown>
-#3 0x5631eea4243b <unknown>
-#4 0x5631eea8cef9 <unknown>
-#5 0x5631eea80613 <unknown>
-#6 0x5631eea504f7 <unknown>
-#7 0x5631eea50e4e <unknown>
-#8 0x5631eecf487b <unknown>
-#9 0x5631eecf8921 <unknown>
-#10 0x5631eece036e <unknown>
-#11 0x5631eecf9482 <unknown>
-#12 0x5631eecc4ccf <unknown>
-#13 0x5631eed1e0a8 <unknown>
-#14 0x5631eed1e280 <unknown>
-#15 0x5631eed2d7dc <unknown>
-#16 0x7f0c5e20a134 <unknown>
+#0 0x55ad179dcc7a <unknown>
+#1 0x55ad176bfe2c <unknown>
+#2 0x55ad176f4d6a <unknown>
+#3 0x55ad176f117b <unknown>
+#4 0x55ad1773bc49 <unknown>
+#5 0x55ad1772f363 <unknown>
+#6 0x55ad176ff247 <unknown>
+#7 0x55ad176ffb9e <unknown>
+#8 0x55ad179a324b <unknown>
+#9 0x55ad179a72f1 <unknown>
+#10 0x55ad1798eafe <unknown>
+#11 0x55ad179a7e52 <unknown>
+#12 0x55ad1797379f <unknown>
+#13 0x55ad179cc638 <unknown>
+#14 0x55ad179cc810 <unknown>
+#15 0x55ad179dbdac <unknown>
+#16 0x7fdd577c5134 <unknown>
 
 
 During handling of the above exception, another exception occurred:
@@ -66,24 +66,24 @@ selenium.common.exceptions.SessionNotCreatedException: Message: session not crea
   (session not created: DevToolsActivePort file doesn't exist)
   (The process started from chrome location /usr/bin/google-chrome is no longer running, so ChromeDriver is assuming that Chrome has crashed.)
 Stacktrace:
-#0 0x562c516326aa <unknown>
-#1 0x562c513150dc <unknown>
-#2 0x562c5134a02a <unknown>
-#3 0x562c5134643b <unknown>
-#4 0x562c51390ef9 <unknown>
-#5 0x562c51384613 <unknown>
-#6 0x562c513544f7 <unknown>
-#7 0x562c51354e4e <unknown>
-#8 0x562c515f887b <unknown>
-#9 0x562c515fc921 <unknown>
-#10 0x562c515e436e <unknown>
-#11 0x562c515fd482 <unknown>
-#12 0x562c515c8ccf <unknown>
-#13 0x562c516220a8 <unknown>
-#14 0x562c51622280 <unknown>
-#15 0x562c516317dc <unknown>
-#16 0x7f01ea7a1134 <unknown>
+#0 0x5609c8cd0c7a <unknown>
+#1 0x5609c89b3e2c <unknown>
+#2 0x5609c89e8d6a <unknown>
+#3 0x5609c89e517b <unknown>
+#4 0x5609c8a2fc49 <unknown>
+#5 0x5609c8a23363 <unknown>
+#6 0x5609c89f3247 <unknown>
+#7 0x5609c89f3b9e <unknown>
+#8 0x5609c8c9724b <unknown>
+#9 0x5609c8c9b2f1 <unknown>
+#10 0x5609c8c82afe <unknown>
+#11 0x5609c8c9be52 <unknown>
+#12 0x5609c8c6779f <unknown>
+#13 0x5609c8cc0638 <unknown>
+#14 0x5609c8cc0810 <unknown>
+#15 0x5609c8ccfdac <unknown>
+#16 0x7fcfce802134 <unknown>
 
 
 [1][cinequkuyybe91] Task[0,1,에러발생]
-[1][cinequkuyybe91] 마지막 메모리 사용량: 52.98 MB
+[1][cinequkuyybe91] 마지막 메모리 사용량: 52.52 MB
