@@ -1,0 +1,9 @@
+[1][cuvidoouwiqi05] 초기 메모리 사용량: 51.54 MB
+[1][cuvidoouwiqi05] 셀레니움 연결
+[1][cuvidoouwiqi05] 로그인 시작
+[1][cuvidoouwiqi05] 로그인 종료
+[1][cuvidoouwiqi05] 로그인 검증 시작
+[1][cuvidoouwiqi05] 로그인 검증 종료
+[1][cuvidoouwiqi05] 로그인 성공여부 False - False
+[1][cuvidoouwiqi05] Task[0,1,인증필요]
+[1][cuvidoouwiqi05] 마지막 메모리 사용량: 52.77 MB

@@ -853,12 +853,14 @@ def login(account_id: str, account_pw: str, tab_index: int, driver: WebDriver, w
         # 계정을 입력합니다.
         id_input = find_element('NAME', "username", driver, wait)
         click(id_input)
-        id_input.send_keys(account_id)
+        send_keys(id_input, account_id)
+        # id_input.send_keys(account_id)
 
         # 비밀번호를 입력합니다.
         pw_input = find_element('NAME', "password", driver, wait)
         click(pw_input)
-        pw_input.send_keys(account_pw)
+        send_keys(pw_input, account_pw)
+        # pw_input.send_keys(account_pw)
 
         # 로그인 버튼을 클릭(탭)합니다.
         login_btns = find_elements('TAG_NAME', "button", driver, wait)
@@ -1355,3 +1357,9 @@ def order_max_check(quantity: int) -> bool:
         return True
     else:
         return False
+
+
+def send_keys(element: WebElement, text: str) -> None:
+    for char in text:
+        element.send_keys(char)
+        time.sleep(random.uniform(0.01, 0.05))

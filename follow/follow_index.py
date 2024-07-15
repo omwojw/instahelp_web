@@ -92,6 +92,9 @@ def fetch_order() -> None:
 
 # 주문 실행
 def process_order(order_id: str, quantity: int, order_url: str, active_accounts: list):
+    # active_accounts = [
+    #     ['cuoyuecatybo67|hacolidu44|aleksandrlebedevvs2786@rambler.ru|AiiUurOrndHy176|115.144.250.217:5321']
+    # ]
 
     max_workers = common.get_optimal_max_workers()
     common.log(f"최대 작업 인스턴스: {max_workers}")
