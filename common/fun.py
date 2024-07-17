@@ -998,9 +998,9 @@ def login(
                             click(div)
                             sleep(8)
                             if 'accounts/suspended' in driver.current_url:
-                                message = '메일인증, 계정정지'
+                                message = '메일인증(계정정지)'
                             elif 'challenge' in driver.current_url:
-                                message = '메일인증, 로봇'
+                                message = '메일인증(로봇)'
                             else:
                                 is_login1 = True
                                 message = ''
