@@ -187,6 +187,12 @@ def main():
     # 시작 함수
     fetch_order()
 
+    # from datetime import datetime
+    # now = datetime.now()
+    # current_time = now.strftime("%Y-%m-%d %H:%M:%S")
+    # common.log(current_time)
+    # common.auth_outlook(current_os, 5, '203.109.6.85:6441', 'buhelejyaaga85', 1)
+
 
 if __name__ == '__main__':
     main()
