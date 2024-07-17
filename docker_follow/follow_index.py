@@ -60,6 +60,8 @@ def process_order(active_accounts: list):
             , order_url
             , mode
             , account.split('|')[0]
+            , account.split('|')[2]
+            , account.split('|')[3]
         ) for index, account in enumerate(active_accounts)]
         results = [future.result() for future in futures]
 

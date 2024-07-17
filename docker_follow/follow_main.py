@@ -32,6 +32,9 @@ quantity = 0
 order_url = ''
 session_id = ''
 mode = ''
+email = ''
+email_pw = ''
+
 
 wait_time = int(config['selenium']['wait_time'])
 driver: Optional[WebDriver] = None
@@ -161,7 +164,16 @@ def dashboard() -> str:
 
         # 로그인 안된 경우
         if not is_login:
-            login, message = common.login(user_id, user_pw, tab_index, driver, wait)
+            login, message = common.login(
+                user_id
+                , user_pw
+                , tab_index
+                , driver
+                , wait
+                , email
+                , email_pw
+                , ip
+            )
             if not login:
                 raise Exception(message)
         else:
@@ -267,8 +279,8 @@ def process() -> tuple:
 
 
 def main_fun(_tab_index: int, _user_id: str, _user_pw: str, _ip: str, _order_id: str, _quantity: int,
-             _order_url: str, _mode: str, _session_id: str) -> str:
-    global tab_index, user_id, user_pw, ip, order_id, quantity, order_url, mode, session_id
+             _order_url: str, _mode: str, _session_id: str, _email: str, _email_pw: str) -> str:
+    global tab_index, user_id, user_pw, ip, order_id, quantity, order_url, mode, session_id, email, email_pw
     tab_index = _tab_index + 1
     user_id = _user_id
     user_pw = _user_pw
@@ -278,6 +290,8 @@ def main_fun(_tab_index: int, _user_id: str, _user_pw: str, _ip: str, _order_id:
     order_url = _order_url
     mode = _mode
     session_id = _session_id
+    email = _email
+    email_pw = _email_pw
 
     # 시작 함수
     try:

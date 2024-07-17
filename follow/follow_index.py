@@ -114,6 +114,8 @@ def process_order(order_id: str, quantity: int, order_url: str, active_accounts:
                 , order_url
                 , mode
                 , account.split('|')[0]
+                , account.split('|')[2]
+                , account.split('|')[3]
             ) for index, account in enumerate(active_account)]
             results = [future.result() for future in futures]
 

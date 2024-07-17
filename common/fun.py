@@ -746,15 +746,18 @@ def open_selenium(curt_os: str, wait_time: int, ip: str, session_id: str, idx: i
 
     # 세션
     if current_os == 'MAC':
-        options.add_argument(
-            f'--user-data-dir=/Users/ohhyesung/Library/Application Support/Google/Chrome/Default/instahelp_{session_id}')
+        if session_id:
+            options.add_argument(
+                f'--user-data-dir=/Users/ohhyesung/Library/Application Support/Google/Chrome/Default/instahelp_{session_id}')
     elif current_os == 'WINDOW':
-        options.add_argument(
-            f'--user-data-dir=C:/workspace/instahelp_session/instahelp_{session_id}')
-        options.add_argument(f'--profile-directory=Default')  # 프로필 디렉토리 지정
+        if session_id:
+            options.add_argument(
+                f'--user-data-dir=C:/workspace/instahelp_session/instahelp_{session_id}')
+            options.add_argument(f'--profile-directory=Default')  # 프로필 디렉토리 지정
     elif current_os == 'LINUX':
-        options.add_argument(
-            f'--user-data-dir=/instahelp_session/instahelp_{session_id}')
+        if session_id:
+            options.add_argument(
+                f'--user-data-dir=/instahelp_session/instahelp_{session_id}')
 
     # 헤드리스 모드, 리눅스 환경에서는 무조건 헤드리스로
     if is_headless or curt_os == 'LINUX':
@@ -837,7 +840,16 @@ def agree_active(user_id: str, tab_index: int, driver: WebDriver, wait: WebDrive
 
 
 # 로그인
-def login(account_id: str, account_pw: str, tab_index: int, driver: WebDriver, wait: WebDriverWait) -> tuple:
+def login(
+        account_id: str
+        , account_pw: str
+        , tab_index: int
+        , driver: WebDriver
+        , wait: WebDriverWait
+        , email: str
+        , email_pw: str
+        , ip: str
+  ) -> tuple:
 
     try:
         # 로그인
@@ -955,7 +967,44 @@ def login(account_id: str, account_pw: str, tab_index: int, driver: WebDriver, w
             # 인증 후 살리기
             elif 'challenge/action' in driver.current_url:
                 message = '인증필요'
-                # TODO 이메일 이증
+
+
+                is_send_code = False
+                if is_display('ID', 'security_code', driver):
+                    atags = find_elements("TAG_NAME", "a", driver, wait)
+                    for atag in atags:
+                        if atag.text == '돌아가기':
+                            click(atag)
+                            sleep(1)
+                            break
+
+                divs = find_elements("TAG_NAME", "div", driver, wait)
+                for div in divs:
+                    if div.text == '계속':
+                        is_send_code = True
+                        click(div)
+                        sleep(1)
+                        break
+
+                if is_send_code:
+                    result_number = auth_outlook(current_os, 5, ip, account_id, tab_index, email, email_pw)
+                    security_code = find_element('ID', 'security_code', driver, wait)
+                    click(security_code)
+                    send_keys(security_code, result_number)
+
+                    divs = find_elements("TAG_NAME", "div", driver, wait)
+                    for div in divs:
+                        if div.text == '제출':
+                            click(div)
+                            sleep(8)
+                            if 'accounts/suspended' in driver.current_url:
+                                message = '메일인증, 계정정지'
+                            elif 'challenge' in driver.current_url:
+                                message = '메일인증, 로봇'
+                            else:
+                                is_login1 = True
+                                message = ''
+                            break
 
             # 계정 봇 의심 경고 경우
             elif 'challenge' in driver.current_url:
@@ -1363,3 +1412,107 @@ def send_keys(element: WebElement, text: str) -> None:
     for char in text:
         element.send_keys(char)
         time.sleep(random.uniform(0.01, 0.05))
+
+
+def auth_outlook(current_os, wait_time, ip, session_id, tab_index, email, email_pw):
+    driver_auth: Optional[WebDriver] = open_selenium(current_os, wait_time, ip, '', tab_index)
+    wait = WebDriverWait(driver_auth, wait_time, poll_frequency=1)
+
+    move_page(driver_auth, 'https://login.live.com/login.srf')
+
+    is_auto_login = False
+    if 'account.microsoft.com' in driver_auth.current_url:
+        is_auto_login = True
+
+    if not is_auto_login:
+
+        id_input = find_element("ID", "i0116", driver_auth, wait)
+        click(id_input)
+        send_keys(id_input, email)
+
+        btn = find_element("ID", "idSIButton9", driver_auth, wait)
+        click(btn)
+        sleep(3)
+
+        pw_input = find_element("ID", "i0118", driver_auth, wait)
+        click(pw_input)
+        send_keys(pw_input, email_pw)
+
+        btn = find_element("ID", "idSIButton9", driver_auth, wait)
+        click(btn)
+        sleep(3)
+
+        if is_display("ID", "id__0", driver_auth) :
+            btn = find_element("ID", "id__0", driver_auth, wait)
+            click(btn)
+            sleep(3)
+
+        if is_display("ID", "iShowSkip", driver_auth) :
+            btn = find_element("ID", "iShowSkip", driver_auth, wait)
+            click(btn)
+            sleep(3)
+
+            if is_display("ID", "iShowSkip", driver_auth):
+                btn = find_element("ID", "iShowSkip", driver_auth, wait)
+                click(btn)
+                sleep(3)
+
+        if is_display("ID", "acceptButton", driver_auth) :
+            btn = find_element("ID", "acceptButton", driver_auth, wait)
+            click(btn)
+            sleep(3)
+    move_page(driver_auth, 'https://outlook.live.com/mail/0/')
+    sleep(3)
+
+    if is_display("ID", "iShowSkip", driver_auth):
+        btn = find_element("ID", "iShowSkip", driver_auth, wait)
+        click(btn)
+        sleep(3)
+
+        if is_display("ID", "iShowSkip", driver_auth):
+            btn = find_element("ID", "iShowSkip", driver_auth, wait)
+            click(btn)
+            sleep(3)
+
+    is_old = True
+
+    if is_display("ID", "Pivot76-Tab1", driver_auth):
+        is_old = False
+
+    if is_old:
+        spans = find_elements("CLASS_NAME", "ziWEf", driver_auth, wait)
+        for span in spans:
+            if span.text == 'Other':
+                click(span)
+                sleep(1)
+
+        h2s = find_elements("TAG_NAME", "h2", driver_auth, wait)
+        for h2 in h2s:
+            if h2.text == 'Verify your account':
+                click(h2)
+                sleep(1)
+                break
+    else:
+        btn = find_element("ID", "Pivot76-Tab1", driver_auth, wait)
+        click(btn)
+        sleep(1)
+
+        spans = find_elements("TAG_NAME", "span", driver_auth, wait)
+        for span in spans:
+            if span.text == 'Instagram' and span.get_attribute("title") == 'security@mail.instagram.com':
+                click(span)
+                break
+
+    sleep(3)
+    fonts = find_elements("TAG_NAME", "font", driver_auth, wait)
+    result_number = ''
+    for font in fonts:
+        if len(font.text) == 6:
+            result_number = font.text
+
+    return result_number
+
+
+
+
+
