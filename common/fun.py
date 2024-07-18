@@ -92,6 +92,24 @@ def get_accounts(path: str) -> list:
     return account_list
 
 
+def get_target(path: str) -> str:
+    file_path = os.path.abspath(
+        os.path.join(os.path.dirname(os.path.abspath(__file__)), f"../setting/{path}"))
+
+    with open(file_path, 'r', encoding='UTF-8') as f:
+        lines = f.readlines()
+
+    if not lines:
+        return ''  # 파일이 비어있는 경우 None 반환
+
+    first_line = lines[0].strip()  # 첫 번째 줄 가져오기
+
+    with open(file_path, 'w', encoding='UTF-8') as f:
+        f.writelines(lines[1:])  # 첫 번째 줄을 제외한 나머지 줄을 파일에 쓰기
+
+    return first_line
+
+
 # 계정 태스크가 적은 계정 오름차순 정렬
 def set_sort_accouts(service: str, filter_accounts: list) -> list:
     current_time = datetime.now().strftime('%Y%m%d')
@@ -973,14 +991,14 @@ def login(
                 if is_display('ID', 'security_code', driver):
                     atags = find_elements("TAG_NAME", "a", driver, wait)
                     for atag in atags:
-                        if atag.text == '돌아가기':
+                        if atag.text == '돌아가기' or atag.text == 'Go back':
                             click(atag)
                             sleep(1)
                             break
 
                 divs = find_elements("TAG_NAME", "div", driver, wait)
                 for div in divs:
-                    if div.text == '계속':
+                    if div.text == '계속' or div.text == 'Continue':
                         is_send_code = True
                         click(div)
                         sleep(1)
@@ -994,9 +1012,9 @@ def login(
 
                     divs = find_elements("TAG_NAME", "div", driver, wait)
                     for div in divs:
-                        if div.text == '제출':
+                        if div.text == '제출' or div.text == 'Submit':
                             click(div)
-                            sleep(8)
+                            sleep(5)
                             if 'accounts/suspended' in driver.current_url:
                                 message = '메일인증(계정정지)'
                             elif 'challenge' in driver.current_url:
@@ -1416,15 +1434,21 @@ def send_keys(element: WebElement, text: str) -> None:
 
 def auth_outlook(current_os, wait_time, ip, session_id, tab_index, email, email_pw):
     driver_auth: Optional[WebDriver] = open_selenium(current_os, wait_time, ip, '', tab_index)
+    log('[인증] 셀레니움 연결', session_id, tab_index)
     wait = WebDriverWait(driver_auth, wait_time, poll_frequency=1)
 
-    move_page(driver_auth, 'https://login.live.com/login.srf')
+    move_page(driver_auth, 'https://outlook.live.com/mail/0/')
+    sleep(3)
 
     is_auto_login = False
     if 'account.microsoft.com' in driver_auth.current_url:
         is_auto_login = True
 
     if not is_auto_login:
+
+        log('[인증] 로그인 시작', session_id, tab_index)
+        menu_btn = find_element("ID", "meControl", driver_auth, wait)
+        click(menu_btn)
 
         id_input = find_element("ID", "i0116", driver_auth, wait)
         click(id_input)
@@ -1442,12 +1466,12 @@ def auth_outlook(current_os, wait_time, ip, session_id, tab_index, email, email_
         click(btn)
         sleep(3)
 
-        if is_display("ID", "id__0", driver_auth) :
+        if is_display("ID", "id__0", driver_auth):
             btn = find_element("ID", "id__0", driver_auth, wait)
             click(btn)
             sleep(3)
 
-        if is_display("ID", "iShowSkip", driver_auth) :
+        if is_display("ID", "iShowSkip", driver_auth):
             btn = find_element("ID", "iShowSkip", driver_auth, wait)
             click(btn)
             sleep(3)
@@ -1457,12 +1481,16 @@ def auth_outlook(current_os, wait_time, ip, session_id, tab_index, email, email_
                 click(btn)
                 sleep(3)
 
-        if is_display("ID", "acceptButton", driver_auth) :
+        log('[인증] 로그인 버튼 누름', session_id, tab_index)
+        if is_display("ID", "acceptButton", driver_auth):
             btn = find_element("ID", "acceptButton", driver_auth, wait)
             click(btn)
             sleep(3)
+
+
     move_page(driver_auth, 'https://outlook.live.com/mail/0/')
     sleep(3)
+    log('[인증] 메일 페이지 오픈', session_id, tab_index)
 
     if is_display("ID", "iShowSkip", driver_auth):
         btn = find_element("ID", "iShowSkip", driver_auth, wait)
@@ -1479,28 +1507,50 @@ def auth_outlook(current_os, wait_time, ip, session_id, tab_index, email, email_
     if is_display("ID", "Pivot76-Tab1", driver_auth):
         is_old = False
 
+    if is_display("ID", "Pivot88-Tab1", driver_auth):
+        is_old = False
+
     if is_old:
-        spans = find_elements("CLASS_NAME", "ziWEf", driver_auth, wait)
+        spans = find_elements("TAG_NAME", "span", driver_auth, wait)
+
+        is_other = False
         for span in spans:
             if span.text == 'Other':
+                is_other = True
                 click(span)
                 sleep(1)
 
-        h2s = find_elements("TAG_NAME", "h2", driver_auth, wait)
-        for h2 in h2s:
-            if h2.text == 'Verify your account':
-                click(h2)
-                sleep(1)
-                break
+        if is_other:
+            h2s = find_elements("TAG_NAME", "h2", driver_auth, wait)
+            for h2 in h2s:
+                if h2.text == 'Verify your account':
+                    click(h2)
+                    sleep(1)
+                    break
+        else:
+            spans = find_elements("TAG_NAME", "span", driver_auth, wait)
+            for span in spans:
+                if span.text == 'Verify your account':
+                    click(span)
+                    sleep(1)
+                    break
     else:
-        btn = find_element("ID", "Pivot76-Tab1", driver_auth, wait)
-        click(btn)
-        sleep(1)
+
+        if is_display("ID", "Pivot76-Tab1", driver_auth):
+            btn = find_element("ID", "Pivot76-Tab1", driver_auth, wait)
+            click(btn)
+            sleep(1)
+
+        if is_display("ID", "Pivot88-Tab1", driver_auth):
+            btn = find_element("ID", "Pivot88-Tab1", driver_auth, wait)
+            click(btn)
+            sleep(1)
 
         spans = find_elements("TAG_NAME", "span", driver_auth, wait)
         for span in spans:
             if span.text == 'Instagram' and span.get_attribute("title") == 'security@mail.instagram.com':
                 click(span)
+                sleep(1)
                 break
 
     sleep(3)
