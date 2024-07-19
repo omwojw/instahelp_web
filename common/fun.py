@@ -339,9 +339,7 @@ def write_task_log(path: str, service: str, order_id: str, user_id: str, result:
         current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         message = f'{service}|{current_time}|{order_id}|{order_url}|{user_id}|{result}|{err_msg}'
         f.write(f"{message}\n")
-
-    # if not result:
-    #     send_message(config['telegram']['chat_error_task'], message)
+        send_message(config['telegram']['chat_error_task'], message)
 
 
 # 에러 계정 추가
