@@ -1046,7 +1046,7 @@ def login(
                         is_login2 = True
                         message = ''
                         break
-s
+
                 btns = find_elements("TAG_NAME", "button", driver, wait)
                 for btn in btns:
                     if btn.text == '나중에 하기' or btn.text == 'Do it later':
