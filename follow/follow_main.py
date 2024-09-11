@@ -239,7 +239,7 @@ def process() -> tuple:
         follow_status = 0
         follow_btn = None
         for btn_element in btn_elements:
-            if btn_element.text == 'Follow' or btn_element.text == '팔로우':
+            if (btn_element.text == 'Follow' or btn_element.text == '팔로우') or (btn_element.text == 'Follow Back' or btn_element.text == '맞팔로우'):
                 follow_status = 1
                 follow_btn = btn_element
             elif btn_element.text == 'Following' or btn_element.text == '팔로잉':
@@ -247,7 +247,7 @@ def process() -> tuple:
         common.sleep(1)
         if follow_status == 1:
             common.click(follow_btn)
-            common.sleep(5)
+            common.sleep(7)
 
             is_follow = False
             message = '팔로우 버튼을 눌렀지만 에러'
