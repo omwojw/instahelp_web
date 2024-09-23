@@ -981,6 +981,9 @@ def login(
                                         break
 
             # 인증 후 살리기
+            elif 'auth_patform/codeentry' in driver.current_url:
+                message = '인증필요(신규)'
+            # 인증 후 살리기
             elif 'challenge/action' in driver.current_url:
                 message = '인증필요'
 
