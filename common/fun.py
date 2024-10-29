@@ -891,10 +891,21 @@ def login(
         # pw_input.send_keys(account_pw)
 
         # 로그인 버튼을 클릭(탭)합니다.
-        login_btns = find_elements('TAG_NAME', "button", driver, wait)
 
-        login_btn = search_element('ATTR', login_btns, 'submit', "type")
-        click(login_btn)
+        is_login_btn = False
+        divs = find_elements("TAG_NAME", "div", driver, wait)
+        for div in divs:
+            if div.get_attribute("aria-label") == '로그인' or div.get_attribute('aria-label') == 'Login':
+                click(div)
+                is_login_btn = True
+                break
+
+        if not is_login_btn:
+            login_btns = find_elements('TAG_NAME', "button", driver, wait)
+            login_btn = search_element('ATTR', login_btns, 'submit', "type")
+            click(login_btn)
+
+        # click(login_btn)
         log('로그인 종료', account_id, tab_index)
         sleep(5)
 
@@ -1454,10 +1465,35 @@ def auth_outlook(current_os, wait_time, ip, session_id, tab_index, email, email_
 
     if not is_auto_login:
 
-        log('[인증] 로그인 시작', session_id, tab_index)
-        menu_btn = find_element("ID", "meControl", driver_auth, wait)
-        click(menu_btn)
+        if is_display("ID", "actionitem-oc54678j", driver_auth):
+            s = find_element("ID", "actionitem-oc54678j", driver_auth, wait)
+            try:
+                click(s)
+                sleep(5)
+            except Exception as e:
+                if is_display("ID", "action-oc5b26", driver_auth):
+                    s = find_element("ID", "action-oc5b26", driver_auth, wait)
+                    click(s)
+                    sleep(5)
 
+        tabs = driver_auth.window_handles
+        if len(tabs) >= 2:
+            driver_auth.switch_to.window(tabs[1])
+        else:
+            if is_display("ID", "action-oc1232e", driver_auth):
+                click(find_element("ID", "action-oc1232e", driver_auth, wait))
+                sleep(7)
+            driver_auth.switch_to.window(tabs[1])
+
+
+
+
+
+
+        log('[인증] 로그인 시작', session_id, tab_index)
+        # menu_btn = find_element("ID", "meControl", driver_auth, wait)
+        # click(menu_btn)
+        sleep(3)
         id_input = find_element("ID", "i0116", driver_auth, wait)
         click(id_input)
         send_keys(id_input, email)
@@ -1510,6 +1546,10 @@ def auth_outlook(current_os, wait_time, ip, session_id, tab_index, email, email_
             click(btn)
             sleep(3)
 
+
+    not_now(driver_auth, wait)
+
+
     is_old = True
 
     if is_display("ID", "Pivot76-Tab1", driver_auth):
@@ -1518,6 +1558,10 @@ def auth_outlook(current_os, wait_time, ip, session_id, tab_index, email, email_
     if is_display("ID", "Pivot88-Tab1", driver_auth):
         is_old = False
 
+
+
+    sleep(10)
+    not_now(driver_auth, wait)
     if is_old:
         spans = find_elements("TAG_NAME", "span", driver_auth, wait)
 
@@ -1571,6 +1615,17 @@ def auth_outlook(current_os, wait_time, ip, session_id, tab_index, email, email_
     return result_number
 
 
+def not_now(driver_auth, wait):
+    sleep(3)
+    btns = find_elements("CLASS_NAME", "fui-Button", driver_auth, wait)
+    for btn in btns:
+        if btn.text == 'Not now':
+            click(btn)
+            sleep(3)
+            break
 
+    if is_display("ID", "unified-consent-continue-button", driver_auth):
+        click(find_element("ID", "unified-consent-continue-button", driver_auth, wait))
+        sleep(3)
 
 

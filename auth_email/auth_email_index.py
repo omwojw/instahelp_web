@@ -28,7 +28,7 @@ start_time = time.time()
 # 주문 체크
 def fetch_order() -> None:
     active_accounts = [
-        ['malek_hessen784|mD@#45546486486465|Miroslava_Ilina2456@rambler.ru|yativwer_A2456|49.254.40.101:6918']
+        ['steven_wilcox86|fgrty54qetp|Eugenejohnston54@outlook.com|ghuip65gteq|49.254.74.42:6987']
     ]
     process_order(active_accounts)
 
