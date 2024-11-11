@@ -130,8 +130,42 @@ def dashboard() -> str:
 
             # 인증 후 살리기
             elif 'challenge/action' in driver.current_url:
-                raise Exception('인증필요')
-                # TODO 이메일 이증
+                # raise Exception('인증필요')
+                is_send_code = False
+                if common.is_display('ID', 'security_code', driver):
+                    atags = common.find_elements("TAG_NAME", "a", driver, wait)
+                    for atag in atags:
+                        if atag.text == '돌아가기' or atag.text == 'Go back':
+                            common.click(atag)
+                            common.sleep(1)
+                            break
+
+                divs = common.find_elements("TAG_NAME", "div", driver, wait)
+                for div in divs:
+                    if div.text == '계속' or div.text == 'Continue':
+                        is_send_code = True
+                        common.click(div)
+                        common.sleep(1)
+                        break
+
+                if is_send_code:
+                    result_number = common.auth_outlook(current_os, 5, ip, user_id, tab_index, email, email_pw)
+                    security_code = common.find_element('ID', 'security_code', driver, wait)
+                    common.click(security_code)
+                    common.send_keys(security_code, result_number)
+
+                    divs = common.find_elements("TAG_NAME", "div", driver, wait)
+                    for div in divs:
+                        if div.text == '제출' or div.text == 'Submit':
+                            common. click(div)
+                            common.sleep(5)
+                            if 'accounts/suspended' in driver.current_url:
+                                raise Exception('메일인증(계정정지)')
+                            elif 'challenge' in driver.current_url:
+                                raise Exception('메일인증(로봇)')
+                            else:
+                                is_login1 = True
+                            break
 
             # 계정 봇 의심 경고 경우
             elif 'challenge' in driver.current_url:
@@ -261,10 +295,13 @@ def process() -> tuple:
                     message = '성공'
                 elif after_element.text == '동의함':
                     message = '동의함 처리됨'
-
         elif follow_status == 2:
-            is_follow = False
-            message = '이미 팔로우 되어 있음'
+            is_follow = True
+            message = '성공(이미)'
+        # TODO : 임시
+        # elif follow_status == 2:
+        #     is_follow = False
+        #     message = '이미 팔로우 되어 있음'
         else:
             is_follow = False
             message = '에러발생'
