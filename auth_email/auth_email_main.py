@@ -135,13 +135,15 @@ def dashboard() -> str:
             )
             if not login:
                 raise Exception(message)
+            else:
+                is_login = True
         else:
             common.log(f'자동 로그인 성공여부 {is_login1} - {is_login2}', user_id, tab_index)
     except Exception as ex:
         common.remove_from_accounts(task_service, order_id, user_id, str(ex), True)
         return f'0,1,{str(ex)}'
 
-    if is_login1 and is_login2:
+    if is_login:
         success = 1
     else:
         fail = 1

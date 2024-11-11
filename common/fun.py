@@ -995,7 +995,7 @@ def login(
             elif 'auth_patform/codeentry' in driver.current_url:
                 message = '인증필요(신규)'
             # 인증 후 살리기
-            elif 'challenge/action' in driver.current_url:
+            elif 'challenge/action' in driver.current_url or 'auth_platform/codeentry' in driver.current_url:
                 message = '인증필요'
 
 
@@ -1018,13 +1018,20 @@ def login(
 
                 if is_send_code:
                     result_number = auth_outlook(current_os, 5, ip, account_id, tab_index, email, email_pw)
-                    security_code = find_element('ID', 'security_code', driver, wait)
-                    click(security_code)
-                    send_keys(security_code, result_number)
+                    if is_display('ID', 'security_code', driver):
+                        sleep(1)
+                        security_code = find_element('ID', 'security_code', driver, wait)
+                        click(security_code)
+                        send_keys(security_code, result_number)
+                    elif is_display('ID', ':r6:', driver):
+                        sleep(1)
+                        security_code = find_element('ID', ':r6:', driver, wait)
+                        click(security_code)
+                        send_keys(security_code, result_number)
 
                     divs = find_elements("TAG_NAME", "div", driver, wait)
                     for div in divs:
-                        if div.text == '제출' or div.text == 'Submit':
+                        if div.text == '제출' or div.text == 'Submit' or div.text == '계속' or div.text == 'continue':
                             click(div)
                             sleep(5)
                             if 'accounts/suspended' in driver.current_url:
@@ -1465,16 +1472,19 @@ def auth_outlook(current_os, wait_time, ip, session_id, tab_index, email, email_
 
     if not is_auto_login:
 
-        if is_display("ID", "actionitem-oc54678j", driver_auth):
-            s = find_element("ID", "actionitem-oc54678j", driver_auth, wait)
-            try:
+
+        try:
+            if is_display("ID", "actionitem-oc54678j", driver_auth):
+                sleep(1)
+                s = find_element("ID", "actionitem-oc54678j", driver_auth, wait)
                 click(s)
                 sleep(5)
-            except Exception as e:
-                if is_display("ID", "action-oc5b26", driver_auth):
-                    s = find_element("ID", "action-oc5b26", driver_auth, wait)
-                    click(s)
-                    sleep(5)
+        except Exception as e:
+            if is_display("ID", "action-oc5b26", driver_auth):
+                sleep(3)
+                sf = find_element("ID", "action-oc5b26", driver_auth, wait)
+                click(sf)
+                sleep(5)
 
         tabs = driver_auth.window_handles
         if len(tabs) >= 2:
@@ -1483,7 +1493,8 @@ def auth_outlook(current_os, wait_time, ip, session_id, tab_index, email, email_
             if is_display("ID", "action-oc1232e", driver_auth):
                 click(find_element("ID", "action-oc1232e", driver_auth, wait))
                 sleep(7)
-            driver_auth.switch_to.window(tabs[1])
+                tabs = driver_auth.window_handles
+                driver_auth.switch_to.window(tabs[1])
 
 
 
@@ -1546,7 +1557,7 @@ def auth_outlook(current_os, wait_time, ip, session_id, tab_index, email, email_
             click(btn)
             sleep(3)
 
-
+    sleep(3)
     not_now(driver_auth, wait)
 
 
@@ -1558,9 +1569,7 @@ def auth_outlook(current_os, wait_time, ip, session_id, tab_index, email, email_
     if is_display("ID", "Pivot88-Tab1", driver_auth):
         is_old = False
 
-
-
-    sleep(10)
+    sleep(3)
     not_now(driver_auth, wait)
     if is_old:
         spans = find_elements("TAG_NAME", "span", driver_auth, wait)
@@ -1611,21 +1620,25 @@ def auth_outlook(current_os, wait_time, ip, session_id, tab_index, email, email_
     for font in fonts:
         if len(font.text) == 6:
             result_number = font.text
+            break
 
     return result_number
 
 
 def not_now(driver_auth, wait):
     sleep(3)
-    btns = find_elements("CLASS_NAME", "fui-Button", driver_auth, wait)
-    for btn in btns:
-        if btn.text == 'Not now':
-            click(btn)
-            sleep(3)
-            break
+    if is_display("CLASS_NAME", "fui-Button", driver_auth):
+        btns = find_elements("CLASS_NAME", "fui-Button", driver_auth, wait)
+        for btn in btns:
+            if btn.text == 'Not now':
+                click(btn)
+                sleep(3)
+                break
 
-    if is_display("ID", "unified-consent-continue-button", driver_auth):
-        click(find_element("ID", "unified-consent-continue-button", driver_auth, wait))
-        sleep(3)
+    # if is_display("ID", "unified-consent-continue-button", driver_auth):
+    #     click(find_element("ID", "unified-consent-continue-button", driver_auth, wait))
+    #     sleep(3)
+    move_page(driver_auth, driver_auth.current_url)
+    sleep(3)
 
 
