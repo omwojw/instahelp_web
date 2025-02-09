@@ -54,10 +54,12 @@ def fetch_order() -> None:
                         }, timeout=10).json()
     # 결과가 성공이 아니면
     if res['status'] != 'success':
-        order_id = common.get_test_order_id()
-        quantity = int(config['item']['test_quantity'])
-        order_url = str(config['item']['test_follow_order_url'])
-        mode = "TEST"
+        # order_id = common.get_test_order_id()
+        # quantity = int(config['item']['test_quantity'])
+        # order_url = str(config['item']['test_follow_order_url'])
+        # mode = "TEST"
+        common.send_message(config['telegram']['chat_order_id'], '주문없음')
+        exit()
     else:
         order_id = res['id']
         quantity = int(res['quantity'])
