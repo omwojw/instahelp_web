@@ -106,10 +106,6 @@ def fetch_order() -> None:
 # 주문 실행
 def process_order(order_id: str, quantity: int, order_url: str, active_accounts: list):
     project_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-
-    total_success = 0
-    total_fail = 0
-
     subprocess.run(
         ["docker-compose", "up", "-d", "--scale", f"s={len(active_accounts)}", "--build"],
         check=True,
@@ -118,7 +114,22 @@ def process_order(order_id: str, quantity: int, order_url: str, active_accounts:
         stderr=subprocess.DEVNULL
     )
 
+    for active_account in active_accounts[0][:]:
+        active_id = active_account.split('|')[0]
+        if active_id == order_url:
+            active_accounts[0].remove(active_account)
+
+    if not order_url:
+        return
+
+    if 'instagram.com' not in order_url:
+        order_url = f'https://www.instagram.com/{order_url}'
+
     max_workers = common.get_optimal_max_workers()
+    common.log(f"최대 작업 인스턴스: {max_workers}")
+
+    total_success = 0
+    total_fail = 0
     with ProcessPoolExecutor(max_workers=max_workers) as executor:
         futures = [executor.submit(
             open_docker
@@ -185,6 +196,7 @@ def open_docker(index: int, active_account: list, order_id: str, quantity: int, 
 
 def main():
     # 시작 함수
+    common.send_message(config['telegram']['chat_order_id'], '시작')
     fetch_order()
 
     # from datetime import datetime

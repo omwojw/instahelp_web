@@ -92,10 +92,40 @@ def fetch_order() -> None:
 
 # 주문 실행
 def process_order(order_id: str, quantity: int, order_url: str, active_accounts: list):
-    # active_accounts = [
-    #     ['byrumalemyii76|gihizasi40|ibkomasoto90@hotmail.com|hyrvtLs0oUs3yrp|124.198.21.49:6016']
-    # ]
+
+    # 테스트 환경에서만 활용
     # order_url = common.get_target('target.txt').split('|')[0]
+    # active_accounts = [
+    #     [
+    #         "monika3_e2024|anha33|monika3e@inbox.lv|sdfgdrfgtg34#|121.126.28.216:5128"
+    #         , "nafs_a46d|anha33|nafsa46d@inbox.lv|Fiza667#|49.254.126.142:5606"
+    #         , "mohima_t3|anha33|mohimat3@inbox.lv|Raisa566#|121.126.47.35:5835"
+    #         , "raisa5_6ty|anha33|raisa56ty@inbox.lv|nafsa46d#|124.198.21.50:6017"
+    #         , "nafs_a565r|anha33|nafsa565r@inbox.lv|nafsa575#|121.126.139.175:5644"
+    #         , "mohim_a4637|anha33|monika565@inbox.lv|nafsa6758#|121.126.106.175:5471"
+    #         , "monik_a66ty|anha33|monika66ty@inbox.lv|Raisa665#|49.254.24.198:6825"
+    #         , "rais_a383s|anha33|raisa383s@inbox.lv|Fiza8477#|183.78.134.78:6371"
+    #         , "mohim_a576h|anha33|mohima576h@inbox.lv|Raisa676#|121.126.129.151:5255"
+    #         , "mohim_a465|anha33|mohima4655@inbox.lv|Munia5643#|49.254.190.27:6680"
+    #         , "fibiijn_kg4|anha33|fibiijnkg4@inbox.lv|nafsadhkb4#|124.198.43.139:6082"
+    #         , "raisarg_h4|anha33|raisargh4@inbox.lv|Evanauio34#|49.254.23.118:6801"
+    #         , "nafsad_yg4|anha33|nafsadyg@inbox.lv|Umkzkzk3#|49.254.224.178:5027"
+    #         , "peetergf64422|Chjdw467hh|Peetergf6442@outlook.com|jft965eurrig|49.254.24.197:6824"
+    #         , "russellhamiltony65333|Vfs345fgjjx|RussellHamiltony6533@outlook.com|itte865ehffu|115.144.234.138:5370"
+    #      ]
+    # ]
+
+
+    for active_account in active_accounts[0][:]:
+        active_id = active_account.split('|')[0]
+        if active_id == order_url:
+            active_accounts[0].remove(active_account)
+
+    if not order_url:
+        return
+
+    if 'instagram.com' not in order_url:
+        order_url = f'https://www.instagram.com/{order_url}'
 
 
     max_workers = common.get_optimal_max_workers()
@@ -104,6 +134,7 @@ def process_order(order_id: str, quantity: int, order_url: str, active_accounts:
     total_success = 0
     total_fail = 0
     for active_account in active_accounts:
+        common.sleep(1)
         with ProcessPoolExecutor(max_workers=max_workers) as executor:
             futures = [executor.submit(
                 main_process.main_fun
@@ -138,6 +169,7 @@ def process_order(order_id: str, quantity: int, order_url: str, active_accounts:
 
 
 def main():
+    common.send_message(config['telegram']['chat_order_id'], '시작')
     # 시작 함수
     fetch_order()
 
