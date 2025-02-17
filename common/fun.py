@@ -390,8 +390,12 @@ def send_message(chat_id: str, message: str) -> None:
 # 텔레그램 메시지 보내기 2번
 async def send_alert(chat_id: str, message: str) -> None:
     text = f'{message}'
-    bot = telegram.Bot(token=telegram_token_key)
-    await bot.sendMessage(chat_id=chat_id, text=text)
+
+    # 각 토큰을 인덱스와 함께 처리
+    for index, token in enumerate(telegram_token_key.split('|')):
+        bot = telegram.Bot(token=token)
+        await bot.sendMessage(chat_id=chat_id.split('|')[index], text=text)
+
 
 
 # element 찾는 공통 함수 오브젝트
@@ -1054,6 +1058,8 @@ def login(
                         is_login1 = True
                         message = ''
                         break
+            elif 'accounts/login/two_factor' in driver.current_url:
+                message = '2단계인증'
             else:
                 message = '원인불명'
 

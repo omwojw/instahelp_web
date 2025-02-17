@@ -177,9 +177,9 @@ def dashboard() -> str:
                         common.sleep(3)
                         is_login1 = True
                         break
-
+            elif 'accounts/login/two_factor' in driver.current_url:
                 if not is_login1:
-                    raise Exception('의심경고')
+                    raise Exception('2단계인증')
 
         common.sleep(3)
         # 로그인 2차 검증
