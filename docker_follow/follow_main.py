@@ -34,6 +34,7 @@ session_id = ''
 mode = ''
 email = ''
 email_pw = ''
+two_factor_code = ''
 
 
 wait_time = int(config['selenium']['wait_time'])
@@ -151,9 +152,16 @@ def dashboard() -> str:
 
                 if is_send_code:
                     result_number = common.auth_outlook(current_os, 5, ip, user_id, tab_index, email, email_pw)
-                    security_code = common.find_element('ID', 'security_code', driver, wait)
-                    common.click(security_code)
-                    common.send_keys(security_code, result_number)
+                    if common.is_display('ID', 'security_code', driver):
+                        common.sleep(1)
+                        security_code = common.find_element('ID', 'security_code', driver, wait)
+                        common.click(security_code)
+                        common.send_keys(security_code, result_number)
+                    elif common.is_display('ID', ':r6:', driver):
+                        common.sleep(1)
+                        security_code = common.find_element('ID', ':r6:', driver, wait)
+                        common.click(security_code)
+                        common.send_keys(security_code, result_number)
 
                     divs = common.find_elements("TAG_NAME", "div", driver, wait)
                     for div in divs:
@@ -177,9 +185,21 @@ def dashboard() -> str:
                         common.sleep(3)
                         is_login1 = True
                         break
-            elif 'accounts/login/two_factor' in driver.current_url:
                 if not is_login1:
-                    raise Exception('2단계인증')
+                    raise Exception('의심경고')
+            elif 'accounts/login/two_factor' in driver.current_url:
+                result_number = common.auth_two_factor(current_os, 5, ip, user_id, tab_index, two_factor_code)
+                security_code = common.find_element('NAME', 'verificationCode', driver, wait)
+                common.click(security_code)
+                common.send_keys(security_code, result_number)
+
+                divs = common.find_elements("TAG_NAME", "div", driver, wait)
+                for div in divs:
+                    if div.text == '확인' or div.text == 'Confirm':
+                        common.click(div)
+                        common.sleep(5)
+                        is_login1 = True
+                        break
 
         common.sleep(3)
         # 로그인 2차 검증
@@ -207,6 +227,7 @@ def dashboard() -> str:
                 , email
                 , email_pw
                 , ip
+                , two_factor_code
             )
             if not login:
                 raise Exception(message)
@@ -319,8 +340,8 @@ def process() -> tuple:
 
 
 def main_fun(_tab_index: int, _user_id: str, _user_pw: str, _ip: str, _order_id: str, _quantity: int,
-             _order_url: str, _mode: str, _session_id: str, _email: str, _email_pw: str) -> str:
-    global tab_index, user_id, user_pw, ip, order_id, quantity, order_url, mode, session_id, email, email_pw
+             _order_url: str, _mode: str, _session_id: str, _email: str, _email_pw: str, _two_factor_code: str) -> str:
+    global tab_index, user_id, user_pw, ip, order_id, quantity, order_url, mode, session_id, email, email_pw, two_factor_code
     tab_index = _tab_index + 1
     user_id = _user_id
     user_pw = _user_pw
@@ -332,6 +353,7 @@ def main_fun(_tab_index: int, _user_id: str, _user_pw: str, _ip: str, _order_id:
     session_id = _session_id
     email = _email
     email_pw = _email_pw
+    two_factor_code = _two_factor_code
 
     # 시작 함수
     try:

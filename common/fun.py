@@ -28,9 +28,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 from typing import Optional
 import re
 import math
+
 ua = UserAgent()
 user_agent = ua.random
-
 
 config = configparser.ConfigParser()
 current_os = None
@@ -179,9 +179,11 @@ def get_accounts_max_working(service: str) -> list:
                 account_list.append(pats[1])
             elif service == config['item']['like'] and int(pats[2]) >= int(config['item']['like_today_cnt']):
                 account_list.append(pats[1])
-            elif service == config['item']['comment_fix'] and int(pats[2]) >= int(config['item']['comment_fix_today_cnt']):
+            elif service == config['item']['comment_fix'] and int(pats[2]) >= int(
+                    config['item']['comment_fix_today_cnt']):
                 account_list.append(pats[1])
-            elif service == config['item']['comment_random'] and int(pats[2]) >= int(config['item']['comment_random_today_cnt']):
+            elif service == config['item']['comment_random'] and int(pats[2]) >= int(
+                    config['item']['comment_random_today_cnt']):
                 account_list.append(pats[1])
     return account_list
 
@@ -318,7 +320,8 @@ def write_working_save_log(service: str, order_id: str, user_id: str, link: str)
 
 
 # 주문 결과 로그 추가
-def write_order_log(path: str, service: str, order_id: str, quantity: int, success: int, fail: int, order_time: str) -> None:
+def write_order_log(path: str, service: str, order_id: str, quantity: int, success: int, fail: int,
+                    order_time: str) -> None:
     log(f"총 성공: [{success}], 총 실패: [{fail}]")
     file_path = os.path.abspath(
         os.path.join(os.path.dirname(os.path.abspath(__file__)), path))
@@ -331,7 +334,8 @@ def write_order_log(path: str, service: str, order_id: str, quantity: int, succe
 
 
 # 태스크 로그 추가
-def write_task_log(path: str, service: str, order_id: str, user_id: str, result: bool, err_msg: str, order_url: str) -> None:
+def write_task_log(path: str, service: str, order_id: str, user_id: str, result: bool, err_msg: str,
+                   order_url: str) -> None:
     file_path = os.path.abspath(
         os.path.join(os.path.dirname(os.path.abspath(__file__)), path))
 
@@ -371,7 +375,8 @@ def remove_from_accounts(service: str, order_id: str, current_user_id: str, err_
 # 에러 로그 추가
 def remove_from_error(log_txt: str, order_id: str, docker_name: str) -> None:
     file_path = os.path.abspath(
-        os.path.join(os.path.dirname(os.path.abspath(__file__)), f"../log/error/{order_id}/{docker_name}_error_log.txt"))
+        os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                     f"../log/error/{order_id}/{docker_name}_error_log.txt"))
     make_dir(file_path)
     with open(file_path, "a", encoding='UTF-8') as f:
         f.write(f"{log_txt}")
@@ -395,7 +400,6 @@ async def send_alert(chat_id: str, message: str) -> None:
     for index, token in enumerate(telegram_token_key.split('|')):
         bot = telegram.Bot(token=token)
         await bot.sendMessage(chat_id=chat_id.split('|')[index], text=text)
-
 
 
 # element 찾는 공통 함수 오브젝트
@@ -580,9 +584,20 @@ def status_change(order_id: str, action: str) -> None:
         raise Exception('퍼팩트 패널 상태 변경 수정 에러')
 
 
+def set_start_count(order_id: str, start_count: int) -> None:
+    try:
+        res = requests.post(config['api']['url'], data={
+            'key': config['api']['key'],
+            'action': 'setStartcount',
+            'id': order_id,
+            'start_count': start_count,
+        }, timeout=10)
+    except Exception as ex:
+        raise Exception('퍼팩트 패널 상태 변경 수정 에러')
+
+
 # 최종 결과 API 연동
 def result_api(order_id: str, total_success: int, total_fail: int, quantity: int) -> None:
-
     if total_success == quantity:  # 전체 성공
         res = requests.post(config['api']['url'], data={
             'key': config['api']['key'],
@@ -604,8 +619,6 @@ def result_api(order_id: str, total_success: int, total_fail: int, quantity: int
     log(f"[Success] -  남은 수량 : {quantity - total_success}")
     log(f"[Success] -  상태 변경 결과 : {res}")
     log(f"총 성공: [{total_success}], 총 실패: [{total_fail}]")
-
-
 
 
 # 엘리먼트 정보 콘솔출력
@@ -715,7 +728,6 @@ def open_selenium(curt_os: str, wait_time: int, ip: str, session_id: str, idx: i
     # options.add_argument(f'--user-agent={get_user_agent()}')
     options.add_argument(f'--user-agent={user_agent}')
 
-
     # 크롬 확장프로그램 비활성화
     # 확장 프로그램이 성능을 저하시키거나 불필요한 리소스를 사용할 수 있으므로 이를 비활성화하여 성능을 최적화합니다.
     options.add_argument("--disable-extensions")
@@ -785,7 +797,6 @@ def open_selenium(curt_os: str, wait_time: int, ip: str, session_id: str, idx: i
 
         # 헤드리스 모드일때 한국어로
         options.add_argument('--lang=ko')
-
 
     # 프록시 설정은 윈도우에서만 가능
     if current_os == 'WINDOW':
@@ -869,8 +880,8 @@ def login(
         , email: str
         , email_pw: str
         , ip: str
-  ) -> tuple:
-
+        , two_factor_code: str
+) -> tuple:
     try:
         # 로그인
         log('로그인 시작', account_id, tab_index)
@@ -880,7 +891,6 @@ def login(
         sleep(3)
         if login_url != driver.current_url:
             return False, '로그인 페이지를 벗어남'
-
 
         # 계정을 입력합니다.
         id_input = find_element('NAME', "username", driver, wait)
@@ -926,9 +936,6 @@ def login(
         except Exception as e:
             sleep(1)
 
-
-
-
         log('로그인 검증 시작', account_id, tab_index)
         home_url = "https://www.instagram.com/"
 
@@ -939,7 +946,6 @@ def login(
         is_login1 = False
         is_login2 = False
         message = ''
-
 
         # 로그인 성공
         if home_url == driver.current_url:
@@ -1002,7 +1008,6 @@ def login(
             elif 'challenge/action' in driver.current_url or 'auth_platform/codeentry' in driver.current_url:
                 message = '인증필요'
 
-
                 is_send_code = False
                 if is_display('ID', 'security_code', driver):
                     atags = find_elements("TAG_NAME", "a", driver, wait)
@@ -1059,11 +1064,31 @@ def login(
                         message = ''
                         break
             elif 'accounts/login/two_factor' in driver.current_url:
-                message = '2단계인증'
+                result_number = auth_two_factor(current_os, 5, ip, account_id, tab_index, two_factor_code)
+                security_code = find_element('NAME', 'verificationCode', driver, wait)
+                click(security_code)
+                send_keys(security_code, result_number)
+
+                divs = find_elements("TAG_NAME", "div", driver, wait)
+                for div in divs:
+                    if div.text == '확인' or div.text == 'Confirm':
+                        click(div)
+                        sleep(5)
+                        is_login1 = True
+                        break
             else:
                 message = '원인불명'
 
         sleep(3)
+        # if 'challenge' in driver.current_url:
+        #     divs = find_elements("TAG_NAME", "div", driver, wait)
+        #     for div in divs:
+        #         if div.text == '본인입니다' or div.text == 'me':
+        #             click(div)
+        #             sleep(5)
+        #             break
+
+
         # 로그인 2차 검증
         if is_login1:
             if is_display("TAG_NAME", "svg", driver):
@@ -1131,7 +1156,7 @@ def account_docker_setting(accounts: list, quantity: int) -> tuple:
         max_docker_cnt = quantity
         browser_cnt = 1
     else:
-        browser_cnt = math.ceil(len(temp_active_accounts)/max_docker_cnt)
+        browser_cnt = math.ceil(len(temp_active_accounts) / max_docker_cnt)
 
     active_accounts = [[] for _ in range(max_docker_cnt)]
 
@@ -1155,7 +1180,7 @@ def dupl_check(service: int, order_service: str, order_log_path: str) -> bool:
     if res_new['data']:
         new_orders = res_new['data']['list']
         if len(new_orders) > 0:
-            current_order = new_orders[len(new_orders)-1]
+            current_order = new_orders[len(new_orders) - 1]
 
     # 요소가 있다면
     # 전체조회를 해서 *중복링크 + 대기중, 진행중, 처리중 인경우 주문 막기
@@ -1187,12 +1212,13 @@ def dupl_check(service: int, order_service: str, order_log_path: str) -> bool:
                         # TODO : 개발편의상 대기중 상태만 체크하도록 넣어둠 고객사 요청사항은 대기중, 처리중, 진행중 까지였음
                         # or order['status'] == 'in_progress' or order[
                         #     'status'] == 'processing'
-                    ) and link.strip() == order_url.strip() \
-                    and created == current_order_created:
+                ) and link.strip() == order_url.strip() \
+                        and created == current_order_created:
                     write_common_log("../log/dupl_history.txt", order_service,
                                      f"{order['id']}|{current_order['id']}|{order_url}|{get_status_text(order['status'])}")
 
-                    write_order_log(order_log_path, order_service, current_order['id'], current_order['quantity'], 0, 0, '-')
+                    write_order_log(order_log_path, order_service, current_order['id'], current_order['quantity'], 0, 0,
+                                    '-')
                     return True
 
     return False
@@ -1478,7 +1504,6 @@ def auth_outlook(current_os, wait_time, ip, session_id, tab_index, email, email_
 
     if not is_auto_login:
 
-
         try:
             if is_display("ID", "actionitem-oc54678j", driver_auth):
                 sleep(1)
@@ -1501,11 +1526,6 @@ def auth_outlook(current_os, wait_time, ip, session_id, tab_index, email, email_
                 sleep(7)
                 tabs = driver_auth.window_handles
                 driver_auth.switch_to.window(tabs[1])
-
-
-
-
-
 
         log('[인증] 로그인 시작', session_id, tab_index)
         # menu_btn = find_element("ID", "meControl", driver_auth, wait)
@@ -1548,7 +1568,6 @@ def auth_outlook(current_os, wait_time, ip, session_id, tab_index, email, email_
             click(btn)
             sleep(3)
 
-
     move_page(driver_auth, 'https://outlook.live.com/mail/0/')
     sleep(3)
     log('[인증] 메일 페이지 오픈', session_id, tab_index)
@@ -1565,7 +1584,6 @@ def auth_outlook(current_os, wait_time, ip, session_id, tab_index, email, email_
 
     sleep(3)
     not_now(driver_auth, wait)
-
 
     is_old = True
 
@@ -1631,6 +1649,32 @@ def auth_outlook(current_os, wait_time, ip, session_id, tab_index, email, email_
     return result_number
 
 
+def auth_two_factor(current_os, wait_time, ip, session_id, tab_index, two_factor_code):
+    driver_auth: Optional[WebDriver] = open_selenium(current_os, wait_time, ip, '', tab_index)
+    log('[인증] 셀레니움 연결', session_id, tab_index)
+    wait = WebDriverWait(driver_auth, wait_time, poll_frequency=1)
+
+    move_page(driver_auth, 'https://2fa.live/')
+    sleep(1)
+
+    code_input = find_element("ID", "listToken", driver_auth, wait)
+    click(code_input)
+    send_keys(code_input, two_factor_code)
+    sleep(1)
+
+    code_submit = find_element("ID", "submit", driver_auth, wait)
+    click(code_submit)
+    sleep(1)
+
+    code_output = find_element("ID", "output", driver_auth, wait)
+    sleep(1)
+
+    element_log(code_output)
+    result_number = code_output.get_attribute('value')
+    result_number = result_number.split('|')[1]
+    return result_number
+
+
 def not_now(driver_auth, wait):
     sleep(3)
     if is_display("CLASS_NAME", "fui-Button", driver_auth):
@@ -1646,5 +1690,3 @@ def not_now(driver_auth, wait):
     #     sleep(3)
     move_page(driver_auth, driver_auth.current_url)
     sleep(3)
-
-

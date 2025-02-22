@@ -62,6 +62,7 @@ def process_order(active_accounts: list):
             , account.split('|')[0]
             , account.split('|')[2]
             , account.split('|')[3]
+            , account.split('|')[5]
         ) for index, account in enumerate(active_accounts)]
         results = [future.result() for future in futures]
 

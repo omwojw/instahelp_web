@@ -49,17 +49,18 @@ def fetch_order() -> None:
                         }, timeout=10).json()
     # 결과가 성공이 아니면
     if res['status'] != 'success':
-        # order_id = common.get_test_order_id()
-        # quantity = int(config['item']['test_quantity'])
-        # order_url = str(config['item']['test_follow_order_url'])
-        # mode = "TEST"
+        order_id = common.get_test_order_id()
+        quantity = int(config['item']['test_quantity'])
+        order_url = str(config['item']['test_follow_order_url'])
+        mode = "TEST"
 
-        common.send_message(config['telegram']['chat_order_id'], '주문없음')
-        exit()
+        # common.send_message(config['telegram']['chat_order_id'], '주문없음')
+        # exit()
     else:
         order_id = res['id']
         quantity = int(res['quantity'])
         order_url = res['link']
+        common.set_start_count(order_id, quantity)
         mode = "LIVE"
     common.log(f'모드 : {mode}')
 
@@ -97,26 +98,12 @@ def fetch_order() -> None:
 def process_order(order_id: str, quantity: int, order_url: str, active_accounts: list):
 
     # 테스트 환경에서만 활용
-    # order_url = common.get_target('target.txt').split('|')[0]
-    # active_accounts = [
-    #     [
-    #         "monika3_e2024|anha33|monika3e@inbox.lv|sdfgdrfgtg34#|121.126.28.216:5128"
-    #         , "nafs_a46d|anha33|nafsa46d@inbox.lv|Fiza667#|49.254.126.142:5606"
-    #         , "mohima_t3|anha33|mohimat3@inbox.lv|Raisa566#|121.126.47.35:5835"
-    #         , "raisa5_6ty|anha33|raisa56ty@inbox.lv|nafsa46d#|124.198.21.50:6017"
-    #         , "nafs_a565r|anha33|nafsa565r@inbox.lv|nafsa575#|121.126.139.175:5644"
-    #         , "mohim_a4637|anha33|monika565@inbox.lv|nafsa6758#|121.126.106.175:5471"
-    #         , "monik_a66ty|anha33|monika66ty@inbox.lv|Raisa665#|49.254.24.198:6825"
-    #         , "rais_a383s|anha33|raisa383s@inbox.lv|Fiza8477#|183.78.134.78:6371"
-    #         , "mohim_a576h|anha33|mohima576h@inbox.lv|Raisa676#|121.126.129.151:5255"
-    #         , "mohim_a465|anha33|mohima4655@inbox.lv|Munia5643#|49.254.190.27:6680"
-    #         , "fibiijn_kg4|anha33|fibiijnkg4@inbox.lv|nafsadhkb4#|124.198.43.139:6082"
-    #         , "raisarg_h4|anha33|raisargh4@inbox.lv|Evanauio34#|49.254.23.118:6801"
-    #         , "nafsad_yg4|anha33|nafsadyg@inbox.lv|Umkzkzk3#|49.254.224.178:5027"
-    #         , "peetergf64422|Chjdw467hh|Peetergf6442@outlook.com|jft965eurrig|49.254.24.197:6824"
-    #         , "russellhamiltony65333|Vfs345fgjjx|RussellHamiltony6533@outlook.com|itte865ehffu|115.144.234.138:5370"
-    #      ]
-    # ]
+    order_url = common.get_target('target.txt').split('|')[0]
+    active_accounts = [
+        [
+            "48wgoxqb.zlsjb.shv|z5v7v6gXnancy7|monika3e@inbox.lv|sdfgdrfgtg34#|49.254.206.8:6749|BFOAXACWYWHPSOQKYXMW66VOPOBEKMAA"
+        ]
+    ]
 
 
     for active_account in active_accounts[0][:]:
@@ -152,6 +139,7 @@ def process_order(order_id: str, quantity: int, order_url: str, active_accounts:
                 , account.split('|')[0]
                 , account.split('|')[2]
                 , account.split('|')[3]
+                , account.split('|')[5]
             ) for index, account in enumerate(active_account)]
             results = [future.result() for future in futures]
 

@@ -64,8 +64,12 @@ def fetch_order() -> None:
         order_id = res['id']
         quantity = int(res['quantity'])
         order_url = res['link']
+        common.set_start_count(order_id, quantity)
         mode = "LIVE"
     common.log(f'모드 : {mode}')
+
+
+
 
     if 'instagram.com' not in order_url:
         order_url = f'https://www.instagram.com/{order_url}'
