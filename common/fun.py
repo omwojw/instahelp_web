@@ -1815,7 +1815,7 @@ def not_now(driver_auth, wait):
 
 def get_follow_count(current_os, url):
     if 'instagram.com' not in url:
-        order_url = f'https://www.instagram.com/{url}'
+        url = f'https://www.instagram.com/{url}'
 
     driver_mini = open_selenium_mini(current_os, 5)
     driver_mini.get(url)
