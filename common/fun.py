@@ -28,6 +28,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from typing import Optional
 import re
 import math
+import urllib.request
+import re
 
 ua = UserAgent()
 user_agent = ua.random
@@ -832,6 +834,118 @@ def open_selenium(curt_os: str, wait_time: int, ip: str, session_id: str, idx: i
     return selenium_driver
 
 
+def open_selenium_mini(curt_os: str, wait_time: int) -> object:
+    log('셀레니움 연결')
+    driver_path = ''
+    chrome_path = ''
+    if curt_os == 'MAC':
+        driver_path = config['selenium']['driver_path_mac']
+        chrome_path = config['selenium']['chrome_path_mac']
+    elif curt_os == 'WINDOW':
+        driver_path = config['selenium']['driver_path_window']
+        chrome_path = config['selenium']['chrome_path_window']
+    elif curt_os == 'LINUX':
+        driver_path = config['selenium']['driver_path_linux']
+        chrome_path = config['selenium']['chrome_path_linux']
+
+    # Chrome 웹 드라이버 경로 설정
+    chromedriver_path = driver_path
+
+    # Chrome 웹 드라이버 설정
+    options = webdriver.ChromeOptions()
+
+    # 셀레니움 로그레벨
+    options.add_argument("--log-level=3")  # INFO, WARNING, LOG, ERROR
+
+    # 셀레니움 헤더 에이전트 랜덤
+    # options.add_argument(f'--user-agent={get_user_agent()}')
+    options.add_argument(f'--user-agent={user_agent}')
+
+    # 크롬 확장프로그램 비활성화
+    # 확장 프로그램이 성능을 저하시키거나 불필요한 리소스를 사용할 수 있으므로 이를 비활성화하여 성능을 최적화합니다.
+    options.add_argument("--disable-extensions")
+
+    # GPU 하드웨어 가속을 비활성화
+    # GPU 가속이 필요 없는 경우 이를 비활성화하여 리소스를 절약합니다. 특히 헤드리스 모드에서는 유용합니다.
+    options.add_argument("--disable-gpu")
+
+    # 샌드박스 모드를 비활성화
+    # 샌드박스 모드를 비활성화하면 성능이 향상될 수 있지만, 보안상의 이유로 사용에 주의가 필요합니다.
+    options.add_argument("--no-sandbox")
+
+    # 공유메모리를 사용하지 않도록 설정
+    # 공유 메모리 크기가 작은 환경에서는 이를 비활성화하여 크롬이 디스크를 대신 사용하도록 합니다. Docker 같은 환경에서 유용합니다.
+    options.add_argument("--disable-dev-shm-usage")
+
+    # 브라우저측 네비게이션 비활성화
+    # 이 옵션은 특정 상황에서 성능을 최적화할 수 있습니다.
+    options.add_argument("--disable-browser-side-navigation")
+
+    # 자동화된 브라우저 환경을 위해 설정합니다.
+    # 크롬이 자동화된 환경에서 실행되고 있음을 나타내어 특정 최적화 및 기능을 활성화합니다.
+    options.add_argument("enable-automation")
+
+    # "Chrome is being controlled by automated test software" 메시지 바를 비활성화합니다.
+    # 사용자 경험을 방해하지 않도록 메시지 바를 숨깁니다.
+    options.add_argument("--disable-infobars")
+
+    # AutomationControlled 기능을 비활성화합니다.
+    # 사이트가 브라우저 자동화를 감지하지 못하게 합니다.
+    options.add_argument("--disable-blink-features=AutomationControlled")
+
+    # 원격 디버깅 포트를 설정합니다.
+    # 디버깅 및 성능 최적화를 위해 사용될 수 있습니다. 여러 인스턴스 실행 시 겹치지 않는 포트를 설정해야 합니다.
+    # chrome_options.add_argument("--remote-debugging-port=9222")
+
+    # 사이트 격리 기능을 비활성화합니다.
+    # 성능 향상을 위해 사이트 간 격리를 비활성화합니다. 보안 기능을 일부 희생할 수 있습니다.
+    options.add_argument("--disable-site-isolation-trials")
+
+    # 네트워크 서비스 기능을 비활성화합니다.
+    # 네트워크 서비스 관련 기능이 성능을 저하시키는 경우 이를 비활성화하여 성능을 최적화할 수 있습니다.
+    options.add_argument("--disable-features=NetworkService")
+
+    # Viz Display Compositor 기능을 비활성화합니다.
+    # 렌더링 관련 성능 문제를 해결하기 위해 사용합니다. 특정 환경에서 성능 향상이 있을 수 있습니다.
+    options.add_argument("--disable-features=VizDisplayCompositor")
+
+
+    # 헤드리스 모드, 리눅스 환경에서는 무조건 헤드리스로
+    if is_headless or curt_os == 'LINUX':
+        options.add_argument('--headless')
+
+        # 헤드리스 모드일때 한국어로
+        options.add_argument('--lang=ko')
+
+
+
+    options.binary_location = chrome_path
+
+    # 웹 드라 이버 시작
+    global screen_size
+    width = screen_size[0]
+    margin = 50
+
+    service = ChromeService(executable_path=chromedriver_path)
+    selenium_driver = webdriver.Chrome(service=service, options=options)
+    selenium_driver.implicitly_wait(wait_time)
+    selenium_driver.set_window_size(width, screen_size[1])
+    if current_os == 'MAC':
+        screen_width, screen_height = pyautogui.size()
+        selenium_driver.set_window_position(screen_width + (width + margin) * (1 - 1), 0)
+    elif current_os == 'WINDOW':
+        screen_width, screen_height = pyautogui.size()
+        # if idx > 3:
+        #     selenium_driver.set_window_position(screen_width + (width + margin) * (idx%3 - 1), 200)
+        # else:
+        #     selenium_driver.set_window_position(screen_width + (width + margin) * (idx - 1), 200)
+
+        selenium_driver.set_window_position(0, 0)
+        # selenium_driver.set_window_position(1820-(width+margin), screen_height+margin)
+    elif current_os == 'LINUX':
+        selenium_driver.set_window_position(0, 0)
+    return selenium_driver
+
 # 화면에 동의요청 화면이 나왔는지 체크
 def agree_check(user_id: str, tab_index: int, driver: WebDriver, wait: WebDriverWait) -> bool:
     log('동의여부 체크 시작', user_id, tab_index)
@@ -1088,9 +1202,9 @@ def login(
         #             sleep(5)
         #             break
 
-
         # 로그인 2차 검증
         if is_login1:
+            sleep(1)
             if is_display("TAG_NAME", "svg", driver):
                 svgs = find_elements("TAG_NAME", "svg", driver, wait)
                 for svg in svgs:
@@ -1098,10 +1212,17 @@ def login(
                         is_login2 = True
                         message = ''
                         break
-
+            if is_display("TAG_NAME", "button", driver):
                 btns = find_elements("TAG_NAME", "button", driver, wait)
                 for btn in btns:
                     if btn.text == '나중에 하기' or btn.text == 'Do it later':
+                        is_login2 = True
+                        message = ''
+                        break
+            if is_display("TAG_NAME", "span", driver):
+                spans = find_elements("TAG_NAME", "span", driver, wait)
+                for span in spans:
+                    if span.text == '나중에 하기' or span.text == 'Do it later':
                         is_login2 = True
                         message = ''
                         break
@@ -1690,3 +1811,23 @@ def not_now(driver_auth, wait):
     #     sleep(3)
     move_page(driver_auth, driver_auth.current_url)
     sleep(3)
+
+
+def get_follow_count(current_os, url):
+    if 'instagram.com' not in url:
+        order_url = f'https://www.instagram.com/{url}'
+
+    driver_mini = open_selenium_mini(current_os, 5)
+    driver_mini.get(url)
+    wait = WebDriverWait(driver_mini, 5, poll_frequency=1)
+    set_lang(driver_mini)
+    sleep(3)
+
+    followers = 0
+    spans = find_elements("TAG_NAME", "span", driver_mini, wait)
+    for span in spans:
+        log(span.text)
+        if '팔로워' in span.text:
+            followers = span.text.split('\n')[1]
+
+    return followers

@@ -64,7 +64,8 @@ def fetch_order() -> None:
         order_id = res['id']
         quantity = int(res['quantity'])
         order_url = res['link']
-        common.set_start_count(order_id, quantity)
+        # start_count = common.get_follow_count(current_os, order_url)
+        # common.set_start_count(order_id, start_count)
         mode = "LIVE"
     common.log(f'모드 : {mode}')
 

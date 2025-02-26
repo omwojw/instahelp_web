@@ -116,6 +116,19 @@ def dashboard() -> str:
                         is_login2 = True
                         break
 
+            if common.is_display("TAG_NAME", "button", driver):
+                btns = common.find_elements("TAG_NAME", "button", driver, wait)
+                for btn in btns:
+                    if btn.text == '나중에 하기' or btn.text == 'Do it later':
+                        is_login2 = True
+                        break
+            if common.is_display("TAG_NAME", "span", driver):
+                spans = common.find_elements("TAG_NAME", "span", driver, wait)
+                for span in spans:
+                    if span.text == '나중에 하기' or span.text == 'Do it later':
+                        is_login2 = True
+                        break
+
             if not is_login2:
                 raise Exception('로그인(2차) 검증 에러')
 
