@@ -329,13 +329,13 @@ def process() -> tuple:
                     message = '성공'
                 elif after_element.text == '동의함':
                     message = '동의함 처리됨'
-        elif follow_status == 2:
-            is_follow = True
-            message = '성공(이미)'
-        # TODO : 임시
         # elif follow_status == 2:
-        #     is_follow = False
-        #     message = '이미 팔로우 되어 있음'
+        #     is_follow = True
+        #     message = '성공(이미)'
+        # TODO : 임시
+        elif follow_status == 2:
+            is_follow = False
+            message = '이미 팔로우 되어 있음'
         else:
             is_follow = False
             message = '에러발생'

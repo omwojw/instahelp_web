@@ -1826,8 +1826,8 @@ def get_follow_count(current_os, url):
     followers = 0
     spans = find_elements("TAG_NAME", "span", driver_mini, wait)
     for span in spans:
-        log(span.text)
-        if '팔로워' in span.text:
+        if '팔로워' in span.text or 'followers' in span.text:
             followers = span.text.split('\n')[1]
+            break
 
     return followers
