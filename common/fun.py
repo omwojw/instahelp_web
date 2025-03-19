@@ -387,11 +387,7 @@ def remove_from_error(log_txt: str, order_id: str, docker_name: str) -> None:
 # 텔레그램 메시지 보내기 1번
 def send_message(chat_id: str, message: str) -> None:
     if config['log']['telegram'] == 'True':
-        loop = asyncio.get_event_loop()
-        if loop.is_closed():
-            loop = asyncio.new_event_loop()
-            asyncio.set_event_loop(loop)
-        loop.run_until_complete(send_alert(chat_id, message))
+        asyncio.run(send_alert(chat_id, message))  # ✅ 새로운 이벤트 루프에서 실행
 
 
 # 텔레그램 메시지 보내기 2번

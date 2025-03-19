@@ -1,3 +1,4 @@
+import asyncio
 import sys
 import os
 import time
@@ -13,6 +14,9 @@ import requests
 from concurrent.futures import ProcessPoolExecutor
 import common.fun as common
 import follow.follow_main as main_process
+from datetime import datetime, timedelta
+import pytz
+from apscheduler.schedulers.background import BackgroundScheduler
 
 # Config 읽기
 config = configparser.ConfigParser()
@@ -31,10 +35,12 @@ order_log_path = "../log/order_history.txt"
 mode = ""
 start_time = time.time()
 
+schedule_wait_time = int(config['selenium']['schedule_wait_time'])
+
 
 # 주문 체크
 def fetch_order() -> None:
-
+    common.send_message(config['telegram']['chat_order_id'], '시작')
 
     # 주문 중복체크
     is_dupl_order = common.dupl_check(int(config['api']['follow_service']), order_service, order_log_path)
@@ -51,13 +57,12 @@ def fetch_order() -> None:
                         }, timeout=10).json()
     # 결과가 성공이 아니면
     if res['status'] != 'success':
-        order_id = common.get_test_order_id()
-        quantity = int(config['item']['test_quantity'])
-        order_url = str(config['item']['test_follow_order_url'])
-        mode = "TEST"
-
-        # common.send_message(config['telegram']['chat_order_id'], '주문없음')
-        # exit()
+        # order_id = common.get_test_order_id()
+        # quantity = int(config['item']['test_quantity'])
+        # order_url = str(config['item']['test_follow_order_url'])
+        # mode = "TEST"
+        common.send_message(config['telegram']['chat_order_id'], '주문없음')
+        return None
     else:
         order_id = res['id']
         quantity = int(res['quantity'])
@@ -161,12 +166,27 @@ def process_order(order_id: str, quantity: int, order_url: str, active_accounts:
     # 주문 최종 결과 로그 저장
     common.write_order_log(order_log_path, order_service, order_id, quantity, total_success, total_fail, formatted_time)
 
+time_zone = pytz.timezone('Asia/Seoul')
+scheduler = BackgroundScheduler(timezone=time_zone)
+
+
+def schedule_task():
+    try:
+        fetch_order()
+    finally:
+        next_run_time = datetime.now(time_zone) + timedelta(seconds=schedule_wait_time)
+        scheduler.add_job(schedule_task, 'date', run_date=next_run_time)
+
 
 def main():
-    common.send_message(config['telegram']['chat_order_id'], '시작')
-    # 시작 함수
-    fetch_order()
+    scheduler.start()
+    schedule_task()
 
 
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+        while True:
+            time.sleep(1)  # 메인 스레드 유지
+    except (KeyboardInterrupt, SystemExit):
+        scheduler.shutdown()

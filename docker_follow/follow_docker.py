@@ -1,3 +1,4 @@
+import asyncio
 import sys
 import os
 import time
@@ -17,7 +18,9 @@ import subprocess
 from concurrent.futures import ProcessPoolExecutor
 import traceback
 import os
-
+from datetime import datetime, timedelta
+import pytz
+from apscheduler.schedulers.background import BackgroundScheduler
 
 # Config 읽기
 config = configparser.ConfigParser()
@@ -36,9 +39,13 @@ order_log_path = "../log/order_history.txt"
 mode = ""
 start_time = time.time()
 
+schedule_wait_time = int(config['selenium']['schedule_wait_time'])
+
 
 # 주문 체크
 def fetch_order() -> None:
+    common.send_message(config['telegram']['chat_order_id'], '시작')
+
     # 주문 중복체크
     is_dupl_order = common.dupl_check(int(config['api']['follow_service']), order_service, order_log_path)
     if is_dupl_order:
@@ -59,7 +66,7 @@ def fetch_order() -> None:
         # order_url = str(config['item']['test_follow_order_url'])
         # mode = "TEST"
         common.send_message(config['telegram']['chat_order_id'], '주문없음')
-        exit()
+        return None
     else:
         order_id = res['id']
         quantity = int(res['quantity'])
@@ -201,17 +208,27 @@ def open_docker(index: int, active_account: list, order_id: str, quantity: int, 
             container.stop()
 
 
-def main():
-    # 시작 함수
-    common.send_message(config['telegram']['chat_order_id'], '시작')
-    fetch_order()
+time_zone = pytz.timezone('Asia/Seoul')
+scheduler = BackgroundScheduler(timezone=time_zone)
 
-    # from datetime import datetime
-    # now = datetime.now()
-    # current_time = now.strftime("%Y-%m-%d %H:%M:%S")
-    # common.log(current_time)
-    # common.auth_outlook(current_os, 5, '203.109.6.85:6441', 'buhelejyaaga85', 1)
+
+def schedule_task():
+    try:
+        fetch_order()
+    finally:
+        next_run_time = datetime.now(time_zone) + timedelta(seconds=schedule_wait_time)
+        scheduler.add_job(schedule_task, 'date', run_date=next_run_time)
+
+
+def main():
+    scheduler.start()
+    schedule_task()
 
 
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+        while True:
+            time.sleep(1)  # 메인 스레드 유지
+    except (KeyboardInterrupt, SystemExit):
+        scheduler.shutdown()
