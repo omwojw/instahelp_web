@@ -951,6 +951,7 @@ def agree_check(user_id: str, tab_index: int, driver: WebDriver, wait: WebDriver
         if agree.text == 'Instagram 앱을 사용하려면 다음 항목에 동의해야 합니다':
             is_agree = True
     log(f'동의여부 체크 종료 : {"동의 필요함" if is_agree else "동의 필요하지 않음"}', user_id, tab_index)
+    sleep(1)
     return is_agree
 
 
@@ -978,6 +979,8 @@ def agree_active(user_id: str, tab_index: int, driver: WebDriver, wait: WebDrive
         return False, '동의하기 에러'
     except Exception as ex:
         raise Exception(ex)
+    finally:
+        sleep(1)
 
 
 # 로그인
@@ -1006,16 +1009,13 @@ def login(
         id_input = find_element('NAME', "username", driver, wait)
         click(id_input)
         send_keys(id_input, account_id)
-        # id_input.send_keys(account_id)
 
         # 비밀번호를 입력합니다.
         pw_input = find_element('NAME', "password", driver, wait)
         click(pw_input)
         send_keys(pw_input, account_pw)
-        # pw_input.send_keys(account_pw)
 
         # 로그인 버튼을 클릭(탭)합니다.
-
         is_login_btn = False
         divs = find_elements("TAG_NAME", "div", driver, wait)
         for div in divs:
@@ -1029,7 +1029,6 @@ def login(
             login_btn = search_element('ATTR', login_btns, 'submit', "type")
             click(login_btn)
 
-        # click(login_btn)
         log('로그인 종료', account_id, tab_index)
         sleep(5)
 
@@ -1093,20 +1092,16 @@ def login(
                 divs = find_elements("TAG_NAME", "div", driver, wait)
                 for div in divs:
                     if div.text == '시작하기':
-                        click(div)
-                        sleep(1)
+                        click(div, 1)
 
                         spans = find_elements("TAG_NAME", "span", driver, wait)
                         for span in spans:
                             if span.text == '무료 사용':
-                                click(span)
-                                sleep(1)
-
+                                click(span, 1)
                                 span_agrees = find_elements("TAG_NAME", "span", driver, wait)
                                 for span_agree in span_agrees:
                                     if span_agree.text == '동의':
-                                        click(span_agree)
-                                        sleep(1)
+                                        click(span_agree, 1)
                                         is_login1 = True
                                         message = ''
                                         break
@@ -1123,16 +1118,14 @@ def login(
                     atags = find_elements("TAG_NAME", "a", driver, wait)
                     for atag in atags:
                         if atag.text == '돌아가기' or atag.text == 'Go back':
-                            click(atag)
-                            sleep(1)
+                            click(atag, 1)
                             break
 
                 divs = find_elements("TAG_NAME", "div", driver, wait)
                 for div in divs:
                     if div.text == '계속' or div.text == 'Continue':
                         is_send_code = True
-                        click(div)
-                        sleep(1)
+                        click(div, 1)
                         break
 
                 if is_send_code:
@@ -1151,8 +1144,7 @@ def login(
                     divs = find_elements("TAG_NAME", "div", driver, wait)
                     for div in divs:
                         if div.text == '제출' or div.text == 'Submit' or div.text == '계속' or div.text == 'continue':
-                            click(div)
-                            sleep(5)
+                            click(div, 5)
                             if 'accounts/suspended' in driver.current_url:
                                 message = '메일인증(계정정지)'
                             elif 'challenge' in driver.current_url:
@@ -1168,12 +1160,11 @@ def login(
                 divs = find_elements("TAG_NAME", "div", driver, wait)
                 for div in divs:
                     if div.get_attribute("aria-label") == '닫기' or div.get_attribute('aria-label') == 'Dismiss':
-                        click(div)
-                        sleep(3)
+                        click(div, 3)
                         is_login1 = True
                         message = ''
                         break
-            elif 'accounts/login/two_factor' in driver.current_url:
+            elif 'accounts/login/two_factor' in driver.current_url: # 2차 인증
                 result_number = auth_two_factor(current_os, 5, ip, account_id, tab_index, two_factor_code)
                 security_code = find_element('NAME', 'verificationCode', driver, wait)
                 click(security_code)
@@ -1190,13 +1181,6 @@ def login(
                 message = '원인불명'
 
         sleep(3)
-        # if 'challenge' in driver.current_url:
-        #     divs = find_elements("TAG_NAME", "div", driver, wait)
-        #     for div in divs:
-        #         if div.text == '본인입니다' or div.text == 'me':
-        #             click(div)
-        #             sleep(5)
-        #             break
 
         # 로그인 2차 검증
         if is_login1:
@@ -1241,9 +1225,11 @@ def random_delay() -> int:
 
 
 # 클릭 이벤트
-def click(element: WebElement):
+def click(element: WebElement, after_delay: int = 0):
     sleep(random_delay())
     element.click()
+    if after_delay > 0:
+        sleep(after_delay)
 
 
 # 브라우저 + 계정 셋팅
@@ -1560,9 +1546,12 @@ def set_lang(driver: WebDriver) -> None:
     #     print("'약관' 단어를 찾지 못했습니다.")
 
 
-def move_page(driver: WebDriver, url: str):
+def move_page(driver: WebDriver, url: str, after_delay: int = 0):
     driver.get(url)
     set_language_cookie(driver)  # 페이지 이동 후 쿠키 설정
+
+    if after_delay > 0:
+        sleep(after_delay)
 
 
 # 페이지 이동 전후로 쿠키를 다시 설정하는 함수
