@@ -776,19 +776,19 @@ def open_selenium(curt_os: str, wait_time: int, ip: str, session_id: str, idx: i
     options.add_argument("--disable-features=VizDisplayCompositor")
 
     # 세션
-    if current_os == 'MAC':
-        if session_id:
-            options.add_argument(
-                f'--user-data-dir=/Users/ohhyesung/Library/Application Support/Google/Chrome/Default/instahelp_{session_id}')
-    elif current_os == 'WINDOW':
-        if session_id:
-            options.add_argument(
-                f'--user-data-dir=C:/workspace/instahelp_session/instahelp_{session_id}')
-            options.add_argument(f'--profile-directory=Default')  # 프로필 디렉토리 지정
-    elif current_os == 'LINUX':
-        if session_id:
-            options.add_argument(
-                f'--user-data-dir=/instahelp_session/instahelp_{session_id}')
+    # if current_os == 'MAC':
+    #     if session_id:
+    #         options.add_argument(
+    #             f'--user-data-dir=/Users/ohhyesung/Library/Application Support/Google/Chrome/Default/instahelp_{session_id}')
+    # elif current_os == 'WINDOW':
+    #     if session_id:
+    #         options.add_argument(
+    #             f'--user-data-dir=C:/workspace/instahelp_session/instahelp_{session_id}')
+    #         options.add_argument(f'--profile-directory=Default')  # 프로필 디렉토리 지정
+    # elif current_os == 'LINUX':
+    #     if session_id:
+    #         options.add_argument(
+    #             f'--user-data-dir=/instahelp_session/instahelp_{session_id}')
 
     # 헤드리스 모드, 리눅스 환경에서는 무조건 헤드리스로
     if is_headless or curt_os == 'LINUX':
