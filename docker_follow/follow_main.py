@@ -226,7 +226,7 @@ def dashboard() -> str:
         #     if not is_login2:
         #         raise Exception('로그인(2차) 검증 에러')
         #
-        
+
         is_login = is_login1 and is_login2
 
         # 로그인 안된 경우
@@ -282,17 +282,12 @@ def dashboard() -> str:
 # 주문 프로 세스
 def fetch_order() -> tuple:
     try:
-        common.move_page(driver, order_url)
-        common.sleep(2)
+        common.move_page(driver, order_url, 2)
 
         if common.agree_check(user_id, tab_index, driver, wait):
-            common.sleep(1)
             is_agree, agree_message = common.agree_active(user_id, tab_index, driver, wait)
-
             if not is_agree:
                 raise Exception(agree_message)
-
-            common.sleep(1)
 
         result, message = process()
         return result, message
@@ -317,11 +312,9 @@ def process() -> tuple:
                 follow_status = 2
         common.sleep(1)
         if follow_status == 1:
-            common.click(follow_btn)
-            common.sleep(5)
-
+            common.click(follow_btn, 5)
             is_follow = False
-            message = '팔로우 버튼을 눌렀지만 에러'
+            message = ''
             after_elements = common.find_elements("CSS_SELECTOR", "button._acan", driver, wait)
             for after_element in after_elements:
                 if (after_element.text == 'Following' or after_element.text == '팔로잉') or (
@@ -330,10 +323,9 @@ def process() -> tuple:
                     message = '성공'
                 elif after_element.text == '동의함':
                     message = '동의함 처리됨'
-        # elif follow_status == 2:
-        #     is_follow = True
-        #     message = '성공(이미)'
-        # TODO : 임시
+
+            if not message:
+                message = '팔로우 버튼을 눌렀지만 에러'
         elif follow_status == 2:
             is_follow = False
             message = '이미 팔로우 되어 있음'
