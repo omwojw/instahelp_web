@@ -1186,27 +1186,38 @@ def login(
         # 로그인 2차 검증
         if is_login1:
             sleep(1)
-            if is_display("TAG_NAME", "svg", driver):
-                svgs = find_elements("TAG_NAME", "svg", driver, wait)
-                for svg in svgs:
-                    if svg.get_attribute("aria-label") == '홈' or svg.get_attribute("aria-label") == 'Home':
-                        is_login2 = True
-                        message = ''
-                        break
-            if is_display("TAG_NAME", "button", driver):
-                btns = find_elements("TAG_NAME", "button", driver, wait)
-                for btn in btns:
-                    if btn.text == '나중에 하기' or btn.text == 'Do it later':
-                        is_login2 = True
-                        message = ''
-                        break
-            if is_display("TAG_NAME", "span", driver):
-                spans = find_elements("TAG_NAME", "span", driver, wait)
-                for span in spans:
-                    if span.text == '나중에 하기' or span.text == 'Do it later':
-                        is_login2 = True
-                        message = ''
-                        break
+            if 'accounts/onetap' in driver.current_url:
+                is_login2 = True
+                message = ''
+            else:
+                if is_display("TAG_NAME", "svg", driver):
+                    svgs = find_elements("TAG_NAME", "svg", driver, wait)
+                    for svg in svgs:
+                        if svg.get_attribute("aria-label") == '홈' or svg.get_attribute("aria-label") == 'Home':
+                            is_login2 = True
+                            message = ''
+                            break
+                if is_display("TAG_NAME", "button", driver):
+                    btns = find_elements("TAG_NAME", "button", driver, wait)
+                    for btn in btns:
+                        if btn.text == '나중에 하기' or btn.text == 'Do it later':
+                            is_login2 = True
+                            message = ''
+                            break
+                if is_display("TAG_NAME", "span", driver):
+                    spans = find_elements("TAG_NAME", "span", driver, wait)
+                    for span in spans:
+                        if span.text == '나중에 하기' or span.text == 'Do it later':
+                            is_login2 = True
+                            message = ''
+                            break
+                if is_display("TAG_NAME", "div", driver):
+                    spans = find_elements("TAG_NAME", "span", driver, wait)
+                    for span in spans:
+                        if span.text == '나중에 하기' or span.text == 'Do it later':
+                            is_login2 = True
+                            message = ''
+                            break
 
             if not is_login2:
                 message = '로그인(2차) 검증 에러'
