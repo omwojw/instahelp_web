@@ -1762,8 +1762,7 @@ def auth_two_factor(current_os, wait_time, ip, session_id, tab_index, two_factor
     log('[인증] 셀레니움 연결', session_id, tab_index)
     wait = WebDriverWait(driver_auth, wait_time, poll_frequency=0.5)
 
-    move_page(driver_auth, 'https://2fa.live/')
-    sleep(1)
+    move_page(driver_auth, 'https://2fa.live/', 1)
 
     code_input = find_element("ID", "listToken", driver_auth, wait)
     click(code_input)
@@ -1777,7 +1776,6 @@ def auth_two_factor(current_os, wait_time, ip, session_id, tab_index, two_factor
     code_output = find_element("ID", "output", driver_auth, wait)
     sleep(1)
 
-    element_log(code_output)
     result_number = code_output.get_attribute('value')
     result_number = result_number.split('|')[1]
     return result_number
