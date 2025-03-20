@@ -802,6 +802,7 @@ def open_selenium(curt_os: str, wait_time: int, ip: str, session_id: str, idx: i
     # elif current_os == 'LINUX':
     #     options.add_argument(f'--proxy-server={ip}')
 
+    options.add_argument('--disk-cache-size=4096')
     options.binary_location = chrome_path
 
     # 웹 드라 이버 시작
@@ -913,8 +914,7 @@ def open_selenium_mini(curt_os: str, wait_time: int) -> object:
         # 헤드리스 모드일때 한국어로
         options.add_argument('--lang=ko')
 
-
-
+    options.add_argument('--disk-cache-size=4096')
     options.binary_location = chrome_path
 
     # 웹 드라 이버 시작
