@@ -61,7 +61,7 @@ def dashboard() -> str:
     common.set_logger(order_id, user_id, tab_index)
 
     act_chis = ActionChains(driver)
-    wait = WebDriverWait(driver, wait_time, poll_frequency=1)
+    wait = WebDriverWait(driver, wait_time, poll_frequency=0.5)
     success = 0
     fail = 0
 

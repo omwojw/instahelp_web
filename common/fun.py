@@ -142,7 +142,8 @@ def set_sort_accouts(service: str, filter_accounts: list) -> list:
 
     def get_sort_key(a):
         sort_id = a.split('|')[0]
-        return accounts_dict.get(sort_id, -1), sort_id
+        task_count = accounts_dict.get(sort_id, -1), sort_id
+        return task_count, random.random() # 동일한 개수끼리 랜덤으로 순서정렬
 
     sorted_filter_accounts = sorted(filter_accounts, key=get_sort_key)
     return sorted_filter_accounts
@@ -1600,7 +1601,7 @@ def send_keys(element: WebElement, text: str) -> None:
 def auth_outlook(current_os, wait_time, ip, session_id, tab_index, email, email_pw):
     driver_auth: Optional[WebDriver] = open_selenium(current_os, wait_time, ip, '', tab_index)
     log('[인증] 셀레니움 연결', session_id, tab_index)
-    wait = WebDriverWait(driver_auth, wait_time, poll_frequency=1)
+    wait = WebDriverWait(driver_auth, wait_time, poll_frequency=0.5)
 
     move_page(driver_auth, 'https://outlook.live.com/mail/0/')
     sleep(3)
@@ -1759,7 +1760,7 @@ def auth_outlook(current_os, wait_time, ip, session_id, tab_index, email, email_
 def auth_two_factor(current_os, wait_time, ip, session_id, tab_index, two_factor_code):
     driver_auth: Optional[WebDriver] = open_selenium(current_os, wait_time, ip, '', tab_index)
     log('[인증] 셀레니움 연결', session_id, tab_index)
-    wait = WebDriverWait(driver_auth, wait_time, poll_frequency=1)
+    wait = WebDriverWait(driver_auth, wait_time, poll_frequency=0.5)
 
     move_page(driver_auth, 'https://2fa.live/')
     sleep(1)
@@ -1805,7 +1806,7 @@ def get_follow_count(current_os, url):
 
     driver_mini = open_selenium_mini(current_os, 5)
     driver_mini.get(url)
-    wait = WebDriverWait(driver_mini, 5, poll_frequency=1)
+    wait = WebDriverWait(driver_mini, 5, poll_frequency=0.5)
     set_lang(driver_mini)
     sleep(3)
 
