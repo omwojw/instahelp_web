@@ -1543,7 +1543,8 @@ def set_logger(order_id: str, user_id: str, tab_index: int) -> None:
 
 
 def get_test_order_id() -> int:
-    return random.randint(1, 9999)
+    # return random.randint(1, 9999)
+    return int(datetime.now().strftime('%Y%m%d%H%M%S'))
 
 
 def set_lang(driver: WebDriver) -> None:
