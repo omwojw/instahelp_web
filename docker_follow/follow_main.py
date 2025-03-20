@@ -79,7 +79,7 @@ def dashboard() -> str:
         # 페이지 띄우기
         login_url = "https://www.instagram.com/accounts/login/"
         home_url = "https://www.instagram.com/"
-        driver.get(login_url)
+        common.move_page(driver, login_url)
         common.set_lang(driver)
         common.sleep(3)
 
@@ -87,145 +87,146 @@ def dashboard() -> str:
         is_login2 = False
 
         # 자동 로그인 성공
-        if home_url == driver.current_url:
-            is_login1 = True
-
-            # 검증이 성공했다고 해도 동의하기가 나올수도 있음
-            if common.agree_check(user_id, tab_index, driver, wait):
-                common.sleep(1)
-                is_agree, agree_message = common.agree_active(user_id, tab_index, driver, wait)
-
-                if not is_agree:
-                    is_login1 = False
-                common.sleep(1)
-
-        # 자동 로그인 실패
-        else:
-            # 계정 정지
-            if 'accounts/suspended' in driver.current_url:
-                raise Exception('계정정지')
-
-            # 메타 정보동의
-            elif '/consent/' in driver.current_url:
-                divs = common.find_elements("TAG_NAME", "div", driver, wait)
-                for div in divs:
-                    if div.text == '시작하기':
-                        common.click(div)
-                        common.sleep(1)
-
-                        spans = common.find_elements("TAG_NAME", "span", driver, wait)
-                        for span in spans:
-                            if span.text == '무료 사용':
-                                common.click(span)
-                                common.sleep(1)
-
-                                span_agrees = common.find_elements("TAG_NAME", "span", driver, wait)
-                                for span_agree in span_agrees:
-                                    if span_agree.text == '동의':
-                                        common.click(span_agree)
-                                        common.sleep(1)
-                                        is_login1 = True
-                                        break
-
-                if not is_login1:
-                    raise Exception('광고설정')
-
-            # 인증 후 살리기
-            elif 'challenge/action' in driver.current_url:
-                # raise Exception('인증필요')
-                is_send_code = False
-                if common.is_display('ID', 'security_code', driver):
-                    atags = common.find_elements("TAG_NAME", "a", driver, wait)
-                    for atag in atags:
-                        if atag.text == '돌아가기' or atag.text == 'Go back':
-                            common.click(atag)
-                            common.sleep(1)
-                            break
-
-                divs = common.find_elements("TAG_NAME", "div", driver, wait)
-                for div in divs:
-                    if div.text == '계속' or div.text == 'Continue':
-                        is_send_code = True
-                        common.click(div)
-                        common.sleep(1)
-                        break
-
-                if is_send_code:
-                    result_number = common.auth_outlook(current_os, 5, ip, user_id, tab_index, email, email_pw)
-                    if common.is_display('ID', 'security_code', driver):
-                        common.sleep(1)
-                        security_code = common.find_element('ID', 'security_code', driver, wait)
-                        common.click(security_code)
-                        common.send_keys(security_code, result_number)
-                    elif common.is_display('ID', ':r6:', driver):
-                        common.sleep(1)
-                        security_code = common.find_element('ID', ':r6:', driver, wait)
-                        common.click(security_code)
-                        common.send_keys(security_code, result_number)
-
-                    divs = common.find_elements("TAG_NAME", "div", driver, wait)
-                    for div in divs:
-                        if div.text == '제출' or div.text == 'Submit':
-                            common.click(div)
-                            common.sleep(5)
-                            if 'accounts/suspended' in driver.current_url:
-                                raise Exception('메일인증(계정정지)')
-                            elif 'challenge' in driver.current_url:
-                                raise Exception('메일인증(로봇)')
-                            else:
-                                is_login1 = True
-                            break
-
-            # 계정 봇 의심 경고 경우
-            elif 'challenge' in driver.current_url:
-                divs = common.find_elements("TAG_NAME", "div", driver, wait)
-                for div in divs:
-                    if div.get_attribute("aria-label") == '닫기' or div.get_attribute('aria-label') == 'Dismiss':
-                        common.click(div)
-                        common.sleep(3)
-                        is_login1 = True
-                        break
-                if not is_login1:
-                    raise Exception('의심경고')
-            elif 'accounts/login/two_factor' in driver.current_url:
-                result_number = common.auth_two_factor(current_os, 5, ip, user_id, tab_index, two_factor_code)
-                security_code = common.find_element('NAME', 'verificationCode', driver, wait)
-                common.click(security_code)
-                common.send_keys(security_code, result_number)
-
-                divs = common.find_elements("TAG_NAME", "div", driver, wait)
-                for div in divs:
-                    if div.text == '확인' or div.text == 'Confirm':
-                        common.click(div)
-                        common.sleep(5)
-                        is_login1 = True
-                        break
-
-        common.sleep(3)
-        # 로그인 2차 검증
-        if is_login1:
-            if common.is_display("TAG_NAME", "svg", driver):
-                svgs = common.find_elements("TAG_NAME", "svg", driver, wait)
-                for svg in svgs:
-                    if svg.get_attribute("aria-label") == '홈' or svg.get_attribute("aria-label") == 'Home':
-                        is_login2 = True
-                        break
-            if common.is_display("TAG_NAME", "button", driver):
-                btns = common.find_elements("TAG_NAME", "button", driver, wait)
-                for btn in btns:
-                    if btn.text == '나중에 하기' or btn.text == 'Do it later':
-                        is_login2 = True
-                        break
-            if common.is_display("TAG_NAME", "span", driver):
-                spans = common.find_elements("TAG_NAME", "span", driver, wait)
-                for span in spans:
-                    if span.text == '나중에 하기' or span.text == 'Do it later':
-                        is_login2 = True
-                        break
-
-            if not is_login2:
-                raise Exception('로그인(2차) 검증 에러')
-
+        # if home_url == driver.current_url:
+        #     is_login1 = True
+        #
+        #     # 검증이 성공했다고 해도 동의하기가 나올수도 있음
+        #     if common.agree_check(user_id, tab_index, driver, wait):
+        #         common.sleep(1)
+        #         is_agree, agree_message = common.agree_active(user_id, tab_index, driver, wait)
+        #
+        #         if not is_agree:
+        #             is_login1 = False
+        #         common.sleep(1)
+        #
+        # # 자동 로그인 실패
+        # else:
+        #     # 계정 정지
+        #     if 'accounts/suspended' in driver.current_url:
+        #         raise Exception('계정정지')
+        #
+        #     # 메타 정보동의
+        #     elif '/consent/' in driver.current_url:
+        #         divs = common.find_elements("TAG_NAME", "div", driver, wait)
+        #         for div in divs:
+        #             if div.text == '시작하기':
+        #                 common.click(div)
+        #                 common.sleep(1)
+        #
+        #                 spans = common.find_elements("TAG_NAME", "span", driver, wait)
+        #                 for span in spans:
+        #                     if span.text == '무료 사용':
+        #                         common.click(span)
+        #                         common.sleep(1)
+        #
+        #                         span_agrees = common.find_elements("TAG_NAME", "span", driver, wait)
+        #                         for span_agree in span_agrees:
+        #                             if span_agree.text == '동의':
+        #                                 common.click(span_agree)
+        #                                 common.sleep(1)
+        #                                 is_login1 = True
+        #                                 break
+        #
+        #         if not is_login1:
+        #             raise Exception('광고설정')
+        #
+        #     # 인증 후 살리기
+        #     elif 'challenge/action' in driver.current_url:
+        #         # raise Exception('인증필요')
+        #         is_send_code = False
+        #         if common.is_display('ID', 'security_code', driver):
+        #             atags = common.find_elements("TAG_NAME", "a", driver, wait)
+        #             for atag in atags:
+        #                 if atag.text == '돌아가기' or atag.text == 'Go back':
+        #                     common.click(atag)
+        #                     common.sleep(1)
+        #                     break
+        #
+        #         divs = common.find_elements("TAG_NAME", "div", driver, wait)
+        #         for div in divs:
+        #             if div.text == '계속' or div.text == 'Continue':
+        #                 is_send_code = True
+        #                 common.click(div)
+        #                 common.sleep(1)
+        #                 break
+        #
+        #         if is_send_code:
+        #             result_number = common.auth_outlook(current_os, 5, ip, user_id, tab_index, email, email_pw)
+        #             if common.is_display('ID', 'security_code', driver):
+        #                 common.sleep(1)
+        #                 security_code = common.find_element('ID', 'security_code', driver, wait)
+        #                 common.click(security_code)
+        #                 common.send_keys(security_code, result_number)
+        #             elif common.is_display('ID', ':r6:', driver):
+        #                 common.sleep(1)
+        #                 security_code = common.find_element('ID', ':r6:', driver, wait)
+        #                 common.click(security_code)
+        #                 common.send_keys(security_code, result_number)
+        #
+        #             divs = common.find_elements("TAG_NAME", "div", driver, wait)
+        #             for div in divs:
+        #                 if div.text == '제출' or div.text == 'Submit':
+        #                     common.click(div)
+        #                     common.sleep(5)
+        #                     if 'accounts/suspended' in driver.current_url:
+        #                         raise Exception('메일인증(계정정지)')
+        #                     elif 'challenge' in driver.current_url:
+        #                         raise Exception('메일인증(로봇)')
+        #                     else:
+        #                         is_login1 = True
+        #                     break
+        #
+        #     # 계정 봇 의심 경고 경우
+        #     elif 'challenge' in driver.current_url:
+        #         divs = common.find_elements("TAG_NAME", "div", driver, wait)
+        #         for div in divs:
+        #             if div.get_attribute("aria-label") == '닫기' or div.get_attribute('aria-label') == 'Dismiss':
+        #                 common.click(div)
+        #                 common.sleep(3)
+        #                 is_login1 = True
+        #                 break
+        #         if not is_login1:
+        #             raise Exception('의심경고')
+        #     elif 'accounts/login/two_factor' in driver.current_url:
+        #         result_number = common.auth_two_factor(current_os, 5, ip, user_id, tab_index, two_factor_code)
+        #         security_code = common.find_element('NAME', 'verificationCode', driver, wait)
+        #         common.click(security_code)
+        #         common.send_keys(security_code, result_number)
+        #
+        #         divs = common.find_elements("TAG_NAME", "div", driver, wait)
+        #         for div in divs:
+        #             if div.text == '확인' or div.text == 'Confirm':
+        #                 common.click(div)
+        #                 common.sleep(5)
+        #                 is_login1 = True
+        #                 break
+        #
+        # common.sleep(3)
+        # # 로그인 2차 검증
+        # if is_login1:
+        #     if common.is_display("TAG_NAME", "svg", driver):
+        #         svgs = common.find_elements("TAG_NAME", "svg", driver, wait)
+        #         for svg in svgs:
+        #             if svg.get_attribute("aria-label") == '홈' or svg.get_attribute("aria-label") == 'Home':
+        #                 is_login2 = True
+        #                 break
+        #     if common.is_display("TAG_NAME", "button", driver):
+        #         btns = common.find_elements("TAG_NAME", "button", driver, wait)
+        #         for btn in btns:
+        #             if btn.text == '나중에 하기' or btn.text == 'Do it later':
+        #                 is_login2 = True
+        #                 break
+        #     if common.is_display("TAG_NAME", "span", driver):
+        #         spans = common.find_elements("TAG_NAME", "span", driver, wait)
+        #         for span in spans:
+        #             if span.text == '나중에 하기' or span.text == 'Do it later':
+        #                 is_login2 = True
+        #                 break
+        #
+        #     if not is_login2:
+        #         raise Exception('로그인(2차) 검증 에러')
+        #
+        
         is_login = is_login1 and is_login2
 
         # 로그인 안된 경우
